@@ -1,0 +1,175 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-11-17</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-11-17</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.11106" style="color:#4ea8ff;">AccKV: Towards Efficient Audio-Video LLMs Inference via Adaptive-Focusing and Cross-Calibration KV Cache Optimization</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>AccKV introduces a novel KV cache optimization technique for Audio-Video LLMs that addresses the computational overhead of processing temporal multimodal data by implementing adaptive-focusing mechanisms that selectively retain relevant cache entries based on cross-modal attention patterns. The key insight is that AV-LLMs exhibit modality-specific attention shifts in higher layers (favoring video over audio) and that naive integration of temporal audio KV and spatial-temporal video KV causes information confusion and performance degradation. This optimization approach could significantly reduce memory requirements and inference latency for multimodal LLMs without sacrificing task performance, making real-time audio-visual applications more practical.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.11000" style="color:#4ea8ff;">DialogGraph-LLM: Graph-Informed LLMs for End-to-End Audio Dialogue Intent Recognition</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>DialogGraph-LLM introduces a novel end-to-end framework that combines Multi-Relational Dialogue Attention Networks (MR-DAN) with multimodal foundation models like Qwen2.5-Omni-7B to perform direct acoustic-to-intent recognition in audio dialogues. The system addresses data scarcity through an adaptive semi-supervised learning approach featuring dual-threshold confidence filtering and entropy-based sample selection for pseudo-label generation. This architecture represents a significant advance by bypassing traditional speech-to-text pipelines while capturing complex inter-speaker dependencies through graph-informed attention mechanisms.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.10953" style="color:#4ea8ff;">Language-Guided Graph Representation Learning for Video Summarization</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>The paper introduces LGRLN (Language-guided Graph Representation Learning Network) that addresses video summarization by converting video frames into structured graphs with forward, backward, and undirected connections to capture both temporal sequencing and semantic relationships beyond simple frame proximity. The key technical innovation is a dual-threshold graph convolution mechanism within an intra-graph relational reasoning module that can distinguish between different types of frame relationships while incorporating language guidance for multimodal customization. This approach tackles the fundamental limitation that temporal adjacency doesn't always correlate with semantic similarity in video content, potentially improving summarization quality for social media applications.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.06328" style="color:#4ea8ff;">Improving Multimodal Sentiment Analysis via Modality Optimization and Dynamic Primary Modality Selection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>This paper introduces MODS, a framework that addresses multimodal sentiment analysis challenges through two key innovations: a Graph-based Dynamic Sequence Compressor (GDC) using capsule networks and graph convolution to reduce redundancy in acoustic/visual sequences, and a sample-adaptive Primary Modality Selector (MSelector) that dynamically chooses the most informative modality for each input rather than relying on fixed strategies. The approach tackles the common problem where imbalanced unimodal performance and sequential noise in non-language modalities degrade fused multimodal representations, offering a more adaptive solution for video sentiment analysis tasks.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.10202" style="color:#4ea8ff;">Q2E: Query-to-Event Decomposition for Zero-Shot Multilingual Text-to-Video Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Q2E introduces a query decomposition framework that leverages parametric knowledge from LLMs and VLMs to break down complex human queries into constituent events, enabling more effective zero-shot multilingual text-to-video retrieval. The method employs entropy-based fusion scoring to combine multimodal knowledge from visual and speech inputs, demonstrating adaptability across different datasets, domains, and model architectures. This approach addresses the challenge of overly simplified user queries by automatically enriching them with latent event knowledge, potentially improving retrieval accuracy for complex real-world video content.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.10979" style="color:#4ea8ff;">PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>This paper identifies temporal inconsistency in Video LLMs caused by multimodal RoPE extensions that create frame-scale ripples in the inverse Fourier time kernel, leading to unstable attention patterns when frame timing shifts slightly. The authors propose Phase Aggregated Smoothing (PAS), a training-free solution that applies opposed phase offsets across attention heads and aggregates outputs to smooth the temporal kernel while preserving spectrum magnitude. PAS offers a practical fix for video temporal encoding instability without requiring model retraining or architectural changes.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.11006" style="color:#4ea8ff;">MSMT-FN: Multi-segment Multi-task Fusion Network for Marketing Audio Classification</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#3b82f6;">💼 75</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>The paper introduces MSMT-FN (Multi-Segment Multi-Task Fusion Network), a specialized neural architecture designed to classify customer purchasing propensity from marketing phone call audio by leveraging multi-segment processing and multi-task learning approaches. The model demonstrates superior or competitive performance against state-of-the-art methods across multiple datasets including a new proprietary MarketCalls dataset specifically curated for marketing audio analysis. This work addresses a practical business need in automated customer sentiment analysis while contributing both a novel architecture and a domain-specific dataset to the audio classification research community.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.11124" style="color:#4ea8ff;">AV-Dialog: Spoken Dialogue Models with Audio-Visual Input</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#3b82f6;">💼 75</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>AV-Dialog introduces the first multimodal dialogue framework that leverages both audio and visual cues for robust speaker tracking, turn-taking prediction, and response generation in noisy multi-speaker environments. The system employs acoustic tokenization combined with multi-task, multi-stage training across monadic, synthetic, and real audio-visual datasets to achieve streaming transcription and semantically grounded turn-boundary detection. Experimental results demonstrate significant improvements over audio-only models in transcription accuracy, turn-taking prediction, and overall dialogue quality under interference conditions, establishing a new paradigm for speaker-aware conversational AI systems.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2412.00060" style="color:#4ea8ff;">MOSABench: Multi-Object Sentiment Analysis Benchmark for Evaluating Multimodal Large Language Models Understanding of Complex Image</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>MOSABench introduces a specialized benchmark dataset of ~1,000 multi-object images to evaluate multimodal large language models' ability to perform independent sentiment analysis on multiple objects within complex scenes, addressing a significant gap in current MLLM evaluation frameworks. The benchmark features novel distance-based target annotation and standardized post-processing mechanisms to handle the inherent complexity of real-world multi-object sentiment assessment. Initial experiments reveal substantial limitations in current MLLMs for this task, highlighting the need for improved architectural approaches to handle fine-grained, object-specific emotional understanding in complex visual contexts.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.03662" style="color:#4ea8ff;">Zero-Shot Temporal Interaction Localization for Egocentric Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>This paper presents EgoLoc, a zero-shot approach for temporal interaction localization in egocentric videos that addresses limitations of current methods which require annotated action/object categories and suffer from coarse-grained estimations. The key technical innovation is a self-adaptive sampling strategy that generates optimized visual prompts for vision-language model (VLM) reasoning, specifically targeting grasp action timing detection in human-object interactions. This work advances the field by eliminating domain bias and annotation requirements while improving localization precision for applications like human behavior analysis and robot skill transfer.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.06606" style="color:#4ea8ff;">SPUR: A Plug-and-Play Framework for Integrating Spatial Audio Understanding and Reasoning into Large Audio-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>SPUR introduces a plug-and-play framework that enhances large audio-language models with spatial audio understanding by integrating a First-Order Ambisonics (FOA) encoder that processes 4-channel (W,X,Y,Z) spatial audio into rotation-aware features via a multimodal adapter. The approach addresses a critical limitation in current LALMs that operate only on monaural inputs, enabling them to reason about directional, elevation, and distance cues in 3D acoustic scenes. The framework includes SPUR-Set, a specialized spatial QA dataset combining real FOA recordings with controlled simulations for training spatial reasoning capabilities.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.10222" style="color:#4ea8ff;">Speech-Audio Compositional Attacks on Multimodal LLMs and Their Mitigation with SALMONN-Guard</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>The paper introduces SACRED-Bench, a novel red-teaming framework that exploits speech-audio compositional mechanisms to bypass existing safety guardrails in multimodal LLMs, using techniques like overlapping harmful prompts with benign speech, mixing non-speech audio with speech to imply unsafe intent, and diverse spoken instruction formats. Unlike traditional perturbation-based attacks that require noise optimization or white-box access, this approach leverages the natural complexity of audio composition to embed adversarial content that evades text-only safety filters. The research demonstrates that even state-of-the-art models like Gemini 2.5 Pro remain vulnerable to these compositional audio attacks, highlighting a critical gap in current multimodal AI safety mechanisms.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.10905" style="color:#4ea8ff;">YOLO-Drone: An Efficient Object Detection Approach Using the GhostHead Network for Drone Images</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>This paper introduces YOLO-Drone, which enhances YOLOv11n with a novel "GhostHead Network" architecture specifically designed to improve object detection in high-altitude drone imagery where traditional methods struggle due to small object sizes and viewing angles. The approach modifies the detection head of YOLOv11 to better handle the unique challenges of drone-captured images, demonstrating improved performance across standard metrics (Precision, Recall, F1-Score, mAP) on the VisDrone benchmark dataset. The GhostHead enhancement appears to be a lightweight architectural modification that maintains YOLOv11's efficiency while addressing the specific geometric and scale challenges inherent in aerial object detection scenarios.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.10979" style="color:#4ea8ff;">PAS: A Training-Free Stabilizer for Temporal Encoding in Video LLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>PAS addresses temporal instability in Video LLMs caused by Rotary Position Embeddings (RoPE) extended to video, which creates frame-scale ripples that inconsistently weight adjacent frames and disrupt attention mechanisms. The proposed Phase Aggregated Smoothing applies opposing phase offsets across attention heads and aggregates outputs, effectively smoothing the temporal kernel while preserving spectral magnitude without requiring retraining. This training-free approach stabilizes video understanding by reducing sensitivity to minor frame timing variations that previously caused attention to flip between relevant frames.</p>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.11002" style="color:#4ea8ff;">EmoVid: A Multimodal Emotion Video Dataset for Emotion-Centric Video Understanding and Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>EmoVid introduces the first multimodal emotion-annotated video dataset specifically targeting creative and stylized content (cartoons, movie clips, animated stickers), addressing a critical gap where existing video generation systems focus on visual fidelity while ignoring affective dimensions. The dataset provides comprehensive annotations including emotion labels, visual attributes (brightness, colorfulness, hue), and text captions, enabling systematic analysis of spatial-temporal patterns between visual features and emotional perception. This work enables the development of emotion-conditioned video generation models, representing a significant step toward affectively-aware video synthesis for creative applications.</p>
+</article>
+</body>
+</html>

@@ -1,0 +1,42 @@
+timeZone: "Europe/Malta"
+runTime: "09:00"
+
+email:
+  from: "Daily AI Digest <digest@mattcarpenter.com>"
+  to: "matt@mattcarpenter.com"
+
+smtp:
+  host: "smtp.example.com"
+  port: 587
+  secure: false
+
+twilio:
+  fromNumber: "+1234567890"
+  toNumber: "+35600000000"
+
+feeds:
+  - url: "https://openai.com/blog/rss/"
+  - url: "https://ai.googleblog.com/feeds/posts/default"
+  - url: "https://venturebeat.com/category/ai/feed/"
+  - url: "https://www.marktechpost.com/feed/"
+  - url: "https://rss.arxiv.org/rss/cs.AI"
+  - url: "https://rss.arxiv.org/rss/cs.CV"
+  - url: "https://rss.arxiv.org/rss/eess.AS"
+
+keywords:
+  - audio
+  - video
+  - multimodal
+  - "signal processing"
+  - "media asset"
+  - "sentiment analysis"
+  - "data centre"
+  - "data center"
+  - "compute infrastructure"
+  - "datacenter"
+  - inference
+
+output:
+  baseUrl: "https://mattcarpenter.com/news"
+  webDir: "./public/news"
+  maxItems: 15

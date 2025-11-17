@@ -1,0 +1,25 @@
+# Environment variables
+.env
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Logs
+logs/
+*.log
+
+# Config (contains personal info)
+config/config.yaml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Test artifacts
+test-results/
+playwright-report/
