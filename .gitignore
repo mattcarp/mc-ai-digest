@@ -1,9 +1,15 @@
 # Environment variables
 .env
+.env.local
+.env.*.local
 
 # Dependencies
 node_modules/
 .pnpm-store/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # Logs
 logs/
@@ -12,14 +18,39 @@ logs/
 # Config (contains personal info)
 config/config.yaml
 
+# Generated digest files (optional - uncomment if you don't want to commit them)
+# public/news/*.html
+
 # OS files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+*~
 
 # IDE
 .vscode/
 .idea/
+*.swp
+*.swo
+*.swn
+.history/
 
 # Test artifacts
 test-results/
 playwright-report/
+playwright/.cache/
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Build artifacts (if you add build step later)
+dist/
+build/
+out/
