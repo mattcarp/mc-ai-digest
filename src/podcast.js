@@ -6,7 +6,7 @@
 import { ElevenLabsClient } from '@elevenlabs/elevenlabs-js';
 import fs from 'fs/promises';
 import path from 'path';
-import logger from './logger.js';
+import { logInfo, logError } from './logger.js';
 
 /**
  * Generate a podcast script from digest articles using Claude
@@ -15,7 +15,7 @@ import logger from './logger.js';
  * @returns {Promise<string>} - Podcast script in dialogue format
  */
 export async function generatePodcastScript(articles, aiClient) {
-  logger.info('Generating podcast script from articles...');
+  logInfo('Generating podcast script from articles...');
 
   // Take top 5 most relevant articles for the podcast
   const topArticles = articles.slice(0, 5);
@@ -59,7 +59,7 @@ Make it engaging, informative, and conversational. Start now:`;
   });
 
   const script = response.content[0].text;
-  logger.info(`Generated podcast script (${script.length} characters)`);
+  logInfo(`Generated podcast script (${script.length} characters)`);
 
   return script;
 }
@@ -86,7 +86,7 @@ function formatScriptForElevenLabs(script) {
  * @returns {Promise<Buffer>} - Audio file as buffer
  */
 export async function generateAudio(script, apiKey) {
-  logger.info('Generating audio with ElevenLabs...');
+  logInfo('Generating audio with ElevenLabs...');
 
   const client = new ElevenLabsClient({ apiKey });
 
@@ -114,11 +114,11 @@ export async function generateAudio(script, apiKey) {
     }
     const buffer = Buffer.concat(chunks);
 
-    logger.info(`Generated audio (${buffer.length} bytes)`);
+    logInfo(`Generated audio (${buffer.length} bytes)`);
     return buffer;
 
   } catch (error) {
-    logger.error('ElevenLabs audio generation failed:', error);
+    logError('ElevenLabs audio generation failed:', error);
     throw error;
   }
 }
@@ -140,7 +140,7 @@ export async function saveAudioFile(audioBuffer, date, outputDir) {
   // Write audio file
   await fs.writeFile(filepath, audioBuffer);
 
-  logger.info(`Saved audio to ${filepath}`);
+  logInfo(`Saved audio to ${filepath}`);
   return filepath;
 }
 
@@ -161,7 +161,7 @@ export async function generatePodcast(articles, aiClient, elevenLabsKey, date, o
     // 2. Save script for reference
     const scriptPath = path.join(outputDir, `${date}-script.txt`);
     await fs.writeFile(scriptPath, script);
-    logger.info(`Saved script to ${scriptPath}`);
+    logInfo(`Saved script to ${scriptPath}`);
 
     // 3. Generate audio
     const audioBuffer = await generateAudio(script, elevenLabsKey);
@@ -172,7 +172,7 @@ export async function generatePodcast(articles, aiClient, elevenLabsKey, date, o
     // 5. Generate public URL
     const audioUrl = `${baseUrl}/${date}.mp3`;
 
-    logger.info(`Podcast generated successfully: ${audioUrl}`);
+    logInfo(`Podcast generated successfully: ${audioUrl}`);
 
     return {
       scriptPath,
@@ -181,7 +181,7 @@ export async function generatePodcast(articles, aiClient, elevenLabsKey, date, o
     };
 
   } catch (error) {
-    logger.error('Podcast generation failed:', error);
+    logError('Podcast generation failed:', error);
     throw error;
   }
 }

@@ -23,13 +23,13 @@
   <h1>AI Daily Digest – 2025-11-18</h1>
   
 <article style="margin-bottom:1.5rem;">
-  <h2><a href="https://www.marktechpost.com/2025/11/17/uni-moe-2-0-omni-an-open-qwen2-5-7b-based-omnimodal-moe-for-text-image-audio-and-video-understanding/" style="color:#4ea8ff;">Uni-MoE-2.0-Omni: An Open Qwen2.5-7B Based Omnimodal MoE for Text, Image, Audio and Video Understanding</a></h2>
+  <h2><a href="https://venturebeat.com/ai/google-unveils-gemini-3-claiming-the-lead-in-math-science-multimodal-and" style="color:#4ea8ff;">Google unveils Gemini 3 claiming the lead in math, science, multimodal and agentic AI benchmarks </a></h2>
   <p style="color:#888;font-size:0.85rem;">
-    MarkTechPost
+    AI | VentureBeat
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>Uni-MoE-2.0-Omni is an open-source omnimodal mixture-of-experts model built on Qwen2.5-7B that unifies text, image, audio, and video understanding through a language-centric reasoning architecture, enabling efficient multimodal processing without massive parameter overhead. The MoE approach allows selective expert activation across modalities, reducing computational requirements while maintaining strong cross-modal reasoning capabilities—a pragmatic solution for deploying truly omnimodal systems at scale.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>Google's Gemini 3 family represents a comprehensive frontier model release with claimed performance leadership across mathematical reasoning, scientific tasks, multimodal understanding, and agentic capabilities, delivered through closed-source APIs integrated into Google's ecosystem (Vertex AI, Studio, CLI). The portfolio includes specialized variants—Gemini 3 Pro as flagship, Deep Think for enhanced reasoning, and a native Gemini Agent for multi-step orchestration—alongside tooling like Antigravity, Google's agent-first development environment. Key technical implication: the emphasis on reasoning modes and agent-native architecture signals industry movement toward compositional AI systems capable of autonomous task decomposition rather than single-turn inference.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -38,8 +38,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>DialogGraph-LLM addresses audio dialogue intent recognition by combining a Multi-Relational Dialogue Attention Network (MR-DAN) with multimodal foundation models (Qwen2.5-Omni-7B) for end-to-end acoustic-to-intent processing, eliminating intermediate transcription steps. The framework incorporates an adaptive semi-supervised learning strategy featuring confidence-aware pseudo-labeling with dual-threshold filtering and entropy-based sample selection to mitigate data scarcity—a critical bottleneck in dialogue understanding tasks. Evaluated on proprietary and public benchmarks, this approach demonstrates how graph-informed attention mechanisms combined with LLM reasoning can improve speaker intent extraction in complex multi-turn conversations.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>DialogGraph-LLM introduces a multi-modal end-to-end framework combining a novel Multi-Relational Dialogue Attention Network (MR-DAN) with foundation models like Qwen2.5-Omni to directly map audio dialogues to speaker intents, addressing the challenge of modeling complex inter-speaker dependencies. The key innovation is an adaptive semi-supervised learning strategy employing dual-threshold confidence filtering and entropy-based sample selection for pseudo-label generation, enabling effective learning from scarce annotated dialogue data. This approach demonstrates practical value for real-world applications like call center analysis while establishing a benchmark on both proprietary and public datasets for dialogue understanding tasks.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -48,8 +48,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>This paper introduces QTSplus, a query-aware visual token selection module that addresses the quadratic attention complexity bottleneck in long-video MLLMs by dynamically filtering vision tokens based on query relevance using cross-attention scoring and instance-specific retention budgeting. The approach employs a differentiable straight-through estimator during training and hard gating at inference to enable end-to-end optimization while maintaining computational efficiency, effectively converting the linear token growth problem into adaptive, query-dependent token pruning. This technique enables practical long-video understanding by reducing memory, latency, and attention costs without requiring architectural changes to underlying LLMs.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>QTSplus addresses the quadratic attention bottleneck in long-video MLLMs by introducing query-aware dynamic token selection that reduces vision tokens based on query complexity, using cross-attention scoring and differentiable gating to maintain performance while dramatically cutting computational overhead. This approach elegantly decouples token retention from video length, enabling scalable multimodal processing for extended sequences without sacrificing the model's ability to capture relevant visual context. The instance-specific retention budget mechanism is particularly novel—it recognizes that different queries require different levels of visual detail, offering a principled alternative to fixed compression ratios.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -59,7 +59,7 @@
      · 2025-11-18
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>GCAgent introduces a novel episodic memory architecture that explicitly models causal and temporal event relationships to overcome MLLMs' token limitations in long-video understanding, using a Perception-Action-Reflection cycle with a Memory Manager for contextual retrieval. The key innovation is replacing flat token sequences with structured schematic and narrative memory that captures global context and complex event dependencies, fundamentally addressing long-term temporal reasoning challenges in video comprehension. This approach has significant implications for video QA, summarization, and reasoning tasks where maintaining coherent event relationships across extended sequences is critical.</p>
+  <p>GCAgent introduces a novel agent framework addressing long-video understanding in MLLMs by implementing Schematic and Narrative Episodic Memory—a structured memory system that models events and their causal/temporal relationships to overcome token limitations and long-term dependency challenges. The system operates through a multi-stage Perception-Action-Reflection cycle with a Memory Manager component that retrieves contextually relevant episodic information for improved reasoning. This approach fundamentally restructures how temporal context is represented and accessed, enabling more coherent video reasoning beyond existing capacity constraints.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -69,7 +69,7 @@
      · 2025-11-18
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>OlmoEarth introduces a specialized multimodal foundation model tailored for Earth observation data, combining spatial, sequential, and temporal dimensions through custom self-supervised learning, masking strategies, and domain-specific loss functions—outperforming 12 competing models across 24 benchmarks with state-of-the-art embedding and fine-tuning results. The work includes an end-to-end platform democratizing access to frontier Earth observation capabilities for NGOs and nonprofits, addressing the unique challenges of satellite/geospatial data that traditional vision models struggle with due to its hybrid image-video-multimodal nature.</p>
+  <p>OlmoEarth introduces a specialized spatio-temporal foundation model that unifies Earth observation's unique data characteristics—spatial imagery, temporal sequences, and multimodal inputs—through custom self-supervised learning, masking strategies, and domain-specific loss functions, achieving SOTA results on 15/24 embedding tasks and 19/29 fine-tuning benchmarks. The work is particularly significant for practitioners because it's deployed as an accessible end-to-end platform democratizing frontier Earth observation AI for NGOs and non-profits, rather than remaining confined to well-resourced institutions.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -78,8 +78,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
-  <p>Uni-MoE-2.0-Omni introduces a dynamic-capacity Mixture-of-Experts architecture with shared/routed/null expert routing and Omni-Modality 3D RoPE for spatio-temporal alignment, enabling efficient omnimodal (text, image, speech) understanding and generation from a Qwen2.5-7B base. The model leverages progressive training with iterative reinforcement and curated cross-modal data matching to balance computational efficiency across 10 input modalities, advancing language-centric multimodal reasoning as a fully open-source alternative to proprietary omnimodal systems.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Uni-MoE-2.0-Omni presents a language-centric omnimodal model built on Qwen2.5-7B that introduces dynamic-capacity MoE with shared/routed/null experts for efficient cross-modal routing across 10 input modalities, coupled with Omni-Modality 3D RoPE for spatio-temporal attention alignment. The model combines progressive multi-stage training with iterative reinforcement learning and carefully curated multimodal datasets to achieve unified understanding and generation of images, text, and speech—advancing the open-source landscape for production-grade omnimodal systems with computational efficiency trade-offs.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -88,8 +88,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
-  <p>Yanyun-3 introduces a novel VLM-based agent framework that achieves cross-platform strategy game automation by combining Qwen2.5-VL's multimodal reasoning with UI-TARS for precise UI interaction, successfully handling complex tasks like target localization and resource allocation across heterogeneous game environments. The work demonstrates that VLMs can effectively generalize across diverse interfaces through systematic evaluation of multimodal inputs (static images, sequences, and video), establishing a significant benchmark for autonomous operation in dynamic, partially observable domains that closely mirror real-world human-computer interaction challenges.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>Yanyun-3 presents the first cross-platform strategy game agent combining Qwen2.5-VL's multimodal reasoning with UI-TARS for precise UI interaction, successfully generalizing across heterogeneous game environments for complex tasks like combat resource allocation and target localization. The framework's systematic evaluation of multimodal input types (static images, sequences, videos) reveals insights into optimal data representations for VLM-based game automation, addressing the long-standing challenge of robust generalization across diverse UI paradigms in dynamic environments.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -98,8 +98,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>APVR introduces a training-free, hierarchical retrieval framework for hour-level video understanding in MLLMs, addressing memory constraints through dual-stage filtering: Pivot Frame Retrieval uses query-expanded semantic scoring to identify relevant frames, while Pivot Token Retrieval performs query-aware token selection to preserve critical visual information. This approach overcomes traditional bottlenecks by maintaining sufficient contextual information without retraining, enabling efficient processing of long-form video content where previous compression-based methods sacrificed performance.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>APVR introduces a training-free, hierarchical retrieval framework for hour-level video understanding in MLLMs, using dual-stage pivot retrieval (frames + tokens) with query expansion and spatio-semantic confidence scoring to overcome memory constraints while maintaining visual information fidelity. The approach bypasses the performance limitations of prior compression-based methods by selectively preserving task-relevant visual features rather than uniformly downsampling, enabling practical long-video reasoning without additional model training. This addresses a critical bottleneck for production deployment of video MLLMs on resource-constrained systems.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -109,7 +109,7 @@
      · 2025-11-18
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>READ addresses the critical inference speed bottleneck in diffusion-based talking head generation through a three-pronged approach: temporal VAE-based video compression to reduce token overhead, a novel Speech Autoencoder for temporally-aligned audio-visual representations, and a custom Audio-to-Video Diffusion Transformer backbone optimized for real-time synthesis. This combination enables practical deployment of diffusion models for audio-driven video generation while maintaining quality, a significant advancement over prohibitively slow existing diffusion approaches.</p>
+  <p>READ addresses the critical bottleneck of diffusion model inference speed in talking head generation by introducing a two-stage compression strategy: temporal VAE for video latents and a novel Speech Autoencoder for temporally-aligned audio latents, combined with an optimized Audio-to-Video Diffusion Transformer backbone. This approach achieves real-time synthesis by reducing token complexity while maintaining audio-visual synchronization—a key practical requirement for deployment. The work demonstrates how architectural innovations (compressed latent spaces + specialized diffusion transformer) can make diffusion-based video synthesis practical for interactive applications.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -118,8 +118,8 @@
     eess.AS updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
-  <p>READ addresses the critical inference speed bottleneck in diffusion-based talking head generation through three key innovations: (1) temporal VAE compression to reduce token count, (2) a Speech Autoencoder that aligns audio to compressed video latent space, and (3) a specialized Audio-to-Video Diffusion Transformer backbone for efficient synthesis. This approach enables real-time generation while maintaining audio-visual synchronization, significantly advancing the practical deployment of diffusion models for video synthesis applications.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> </div>
+  <p>READ addresses the critical inference speed bottleneck in diffusion-based talking head generation through a three-part technical innovation: temporal VAE compression of video latents, a Speech Autoencoder for aligned audio representation, and an optimized Audio-to-Video Diffusion Transformer backbone. This approach dramatically reduces computational overhead while maintaining audio-visual synchronization, enabling real-time synthesis—a significant leap toward practical deployment of diffusion models in interactive applications. The compressed latent space strategy represents a key pattern for accelerating other latent diffusion tasks beyond talking heads.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -128,12 +128,10 @@
     cs.AI updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>**Summary:**
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> </div>
+  <p># Summary: PAS - Training-Free Temporal Stabilization for Video LLMs
 
-Video LLMs exhibit temporal instability where minor frame timing shifts cause attention collapse due to ripples in the Fourier-domain time kernel induced by multimodal RoPE—a fundamental architectural issue. The authors propose Phase Aggregated Smoothing (PAS), a training-free post-hoc mechanism that applies phase offsets across attention heads and aggregates outputs to smooth the temporal kernel, effectively decoupling frame attention from positional encoding artifacts without model retraining.
-
-**Key Implications:** This is a practical, zero-cost stabilization technique addressing a critical but overlooked architectural vulnerability in video LLMs; the phase-space analysis revealing RoPE's temporal instability as a Fourier kernel problem opens new directions for debugging multimodal positional encoding designs.</p>
+Video LLMs exhibit temporal instability due to RoPE's multimodal extension creating frame-scale ripples in the Fourier time kernel, causing attention fluctuations from minor timing shifts. Phase Aggregated Smoothing (PAS) addresses this by applying opposing phase offsets across attention heads and aggregating outputs to smooth the temporal kernel, effectively decoupling position sensitivity while preserving magnitude—all without retraining. This training-free approach has immediate practical value for deploying more robust video understanding models by fixing a fundamental architectural vulnerability in temporal attention.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -143,7 +141,7 @@ Video LLMs exhibit temporal instability where minor frame timing shifts cause at
      · 2025-11-18
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>MSMT-FN introduces a multi-segment multi-task fusion architecture specifically optimized for extracting purchasing intent from marketing call audio, addressing the practical challenge of classifying customer sentiment at scale. The approach validates strongly across both a newly released proprietary MarketCalls dataset and established multimodal benchmarks (CMU-MOSI/MOSEI, MELD), suggesting the fusion strategy generalizes beyond domain-specific applications. The open-sourcing of both code and dataset could accelerate adoption of task-specific audio classification methods in commercial sentiment analysis pipelines.</p>
+  <p>MSMT-FN introduces a multi-segment multi-task fusion architecture specifically optimized for extracting customer sentiment and purchasing intent from marketing call audio, addressing the scalability challenge of processing large-scale commercial speech data. The approach demonstrates consistent improvements over SOTA methods across multiple benchmarks (CMU-MOSI, CMU-MOSEI, MELD) plus a new proprietary MarketCalls dataset, suggesting the architectural innovations—likely combining segmentation strategies with auxiliary task learning—effectively capture both emotional and transactional signals from speech. The open-sourced codebase and dataset release position this as a practical foundation for enterprise audio analytics and domain-specific multimodal emotion recognition systems.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -152,8 +150,9 @@ Video LLMs exhibit temporal instability where minor frame timing shifts cause at
     cs.AI updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
-  <p>AV-Dialog introduces the first audio-visual dialogue framework that leverages visual speaker tracking and lip-sync cues alongside acoustic information to improve robustness in noisy, multi-speaker environments—addressing fundamental limitations of audio-only dialogue systems through multi-task, multi-stage training on diverse datasets. The approach combines acoustic tokenization with speaker-aware turn-taking prediction and generates contextually coherent responses, demonstrating significant improvements in transcription accuracy and dialogue quality compared to baseline audio-only models. This work establishes that visual grounding is critical for speaker identification and turn-taking in conversational AI, enabling more natural dialogue agents suited for real-world deployment scenarios.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>arXiv:2511.11124v1 Announce Type: cross 
+Abstract: Dialogue models falter in noisy, multi-speaker environments, often producing irrelevant responses and awkward turn-taking. We present AV-Dialog, the first multimodal dialog framework that uses both audio and visual cues to track the target speaker,...</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -162,8 +161,8 @@ Video LLMs exhibit temporal instability where minor frame timing shifts cause at
     cs.AI updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>MOSABench introduces a standardized benchmark with ~1,000 multi-object images to evaluate MLLMs' capability in fine-grained sentiment analysis at the object level rather than image-level, addressing a significant gap in current evaluation methodologies. The benchmark incorporates distance-based target annotation and improved scoring mechanisms to handle the complexity of independently assessing sentiment for multiple entities within single images. Experiments expose critical limitations in state-of-the-art MLLMs like mPLUG-owl, suggesting that while these models excel at holistic semantic tasks, they struggle with granular multi-object reasoning—an important insight for advancing MLLM architectures toward real-world applications.</p>
+  <div style="margin:0.5rem 0;"> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>MOSABench addresses a critical gap in MLLM evaluation by introducing a specialized benchmark for multi-object sentiment analysis with ~1,000 images, incorporating distance-based annotation and standardized post-processing to measure fine-grained sentiment understanding across multiple entities in complex scenes. The benchmark reveals significant limitations in current MLLMs (e.g., mPLUG-owl, Qwen) when handling spatially distributed sentiment targets, highlighting the need for improved compositional reasoning and granular semantic analysis in multimodal systems. This work establishes a foundation for more rigorous evaluation of MLLMs beyond high-level tasks, directly impacting real-world applications requiring nuanced multi-entity understanding.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -172,10 +171,8 @@ Video LLMs exhibit temporal instability where minor frame timing shifts cause at
     cs.AI updates on arXiv.org
      · 2025-11-18
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>**Zero-Shot Temporal Interaction Localization for Egocentric Videos**
-
-EgoLoc introduces a zero-shot approach for localizing human-object interaction (HOI) timings in egocentric video by leveraging vision-language models with a self-adaptive sampling strategy to generate contextually relevant visual prompts, eliminating the need for annotated action/object categories. This addresses key limitations of prior zero-shot temporal action localization methods—their coarse-grained predictions and open-loop architectures—enabling more precise, fine-grained interaction localization applicable to behavior analysis and robot skill transfer without domain-specific retraining.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> </div>
+  <p>This paper presents **EgoLoc**, a zero-shot temporal interaction localization framework that leverages vision-language models (VLMs) with self-adaptive visual prompting to localize human-object interactions in egocentric video without requiring annotated action/object categories. The approach moves beyond coarse-grained zero-shot temporal action localization by introducing a closed-loop reasoning mechanism, addressing domain bias and improving deployment efficiency for downstream tasks like behavior analysis and robot skill transfer. The self-adaptive sampling strategy represents a practical solution to generating task-relevant visual prompts that enhance VLM reasoning accuracy for fine-grained temporal grounding of interactions.</p>
 </article>
 </body>
 </html>
