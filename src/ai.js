@@ -30,6 +30,17 @@ export function initializeAI(aiConfig) {
 }
 
 /**
+ * Get the initialized AI client (for use in podcast generation)
+ * @returns {Object} - AI client instance
+ */
+export function getAIClient() {
+  if (!client) {
+    throw new Error('AI client not initialized. Call initializeAI() first.');
+  }
+  return client;
+}
+
+/**
  * Call LLM with a prompt
  * @param {string} systemPrompt - System instructions
  * @param {string} userPrompt - User message

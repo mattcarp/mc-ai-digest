@@ -81,6 +81,11 @@ jobs:
             baseUrl: "https://mattcarpenter.com/news"
             webDir: "./public/news"
             maxItems: 15
+
+          podcast:
+            enabled: true
+            audioDir: "./public/news/audio"
+            audioBaseUrl: "https://mattcarpenter.com/news/audio"
           EOF
 
       - name: Run digest
@@ -90,6 +95,7 @@ jobs:
           TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
           TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           # Alternative: OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: pnpm digest
 
@@ -98,6 +104,8 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add public/news/*.html
+          git add public/news/audio/*.mp3 || true
+          git add public/news/audio/*-script.txt || true
           git add logs/digest.log || true
           if git diff --staged --quiet; then
             echo "No changes to commit"

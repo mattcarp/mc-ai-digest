@@ -40,3 +40,9 @@ output:
   baseUrl: "https://mattcarpenter.com/news"
   webDir: "./public/news"
   maxItems: 15
+
+podcast:
+  enabled: true
+  audioDir: "./public/news/audio"
+  audioBaseUrl: "https://mattcarpenter.com/news/audio"
+  # API key loaded from ELEVENLABS_API_KEY env var

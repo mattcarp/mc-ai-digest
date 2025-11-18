@@ -6,7 +6,8 @@ import { writeHtmlPage } from "./page.js";
 import { sendDigestEmail } from "./email.js";
 import { sendDigestSms } from "./sms.js";
 import { logInfo, logError } from "./logger.js";
-import { initializeAI, analyzeArticle } from "./ai.js";
+import { initializeAI, analyzeArticle, getAIClient } from "./ai.js";
+import { generatePodcast } from "./podcast.js";
 
 async function run() {
   logInfo("Starting daily digest…");
@@ -46,8 +47,28 @@ async function run() {
 
     const { slug } = writeHtmlPage(now, items, cfg);
 
+    // Generate podcast if enabled
+    let podcastUrl = null;
+    if (cfg.podcast?.enabled && process.env.ELEVENLABS_API_KEY && cfg.ai) {
+      try {
+        const aiClient = getAIClient();
+        const podcast = await generatePodcast(
+          items,
+          aiClient,
+          process.env.ELEVENLABS_API_KEY,
+          slug,
+          cfg.podcast.audioDir,
+          cfg.podcast.audioBaseUrl
+        );
+        podcastUrl = podcast.audioUrl;
+        logInfo(`Podcast generated: ${podcastUrl}`);
+      } catch (error) {
+        logError('Podcast generation failed (continuing with digest):', error);
+      }
+    }
+
     await sendDigestEmail(now, items, cfg);
-    await sendDigestSms(now, items, cfg);
+    await sendDigestSms(now, items, cfg, podcastUrl);
 
     logInfo(`Digest completed for ${slug}`);
   } catch (err) {
