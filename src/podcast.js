@@ -80,42 +80,74 @@ function formatScriptForElevenLabs(script) {
 }
 
 /**
- * Generate audio podcast using ElevenLabs API
+ * Generate audio podcast using ElevenLabs API with chunked generation
+ * to avoid timeouts on long scripts
  * @param {string} script - Podcast script in dialogue format
  * @param {string} apiKey - ElevenLabs API key
  * @returns {Promise<Buffer>} - Audio file as buffer
  */
 export async function generateAudio(script, apiKey) {
-  logInfo('Generating audio with ElevenLabs...');
+  logInfo('Generating audio with ElevenLabs (chunked)...');
 
   const client = new ElevenLabsClient({ apiKey });
+  const CHARLIE_VOICE_ID = 'IKne3meq5aSn9XLyUdCD'; // Australian male voice
 
   try {
     // Format script for ElevenLabs
     const formattedScript = formatScriptForElevenLabs(script);
 
-    // Generate audio using text-to-speech with multiple voices
-    // Note: ElevenLabs dialogue endpoint automatically handles speaker detection
-    const audio = await client.textToSpeech.convert({
-      text: formattedScript,
-      model_id: 'eleven_multilingual_v2',
-      voice_settings: {
-        stability: 0.5,
-        similarity_boost: 0.75,
-        style: 0.5,
-        use_speaker_boost: true
-      }
-    });
-
-    // Convert stream to buffer
+    // Split into chunks to avoid quota/timeout issues (~1500 chars each)
     const chunks = [];
-    for await (const chunk of audio) {
-      chunks.push(chunk);
-    }
-    const buffer = Buffer.concat(chunks);
+    const lines = formattedScript.split('\n');
+    let currentChunk = '';
 
-    logInfo(`Generated audio (${buffer.length} bytes)`);
-    return buffer;
+    for (const line of lines) {
+      if (currentChunk.length + line.length > 1500 && currentChunk.length > 0) {
+        chunks.push(currentChunk.trim());
+        currentChunk = line + '\n';
+      } else {
+        currentChunk += line + '\n';
+      }
+    }
+    if (currentChunk.trim()) {
+      chunks.push(currentChunk.trim());
+    }
+
+    logInfo(`Split script into ${chunks.length} chunks for generation`);
+
+    const audioChunks = [];
+
+    for (let i = 0; i < chunks.length; i++) {
+      logInfo(`Generating chunk ${i + 1}/${chunks.length}...`);
+
+      const audio = await client.textToSpeech.convert(CHARLIE_VOICE_ID, {
+        text: chunks[i],
+        model_id: 'eleven_multilingual_v2',
+        voice_settings: {
+          stability: 0.5,
+          similarity_boost: 0.75
+        }
+      });
+
+      const chunkBuffers = [];
+      for await (const chunk of audio) {
+        chunkBuffers.push(chunk);
+      }
+      const buffer = Buffer.concat(chunkBuffers);
+      audioChunks.push(buffer);
+
+      logInfo(`Chunk ${i + 1} done (${buffer.length} bytes)`);
+
+      // Small delay to avoid rate limiting
+      if (i < chunks.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
+
+    // Merge all chunks
+    const finalBuffer = Buffer.concat(audioChunks);
+    logInfo(`Generated complete audio (${finalBuffer.length} bytes)`);
+    return finalBuffer;
 
   } catch (error) {
     logError('ElevenLabs audio generation failed:', error);

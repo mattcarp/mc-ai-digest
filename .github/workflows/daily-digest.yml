@@ -2,8 +2,8 @@ name: Daily AI Digest
 
 on:
   schedule:
-    # Run at 7:00 AM UTC (9:00 AM Malta time)
-    - cron: '0 7 * * *'
+    # Run at 6:00 AM UTC (7:00 AM Malta time) - build podcast 2 hours before 9 AM delivery
+    - cron: '0 6 * * *'
   workflow_dispatch: # Allow manual triggering
 
 jobs:
