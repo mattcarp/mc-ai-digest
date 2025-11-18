@@ -11,13 +11,65 @@
 - [x] GitHub Actions workflow (auto-commit daily)
 - [x] Cost optimization (~$4.10/month vs $12.30)
 
-## 🎙️ Phase 2: Audio Podcast Generation (IN PROGRESS)
-- [x] Claude generates conversational script (Alex & Sam hosts)
-- [x] ElevenLabs text-to-speech integration
+## 🎙️ Phase 2: 3-Part Audio Podcast Experience (IN PROGRESS)
+
+### Current Status:
+- [x] Claude generates conversational script
+- [x] ElevenLabs text-to-speech integration (Charlie voice)
 - [x] SMS links directly to podcast audio
-- [ ] Get correct ElevenLabs API key from paid account
-- [ ] Test full 5-8 minute podcast generation
-- [ ] Deploy audio files to mattcarpenter.com/news/audio
+- [x] Basic podcast generation working
+- [ ] 3-part audio pipeline (music + sung intro + dialogue)
+- [ ] Suno AI sung intro integration
+- [ ] Spotify music fade integration
+- [ ] FFmpeg audio merging
+- [ ] Pre-generation at 6 AM (ready by 9 AM)
+
+### The Complete Podcast Experience:
+
+**Part 1: Morning Music Fade (20 seconds)**
+- Random track from Spotify playlist
+- Fade in → peak → fade out
+- Sets energetic morning vibe
+
+**Part 2: Sung AI Intro (20 seconds)**
+- Udio AI generates actual SUNG lyrics about today's top stories
+- Studio-quality vocals with superior clarity and realism
+- Dynamic genre rotation by day:
+  - Monday: Jazz
+  - Tuesday: Rock
+  - Wednesday: Classical
+  - Thursday: Electronic
+  - Friday: Hip-hop
+  - Weekend: Acoustic/Chill
+- Example: *"It's Monday morning, AI news time! Gemini 3 reaching for the sky!"*
+- Fades down smoothly into dialogue
+
+**Part 3: News Dialogue (5-8 minutes)**
+- Charlie voice (energetic Australian male, NOT boring monotone!)
+- Conversational coverage of top 5 articles
+- Business + technical insights
+- Natural, engaging delivery
+
+### Technical Pipeline:
+```
+6:00 AM - Build podcast:
+  1. Fetch & analyze articles (Claude Haiku)
+  2. Generate podcast script (Claude Sonnet)
+  3. Generate Udio sung intro (dynamic lyrics from top stories)
+  4. Generate dialogue audio (ElevenLabs Charlie voice)
+  5. Get Spotify track + apply fades (FFmpeg)
+  6. Merge: [Spotify] → [Udio intro] → [Dialogue] (FFmpeg)
+  7. Save to public/news/audio/
+
+9:00 AM - Deliver:
+  - SMS with podcast link
+  - Pre-built, polished, ready to play
+```
+
+### Cost Impact:
+- Udio AI (via MusicAPI.ai): ~$10/month (music generation)
+- ElevenLabs: ~$11/month (existing)
+- Total: ~$21/month for premium audio experience
 
 ## 🌐 Phase 3: Web Deployment (NEXT)
 - [ ] Upload public/news/ to mattcarpenter.com hosting

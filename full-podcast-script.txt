@@ -1,0 +1,69 @@
+# Matt's AI News Podcast - November 18th, 2025
+
+Good morning Matt! Your AI digest for Monday, November 18th.
+
+We've got a fascinating mix today - Google's making some big claims with their latest model, and the research community is absolutely cooking with some seriously impressive work on video understanding and multimodal AI. Let's dive in.
+
+---
+
+**Story One: Google's Gemini 3 Takes the Crown**
+
+So Google just dropped Gemini 3, and they're not being shy about it - they're claiming top spots across math, science, multimodal capabilities, and agentic AI benchmarks. Now, we've heard these "we're number one" announcements before, right? But here's what makes this interesting.
+
+From a business perspective, this is more about maintaining competitive positioning than revolutionizing the market. The score here is relatively modest because, let's be honest, we're in this rhythm now where the big players leapfrog each other every few months. But technically, if Google's really nailed agentic AI - meaning models that can actually plan, execute, and adapt across multiple steps - that's worth paying attention to. The multimodal improvements could mean better integration across Google's entire product ecosystem, which affects everything from Workspace to Cloud offerings.
+
+The real question you should be asking: Are these benchmark improvements translating to real-world use cases? Because we've seen plenty of models dominate benchmarks but stumble when you actually put them to work. Keep an eye on the developer community's response over the next week or two - that'll tell you more than Google's press release ever will.
+
+---
+
+**Story Two: Uni-MoE Goes Omnimodal**
+
+Speaking of multimodal, let's talk about something really technically exciting - Uni-MoE 2.0-Omni. This is an open-source project built on Qwen2.5-7B that handles text, image, audio, AND video understanding. And here's the kicker - it's using a Mixture of Experts architecture.
+
+Now, why does this matter? The technical score here is really high because this represents a democratization moment. You're looking at a 7-billion parameter model that's handling all these modalities. That's incredibly efficient. The MoE architecture means different "expert" networks activate for different tasks, so you're not running the entire model for every single query - you're being smart about compute.
+
+From a business angle, the open-source nature is crucial. Companies that can't afford or don't want to depend on the big closed-source models now have a legitimate alternative for building multimodal applications. Think customer service bots that can handle voice, video calls, screen shares, and documents all in one conversation. Or accessibility tools that can seamlessly translate between modalities.
+
+The 7B size is actually perfect for a lot of real-world deployments - small enough to run cost-effectively, powerful enough to be actually useful. This is the kind of release that enables the next wave of startups.
+
+---
+
+**Story Three: DialogGraph Understands What You Really Mean**
+
+Alright, shifting gears to something more specialized but super practical - DialogGraph-LLM. This is all about understanding intent in audio dialogues using graph-informed approaches.
+
+Here's why this is cool: Traditional audio understanding often misses the context and relationships between different parts of a conversation. DialogGraph uses graph structures to map out how different intents relate to each other throughout a dialogue. It's like giving the AI a flowchart of how conversations actually work.
+
+The technical sophistication here is high - you're combining graph neural networks with LLMs to create a more structured understanding of dialogue. This isn't just transcribing and analyzing words; it's understanding the underlying structure of human conversation.
+
+Business-wise, think about applications in call centers, sales coaching, therapy session analysis, or meeting intelligence. Being able to accurately identify intent throughout a long conversation - not just surface-level sentiment but actual underlying goals and needs - that's valuable. The scores suggest this is still more research-focused, but it's exactly the kind of foundational work that becomes a product feature eighteen months from now.
+
+---
+
+**Story Four: GCAgent Remembers Long Videos Like We Do**
+
+Now we're getting into something really fascinating - GCAgent tackles long-form video understanding using what they call "schematic and narrative episodic memory." That's a mouthful, so let me break it down.
+
+Humans don't remember videos as continuous streams - we remember key moments, narrative arcs, and schematic patterns. GCAgent mimics this by creating episodic memory structures. It's not trying to process every single frame with equal attention; it's building a hierarchical understanding of what matters.
+
+The technical achievement here is significant because long-form video understanding has been a massive challenge. Most models either lose context, get overwhelmed by the sheer volume of data, or miss important long-range dependencies. By using episodic memory, GCAgent can maintain coherence across much longer timeframes.
+
+Business applications? Content moderation at scale, automated video editing and summarization, educational content analysis, security footage review - anywhere you need to actually understand what's happening across hours of video, not just detect objects in frames. The technical score is high because this approach is genuinely novel; the business score suggests we're still in the "prove it works" phase.
+
+---
+
+**Story Five: APVR Handles Hour-Long Videos**
+
+Rounding out today with APVR - Adaptive Positional Visual Resampler - which is also tackling hour-level video understanding but from a different angle. This is all about efficient visual processing.
+
+The key innovation is adaptive resampling. Instead of treating all visual information equally, APVR dynamically adjusts how it samples and processes different parts of the video based on what's actually important. It's like having a smart compression algorithm that knows the difference between a crucial plot point and a establishing shot.
+
+This matters because compute cost is the elephant in the room for video AI. Processing hour-long videos frame by frame is prohibitively expensive. APVR makes it practical by being intelligent about where to spend those computational resources.
+
+Combined with GCAgent, you're seeing a clear trend: the research community is cracking hour-long video understanding from multiple angles simultaneously. That's usually a sign that real-world applications are about to explode in the next 12 to 24 months.
+
+---
+
+So what's the thread connecting today's stories? We're seeing maturity in multimodal AI. Not just "can it handle different inputs" but "can it handle them efficiently, at scale, with real understanding." From Google's benchmark-topping claims to open-source alternatives, from dialogue intent to hour-long video comprehension - the pieces are coming together for AI that actually understands the messy, multimodal reality of how humans communicate and create content.
+
+That's your digest for today - now go build something amazing!
