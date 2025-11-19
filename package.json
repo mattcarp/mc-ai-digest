@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "digest": "node src/runDigest.js",
+    "api": "node api-server.js",
     "test": "playwright test"
   },
   "dependencies": {
@@ -12,6 +13,7 @@
     "@elevenlabs/elevenlabs-js": "^2.24.1",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "js-yaml": "^4.1.0",
     "nodemailer": "^6.9.15",
     "rss-parser": "^3.13.0",

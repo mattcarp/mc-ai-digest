@@ -41,6 +41,9 @@ function buildHtml(date, items, cfg) {
           ? `<div style="margin:0.5rem 0;">${viabilityBadge} ${relevanceBadge}</div>`
           : '';
 
+        // Generate unique ID for this article
+        const articleId = Buffer.from(i.link).toString('base64').slice(0, 16);
+
         return `
 <article style="margin-bottom:1.5rem;">
   <h2><a href="${i.link}" style="color:#4ea8ff;">${esc(i.title)}</a></h2>
@@ -50,6 +53,15 @@ function buildHtml(date, items, cfg) {
   </p>
   ${badges}
   <p>${esc(i.summary)}</p>
+  <button
+    onclick="analyzeForMVP('${articleId}', ${esc(JSON.stringify(i.title))}, ${esc(JSON.stringify(i.summary))}, ${esc(JSON.stringify(i.link))})"
+    style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;margin-top:0.5rem;"
+    onmouseover="this.style.background='#7c3aed'"
+    onmouseout="this.style.background='#8b5cf6'"
+  >
+    💡 Analyze for MVP
+  </button>
+  <div id="analysis-${articleId}" style="margin-top:1rem;"></div>
 </article>`;
       }
     )
@@ -74,7 +86,41 @@ function buildHtml(date, items, cfg) {
       margin-right:0.5rem;
       font-weight:500;
     }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
   </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      container.innerHTML = '<p class="loading">Analyzing business potential with Claude AI...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box">' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
 </head>
 <body>
   <h1>${title}</h1>
