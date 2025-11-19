@@ -8,6 +8,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -20,16 +21,18 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
 });
 
+const gemini = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY || process.env.GEMINI_API_KEY);
+
 // MVP Analysis endpoint
 app.post('/api/analyze-mvp', async (req, res) => {
   try {
-    const { title, summary, link } = req.body;
+    const { title, summary, link, model = 'claude' } = req.body;
 
     if (!title || !summary) {
       return res.status(400).json({ error: 'Missing title or summary' });
     }
 
-    console.log(`Analyzing: ${title}`);
+    console.log(`Analyzing with ${model}: ${title}`);
 
     const prompt = `You're helping a technical founder evaluate this AI/tech article for startup potential. Be sharp, honest, and practical.
 
@@ -100,17 +103,27 @@ Worth building? YES/NO and why (be brutally honest - 2-3 sentences)
 
 Format as clean HTML: <h3> for sections, <ul>/<li> for bullets, <strong> for emphasis. Make it scannable and actionable. Use emojis in headings.`;
 
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5',
-      max_tokens: 3000,
-      messages: [{
-        role: 'user',
-        content: prompt
-      }]
-    });
+    let analysis;
 
-    const analysis = response.content[0].text;
-    res.json({ analysis });
+    if (model === 'gemini' || model === 'gemini-3') {
+      // Use Gemini 3.0
+      const geminiModel = gemini.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+      const result = await geminiModel.generateContent(prompt);
+      analysis = result.response.text();
+    } else {
+      // Use Claude (default)
+      const response = await anthropic.messages.create({
+        model: 'claude-sonnet-4-5',
+        max_tokens: 3000,
+        messages: [{
+          role: 'user',
+          content: prompt
+        }]
+      });
+      analysis = response.content[0].text;
+    }
+
+    res.json({ analysis, model });
 
   } catch (error) {
     console.error('Analysis error:', error);

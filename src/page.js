@@ -53,14 +53,23 @@ function buildHtml(date, items, cfg) {
   </p>
   ${badges}
   <p>${esc(i.summary)}</p>
-  <button
-    onclick="analyzeForMVP('${articleId}', ${esc(JSON.stringify(i.title))}, ${esc(JSON.stringify(i.summary))}, ${esc(JSON.stringify(i.link))})"
-    style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;margin-top:0.5rem;"
-    onmouseover="this.style.background='#7c3aed'"
-    onmouseout="this.style.background='#8b5cf6'"
-  >
-    💡 Analyze for MVP
-  </button>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-${articleId}"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('${articleId}', ${esc(JSON.stringify(i.title))}, ${esc(JSON.stringify(i.summary))}, ${esc(JSON.stringify(i.link))})"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
   <div id="analysis-${articleId}" style="margin-top:1rem;"></div>
 </article>`;
       }
@@ -101,13 +110,21 @@ function buildHtml(date, items, cfg) {
   <script>
     async function analyzeForMVP(articleId, title, summary, link) {
       const container = document.getElementById('analysis-' + articleId);
-      container.innerHTML = '<p class="loading">Analyzing business potential with Claude AI...</p>';
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
 
       try {
         const response = await fetch('/api/analyze-mvp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title, summary, link })
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
         });
 
         if (!response.ok) {
@@ -115,7 +132,7 @@ function buildHtml(date, items, cfg) {
         }
 
         const data = await response.json();
-        container.innerHTML = '<div class="analysis-box">' + data.analysis + '</div>';
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
       } catch (error) {
         container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
       }

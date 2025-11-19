@@ -17,7 +17,49 @@
       margin-right:0.5rem;
       font-weight:500;
     }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
   </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
 </head>
 <body>
   <h1>AI Daily Digest – 2025-11-19</h1>
@@ -28,8 +70,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>SynthGuard is an open-source platform that leverages multimodal LLMs alongside traditional detectors to identify AI-generated images and audio, prioritizing explainability and transparency over proprietary black-box solutions. The system addresses critical gaps in existing deepfake detection tools by providing unified cross-modal support and educational insights into detection reasoning, making synthetic media forensics more accessible and interpretable for end-users. This approach represents a shift toward democratized AI detection infrastructure with interpretable decision-making—crucial for maintaining media authenticity verification as generation quality approaches imperceptibility.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SynthGuard introduces an open-source, multimodal detection platform leveraging both traditional forensic detectors and MLLMs to identify AI-generated images and audio while providing explainable inference—addressing the critical gap of closed-source, opaque deepfake detection tools. The platform combines multiple detection modalities with interpretability mechanisms, enabling users to understand detection reasoning rather than treating detectors as black boxes. This approach tackles the escalating arms race between synthetic media generation and detection by democratizing access to transparent, auditable detection methods critical for combating misinformation and synthetic identity fraud at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SynthGuard: An Open Platform for Detecting AI-Generated Multimedia with Multimodal LLMs", "SynthGuard introduces an open-source, multimodal detection platform leveraging both traditional forensic detectors and MLLMs to identify AI-generated images and audio while providing explainable inference—addressing the critical gap of closed-source, opaque deepfake detection tools. The platform combines multiple detection modalities with interpretability mechanisms, enabling users to understand detection reasoning rather than treating detectors as black boxes. This approach tackles the escalating arms race between synthetic media generation and detection by democratizing access to transparent, auditable detection methods critical for combating misinformation and synthetic identity fraud at scale.", "https://arxiv.org/abs/2511.12404")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -38,8 +98,26 @@
     cs.CV updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
-  <p>OmniZip introduces a training-free framework for joint audio-video token compression in omnimodal LLMs by leveraging audio salience to guide dynamic video token pruning through cross-modal similarity scoring and spatio-temporal compression. The approach addresses a critical computational bottleneck in unified audio-video understanding by preserving audio-anchored multimodal information while achieving inference acceleration without retraining. This represents a practical solution for efficient omnimodal processing that could enable real-time audio-video understanding applications at scale.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>OmniZip introduces a training-free, audio-guided dynamic token compression framework that reduces computational overhead in omnimodal LLMs by leveraging audio saliency to guide video token pruning through retention scores and cross-modal similarity metrics. The method employs interleaved spatio-temporal compression within time windows, enabling faster inference without retraining while preserving critical multimodal information anchored by audio signals. This addresses a key bottleneck in unified audio-video understanding by treating audio as a computational guide for selective video token preservation rather than compressing modalities independently.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "OmniZip: Audio-Guided Dynamic Token Compression for Fast Omnimodal Large Language Models", "OmniZip introduces a training-free, audio-guided dynamic token compression framework that reduces computational overhead in omnimodal LLMs by leveraging audio saliency to guide video token pruning through retention scores and cross-modal similarity metrics. The method employs interleaved spatio-temporal compression within time windows, enabling faster inference without retraining while preserving critical multimodal information anchored by audio signals. This addresses a key bottleneck in unified audio-video understanding by treating audio as a computational guide for selective video token preservation rather than compressing modalities independently.", "https://arxiv.org/abs/2511.14582")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -49,7 +127,25 @@
      · 2025-11-18
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
-  <p>Google's Gemini 3 represents a comprehensive multimodal frontier model family with specialized variants including a reasoning-enhanced "Deep Think" mode and native agentic capabilities, claiming benchmark leadership across math, science, and multimodal tasks. The release emphasizes agent-first architecture with integrated tools like Gemini Agent for orchestrating multi-step workflows and Antigravity (Google's new development environment), suggesting a strategic shift toward autonomous task execution rather than pure language modeling. Availability is restricted to Google's proprietary ecosystem (Vertex AI, AI Studio, APIs), limiting independent evaluation and raising questions about reproducibility claims relative to open competitors like Claude 3.5 or open-source alternatives.</p>
+  <p>Google's Gemini 3 represents a significant advancement across multiple AI domains, claiming state-of-the-art performance on math, science, and multimodal benchmarks while introducing "Deep Think" for enhanced reasoning and native agentic capabilities through Gemini Agent for multi-step task orchestration. The release positions the model family as production-ready across Google's ecosystem (Vertex AI, Studio, CLI) with tight integration into the new Antigravity agent-first development framework, though remaining proprietary limits external research and reproducibility compared to open-source alternatives. Key technical differentiators appear centered on reasoning depth, multimodal comprehension, and native agentic workflows rather than pure scale, suggesting Google's focus has shifted toward practical agent deployment over raw capability metrics.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly92ZW50"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly92ZW50', "Google unveils Gemini 3 claiming the lead in math, science, multimodal and agentic AI benchmarks ", "Google's Gemini 3 represents a significant advancement across multiple AI domains, claiming state-of-the-art performance on math, science, and multimodal benchmarks while introducing \"Deep Think\" for enhanced reasoning and native agentic capabilities through Gemini Agent for multi-step task orchestration. The release positions the model family as production-ready across Google's ecosystem (Vertex AI, Studio, CLI) with tight integration into the new Antigravity agent-first development framework, though remaining proprietary limits external research and reproducibility compared to open-source alternatives. Key technical differentiators appear centered on reasoning depth, multimodal comprehension, and native agentic workflows rather than pure scale, suggesting Google's focus has shifted toward practical agent deployment over raw capability metrics.", "https://venturebeat.com/ai/google-unveils-gemini-3-claiming-the-lead-in-math-science-multimodal-and")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly92ZW50" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -58,8 +154,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
-  <p>Yanyun-3 introduces a unified VLM-based agent framework that successfully operates across heterogeneous strategy game platforms by combining Qwen2.5-VL's multimodal reasoning with UI-TARS for precise UI interaction, tackling the under-explored challenge of applying VLMs to complex real-time HCI scenarios. The framework demonstrates robust generalization across diverse interfaces and dynamic conditions through systematic evaluation of multimodal input modalities (static images, sequences, video), establishing a benchmark for autonomous cross-platform game operation that could generalize to other complex GUI automation tasks.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>Yanyun-3 demonstrates a VLM-based agent framework that combines Qwen2.5-VL's multimodal reasoning with UI-TARS's precision execution to achieve cross-platform autonomy in strategy games—a significant advancement in applying VLMs to complex, dynamic HCI scenarios beyond static perception tasks. The framework validates systematic ablation studies across heterogeneous game environments to identify optimal multimodal input combinations (images, sequences, video) for real-time decision-making in resource allocation and spatial control tasks. This represents a crucial bridge between VLM reasoning capabilities and practical interactive agent deployment, with implications for generalizable automation in UI-heavy applications beyond gaming.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Yanyun-3: Enabling Cross-Platform Strategy Game Operation with Vision-Language Models", "Yanyun-3 demonstrates a VLM-based agent framework that combines Qwen2.5-VL's multimodal reasoning with UI-TARS's precision execution to achieve cross-platform autonomy in strategy games—a significant advancement in applying VLMs to complex, dynamic HCI scenarios beyond static perception tasks. The framework validates systematic ablation studies across heterogeneous game environments to identify optimal multimodal input combinations (images, sequences, video) for real-time decision-making in resource allocation and spatial control tasks. This represents a crucial bridge between VLM reasoning capabilities and practical interactive agent deployment, with implications for generalizable automation in UI-heavy applications beyond gaming.", "https://arxiv.org/abs/2511.12937")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -68,8 +182,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>GCAgent addresses long-video understanding in MLLMs by introducing Schematic and Narrative Episodic Memory that structurally encodes events and their causal/temporal relations into compressed context, circumventing token limitations while preserving long-term dependencies. The framework operates via a Perception-Action-Reflection cycle with a Memory Manager for context-aware retrieval, enabling robust reasoning over complex event relationships that traditional methods fail to capture. This approach represents a practical shift from token-limited frame sampling to semantic event graph abstraction, offering potential applications in extended video analysis where global context is critical.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>GCAgent addresses long-video understanding in MLLMs by introducing Schematic and Narrative Episodic Memory—a structured approach that models events and their causal/temporal relations into compressed context, circumventing token limitations and long-term dependency challenges. The framework operates via a Perception-Action-Reflection cycle with a Memory Manager that retrieves relevant episodic context, enabling context-aware reasoning without processing entire video sequences. This represents a practical shift from token-hungry dense sampling toward semantic memory architecture, potentially enabling efficient reasoning over hour-long videos with standard MLLMs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "GCAgent: Long-Video Understanding via Schematic and Narrative Episodic Memory", "GCAgent addresses long-video understanding in MLLMs by introducing Schematic and Narrative Episodic Memory—a structured approach that models events and their causal/temporal relations into compressed context, circumventing token limitations and long-term dependency challenges. The framework operates via a Perception-Action-Reflection cycle with a Memory Manager that retrieves relevant episodic context, enabling context-aware reasoning without processing entire video sequences. This represents a practical shift from token-hungry dense sampling toward semantic memory architecture, potentially enabling efficient reasoning over hour-long videos with standard MLLMs.", "https://arxiv.org/abs/2511.12027")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -78,8 +210,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
-  <p>ProAV-DiT addresses synchronized audio-video generation by converting audio into video-like representations and projecting both modalities into a unified latent space via orthogonal decomposition in a Multi-scale Dual-stream Spatio-Temporal Autoencoder. The approach employs multi-scale temporal self-attention and cross-modal fusion mechanisms within a diffusion transformer framework to maintain temporal coherence while reducing computational overhead. This tackles a key challenge in sounding video generation—structural misalignment between modalities—making efficient end-to-end audiovisual synthesis more tractable for practical applications.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>ProAV-DiT addresses synchronized audio-video generation by converting audio into video-like representations and projecting both modalities into a unified latent space using a Multi-scale Dual-stream Spatio-Temporal Autoencoder with orthogonal decomposition, enabling aligned spatiotemporal modeling. The approach leverages multi-scale attention mechanisms combining temporal self-attention and cross-modal fusion to improve computational efficiency and temporal coherence—directly tackling the structural misalignment and high computational overhead that plague existing sounding video generation methods.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ProAV-DiT: A Projected Latent Diffusion Transformer for Efficient Synchronized Audio-Video Generation", "ProAV-DiT addresses synchronized audio-video generation by converting audio into video-like representations and projecting both modalities into a unified latent space using a Multi-scale Dual-stream Spatio-Temporal Autoencoder with orthogonal decomposition, enabling aligned spatiotemporal modeling. The approach leverages multi-scale attention mechanisms combining temporal self-attention and cross-modal fusion to improve computational efficiency and temporal coherence—directly tackling the structural misalignment and high computational overhead that plague existing sounding video generation methods.", "https://arxiv.org/abs/2511.12072")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -88,8 +238,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
-  <p>Uni-MoE-2.0-Omni introduces a dynamic-capacity MoE architecture with shared/routed/null experts and Omni-Modality 3D RoPE for efficient cross-modal alignment across 10 input types, built on Qwen2.5-7B and capable of generating images, text, and speech. The model leverages progressive training with iterative reinforcement and curated multimodal data matching to balance computational efficiency with omnimodal reasoning capabilities in a fully open-source framework. This represents a significant advance in language-centric multimodal systems by addressing the scaling challenge of handling diverse modalities through expert routing rather than dense model expansion.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>Uni-MoE-2.0-Omni introduces a dynamic-capacity MoE architecture with shared/routed/null experts and Omni-Modality 3D RoPE for efficient cross-modal alignment across 10 modalities, built on Qwen2.5-7B and capable of understanding and generating images, text, and speech. The model employs a progressive training strategy with iterative reinforcement and curated multimodal data matching to achieve language-centric omnimodal understanding while maintaining computational efficiency. This fully open-source approach addresses the key scaling challenge of balancing expert routing complexity across diverse modalities without proportional compute overhead.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Uni-MoE-2.0-Omni: Scaling Language-Centric Omnimodal Large Model with Advanced MoE, Training and Data", "Uni-MoE-2.0-Omni introduces a dynamic-capacity MoE architecture with shared/routed/null experts and Omni-Modality 3D RoPE for efficient cross-modal alignment across 10 modalities, built on Qwen2.5-7B and capable of understanding and generating images, text, and speech. The model employs a progressive training strategy with iterative reinforcement and curated multimodal data matching to achieve language-centric omnimodal understanding while maintaining computational efficiency. This fully open-source approach addresses the key scaling challenge of balancing expert routing complexity across diverse modalities without proportional compute overhead.", "https://arxiv.org/abs/2511.12609")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -98,8 +266,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>This paper introduces a standardized protocol for collecting multimodal datasets (audio, video, physiological signals) from 70+ participants during human-robot interactions, stratified by social anxiety levels, to enable affect-adaptive robotic systems. The synchronized multimodal approach addresses a critical gap in datasets needed for training robust anxiety detection models, leveraging complementary signal modalities to capture the complex behavioral manifestations of social anxiety. This work has significant implications for developing socially-aware robots capable of real-time emotional state recognition and adaptive interaction strategies, potentially advancing therapeutic and social support applications.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper presents a standardized protocol for collecting a multimodal dataset (audio, video, physiological signals) from 70+ participants with varying social anxiety levels during Wizard-of-Oz human-robot interactions, addressing the critical scarcity of anxiety-specific HRI datasets needed for affect-adaptive systems. The synchronized multimodal approach enables complementary signal analysis to capture social anxiety's diverse behavioral manifestations, supporting both affective state detection and social robotics applications. This work establishes foundational infrastructure for training robust affect-recognition models that could enable robots to adapt interaction strategies in real-time based on user anxiety levels.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Towards Affect-Adaptive Human-Robot Interaction: A Protocol for Multimodal Dataset Collection on Social Anxiety", "This paper presents a standardized protocol for collecting a multimodal dataset (audio, video, physiological signals) from 70+ participants with varying social anxiety levels during Wizard-of-Oz human-robot interactions, addressing the critical scarcity of anxiety-specific HRI datasets needed for affect-adaptive systems. The synchronized multimodal approach enables complementary signal analysis to capture social anxiety's diverse behavioral manifestations, supporting both affective state detection and social robotics applications. This work establishes foundational infrastructure for training robust affect-recognition models that could enable robots to adapt interaction strategies in real-time based on user anxiety levels.", "https://arxiv.org/abs/2511.13530")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -109,7 +295,25 @@
      · 2025-11-19
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>DialogGraph-LLM introduces an end-to-end framework combining a Multi-Relational Dialogue Attention Network (MR-DAN) with multimodal foundation models to directly infer speaker intent from audio while capturing complex inter-speaker dependencies. The system addresses data scarcity through an adaptive semi-supervised learning approach using confidence-aware pseudo-labeling with dual-threshold filtering and entropy-based sample selection to leverage unlabeled data effectively. This work bridges acoustic signal processing with LLM reasoning for dialogue understanding, enabling practical applications in domains like financial call analysis where annotated dialogue data is limited.</p>
+  <p>DialogGraph-LLM addresses audio dialogue intent recognition by integrating a Multi-Relational Dialogue Attention Network (MR-DAN) with multimodal LLMs (Qwen2.5-Omni-7B) for end-to-end acoustic-to-intent processing, enabling direct reasoning over speaker inter-dependencies without intermediate transcription. The framework introduces an adaptive semi-supervised learning strategy combining confidence-aware pseudo-labeling with dual-threshold filtering and entropy-based sample selection, effectively leveraging unlabeled data to overcome annotation scarcity—a critical bottleneck in dialogue understanding tasks. This approach demonstrates practical value for real-world applications like financial call analysis while advancing graph-informed reasoning in multimodal foundation models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "DialogGraph-LLM: Graph-Informed LLMs for End-to-End Audio Dialogue Intent Recognition", "DialogGraph-LLM addresses audio dialogue intent recognition by integrating a Multi-Relational Dialogue Attention Network (MR-DAN) with multimodal LLMs (Qwen2.5-Omni-7B) for end-to-end acoustic-to-intent processing, enabling direct reasoning over speaker inter-dependencies without intermediate transcription. The framework introduces an adaptive semi-supervised learning strategy combining confidence-aware pseudo-labeling with dual-threshold filtering and entropy-based sample selection, effectively leveraging unlabeled data to overcome annotation scarcity—a critical bottleneck in dialogue understanding tasks. This approach demonstrates practical value for real-world applications like financial call analysis while advancing graph-informed reasoning in multimodal foundation models.", "https://arxiv.org/abs/2511.11000")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -118,10 +322,26 @@
     cs.CV updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>SMART introduces a novel MLLM-based video moment retrieval framework that addresses temporal precision limitations by integrating audio modality alongside video and implementing shot-level token compression to preserve fine-grained temporal structure while reducing computational redundancy. The key innovation lies in multi-shot aware processing that selectively retains high-information tokens per shot, enabling more accurate localization of video segments from natural language queries than existing vision-only or coarse-temporal methods.
-
-**Practical implication**: This approach significantly advances multimodal video understanding for applications requiring precise temporal grounding (video editing, content summarization, retrieval systems) by leveraging underutilized audio cues within an efficient token-selective architecture.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>SMART introduces a novel MLLM-based video moment retrieval framework that jointly leverages audio-visual fusion and shot-level temporal structure, using Shot-aware Token Compression to preserve fine-grained temporal semantics while reducing computational redundancy. This addresses a critical limitation in existing methods that rely on single-modality visual understanding with coarse temporal granularity, enabling more precise localization of video segments from natural language queries in complex, untrimmed videos. The approach is particularly significant for practitioners working on video understanding tasks, as it demonstrates how strategic multimodal integration and efficient token management can improve both accuracy and efficiency in temporal video understanding.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SMART: Shot-Aware Multimodal Video Moment Retrieval with Audio-Enhanced MLLM", "SMART introduces a novel MLLM-based video moment retrieval framework that jointly leverages audio-visual fusion and shot-level temporal structure, using Shot-aware Token Compression to preserve fine-grained temporal semantics while reducing computational redundancy. This addresses a critical limitation in existing methods that rely on single-modality visual understanding with coarse temporal granularity, enabling more precise localization of video segments from natural language queries in complex, untrimmed videos. The approach is particularly significant for practitioners working on video understanding tasks, as it demonstrates how strategic multimodal integration and efficient token management can improve both accuracy and efficiency in temporal video understanding.", "https://arxiv.org/abs/2511.14143")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -130,8 +350,26 @@
     cs.CV updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>GAIS proposes a dual-perspective approach to text-video retrieval: a Frame-level Gated Fusion module that adaptively selects and integrates audio-visual features under text guidance for fine-grained temporal alignment, combined with a Semantic Variance-Scaled Perturbation regularizer that stabilizes text embeddings through semantics-aware perturbation. This addresses the key limitation that existing methods underutilize audio semantics and rely on coarse fusion strategies, achieving better multimodal alignment through both representation learning and regularization techniques. The framework's practical impact is improved retrieval accuracy by bridging modality gaps while enhancing embedding robustness—particularly valuable for applications requiring precise audio-visual-language correspondence in video understanding tasks.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>GAIS proposes a dual-mechanism approach to text-video retrieval that combines Frame-level Gated Fusion for adaptive audio-visual integration guided by text semantics with Semantic Variance-Scaled Perturbation for regularizing embedding spaces—addressing the core limitation that existing methods underutilize audio information and rely on coarse fusion strategies. The key innovation lies in frame-level temporal selection rather than global fusion and semantics-aware perturbation magnitude control, which together improve multimodal alignment across representation and regularization dimensions. This work is practically significant for retrieval systems requiring precise language-to-video grounding where audio context matters, particularly in scenarios like audio-visual content search or accessibility applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "GAIS: Frame-Level Gated Audio-Visual Integration with Semantic Variance-Scaled Perturbation for Text-Video Retrieval", "GAIS proposes a dual-mechanism approach to text-video retrieval that combines Frame-level Gated Fusion for adaptive audio-visual integration guided by text semantics with Semantic Variance-Scaled Perturbation for regularizing embedding spaces—addressing the core limitation that existing methods underutilize audio information and rely on coarse fusion strategies. The key innovation lies in frame-level temporal selection rather than global fusion and semantics-aware perturbation magnitude control, which together improve multimodal alignment across representation and regularization dimensions. This work is practically significant for retrieval systems requiring precise language-to-video grounding where audio context matters, particularly in scenarios like audio-visual content search or accessibility applications.", "https://arxiv.org/abs/2508.01711")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -141,7 +379,53 @@
      · 2025-11-19
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>Playmate2 addresses multi-character audio-driven animation using a DiT-based framework with LoRA fine-tuning and position-shift inference for efficient long-form video generation, while introducing a novel training-free Mask Classifier-Free Guidance mechanism that improves lip-sync accuracy and temporal coherence through reward feedback without additional model training. The approach combines partial parameter updates with inference-time guidance to enable scalable multi-character animation while maintaining foundation model capabilities, representing a significant step toward practical, efficient talking-head generation systems.</p>
+  <p>Playmate2 addresses key limitations in audio-driven animation by introducing a DiT-based framework with LoRA-efficient tuning and position-shift inference for arbitrary-length video generation, while a novel training-free Mask Classifier-Free Guidance technique enables multi-character animation without additional training. The incorporation of reward feedback optimization improves both lip-sync accuracy and body motion naturalness, representing a significant step toward production-ready audio-driven synthesis at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Playmate2: Training-Free Multi-Character Audio-Driven Animation via Diffusion Transformer with Reward Feedback", "Playmate2 addresses key limitations in audio-driven animation by introducing a DiT-based framework with LoRA-efficient tuning and position-shift inference for arbitrary-length video generation, while a novel training-free Mask Classifier-Free Guidance technique enables multi-character animation without additional training. The incorporation of reward feedback optimization improves both lip-sync accuracy and body motion naturalness, representing a significant step toward production-ready audio-driven synthesis at scale.", "https://arxiv.org/abs/2510.12089")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://venturebeat.com/ai/opencv-founders-launch-ai-video-startup-to-take-on-openai-and-google" style="color:#4ea8ff;">OpenCV founders launch AI video startup to take on OpenAI and Google</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    AI | VentureBeat
+     · 2025-11-19
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>OpenCV founders' CraftStory has launched Model 2.0, a video generation system capable of producing coherent 5-minute videos compared to competitors' 10-25 second limitations, addressing a critical bottleneck in enterprise video production. The breakthrough enables practical applications in training, marketing, and customer education where duration and coherence are essential, potentially giving the startup a significant edge in commercializing AI video generation despite emerging from stealth with only $2M funding.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly92ZW50"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly92ZW50', "OpenCV founders launch AI video startup to take on OpenAI and Google", "OpenCV founders' CraftStory has launched Model 2.0, a video generation system capable of producing coherent 5-minute videos compared to competitors' 10-25 second limitations, addressing a critical bottleneck in enterprise video production. The breakthrough enables practical applications in training, marketing, and customer education where duration and coherence are essential, potentially giving the startup a significant edge in commercializing AI video generation despite emerging from stealth with only $2M funding.", "https://venturebeat.com/ai/opencv-founders-launch-ai-video-startup-to-take-on-openai-and-google")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly92ZW50" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -150,10 +434,26 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p># FPGA Resurgence in AI Acceleration
-
-FPGAs are emerging as a viable alternative to GPUs for AI workloads requiring ultra-low latency, deterministic timing, and energy efficiency by enabling direct hardware mapping of convolutions and attention mechanisms with reconfigurable logic. Their key advantages include field-reprogrammable architecture for model-specific optimization, edge inference capability with reduced bandwidth/privacy exposure, and potential to free GPU resources by offloading latency-sensitive tasks to customized hardware pipelines. This positions FPGAs as strategic for embedded AI systems where predictable performance and hardware-algorithm co-design outweigh GPU's general-purpose flexibility.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>FPGAs are positioning themselves as a compelling alternative to GPUs for AI workloads requiring ultra-low latency, deterministic timing, and energy efficiency, leveraging their reconfigurable architecture to directly map algorithms like convolutions and attention mechanisms into hardware logic. Their key advantages include field-reprogrammability, edge deployment capability with integrated processors, and reduced bandwidth requirements—enabling on-device inference that improves privacy while freeing GPU resources for heavier computational tasks. This represents a strategic shift toward heterogeneous AI acceleration stacks where FPGAs handle latency-critical and power-constrained inference, particularly in IoT and embedded scenarios.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Beyond the GPU: The Strategic Role of FPGAs in the Next Wave of AI", "FPGAs are positioning themselves as a compelling alternative to GPUs for AI workloads requiring ultra-low latency, deterministic timing, and energy efficiency, leveraging their reconfigurable architecture to directly map algorithms like convolutions and attention mechanisms into hardware logic. Their key advantages include field-reprogrammability, edge deployment capability with integrated processors, and reduced bandwidth requirements—enabling on-device inference that improves privacy while freeing GPU resources for heavier computational tasks. This represents a strategic shift toward heterogeneous AI acceleration stacks where FPGAs handle latency-critical and power-constrained inference, particularly in IoT and embedded scenarios.", "https://arxiv.org/abs/2511.11614")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -162,18 +462,26 @@ FPGAs are emerging as a viable alternative to GPUs for AI workloads requiring ul
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 24</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
-  <p>This work introduces a curiosity-driven Mixture-of-Experts framework that uses Bayesian epistemic uncertainty to route inputs across heterogeneous quantized experts (ternary BitNet, variable-bit BitLinear, post-training quantization), achieving aggressive 4-bit quantization while maintaining 99.9% accuracy on audio tasks with 4× compression. The key innovation is using uncertainty estimation to reduce MoE latency variance by 82% (230ms→29ms std dev), solving the critical deployment challenge of unpredictable inference timing on resource-constrained devices. This approach demonstrates practical equivalence between 4-bit and full-precision models while delivering 41% energy savings versus 8-bit quantization.</p>
-</article>
-
-<article style="margin-bottom:1.5rem;">
-  <h2><a href="https://arxiv.org/abs/2511.11751" style="color:#4ea8ff;">Concept-RuleNet: Grounded Multi-Agent Neurosymbolic Reasoning in Vision Language Models</a></h2>
-  <p style="color:#888;font-size:0.85rem;">
-    cs.AI updates on arXiv.org
-     · 2025-11-19
-  </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>Concept-RuleNet proposes a neurosymbolic architecture that addresses hallucination and interpretability issues in VLMs by grounding symbolic reasoning in actual visual concepts rather than task labels alone—using a multi-agent system where a concept generator mines discriminative visual features from training data to condition symbol discovery and rule composition. This approach bridges the gap between black-box neural perception and transparent symbolic reasoning, enabling more robust out-of-distribution generalization while maintaining explainability through visual grounding in learned concepts rather than abstract labels.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces a Bayesian uncertainty-guided Mixture-of-Experts system that routes inputs across heterogeneous quantized experts (ternary BitNet, variable-bit BitLinear, post-training quantization) to achieve aggressive 4-bit compression while maintaining near-identical accuracy on audio tasks. The key innovation is using epistemic uncertainty to drive expert selection, dramatically reducing latency variance by 82% (230ms→29ms std dev), enabling predictable inference on resource-constrained devices with 4x compression and 41% energy savings versus 8-bit baselines. This approach essentially trades off deterministic routing for probabilistic stability, making aggressive quantization practical for latency-sensitive edge deployments.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Uncertainty Makes It Stable: Curiosity-Driven Quantized Mixture-of-Experts", "This paper introduces a Bayesian uncertainty-guided Mixture-of-Experts system that routes inputs across heterogeneous quantized experts (ternary BitNet, variable-bit BitLinear, post-training quantization) to achieve aggressive 4-bit compression while maintaining near-identical accuracy on audio tasks. The key innovation is using epistemic uncertainty to drive expert selection, dramatically reducing latency variance by 82% (230ms→29ms std dev), enabling predictable inference on resource-constrained devices with 4x compression and 41% energy savings versus 8-bit baselines. This approach essentially trades off deterministic routing for probabilistic stability, making aggressive quantization practical for latency-sensitive edge deployments.", "https://arxiv.org/abs/2511.11743")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
 </article>
 </body>
 </html>

@@ -14,6 +14,9 @@ importers:
       '@elevenlabs/elevenlabs-js':
         specifier: ^2.24.1
         version: 2.24.1
+      '@google/generative-ai':
+        specifier: ^0.24.1
+        version: 0.24.1
       axios:
         specifier: ^1.13.2
         version: 1.13.2
@@ -57,6 +60,10 @@ packages:
 
   '@elevenlabs/elevenlabs-js@2.24.1':
     resolution: {integrity: sha512-i6bDExgK9lYne1vLhy85JJ3O8bNi5vPTfcgq8kT3HG4+3rgkUJtg5UP29Mn1KONc4ZOeYUomzxJ820uLkT9z6g==}
+    engines: {node: '>=18.0.0'}
+
+  '@google/generative-ai@0.24.1':
+    resolution: {integrity: sha512-MqO+MLfM6kjxcKoy0p1wRzG3b4ZZXtPI+z2IE26UogS2Cm/XHO+7gGRBh6gcJsOiIVoH93UwKvW4HdgiOZCy9Q==}
     engines: {node: '>=18.0.0'}
 
   '@playwright/test@1.56.1':
@@ -543,6 +550,8 @@ snapshots:
       - bufferutil
       - encoding
       - utf-8-validate
+
+  '@google/generative-ai@0.24.1': {}
 
   '@playwright/test@1.56.1':
     dependencies:
