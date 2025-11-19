@@ -2,8 +2,9 @@ name: Daily AI Digest
 
 on:
   schedule:
-    # Run at 7:45 AM UTC (8:45 AM Malta time) - build podcast 15 min before 9 AM delivery for freshest news
-    - cron: '45 7 * * *'
+    # Run at 6:00 AM UTC (7:00 AM Malta time) - 2hr buffer until we have real timing data
+    # TODO: Optimize timing once we know actual podcast generation duration with ElevenLabs
+    - cron: '0 6 * * *'
   workflow_dispatch: # Allow manual triggering
 
 jobs:
