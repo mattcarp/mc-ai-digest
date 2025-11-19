@@ -20,12 +20,12 @@ export async function generatePodcastScript(articles, aiClient) {
   // Take top 5 most relevant articles for the podcast
   const topArticles = articles.slice(0, 5);
 
-  const prompt = `You are creating a script for a daily AI news podcast. Two hosts (Alex and Sam) discuss the top AI/tech news in a conversational, engaging way.
+  const prompt = `You are creating a script for a daily AI news podcast. Two hosts discuss the top AI/tech news in a conversational, engaging way.
 
 Guidelines:
 - Keep it conversational and natural, like two friends discussing tech news
-- Alex is more technical and analytical
-- Sam asks clarifying questions and connects ideas to practical applications
+- Brian has a deep, resonant voice - he's analytical and explains technical concepts
+- Sarah has a warm, confident voice - she asks clarifying questions and connects ideas to business applications
 - Total length: 5-8 minutes of dialogue (roughly 1200-2000 words)
 - Start with a brief intro, then dive into the articles
 - End with a quick recap and sign-off
@@ -43,9 +43,9 @@ ${i + 1}. ${article.title}
 `).join('\n')}
 
 Format the script exactly like this:
-Alex: [dialogue]
-Sam: [dialogue]
-Alex: [dialogue]
+Brian: [dialogue]
+Sarah: [dialogue]
+Brian: [dialogue]
 
 Make it engaging, informative, and conversational. Start now:`;
 
@@ -65,92 +65,75 @@ Make it engaging, informative, and conversational. Start now:`;
 }
 
 /**
- * Convert podcast script to ElevenLabs dialogue format
- * @param {string} script - Raw podcast script
- * @returns {string} - Formatted dialogue for ElevenLabs
+ * Convert podcast script to ElevenLabs text-to-dialogue format
+ * @param {string} script - Raw podcast script with "Brian:" and "Sarah:" prefixes
+ * @returns {Array} - Array of {text, voice_id} objects for dialogue API
  */
-function formatScriptForElevenLabs(script) {
-  // ElevenLabs expects format like:
-  // Speaker 1: Text here
-  // Speaker 2: More text
+function formatScriptForDialogue(script) {
+  const BRIAN_VOICE_ID = 'nPczCjzI2devNBz1zQrb'; // Middle-aged male, resonant
+  const SARAH_VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Young female, confident and warm
 
-  // Clean up the script and ensure proper format
   const lines = script.split('\n').filter(line => line.trim());
-  return lines.join('\n');
+  const dialogue = [];
+
+  for (const line of lines) {
+    if (line.startsWith('Brian:')) {
+      dialogue.push({
+        text: line.replace('Brian:', '').trim(),
+        voice_id: BRIAN_VOICE_ID
+      });
+    } else if (line.startsWith('Sarah:')) {
+      dialogue.push({
+        text: line.replace('Sarah:', '').trim(),
+        voice_id: SARAH_VOICE_ID
+      });
+    }
+  }
+
+  return dialogue;
 }
 
 /**
- * Generate audio podcast using ElevenLabs API with chunked generation
- * to avoid timeouts on long scripts
+ * Generate audio podcast using ElevenLabs Text-to-Dialogue API
  * @param {string} script - Podcast script in dialogue format
  * @param {string} apiKey - ElevenLabs API key
  * @returns {Promise<Buffer>} - Audio file as buffer
  */
 export async function generateAudio(script, apiKey) {
-  logInfo('Generating audio with ElevenLabs (chunked)...');
-
-  const client = new ElevenLabsClient({ apiKey });
-  const CHARLIE_VOICE_ID = 'IKne3meq5aSn9XLyUdCD'; // Australian male voice
+  logInfo('Generating two-person dialogue audio with ElevenLabs...');
 
   try {
-    // Format script for ElevenLabs
-    const formattedScript = formatScriptForElevenLabs(script);
+    // Convert script to dialogue format
+    const dialogue = formatScriptForDialogue(script);
+    logInfo(`Converted script to ${dialogue.length} dialogue turns`);
 
-    // Split into chunks to avoid quota/timeout issues (~1500 chars each)
-    const chunks = [];
-    const lines = formattedScript.split('\n');
-    let currentChunk = '';
+    // Use text-to-dialogue API endpoint directly
+    const response = await fetch('https://api.elevenlabs.io/v1/text-to-dialogue', {
+      method: 'POST',
+      headers: {
+        'xi-api-key': apiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        inputs: dialogue,
+        model_id: 'eleven_v3', // v3 model with dialogue support
+        output_format: 'mp3_44100_128'
+      })
+    });
 
-    for (const line of lines) {
-      if (currentChunk.length + line.length > 1500 && currentChunk.length > 0) {
-        chunks.push(currentChunk.trim());
-        currentChunk = line + '\n';
-      } else {
-        currentChunk += line + '\n';
-      }
-    }
-    if (currentChunk.trim()) {
-      chunks.push(currentChunk.trim());
-    }
-
-    logInfo(`Split script into ${chunks.length} chunks for generation`);
-
-    const audioChunks = [];
-
-    for (let i = 0; i < chunks.length; i++) {
-      logInfo(`Generating chunk ${i + 1}/${chunks.length}...`);
-
-      const audio = await client.textToSpeech.convert(CHARLIE_VOICE_ID, {
-        text: chunks[i],
-        model_id: 'eleven_multilingual_v2',
-        voice_settings: {
-          stability: 0.5,
-          similarity_boost: 0.75
-        }
-      });
-
-      const chunkBuffers = [];
-      for await (const chunk of audio) {
-        chunkBuffers.push(chunk);
-      }
-      const buffer = Buffer.concat(chunkBuffers);
-      audioChunks.push(buffer);
-
-      logInfo(`Chunk ${i + 1} done (${buffer.length} bytes)`);
-
-      // Small delay to avoid rate limiting
-      if (i < chunks.length - 1) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      }
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`ElevenLabs API error (${response.status}): ${errorText}`);
     }
 
-    // Merge all chunks
-    const finalBuffer = Buffer.concat(audioChunks);
-    logInfo(`Generated complete audio (${finalBuffer.length} bytes)`);
-    return finalBuffer;
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    logInfo(`Generated dialogue audio (${buffer.length} bytes, ${dialogue.length} turns)`);
+    return buffer;
 
   } catch (error) {
-    logError('ElevenLabs audio generation failed:', error);
+    logError('ElevenLabs dialogue generation failed:', error);
     throw error;
   }
 }
