@@ -187,6 +187,9 @@ export async function saveAudioFile(audioBuffer, date, outputDir) {
  */
 export async function generatePodcast(articles, aiClient, elevenLabsKey, date, outputDir, baseUrl) {
   try {
+    // 0. Ensure output directory exists
+    await fs.mkdir(outputDir, { recursive: true });
+
     // 1. Generate script
     const script = await generatePodcastScript(articles, aiClient);
 
