@@ -79,6 +79,22 @@ Then analyze the business opportunity:
 - Market: Will people actually pay?
 - Dependencies: API rate limits, platform risks
 
+**🎨 Landing Page Strategy**
+- Hero headline that hooks (write the actual headline)
+- Problem statement (show the pain point)
+- Solution in one sentence
+- Social proof needed (testimonials? logos? metrics?)
+- Primary CTA (exact button text)
+- Secondary CTA (what's the backup action?)
+
+**💳 Pricing Page Design**
+- Pricing model (freemium? trial? straight paid?)
+- Tier 1: Starter ($X/month) - what's included
+- Tier 2: Pro ($Y/month) - what's included
+- Tier 3: Enterprise ($Z/month or custom) - what's included
+- Anchor pricing (which tier sells best and why?)
+- What converts best for this market?
+
 **🎬 Bottom Line**
 Worth building? YES/NO and why (be brutally honest - 2-3 sentences)
 
@@ -86,7 +102,7 @@ Format as clean HTML: <h3> for sections, <ul>/<li> for bullets, <strong> for emp
 
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-5',
-      max_tokens: 2000,
+      max_tokens: 3000,
       messages: [{
         role: 'user',
         content: prompt
