@@ -20,17 +20,24 @@ export async function generatePodcastScript(articles, aiClient) {
   // Take top 5 most relevant articles for the podcast
   const topArticles = articles.slice(0, 5);
 
-  const prompt = `You are creating a script for a daily AI news podcast. Two hosts discuss the top AI/tech news in a conversational, engaging way.
+  const prompt = `You are creating a script for a daily AI news podcast. Two hosts discuss the top AI/tech news with honest, unfiltered takes.
+
+CRITICAL: Use audio tags sparingly for natural moments:
+- [sighs] - when something is frustrating or disappointing
+- [chuckles] - for dry humor or irony
+- [pauses] - for thinking or emphasis
+- Use VERY FEW emotion tags - keep it professional and real
 
 Guidelines:
-- Keep it conversational and natural, like two friends discussing tech news
-- Brian has a deep, resonant voice - he's analytical and explains technical concepts
-- Sarah has a warm, confident voice - she asks clarifying questions and connects ideas to business applications
-- Total length: 5-8 minutes of dialogue (roughly 1200-2000 words)
-- Start with a brief intro, then dive into the articles
-- End with a quick recap and sign-off
-- Use natural speech patterns (contractions, pauses, enthusiasm)
-- Focus on the most interesting/impactful articles
+- Talk like two experienced tech people having a real conversation - no fake enthusiasm
+- Chris (natural American voice) is analytical and cuts through the BS
+- Lily (British voice) asks sharp questions and calls out the business angle
+- Total length: 5-8 minutes (roughly 1200-2000 words)
+- Be honest about overhyped tech - if something is bullshit, say so
+- Use profanity naturally when appropriate (damn, hell, shit, fuck) - keep it real and unfiltered
+- React authentically - skepticism, curiosity, occasional frustration
+- Skip the cheesy intros and outros - just dive into the news
+- Focus on what actually matters for business and technical implementation
 
 Today's articles:
 ${topArticles.map((article, i) => `
@@ -42,12 +49,12 @@ ${i + 1}. ${article.title}
    Link: ${article.link}
 `).join('\n')}
 
-Format the script exactly like this:
-Brian: [dialogue]
-Sarah: [dialogue]
-Brian: [dialogue]
+Format the script exactly like this (minimal tags):
+Chris: Alright, so Gemini 3.0 Flash dropped. [pauses] Sub-100ms latency for multimodal processing.
+Lily: Right, and before we get excited - what's the actual business case here?
+Chris: Fair question. Let's break down what this actually means...
 
-Make it engaging, informative, and conversational. Start now:`;
+Make it real, sharp, and informative. No fluff. Start now:`;
 
   const response = await aiClient.messages.create({
     model: 'claude-sonnet-4-5',
@@ -70,22 +77,22 @@ Make it engaging, informative, and conversational. Start now:`;
  * @returns {Array} - Array of {text, voice_id} objects for dialogue API
  */
 function formatScriptForDialogue(script) {
-  const BRIAN_VOICE_ID = 'nPczCjzI2devNBz1zQrb'; // Middle-aged male, resonant
-  const SARAH_VOICE_ID = 'EXAVITQu4vr4xnSDxMaL'; // Young female, confident and warm
+  const CHRIS_VOICE_ID = 'iP95p4xoKVk53GoZ742B'; // Male - natural, down-to-earth
+  const LILY_VOICE_ID = 'pFZP5JQG7iQjIQuC4Bku'; // Female - velvety British, warm
 
   const lines = script.split('\n').filter(line => line.trim());
   const dialogue = [];
 
   for (const line of lines) {
-    if (line.startsWith('Brian:')) {
+    if (line.startsWith('Chris:')) {
       dialogue.push({
-        text: line.replace('Brian:', '').trim(),
-        voice_id: BRIAN_VOICE_ID
+        text: line.replace('Chris:', '').trim(),
+        voice_id: CHRIS_VOICE_ID
       });
-    } else if (line.startsWith('Sarah:')) {
+    } else if (line.startsWith('Lily:')) {
       dialogue.push({
-        text: line.replace('Sarah:', '').trim(),
-        voice_id: SARAH_VOICE_ID
+        text: line.replace('Lily:', '').trim(),
+        voice_id: LILY_VOICE_ID
       });
     }
   }
