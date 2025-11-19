@@ -28,8 +28,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>SynthGuard presents an open-source, multimodal detection platform combining traditional deepfake detectors with MLLMs to identify AI-generated images and audio while providing explainable inference—addressing critical gaps in transparency and educational accessibility that plague existing closed-source tools. The platform's unified approach across multiple modalities and emphasis on interpretability aims to combat synthetic media's erosion of trust while enabling users to understand detection reasoning, which is essential as generation quality approaches photorealism. This represents a meaningful shift toward democratizing detection capabilities beyond proprietary solutions, though real-world efficacy against state-of-the-art generators and the computational overhead of MLLM-based approaches remain key technical considerations.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SynthGuard is an open-source, multimodal detection platform that leverages both traditional detectors and multimodal LLMs to identify AI-generated images and audio while providing explainable inference—addressing the gap left by closed-source deepfake tools lacking transparency. The platform combines unified multi-modal support with interactive analysis capabilities, enabling users to understand detection decisions rather than receiving black-box verdicts, which carries significant implications for combating synthetic media misinformation at scale. This approach represents a shift toward democratizing detection capabilities while prioritizing interpretability, critical as synthetic content generation becomes increasingly sophisticated.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -38,8 +38,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
-  <p>OmniZip introduces a training-free, audio-guided dynamic token compression framework that accelerates omnimodal LLM inference by leveraging audio salience to guide video token pruning, using cross-modal similarity metrics and interleaved spatio-temporal compression to reduce computational overhead without retraining. The key innovation is treating audio as an information density anchor for multimodal compression, enabling joint optimization of audio-video token sequences—a gap existing methods fail to address in unified audio-visual understanding tasks.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>OmniZip introduces a training-free, audio-guided token compression framework for omnimodal LLMs that addresses the computational bottleneck of joint audio-video processing by using audio as an anchor to dynamically prune video tokens while preserving cross-modal correspondences. The method leverages audio salience and retention scores to guide spatio-temporal video compression, enabling faster inference without retraining. This approach is particularly valuable for resource-constrained deployment of multimodal models, as it handles the previously unaddressed challenge of coordinated compression across asynchronous modalities.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -49,7 +49,7 @@
      · 2025-11-18
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
-  <p>Google released Gemini 3, a comprehensive model family claiming state-of-the-art performance across math, science, multimodal, and agentic AI benchmarks, with specialized variants including Gemini 3 Pro, Deep Think (enhanced reasoning), and integrated agent capabilities for multi-step task execution. The models are proprietary and distributed exclusively through Google's ecosystem (Vertex AI, AI Studio, APIs) alongside a new agent-first development environment called Google Antigravity. This positions Gemini 3 as Google's most significant AI release since 2023, directly addressing competitive pressure in reasoning, scientific problem-solving, and autonomous task planning capabilities.</p>
+  <p>Google's Gemini 3 represents a comprehensive frontier model family claiming state-of-the-art performance across mathematical reasoning, scientific domains, multimodal understanding, and agentic AI tasks, with variants including a specialized "Deep Think" reasoning mode and integrated agent execution capabilities. The release emphasizes ecosystem integration across Google's developer platforms (Vertex AI, AI Studio, CLI) and introduces Antigravity, an agent-first development environment designed to simplify multi-step task orchestration. Key technical implications include improved reasoning through dedicated inference modes and native agentic architecture, positioning Gemini 3 as a competitive response to other frontier models with enhanced capabilities for complex, sequential problem-solving workflows.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -58,8 +58,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
-  <p>Yanyun-3 demonstrates the first successful cross-platform strategy game agent by combining Qwen2.5-VL for vision-language reasoning with UI-TARS for precise UI interaction, enabling autonomous execution of complex tasks like target localization and resource allocation across heterogeneous game environments. The work systematically evaluates multimodal input strategies (static images, sequences, and video) to optimize VLM performance in dynamic, real-time decision-making scenarios—addressing a significant gap in applying foundation models to complex human-computer interaction beyond traditional benchmarks.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>Yanyun-3 demonstrates a novel cross-platform strategy game agent combining Qwen2.5-VL's multimodal reasoning with UI-TARS for precise UI control, achieving autonomous operation across heterogeneous game environments on core tactical tasks like target localization and resource allocation. The framework's systematic evaluation of different visual input modalities (static images, sequences, videos) reveals optimal multimodal data combinations for complex human-computer interaction scenarios, establishing a foundation for generalizable VLM-based agents beyond gaming.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -68,8 +68,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>GCAgent addresses long-video understanding in MLLMs through an episodic memory architecture that structures events and their causal/temporal relationships into compressed context, circumventing token limitations inherent in transformer-based models. The framework employs a Perception-Action-Reflection cycle with a Memory Manager that retrieves relevant episodic context, enabling robust reasoning over complex temporal dependencies that existing frame-sampling or hierarchical approaches fail to capture. This represents a meaningful shift from treating videos as flat sequences toward dynamic memory-augmented reasoning, with implications for autonomous video analysis, embodied AI systems, and reduced computational overhead in long-context understanding.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>GCAgent tackles long-video understanding in MLLMs by introducing Schematic and Narrative Episodic Memory that structurally encodes events with their causal and temporal relations into compact context representations, circumventing token limitations and long-term dependency challenges. The framework operates through a Perception-Action-Reflection cycle with a Memory Manager for context-aware retrieval, enabling MLLMs to perform deeper video reasoning on extended sequences without the typical architectural bottlenecks. This approach has direct implications for applications requiring complex event reasoning across videos, from autonomous systems to narrative understanding tasks.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -78,8 +78,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 88</span></div>
-  <p>ProAV-DiT addresses synchronized audio-video generation by converting audio into video-like representations and projecting both modalities into a unified latent space via orthogonal decomposition, enabling structural alignment between the inherently misaligned modalities. The approach combines a Multi-scale Dual-stream Spatio-Temporal Autoencoder with multi-scale attention mechanisms for fine-grained spatiotemporal modeling, significantly reducing computational overhead compared to processing raw multimodal data. This represents a meaningful advance for efficient sounding video generation, with practical applications in content creation and multimodal synthesis where temporal coherence between audio and video is critical.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>ProAV-DiT addresses synchronized audio-video generation by converting audio into video-like representations and projecting both modalities into a unified latent space via orthogonal decomposition, enabling fine-grained spatiotemporal alignment. The approach uses a Multi-scale Dual-stream Spatio-Temporal Autoencoder with multi-scale attention mechanisms for improved temporal coherence and modality fusion, significantly reducing computational overhead compared to standard multimodal diffusion approaches. This work is particularly relevant for applications requiring real-time or efficient sounding video synthesis where structural misalignment between audio and video modalities has been a persistent bottleneck.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -88,10 +88,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
-  <p>Uni-MoE-2.0-Omni introduces a language-centric omnimodal model built on Qwen2.5-7B with a novel dynamic-capacity MoE architecture featuring shared/routed/null experts optimized for 10 cross-modal inputs and Omni-Modality 3D RoPE for spatio-temporal alignment. The model combines progressive training with iterative reinforcement and curated multimodal data matching to enable unified understanding and generation across text, images, and speech while maintaining computational efficiency.
-
-**Key implication for developers**: This represents a practical scaling approach for true omnimodal systems, demonstrating how MoE routing can handle heterogeneous modalities more efficiently than dense architectures—relevant for building resource-constrained production systems handling diverse input types.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>Uni-MoE-2.0-Omni introduces a dynamic-capacity Mixture-of-Experts architecture with shared/routed/null experts and Omni-Modality 3D RoPE for spatio-temporal alignment, enabling efficient omnimodal understanding and generation (images, text, speech) across 10 cross-modal input types. The model leverages progressive training with iterative reinforcement and curated multimodal data matching on top of Qwen2.5-7B, advancing language-centric reasoning while maintaining computational efficiency through intelligent expert routing. This open-source approach standardizes the MoE pattern for omnimodal systems, making scalable cross-modal architectures more accessible to researchers beyond vision-language models.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -100,8 +98,8 @@
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>This paper outlines a protocol for creating a multimodal dataset capturing social anxiety manifestations during human-robot interaction, integrating synchronized audio, video, and physiological signals from 70+ participants stratified by anxiety levels. The work addresses a critical gap in affect-detection research by providing complementary signal modalities that enable more robust anxiety classification in HRI contexts, with potential applications in anxiety assessment and adaptive robotic interventions. The Wizard-of-Oz experimental design allows controlled interaction scenarios while maintaining ecological validity for training next-generation affect-aware social robots.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Researchers propose a multimodal dataset collection protocol for detecting social anxiety manifestations in human-robot interaction contexts, leveraging synchronized audio, video, and physiological signals from 70+ participants stratified by anxiety levels during Wizard-of-Oz interactions. This addresses a critical gap in affect-recognition datasets, enabling development of anxiety-adaptive robotic systems that can dynamically adjust interaction strategies based on real-time affective state inference. The complementary nature of multimodal signals (vocal prosody, facial expressions, autonomic markers) should significantly improve robustness of anxiety detection over single-modality approaches, with direct applications in therapeutic and social robotics.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -111,7 +109,7 @@
      · 2025-11-19
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>**DialogGraph-LLM** combines a novel Multi-Relational Dialogue Attention Network (MR-DAN) with multimodal foundation models to perform end-to-end acoustic-to-intent inference directly from audio, addressing the challenge of recognizing speaker intent in long dialogues with complex utterance dependencies. The framework introduces an adaptive semi-supervised learning strategy using dual-threshold confidence filtering and entropy-based sample selection to generate reliable pseudo-labels from unlabeled data, mitigating the scarce annotation problem. This approach enables practical intent recognition at scale while leveraging both the relational structure of dialogue and the semantic understanding of large foundation models.</p>
+  <p>DialogGraph-LLM introduces an end-to-end framework combining a novel Multi-Relational Dialogue Attention Network (MR-DAN) with multimodal LLMs (like Qwen2.5-Omni-7B) to directly infer speaker intent from raw audio, addressing the challenge of modeling complex inter-speaker dependencies in dialogue. The key innovation is an adaptive semi-supervised learning strategy using dual-threshold confidence filtering and entropy-based sample selection to generate reliable pseudo-labels from unlabeled data, effectively tackling data scarcity. This approach enables practical deployment for intent recognition in long dialogues with minimal annotation overhead while maintaining state-of-the-art performance.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -120,8 +118,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>SMART introduces a shot-aware MLLM framework for video moment retrieval that integrates audio cues and implements Shot-aware Token Compression to preserve fine-grained temporal semantics while reducing computational redundancy. By combining multimodal audio-visual features with shot-level temporal structure, the approach addresses limitations of existing methods that rely on coarse single-modality analysis of untrimmed videos. This has practical implications for efficient processing of longer, complex videos where shot boundaries provide natural anchors for more precise temporal localization.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>SMART introduces shot-aware temporal structure and audio-enhanced multimodal fusion to video moment retrieval, using selective token compression within shots to reduce redundancy while preserving fine-grained temporal details—addressing the limitation of existing MLLM-based approaches that rely on coarse visual-only understanding. The key innovation is leveraging audio cues alongside vision and applying hierarchical temporal modeling at the shot level rather than frame level, enabling more efficient processing of untrimmed videos with complex temporal dynamics.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -130,8 +128,8 @@
     cs.CV updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
-  <p>GAIS introduces a dual-pronged approach to text-video retrieval by combining Frame-level Gated Fusion (FGF) for adaptive audio-visual integration under textual guidance with Semantic Variance-Scaled Perturbation (SVSP) for semantics-aware regularization of text embeddings. This framework addresses a key limitation in existing methods—the underutilization of audio semantics and coarse fusion strategies—by enabling fine-grained temporal selection while improving embedding stability and cross-modal discrimination. The complementary design of selective fusion and semantic-aware perturbation represents a meaningful advance in multimodal alignment for retrieval tasks.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>GAIS introduces a dual-pronged approach to text-video retrieval by combining Frame-level Gated Fusion (FGF) for adaptive audio-visual integration under textual guidance with Semantic Variance-Scaled Perturbation (SVSP) to regularize embeddings in a semantics-aware manner. The key innovation is leveraging fine-grained temporal selection of frames while addressing the critical underutilization of audio semantics in existing coarse-fusion methods. This complementary architecture should significantly improve multimodal alignment and embedding robustness for retrieval tasks where precise audio-visual-language correspondence is essential.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -141,7 +139,7 @@
      · 2025-11-19
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
-  <p>Playmate2 addresses multi-character audio-driven animation using a DiT-based framework with LoRA training and position shift inference for arbitrary-length video generation, while introducing a novel training-free Mask Classifier-Free Guidance approach that combines reward feedback to improve lip-sync accuracy and temporal coherence. The method achieves multi-character animation without additional training by leveraging partial parameter updates and classifier-free guidance, enabling practical deployment of complex talking head scenarios. This represents a significant advancement in controllable video generation by eliminating the need for character-specific fine-tuning while maintaining quality across extended sequences.</p>
+  <p>Playmate2 addresses multi-character audio-driven animation using a DiT-based framework with LoRA fine-tuning and position-shift inference for arbitrary-length video generation while maintaining lip-sync accuracy and temporal coherence. The key innovation is a training-free Mask Classifier-Free Guidance approach combined with reward feedback optimization, enabling efficient multi-character animation without requiring full model retraining. This represents a significant step toward practical, scalable solutions for long-form talking-head video synthesis with improved synchronization and natural motion generation.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -151,9 +149,7 @@
      · 2025-11-19
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p># FPGAs as an AI Acceleration Alternative to GPUs
-
-FPGAs offer reconfigurable hardware that enables deterministic, low-latency AI inference with fine-grained optimization for specific workloads, outperforming fixed GPU architectures in energy efficiency and customization when mapping algorithms like convolutions and attention mechanisms directly to device logic. Their ability to integrate as SoCs with embedded processors enables edge inference near sensors, reducing bandwidth requirements and latency compared to cloud-based GPU processing. This positions FPGAs as a strategic complement to GPUs for applications prioritizing predictable performance, power efficiency, and privacy-critical deployment scenarios.</p>
+  <p>FPGAs are emerging as a compelling alternative to GPUs for AI workloads requiring sub-millisecond latency, deterministic performance, and edge deployment, enabling direct hardware mapping of convolutions and attention mechanisms with superior power efficiency and customization. Unlike fixed GPU architectures, FPGAs' reconfigurability allows algorithmic optimization at the circuit level, SoC integration with embedded processors, and on-device inference that reduces bandwidth and privacy risks while freeing GPU resources for other tasks.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -163,7 +159,7 @@ FPGAs offer reconfigurable hardware that enables deterministic, low-latency AI i
      · 2025-11-19
   </p>
   <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
-  <p>This paper proposes a Bayesian uncertainty-guided Mixture-of-Experts (MoE) framework that routes inputs across heterogeneous quantized experts (ternary BitNet, 1-16 bit BitLinear) to achieve aggressive 4-bit quantization while maintaining 99.9% accuracy parity with 16-bit models on audio tasks. The key innovation is curiosity-driven routing based on epistemic uncertainty, which dramatically reduces inference latency variance by 82% (230ms→29ms std dev), enabling predictable real-time inference on resource-constrained edge devices with 4x compression and 41% energy savings. This addresses a critical deployment bottleneck: prior MoE approaches suffer from high latency unpredictability under quantization, making them unsuitable for latency-sensitive embedded applications.</p>
+  <p>This paper presents a Bayesian uncertainty-guided Mixture-of-Experts approach that routes inputs across heterogeneous quantized experts (BitNet ternary, variable-bit BitLinear, post-training quantization) to achieve aggressive 4-bit compression while maintaining 99.9% accuracy on audio tasks. The key innovation is using epistemic uncertainty for routing decisions, which dramatically reduces inference latency variance by 82% (230ms→29ms std dev), solving a critical stability problem for edge deployment where prediction latency unpredictability is often more problematic than mean latency. This combines model compression with inference reliability, delivering 4x compression + 41% energy savings for resource-constrained audio applications.</p>
 </article>
 
 <article style="margin-bottom:1.5rem;">
@@ -172,8 +168,8 @@ FPGAs offer reconfigurable hardware that enables deterministic, low-latency AI i
     cs.AI updates on arXiv.org
      · 2025-11-19
   </p>
-  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
-  <p>Concept-RuleNet combines multi-agent neurosymbolic reasoning with vision-language models by grounding symbolic rules directly in visual concepts extracted from training data, rather than relying solely on task labels—addressing both VLM hallucination issues and the weak grounding problem in existing neurosymbolic approaches. The system uses a multimodal concept generator to discover discriminative visual patterns first, then conditions symbol discovery on these grounded concepts to create interpretable, executable reasoning rules that mitigate label bias and improve out-of-distribution robustness. This approach bridges the gap between neural perception accuracy and symbolic reasoning transparency, offering developers a framework for building more reliable and explainable vision-language systems.</p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 62</span></div>
+  <p>Concept-RuleNet addresses hallucination and interpretability in VLMs by coupling neural perception with neurosymbolic reasoning through a multi-agent architecture that grounds symbolic rules in actual visual concepts rather than just task labels. The key innovation is mining discriminative visual concepts directly from training images to condition symbol discovery, reducing label bias and improving out-of-distribution robustness while maintaining transparent, executable reasoning. This approach bridges the explainability-accuracy gap by ensuring the symbolic reasoning layer operates on semantically grounded representations tied to visual statistics rather than abstract labels.</p>
 </article>
 </body>
 </html>
