@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-11-21</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-11-21</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15552" style="color:#4ea8ff;">Multimodal Evaluation of Russian-language Architectures</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces Mera Multi, the first comprehensive multimodal evaluation framework for Russian-language LLMs, addressing a critical gap by creating 18 instruction-based benchmark datasets spanning text, image, audio, and video modalities with culturally-adapted Russian content. The work establishes a universal taxonomy of multimodal abilities and provides standardized metrics for evaluating both general-purpose MLLMs and modality-specific architectures (image/video/audio-to-text), enabling systematic assessment of model capabilities and limitations in a previously under-resourced language. This benchmark is particularly significant for researchers developing non-English multimodal systems, offering a replicable framework that could inform similar regional evaluation efforts.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Multimodal Evaluation of Russian-language Architectures", "This paper introduces Mera Multi, the first comprehensive multimodal evaluation framework for Russian-language LLMs, addressing a critical gap by creating 18 instruction-based benchmark datasets spanning text, image, audio, and video modalities with culturally-adapted Russian content. The work establishes a universal taxonomy of multimodal abilities and provides standardized metrics for evaluating both general-purpose MLLMs and modality-specific architectures (image/video/audio-to-text), enabling systematic assessment of model capabilities and limitations in a previously under-resourced language. This benchmark is particularly significant for researchers developing non-English multimodal systems, offering a replicable framework that could inform similar regional evaluation efforts.", "https://arxiv.org/abs/2511.15552")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15552" style="color:#4ea8ff;">Multimodal Evaluation of Russian-language Architectures</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Researchers introduce Mera Multi, the first comprehensive multimodal evaluation framework for Russian-language LLMs, featuring 18 instruction-based tasks spanning text, image, audio, and video modalities with culturally-specific datasets and a unified taxonomy of multimodal abilities. This addresses a critical gap in benchmarking non-English MLLMs and enables systematic assessment of both general-purpose and modality-specific architectures (image/video/audio-to-text) that were previously unstandardized for Russian. The framework's open design and unified metrics should facilitate broader evaluation of multilingual multimodal systems and highlight language-specific limitations in current MLLM capabilities.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Multimodal Evaluation of Russian-language Architectures", "Researchers introduce Mera Multi, the first comprehensive multimodal evaluation framework for Russian-language LLMs, featuring 18 instruction-based tasks spanning text, image, audio, and video modalities with culturally-specific datasets and a unified taxonomy of multimodal abilities. This addresses a critical gap in benchmarking non-English MLLMs and enables systematic assessment of both general-purpose and modality-specific architectures (image/video/audio-to-text) that were previously unstandardized for Russian. The framework's open design and unified metrics should facilitate broader evaluation of multilingual multimodal systems and highlight language-specific limitations in current MLLM capabilities.", "https://arxiv.org/abs/2511.15552")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15722" style="color:#4ea8ff;">Spatial Reasoning in Multimodal Large Language Models: A Survey of Tasks, Benchmarks and Methods</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This survey organizes spatial reasoning benchmarks and methods for MLLMs through a cognitive taxonomy rather than input modality, revealing that spatial intelligence depends on reasoning complexity and underlying cognitive functions rather than data format alone. The work maps existing tasks across vision-language and embodied settings to identify critical capability gaps and proposes evaluation frameworks for systematically assessing 3D spatial understanding—addressing a fundamental weakness in current large multimodal models. The cognitive-grounded taxonomy enables principled cross-task comparison and suggests new directions for improving spatial intelligence in MLLMs beyond simple architectural scaling.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Spatial Reasoning in Multimodal Large Language Models: A Survey of Tasks, Benchmarks and Methods", "This survey organizes spatial reasoning benchmarks and methods for MLLMs through a cognitive taxonomy rather than input modality, revealing that spatial intelligence depends on reasoning complexity and underlying cognitive functions rather than data format alone. The work maps existing tasks across vision-language and embodied settings to identify critical capability gaps and proposes evaluation frameworks for systematically assessing 3D spatial understanding—addressing a fundamental weakness in current large multimodal models. The cognitive-grounded taxonomy enables principled cross-task comparison and suggests new directions for improving spatial intelligence in MLLMs beyond simple architectural scaling.", "https://arxiv.org/abs/2511.15722")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15848" style="color:#4ea8ff;">Step-Audio-R1 Technical Report</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Step-Audio-R1 addresses the counterintuitive finding that audio language models degrade with chain-of-thought reasoning by introducing Modality-Grounded Reasoning Distillation (MGRD), which anchors reasoning chains directly to acoustic features rather than allowing hallucinated deliberations. This is the first successful reasoning model for audio, achieving performance parity with Gemini 3 Pro and surpassing Gemini 2.5 Pro, suggesting that audio reasoning can match vision/text domains when properly grounded in the modality's unique characteristics. The key insight—that audio reasoning requires explicit acoustic feature alignment rather than generic reasoning chains—has significant implications for multimodal LLM design and may explain why previous audio reasoning approaches failed.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Step-Audio-R1 Technical Report", "Step-Audio-R1 addresses the counterintuitive finding that audio language models degrade with chain-of-thought reasoning by introducing Modality-Grounded Reasoning Distillation (MGRD), which anchors reasoning chains directly to acoustic features rather than allowing hallucinated deliberations. This is the first successful reasoning model for audio, achieving performance parity with Gemini 3 Pro and surpassing Gemini 2.5 Pro, suggesting that audio reasoning can match vision/text domains when properly grounded in the modality's unique characteristics. The key insight—that audio reasoning requires explicit acoustic feature alignment rather than generic reasoning chains—has significant implications for multimodal LLM design and may explain why previous audio reasoning approaches failed.", "https://arxiv.org/abs/2511.15848")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15997" style="color:#4ea8ff;">Sensorium Arc: AI Agent System for Oceanic Data Exploration and Interactive Eco-Art</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#f59e0b;">⚡ 42</span></div>
+  <p>Sensorium Arc is a multimodal AI agent system that combines retrieval-augmented LLMs with semantic parsing to enable real-time conversational exploration of marine datasets, dynamically triggering contextual data visualizations and audiovisual elements based on dialogue cues. The system's novel approach treats oceanic data as an interactive narrative rather than static information, leveraging multi-agent architecture to embody the ocean's perspective while blending scientific rigor with ecological poetics. This demonstrates practical applications of LLM-based systems for complex environmental data communication and suggests potential for similar multimodal agent frameworks in science communication and climate-focused interactive experiences.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Sensorium Arc: AI Agent System for Oceanic Data Exploration and Interactive Eco-Art", "Sensorium Arc is a multimodal AI agent system that combines retrieval-augmented LLMs with semantic parsing to enable real-time conversational exploration of marine datasets, dynamically triggering contextual data visualizations and audiovisual elements based on dialogue cues. The system's novel approach treats oceanic data as an interactive narrative rather than static information, leveraging multi-agent architecture to embody the ocean's perspective while blending scientific rigor with ecological poetics. This demonstrates practical applications of LLM-based systems for complex environmental data communication and suggests potential for similar multimodal agent frameworks in science communication and climate-focused interactive experiences.", "https://arxiv.org/abs/2511.15997")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16600" style="color:#4ea8ff;">You Only Forward Once: An Efficient Compositional Judging Paradigm</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>YOFO introduces a template-conditioned inference approach that judges multiple structured requirements in a single forward pass by extracting binary decisions from final-token logits, eliminating the speed-accuracy trade-off of existing MLLM-based evaluation methods. This compositional design achieves orders-of-magnitude speedup while maintaining interpretability and fine-grained requirement understanding, making it practical for high-throughput evaluation scenarios. The approach cleverly exploits autoregressive model capabilities without requiring full text generation for each requirement, enabling efficient multi-criteria assessment at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "You Only Forward Once: An Efficient Compositional Judging Paradigm", "YOFO introduces a template-conditioned inference approach that judges multiple structured requirements in a single forward pass by extracting binary decisions from final-token logits, eliminating the speed-accuracy trade-off of existing MLLM-based evaluation methods. This compositional design achieves orders-of-magnitude speedup while maintaining interpretability and fine-grained requirement understanding, making it practical for high-throughput evaluation scenarios. The approach cleverly exploits autoregressive model capabilities without requiring full text generation for each requirement, enabling efficient multi-criteria assessment at scale.", "https://arxiv.org/abs/2511.16600")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15884" style="color:#4ea8ff;">Box6D : Zero-shot Category-level 6D Pose Estimation of Warehouse Boxes</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#3b82f6;">💼 72</span> <span class="score-badge" style="background:#6b7280;">⚡ 28</span></div>
+  <p>Box6D addresses category-level 6D pose estimation for warehouse boxes through a novel approach that infers box dimensions via binary search from single RGB-D observations, balancing the inflexibility of model-based methods with the fragility of model-free approaches. The method is specifically optimized for warehouse contexts with clutter and occlusion, leveraging environment and object priors to improve practicality for robotic manipulation in logistics and bin-picking applications. This zero-shot approach enables generalization to novel boxes without per-object training, offering a practical alternative to existing methods that either require precise CAD models or struggle with real-world variability.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Box6D : Zero-shot Category-level 6D Pose Estimation of Warehouse Boxes", "Box6D addresses category-level 6D pose estimation for warehouse boxes through a novel approach that infers box dimensions via binary search from single RGB-D observations, balancing the inflexibility of model-based methods with the fragility of model-free approaches. The method is specifically optimized for warehouse contexts with clutter and occlusion, leveraging environment and object priors to improve practicality for robotic manipulation in logistics and bin-picking applications. This zero-shot approach enables generalization to novel boxes without per-object training, offering a practical alternative to existing methods that either require precise CAD models or struggle with real-world variability.", "https://arxiv.org/abs/2511.15884")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15950" style="color:#4ea8ff;">A Scalable NorthPole System with End-to-End Vertical Integration for Low-Latency and Energy-Efficient LLM Inference</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Google's NorthPole-based system achieves remarkable density for LLM inference—115 petaops at 4-bit precision across 288 accelerator cards consuming only 30kW—enabling 3 concurrent 8B-parameter models to serve 28 simultaneous users with 2.8ms inter-token latency. The vertically integrated architecture combining custom hardware, optimized training algorithms, and containerized runtime demonstrates a practical path for energy-efficient enterprise AI deployment in existing data center infrastructure. This represents significant progress toward making real-time agentic AI workloads economically viable for on-premises and cloud environments.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "A Scalable NorthPole System with End-to-End Vertical Integration for Low-Latency and Energy-Efficient LLM Inference", "Google's NorthPole-based system achieves remarkable density for LLM inference—115 petaops at 4-bit precision across 288 accelerator cards consuming only 30kW—enabling 3 concurrent 8B-parameter models to serve 28 simultaneous users with 2.8ms inter-token latency. The vertically integrated architecture combining custom hardware, optimized training algorithms, and containerized runtime demonstrates a practical path for energy-efficient enterprise AI deployment in existing data center infrastructure. This represents significant progress toward making real-time agentic AI workloads economically viable for on-premises and cloud environments.", "https://arxiv.org/abs/2511.15950")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16229" style="color:#4ea8ff;">Q-MLLM: Vector Quantization for Robust Multimodal Large Language Model Security</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Q-MLLM addresses a critical vulnerability in multimodal LLMs by introducing two-level vector quantization that discretizes visual representations, creating discrete bottlenecks that prevent gradient-based adversarial attacks while maintaining cross-modal reasoning. The approach bridges the safety alignment gap between text and vision modalities through a two-stage training methodology that operates at both pixel-patch and semantic levels. This technique has significant implications for deploying MLLMs in security-critical applications by making visual inputs fundamentally more resistant to adversarial perturbations without sacrificing model capability.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Q-MLLM: Vector Quantization for Robust Multimodal Large Language Model Security", "Q-MLLM addresses a critical vulnerability in multimodal LLMs by introducing two-level vector quantization that discretizes visual representations, creating discrete bottlenecks that prevent gradient-based adversarial attacks while maintaining cross-modal reasoning. The approach bridges the safety alignment gap between text and vision modalities through a two-stage training methodology that operates at both pixel-patch and semantic levels. This technique has significant implications for deploying MLLMs in security-critical applications by making visual inputs fundamentally more resistant to adversarial perturbations without sacrificing model capability.", "https://arxiv.org/abs/2511.16229")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16595" style="color:#4ea8ff;">TimeViper: A Hybrid Mamba-Transformer Vision-Language Model for Efficient Long Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>TimeViper introduces a hybrid Mamba-Transformer architecture for efficient long-video understanding, leveraging state-space models' computational efficiency alongside attention mechanisms' expressivity to handle videos exceeding 10,000 frames. The key innovation is the TransV token transfer module, which identifies and exploits vision-to-text information flow patterns at increasing LLM depths, compressing redundant vision tokens into instruction tokens while preserving multimodal understanding—a practical solution to the quadratic complexity problem of processing extended temporal contexts in vision-language models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TimeViper: A Hybrid Mamba-Transformer Vision-Language Model for Efficient Long Video Understanding", "TimeViper introduces a hybrid Mamba-Transformer architecture for efficient long-video understanding, leveraging state-space models' computational efficiency alongside attention mechanisms' expressivity to handle videos exceeding 10,000 frames. The key innovation is the TransV token transfer module, which identifies and exploits vision-to-text information flow patterns at increasing LLM depths, compressing redundant vision tokens into instruction tokens while preserving multimodal understanding—a practical solution to the quadratic complexity problem of processing extended temporal contexts in vision-language models.", "https://arxiv.org/abs/2511.16595")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.08987" style="color:#4ea8ff;">Towards Efficient Multimodal Unified Reasoning Model via Model Merging</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces Tiny-R1V, a 3B parameter lightweight MLLM that achieves efficient multimodal reasoning through a novel reinforcement learning approach called Length-Informed Relative Policy Optimization (LIPO), which dynamically prioritizes concise, high-quality responses to reduce inference tokens while maintaining performance across mathematical reasoning, chart understanding, and OCR tasks. The key innovation lies in balancing model efficiency and reasoning capability at scale through two-stage optimization, addressing the practical deployment challenge where existing lightweight MLLMs sacrifice either speed or accuracy. This approach is particularly relevant for resource-constrained environments and edge deployment scenarios where inference latency and model size are critical constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Towards Efficient Multimodal Unified Reasoning Model via Model Merging", "This paper introduces Tiny-R1V, a 3B parameter lightweight MLLM that achieves efficient multimodal reasoning through a novel reinforcement learning approach called Length-Informed Relative Policy Optimization (LIPO), which dynamically prioritizes concise, high-quality responses to reduce inference tokens while maintaining performance across mathematical reasoning, chart understanding, and OCR tasks. The key innovation lies in balancing model efficiency and reasoning capability at scale through two-stage optimization, addressing the practical deployment challenge where existing lightweight MLLMs sacrifice either speed or accuracy. This approach is particularly relevant for resource-constrained environments and edge deployment scenarios where inference latency and model size are critical constraints.", "https://arxiv.org/abs/2510.08987")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.14210" style="color:#4ea8ff;">Orion: A Unified Visual Agent for Multimodal Perception, Advanced Visual Reasoning and Execution</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Orion represents a paradigm shift from traditional VLMs toward agentic visual systems by orchestrating specialized CV tools (detection, OCR, segmentation, geometric analysis) through multi-step reasoning rather than generating direct descriptive outputs. This tool-augmented approach achieves competitive benchmarks (MMMU, DocVQA, MMLongBench) while enabling production-grade visual intelligence across images, video, and documents through autonomous symbolic execution. The key innovation is bridging neural perception with explicit tool orchestration, enabling more precise, interpretable, and extensible visual workflows compared to monolithic end-to-end models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Orion: A Unified Visual Agent for Multimodal Perception, Advanced Visual Reasoning and Execution", "Orion represents a paradigm shift from traditional VLMs toward agentic visual systems by orchestrating specialized CV tools (detection, OCR, segmentation, geometric analysis) through multi-step reasoning rather than generating direct descriptive outputs. This tool-augmented approach achieves competitive benchmarks (MMMU, DocVQA, MMLongBench) while enabling production-grade visual intelligence across images, video, and documents through autonomous symbolic execution. The key innovation is bridging neural perception with explicit tool orchestration, enabling more precise, interpretable, and extensible visual workflows compared to monolithic end-to-end models.", "https://arxiv.org/abs/2511.14210")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.14993" style="color:#4ea8ff;">Kandinsky 5.0: A Family of Foundation Models for Image and Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Kandinsky 5.0 introduces a tiered family of generative models spanning 2-19B parameters for image and video synthesis, with the lightweight 2B Video Lite variant enabling fast text-to-video/image-to-video generation while the 19B Video Pro maximizes quality for 10-second outputs. The framework emphasizes data-centric engineering through multi-stage training incorporating pre-training, self-supervised fine-tuning, and RL-based post-training, combined with architectural optimizations designed for efficiency and scalability. This modular approach offers developers flexible deployment options balancing latency and quality, with particular relevance for edge inference and resource-constrained environments.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Kandinsky 5.0: A Family of Foundation Models for Image and Video Generation", "Kandinsky 5.0 introduces a tiered family of generative models spanning 2-19B parameters for image and video synthesis, with the lightweight 2B Video Lite variant enabling fast text-to-video/image-to-video generation while the 19B Video Pro maximizes quality for 10-second outputs. The framework emphasizes data-centric engineering through multi-stage training incorporating pre-training, self-supervised fine-tuning, and RL-based post-training, combined with architectural optimizations designed for efficiency and scalability. This modular approach offers developers flexible deployment options balancing latency and quality, with particular relevance for edge inference and resource-constrained environments.", "https://arxiv.org/abs/2511.14993")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15884" style="color:#4ea8ff;">Box6D : Zero-shot Category-level 6D Pose Estimation of Warehouse Boxes</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#3b82f6;">💼 72</span> <span class="score-badge" style="background:#6b7280;">⚡ 28</span></div>
+  <p>Box6D presents a category-level 6D pose estimation approach specifically optimized for warehouse boxes using single RGB-D input, employing binary search for dimension inference to balance the flexibility of category-level methods with the industrial practicality often lacking in overly generalized approaches. The method addresses a critical gap in robotic manipulation by avoiding the CAD model dependency of model-based approaches while improving reliability over model-free methods under cluttered and occluded conditions typical in warehouse automation. This zero-shot capability on novel box instances suggests significant potential for scalable deployment in e-commerce fulfillment and bin-picking systems without requiring retraining on each new box variant.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Box6D : Zero-shot Category-level 6D Pose Estimation of Warehouse Boxes", "Box6D presents a category-level 6D pose estimation approach specifically optimized for warehouse boxes using single RGB-D input, employing binary search for dimension inference to balance the flexibility of category-level methods with the industrial practicality often lacking in overly generalized approaches. The method addresses a critical gap in robotic manipulation by avoiding the CAD model dependency of model-based approaches while improving reliability over model-free methods under cluttered and occluded conditions typical in warehouse automation. This zero-shot capability on novel box instances suggests significant potential for scalable deployment in e-commerce fulfillment and bin-picking systems without requiring retraining on each new box variant.", "https://arxiv.org/abs/2511.15884")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15948" style="color:#4ea8ff;">Click2Graph: Interactive Panoptic Video Scene Graphs from a Single Click</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-21
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Click2Graph introduces the first interactive framework for Panoptic Video Scene Graph Generation (PVSG), combining promptable segmentation (SAM2) with semantic reasoning to enable users to generate structured video understanding from minimal input (a single click or bounding box). The system uniquely features a Dynamic Interaction Discovery Module for autonomous detection of interacting objects and temporal consistency tracking, bridging the gap between precise but semantically-naive interactive segmentation and rigid feed-forward scene graph systems. This approach has significant implications for reducing annotation overhead in video understanding tasks while maintaining relational reasoning capabilities that current interactive models lack.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Click2Graph: Interactive Panoptic Video Scene Graphs from a Single Click", "Click2Graph introduces the first interactive framework for Panoptic Video Scene Graph Generation (PVSG), combining promptable segmentation (SAM2) with semantic reasoning to enable users to generate structured video understanding from minimal input (a single click or bounding box). The system uniquely features a Dynamic Interaction Discovery Module for autonomous detection of interacting objects and temporal consistency tracking, bridging the gap between precise but semantically-naive interactive segmentation and rigid feed-forward scene graph systems. This approach has significant implications for reducing annotation overhead in video understanding tasks while maintaining relational reasoning capabilities that current interactive models lack.", "https://arxiv.org/abs/2511.15948")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
