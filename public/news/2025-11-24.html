@@ -1,0 +1,489 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-11-24</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-11-24</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2311.02733" style="color:#4ea8ff;">AV-Lip-Sync+: Leveraging AV-HuBERT to Exploit Multimodal Inconsistency for Deepfake Detection of Frontal Face Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper proposes AV-Lip-Sync+, a multimodal deepfake detector that leverages the self-supervised AV-HuBERT transformer to identify audio-visual inconsistencies rather than relying on traditional unimodal forensics or supervised learning approaches. The method uses multi-scale temporal CNNs to capture cross-modal temporal correlations, enabling detection of sophisticated deepfakes where either audio or video (or both) have been manipulated. This SSL-based approach is particularly significant for detecting forgeries where unimodal detectors fail, addressing a critical gap in defending against coordinated multimedia manipulation attacks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "AV-Lip-Sync+: Leveraging AV-HuBERT to Exploit Multimodal Inconsistency for Deepfake Detection of Frontal Face Videos", "This paper proposes AV-Lip-Sync+, a multimodal deepfake detector that leverages the self-supervised AV-HuBERT transformer to identify audio-visual inconsistencies rather than relying on traditional unimodal forensics or supervised learning approaches. The method uses multi-scale temporal CNNs to capture cross-modal temporal correlations, enabling detection of sophisticated deepfakes where either audio or video (or both) have been manipulated. This SSL-based approach is particularly significant for detecting forgeries where unimodal detectors fail, addressing a critical gap in defending against coordinated multimedia manipulation attacks.", "https://arxiv.org/abs/2311.02733")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15675" style="color:#4ea8ff;">MF-GCN: A Multi-Frequency Graph Convolutional Network for Tri-Modal Depression Detection Using Eye-Tracking, Facial, and Acoustic Features</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This work introduces MF-GCN, a multi-frequency graph convolutional network that fuses tri-modal biometric data (eye-tracking, facial, and acoustic features) with a novel 103-participant clinical dataset to enable objective depression detection—leveraging eye-tracking to quantify attentional bias toward negative stimuli alongside audio-visual markers of affective flattening and psychomotor retardation. The approach addresses limitations in existing graph-based models by incorporating frequency-domain analysis to capture depression's multi-dimensional behavioral signatures beyond traditional single-modality methods. This represents a methodological advance for automated mental health screening with potential clinical deployment, though the modest dataset size and reliance on graph convolutions warrant validation on larger, more diverse populations.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MF-GCN: A Multi-Frequency Graph Convolutional Network for Tri-Modal Depression Detection Using Eye-Tracking, Facial, and Acoustic Features", "This work introduces MF-GCN, a multi-frequency graph convolutional network that fuses tri-modal biometric data (eye-tracking, facial, and acoustic features) with a novel 103-participant clinical dataset to enable objective depression detection—leveraging eye-tracking to quantify attentional bias toward negative stimuli alongside audio-visual markers of affective flattening and psychomotor retardation. The approach addresses limitations in existing graph-based models by incorporating frequency-domain analysis to capture depression's multi-dimensional behavioral signatures beyond traditional single-modality methods. This represents a methodological advance for automated mental health screening with potential clinical deployment, though the modest dataset size and reliance on graph convolutions warrant validation on larger, more diverse populations.", "https://arxiv.org/abs/2511.15675")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16901" style="color:#4ea8ff;">R-AVST: Empowering Video-LLMs with Fine-Grained Spatio-Temporal Reasoning in Complex Audio-Visual Scenarios</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>R-AVST introduces a fine-grained spatio-temporal benchmark dataset with 5K+ untrimmed videos and 27K spatially-annotated objects across 100 audio-visual event types, addressing the gap between current video-LLM capabilities and real-world complexity. The authors develop an efficient annotation pipeline leveraging LLM-based object extraction and automated spatial tagging, generating 8K+ QA pairs for three core spatio-temporal reasoning tasks that can meaningfully evaluate video foundation models beyond simple scenarios. This work systematically targets multi-modal temporal alignment and object-centric reasoning—critical capabilities for practical applications like video understanding, surveillance, and embodied AI systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "R-AVST: Empowering Video-LLMs with Fine-Grained Spatio-Temporal Reasoning in Complex Audio-Visual Scenarios", "R-AVST introduces a fine-grained spatio-temporal benchmark dataset with 5K+ untrimmed videos and 27K spatially-annotated objects across 100 audio-visual event types, addressing the gap between current video-LLM capabilities and real-world complexity. The authors develop an efficient annotation pipeline leveraging LLM-based object extraction and automated spatial tagging, generating 8K+ QA pairs for three core spatio-temporal reasoning tasks that can meaningfully evaluate video foundation models beyond simple scenarios. This work systematically targets multi-modal temporal alignment and object-centric reasoning—critical capabilities for practical applications like video understanding, surveillance, and embodied AI systems.", "https://arxiv.org/abs/2511.16901")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17181" style="color:#4ea8ff;">Investigating self-supervised representations for audio-visual deepfake detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This study systematically evaluates self-supervised representations (audio, video, multimodal) for deepfake detection, finding that while these features capture complementary deepfake-relevant information and models attend to semantic regions rather than artifacts, they fail to generalize reliably across datasets—suggesting the limitation stems from dataset characteristics rather than the representations themselves. The work challenges the common practice of using self-supervised features in isolation or within opaque architectures by providing interpretability analysis, revealing that multimodal fusion can leverage complementary information across modalities for improved detection. These findings have significant implications for practitioners, indicating that progress in audio-visual deepfake detection may require addressing dataset bias and domain shift rather than pursuing more complex model architectures.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Investigating self-supervised representations for audio-visual deepfake detection", "This study systematically evaluates self-supervised representations (audio, video, multimodal) for deepfake detection, finding that while these features capture complementary deepfake-relevant information and models attend to semantic regions rather than artifacts, they fail to generalize reliably across datasets—suggesting the limitation stems from dataset characteristics rather than the representations themselves. The work challenges the common practice of using self-supervised features in isolation or within opaque architectures by providing interpretability analysis, revealing that multimodal fusion can leverage complementary information across modalities for improved detection. These findings have significant implications for practitioners, indicating that progress in audio-visual deepfake detection may require addressing dataset bias and domain shift rather than pursuing more complex model architectures.", "https://arxiv.org/abs/2511.17181")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2311.02733" style="color:#4ea8ff;">AV-Lip-Sync+: Leveraging AV-HuBERT to Exploit Multimodal Inconsistency for Deepfake Detection of Frontal Face Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p># AV-Lip-Sync+: Multimodal Deepfake Detection via Self-Supervised Learning
+
+This work leverages AV-HuBERT, a transformer-based self-supervised multimodal feature extractor, to detect audio-visual deepfakes by exploiting inconsistencies between synchronized lip movements and audio—a limitation of unimodal detectors that miss coordinated manipulations across modalities. The approach combines AV-HuBERT embeddings with multi-scale temporal CNNs to capture fine-grained audio-visual desynchronization, moving beyond supervised pretraining toward SSL-based detection that can generalize across diverse forgery techniques. This addresses a critical gap in multimedia forensics where attackers coordinate visual and audio manipulation, making detection via single-modality analysis insufficient.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "AV-Lip-Sync+: Leveraging AV-HuBERT to Exploit Multimodal Inconsistency for Deepfake Detection of Frontal Face Videos", "# AV-Lip-Sync+: Multimodal Deepfake Detection via Self-Supervised Learning\n\nThis work leverages AV-HuBERT, a transformer-based self-supervised multimodal feature extractor, to detect audio-visual deepfakes by exploiting inconsistencies between synchronized lip movements and audio—a limitation of unimodal detectors that miss coordinated manipulations across modalities. The approach combines AV-HuBERT embeddings with multi-scale temporal CNNs to capture fine-grained audio-visual desynchronization, moving beyond supervised pretraining toward SSL-based detection that can generalize across diverse forgery techniques. This addresses a critical gap in multimedia forensics where attackers coordinate visual and audio manipulation, making detection via single-modality analysis insufficient.", "https://arxiv.org/abs/2311.02733")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.11910" style="color:#4ea8ff;">Seeing the Forest and the Trees: Query-Aware Tokenizer for Long-Video Multimodal Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>QTSplus addresses the quadratic attention complexity bottleneck in long-video MLLMs through query-aware dynamic token selection, using cross-attention scoring and instance-specific retention budgets to maintain only semantically relevant visual tokens rather than linearly scaling with video length. The method employs a differentiable straight-through estimator for training and hard gating at inference, enabling efficient fine-grained filtering of vision tokens without requiring separate tokenization strategies. This approach is particularly valuable for production systems where long-form video understanding is needed, as it reduces memory and latency costs while preserving query-relevant visual information.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Seeing the Forest and the Trees: Query-Aware Tokenizer for Long-Video Multimodal Language Models", "QTSplus addresses the quadratic attention complexity bottleneck in long-video MLLMs through query-aware dynamic token selection, using cross-attention scoring and instance-specific retention budgets to maintain only semantically relevant visual tokens rather than linearly scaling with video length. The method employs a differentiable straight-through estimator for training and hard gating at inference, enabling efficient fine-grained filtering of vision tokens without requiring separate tokenization strategies. This approach is particularly valuable for production systems where long-form video understanding is needed, as it reduces memory and latency costs while preserving query-relevant visual information.", "https://arxiv.org/abs/2511.11910")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.15675" style="color:#4ea8ff;">MF-GCN: A Multi-Frequency Graph Convolutional Network for Tri-Modal Depression Detection Using Eye-Tracking, Facial, and Acoustic Features</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces MF-GCN, a multi-frequency graph convolutional network that fuses eye-tracking, facial, and acoustic modalities for objective depression detection, leveraging a novel 103-participant clinically-validated dataset where eye-tracking quantifies attentional bias toward negative stimuli while audio/video capture affective and psychomotor symptoms. The work addresses limitations in existing graph-based depression detection models by enabling multi-modal feature integration at different frequency scales, providing a more comprehensive computational phenotype than single-modality approaches. Key implication: automated depression screening via accessible biometric signals could reduce diagnostic delays, though clinical validation at scale remains essential before clinical deployment.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MF-GCN: A Multi-Frequency Graph Convolutional Network for Tri-Modal Depression Detection Using Eye-Tracking, Facial, and Acoustic Features", "This paper introduces MF-GCN, a multi-frequency graph convolutional network that fuses eye-tracking, facial, and acoustic modalities for objective depression detection, leveraging a novel 103-participant clinically-validated dataset where eye-tracking quantifies attentional bias toward negative stimuli while audio/video capture affective and psychomotor symptoms. The work addresses limitations in existing graph-based depression detection models by enabling multi-modal feature integration at different frequency scales, providing a more comprehensive computational phenotype than single-modality approaches. Key implication: automated depression screening via accessible biometric signals could reduce diagnostic delays, though clinical validation at scale remains essential before clinical deployment.", "https://arxiv.org/abs/2511.15675")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2505.12114" style="color:#4ea8ff;">Behind the Screens: Uncovering Bias in AI-Driven Video Interview Assessments Using Counterfactuals</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper presents a counterfactual-based framework using GANs to systematically audit bias in multimodal AI-driven personality assessments for hiring, addressing a critical gap where traditional bias evaluation methods fail on video interview systems combining visual, audio, and textual features. The approach enables fairness analysis without model access by generating synthetic counterfactual representations with altered protected attributes (gender, ethnicity, age), allowing researchers to quantify discriminatory outcomes in affective computing systems that map Big Five personality traits. Key practical implication: this black-box evaluation methodology could become a crucial compliance tool for auditing biased personality predictions before deployment in high-stakes hiring decisions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Behind the Screens: Uncovering Bias in AI-Driven Video Interview Assessments Using Counterfactuals", "This paper presents a counterfactual-based framework using GANs to systematically audit bias in multimodal AI-driven personality assessments for hiring, addressing a critical gap where traditional bias evaluation methods fail on video interview systems combining visual, audio, and textual features. The approach enables fairness analysis without model access by generating synthetic counterfactual representations with altered protected attributes (gender, ethnicity, age), allowing researchers to quantify discriminatory outcomes in affective computing systems that map Big Five personality traits. Key practical implication: this black-box evaluation methodology could become a crucial compliance tool for auditing biased personality predictions before deployment in high-stakes hiring decisions.", "https://arxiv.org/abs/2505.12114")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2311.02733" style="color:#4ea8ff;">AV-Lip-Sync+: Leveraging AV-HuBERT to Exploit Multimodal Inconsistency for Deepfake Detection of Frontal Face Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    eess.AS updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>AV-Lip-Sync+ leverages self-supervised learning from AV-HuBERT to detect audio-visual deepfakes by identifying inconsistencies between audio and visual modalities, moving beyond traditional unimodal forensics approaches. The method employs a transformer-based feature extractor combined with multi-scale temporal CNNs to capture cross-modal synchronization artifacts that reveal manipulation at the fusion level. This multimodal SSL approach addresses a critical gap in deepfake detection by exploiting the inherent correlations between speech and lip movements that synthesized content typically violates.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "AV-Lip-Sync+: Leveraging AV-HuBERT to Exploit Multimodal Inconsistency for Deepfake Detection of Frontal Face Videos", "AV-Lip-Sync+ leverages self-supervised learning from AV-HuBERT to detect audio-visual deepfakes by identifying inconsistencies between audio and visual modalities, moving beyond traditional unimodal forensics approaches. The method employs a transformer-based feature extractor combined with multi-scale temporal CNNs to capture cross-modal synchronization artifacts that reveal manipulation at the fusion level. This multimodal SSL approach addresses a critical gap in deepfake detection by exploiting the inherent correlations between speech and lip movements that synthesized content typically violates.", "https://arxiv.org/abs/2311.02733")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16783" style="color:#4ea8ff;">Generative Augmented Reality: Paradigms, Technologies, and Future Applications</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Generative Augmented Reality (GAR) fundamentally reimagines AR by replacing conventional multi-stage pipelines with unified generative models that continuously synthesize video from jointly-encoded environmental sensing, virtual content, and interaction signals as conditioning inputs. This end-to-end approach eliminates traditional AR engine bottlenecks, potentially enabling higher fidelity and real-time interactivity through single-stage inference rather than sequential composition. Key research challenges include optimizing generative backbone efficiency for real-time constraints, developing content ecosystems compatible with synthesis-based workflows, and addressing ethical implications of generatively-produced augmented experiences.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Generative Augmented Reality: Paradigms, Technologies, and Future Applications", "Generative Augmented Reality (GAR) fundamentally reimagines AR by replacing conventional multi-stage pipelines with unified generative models that continuously synthesize video from jointly-encoded environmental sensing, virtual content, and interaction signals as conditioning inputs. This end-to-end approach eliminates traditional AR engine bottlenecks, potentially enabling higher fidelity and real-time interactivity through single-stage inference rather than sequential composition. Key research challenges include optimizing generative backbone efficiency for real-time constraints, developing content ecosystems compatible with synthesis-based workflows, and addressing ethical implications of generatively-produced augmented experiences.", "https://arxiv.org/abs/2511.16783")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16786" style="color:#4ea8ff;">Revisiting Multimodal KV Cache Compression: A Frequency-Domain-Guided Outlier-KV-Aware Approach</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper addresses multimodal LLM inference efficiency by proposing a frequency-domain analysis approach to KV cache compression that identifies and preserves outlier KV pairs while removing redundant low-frequency components. Unlike attention-score-based methods that conflict with optimized kernels like FlashAttention, this approach operates on the statistical distribution of KV matrices to maintain critical information while reducing cache overhead proportional to visual input length. The key innovation is recognizing that outlier KVs encode semantically important features and shouldn't be uniformly pruned, enabling better compatibility with modern efficient attention implementations.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Revisiting Multimodal KV Cache Compression: A Frequency-Domain-Guided Outlier-KV-Aware Approach", "This paper addresses multimodal LLM inference efficiency by proposing a frequency-domain analysis approach to KV cache compression that identifies and preserves outlier KV pairs while removing redundant low-frequency components. Unlike attention-score-based methods that conflict with optimized kernels like FlashAttention, this approach operates on the statistical distribution of KV matrices to maintain critical information while reducing cache overhead proportional to visual input length. The key innovation is recognizing that outlier KVs encode semantically important features and shouldn't be uniformly pruned, enabling better compatibility with modern efficient attention implementations.", "https://arxiv.org/abs/2511.16786")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16937" style="color:#4ea8ff;">OmniGround: A Comprehensive Spatio-Temporal Grounding Benchmark for Real-World Complex Scenarios</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>OmniGround introduces a large-scale spatio-temporal video grounding benchmark (3,475 videos, 81 categories) designed to address category bias and oversimplified reasoning in current MLLMs through complex real-world queries and a novel Forward-Backward-Refinement annotation pipeline combining multi-directional tracking with error correction. The accompanying DeepSTG evaluation framework provides systematic dataset quality assessment across four complementary dimensions, moving beyond surface-level statistics to reveal genuine model performance limitations in linguistic robustness and diverse object localization.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "OmniGround: A Comprehensive Spatio-Temporal Grounding Benchmark for Real-World Complex Scenarios", "OmniGround introduces a large-scale spatio-temporal video grounding benchmark (3,475 videos, 81 categories) designed to address category bias and oversimplified reasoning in current MLLMs through complex real-world queries and a novel Forward-Backward-Refinement annotation pipeline combining multi-directional tracking with error correction. The accompanying DeepSTG evaluation framework provides systematic dataset quality assessment across four complementary dimensions, moving beyond surface-level statistics to reveal genuine model performance limitations in linguistic robustness and diverse object localization.", "https://arxiv.org/abs/2511.16937")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17318" style="color:#4ea8ff;">FORWARD: Dataset of a forwarder operating in rough terrain</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#f59e0b;">⚡ 42</span></div>
+  <p>FORWARD provides a comprehensive multimodal dataset of industrial forestry operations, capturing 18 hours of a Komatsu forwarder's activities via RTK-GNSS, 360-video, vibration sensors, CAN-bus telemetry, and IMUs alongside high-density LiDAR terrain data (~1500 pts/m²) and annotated work-element labels. This resource enables development of autonomous vehicle systems, predictive maintenance models, and AI-driven optimization for heavy equipment in unstructured outdoor environments—addressing a critical gap in real-world industrial robotics datasets beyond controlled settings.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FORWARD: Dataset of a forwarder operating in rough terrain", "FORWARD provides a comprehensive multimodal dataset of industrial forestry operations, capturing 18 hours of a Komatsu forwarder's activities via RTK-GNSS, 360-video, vibration sensors, CAN-bus telemetry, and IMUs alongside high-density LiDAR terrain data (~1500 pts/m²) and annotated work-element labels. This resource enables development of autonomous vehicle systems, predictive maintenance models, and AI-driven optimization for heavy equipment in unstructured outdoor environments—addressing a critical gap in real-world industrial robotics datasets beyond controlled settings.", "https://arxiv.org/abs/2511.17318")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16600" style="color:#4ea8ff;">You Only Forward Once: An Efficient Compositional Judging Paradigm</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#f59e0b;">⚡ 52</span></div>
+  <p>YOFO introduces a template-conditioned inference method that enables MLLMs to judge multiple structured requirements simultaneously in a single forward pass by extracting binary decisions from final-token logits, eliminating the latency bottleneck of autoregressive generation while maintaining interpretability. This approach elegantly sidesteps the traditional trade-off between fine-grained requirement understanding and inference speed, achieving orders-of-magnitude speedups—critical for high-throughput evaluation scenarios in AI systems. The method's practical impact lies in making MLLM-based judging viable at production scale, with clear applications to automated evaluation pipelines where both speed and compositional reasoning are essential.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "You Only Forward Once: An Efficient Compositional Judging Paradigm", "YOFO introduces a template-conditioned inference method that enables MLLMs to judge multiple structured requirements simultaneously in a single forward pass by extracting binary decisions from final-token logits, eliminating the latency bottleneck of autoregressive generation while maintaining interpretability. This approach elegantly sidesteps the traditional trade-off between fine-grained requirement understanding and inference speed, achieving orders-of-magnitude speedups—critical for high-throughput evaluation scenarios in AI systems. The method's practical impact lies in making MLLM-based judging viable at production scale, with clear applications to automated evaluation pipelines where both speed and compositional reasoning are essential.", "https://arxiv.org/abs/2511.16600")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2503.09114" style="color:#4ea8ff;">Sometimes Painful but Certainly Promising: Feasibility and Trade-offs of Language Model Inference at the Edge</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>This paper provides a systematic evaluation of running smaller language models (sub-10B parameters) on edge devices, examining the practical trade-offs between privacy/latency gains and computational constraints through compression techniques like quantization. The work addresses the critical gap between theoretical edge-deployment benefits and real-world execution challenges, offering empirical insights into viability and performance-latency-accuracy compromises for on-device LM inference. Key implications include guidance for practitioners on model selection, compression strategies, and realistic expectations for edge deployment scenarios across heterogeneous hardware.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Sometimes Painful but Certainly Promising: Feasibility and Trade-offs of Language Model Inference at the Edge", "This paper provides a systematic evaluation of running smaller language models (sub-10B parameters) on edge devices, examining the practical trade-offs between privacy/latency gains and computational constraints through compression techniques like quantization. The work addresses the critical gap between theoretical edge-deployment benefits and real-world execution challenges, offering empirical insights into viability and performance-latency-accuracy compromises for on-device LM inference. Key implications include guidance for practitioners on model selection, compression strategies, and realistic expectations for edge deployment scenarios across heterogeneous hardware.", "https://arxiv.org/abs/2503.09114")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
