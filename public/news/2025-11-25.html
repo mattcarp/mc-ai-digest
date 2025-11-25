@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-11-25</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-11-25</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17596" style="color:#4ea8ff;">Reconstruction-Driven Multimodal Representation Learning for Automated Media Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#10b981;">⚡ 88</span></div>
+  <p>This paper introduces a Multimodal Autoencoder (MMAE) that learns unified cross-modal representations from text, audio, and video using joint reconstruction losses, enabling automatic metadata extraction and semantic clustering for broadcast media without requiring large paired datasets. The approach leverages the newly proposed LUMA dataset of aligned multimodal triplets to discover modality-invariant semantic structures, addressing a key limitation of single-modality systems in capturing complex relationships within media content. The reconstruction-driven training paradigm offers a practical alternative to contrastive learning for industrial-scale media understanding and automated content indexing.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Reconstruction-Driven Multimodal Representation Learning for Automated Media Understanding", "This paper introduces a Multimodal Autoencoder (MMAE) that learns unified cross-modal representations from text, audio, and video using joint reconstruction losses, enabling automatic metadata extraction and semantic clustering for broadcast media without requiring large paired datasets. The approach leverages the newly proposed LUMA dataset of aligned multimodal triplets to discover modality-invariant semantic structures, addressing a key limitation of single-modality systems in capturing complex relationships within media content. The reconstruction-driven training paradigm offers a practical alternative to contrastive learning for industrial-scale media understanding and automated content indexing.", "https://arxiv.org/abs/2511.17596")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.18314" style="color:#4ea8ff;">AnyExperts: On-Demand Expert Allocation for Multimodal Language Models with Mixture of Expert</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>**AnyExperts** introduces dynamic, budget-aware routing for multimodal MoE models that allocates variable expert slots per token based on semantic importance rather than fixed assignments, addressing compute inefficiency in heterogeneous multimodal data. The framework constrains total slots within a fixed budget while allowing virtual experts (capped at ~20%) to fill remaining capacity, enabling adaptive real-to-virtual expert ratios that maintain computational predictability while improving efficiency across vision-language tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "AnyExperts: On-Demand Expert Allocation for Multimodal Language Models with Mixture of Expert", "**AnyExperts** introduces dynamic, budget-aware routing for multimodal MoE models that allocates variable expert slots per token based on semantic importance rather than fixed assignments, addressing compute inefficiency in heterogeneous multimodal data. The framework constrains total slots within a fixed budget while allowing virtual experts (capped at ~20%) to fill remaining capacity, enabling adaptive real-to-virtual expert ratios that maintain computational predictability while improving efficiency across vision-language tasks.", "https://arxiv.org/abs/2511.18314")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.18698" style="color:#4ea8ff;">Multimodal Real-Time Anomaly Detection and Industrial Applications</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>This paper presents a multimodal room-monitoring system that evolved from a lightweight YOLOv8/ByteTrack/AST pipeline to an advanced architecture combining audio ensembles (AST, Wav2Vec2, HuBERT), dual object detectors (YOLO/DETR), and bidirectional cross-modal attention for real-time anomaly detection. The key innovation is the sophisticated fusion mechanism that leverages complementary strengths of multiple models across modalities, significantly improving detection accuracy and robustness for industrial deployment. This approach demonstrates practical value for safety-critical applications where multimodal context and ensemble redundancy are essential for reliable anomaly identification.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Multimodal Real-Time Anomaly Detection and Industrial Applications", "This paper presents a multimodal room-monitoring system that evolved from a lightweight YOLOv8/ByteTrack/AST pipeline to an advanced architecture combining audio ensembles (AST, Wav2Vec2, HuBERT), dual object detectors (YOLO/DETR), and bidirectional cross-modal attention for real-time anomaly detection. The key innovation is the sophisticated fusion mechanism that leverages complementary strengths of multiple models across modalities, significantly improving detection accuracy and robustness for industrial deployment. This approach demonstrates practical value for safety-critical applications where multimodal context and ensemble redundancy are essential for reliable anomaly identification.", "https://arxiv.org/abs/2511.18698")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2507.10510" style="color:#4ea8ff;">Chat with AI: The Surprising Turn of Real-time Video Communication from Human to AI</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces AI Video Chat as a novel RTC paradigm where MLLMs replace human peers, fundamentally shifting network optimization from human perceptual quality to AI comprehension efficiency. The key technical insight is that MLLM inference latency dominates the communication pipeline, making ultra-low bitrate transmission critical—requiring a complete rethinking of traditional RTC protocols designed for human visual fidelity rather than machine understanding. The work establishes a new research direction for AI-oriented networking that prioritizes latency over quality metrics.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Chat with AI: The Surprising Turn of Real-time Video Communication from Human to AI", "This paper introduces AI Video Chat as a novel RTC paradigm where MLLMs replace human peers, fundamentally shifting network optimization from human perceptual quality to AI comprehension efficiency. The key technical insight is that MLLM inference latency dominates the communication pipeline, making ultra-low bitrate transmission critical—requiring a complete rethinking of traditional RTC protocols designed for human visual fidelity rather than machine understanding. The work establishes a new research direction for AI-oriented networking that prioritizes latency over quality metrics.", "https://arxiv.org/abs/2507.10510")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.27280" style="color:#4ea8ff;">FOCUS: Efficient Keyframe Selection for Long Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>FOCUS addresses the computational bottleneck of applying MLLMs to long videos by formulating keyframe selection as a multi-armed bandit problem, using confidence bounds over temporal clips to identify query-relevant frames without requiring pre-filtering or smaller model scoring. This training-free, model-agnostic approach enables efficient token budget allocation while maintaining information density compared to uniform subsampling or traditional retrieval-based methods. The combinatorial pure-exploration framework offers a principled alternative to heuristic selection, with direct applicability to any MLLM architecture handling hour-length video inputs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FOCUS: Efficient Keyframe Selection for Long Video Understanding", "FOCUS addresses the computational bottleneck of applying MLLMs to long videos by formulating keyframe selection as a multi-armed bandit problem, using confidence bounds over temporal clips to identify query-relevant frames without requiring pre-filtering or smaller model scoring. This training-free, model-agnostic approach enables efficient token budget allocation while maintaining information density compared to uniform subsampling or traditional retrieval-based methods. The combinatorial pure-exploration framework offers a principled alternative to heuristic selection, with direct applicability to any MLLM architecture handling hour-length video inputs.", "https://arxiv.org/abs/2510.27280")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.12609" style="color:#4ea8ff;">Uni-MoE-2.0-Omni: Scaling Language-Centric Omnimodal Large Model with Advanced MoE, Training and Data</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>Uni-MoE-2.0-Omni introduces a language-centric omnimodal model with a dynamic-capacity MoE architecture featuring shared/routed/null experts that efficiently handles 10 cross-modal inputs, alongside a novel Omni-Modality 3D RoPE for spatio-temporal alignment across modalities. The training pipeline combines progressive pretraining with iterative reinforcement learning and curated multimodal data matching, enabling unified understanding and generation across text, image, and speech—advancing open-source capabilities for end-to-end omnimodal reasoning.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Uni-MoE-2.0-Omni: Scaling Language-Centric Omnimodal Large Model with Advanced MoE, Training and Data", "Uni-MoE-2.0-Omni introduces a language-centric omnimodal model with a dynamic-capacity MoE architecture featuring shared/routed/null experts that efficiently handles 10 cross-modal inputs, alongside a novel Omni-Modality 3D RoPE for spatio-temporal alignment across modalities. The training pipeline combines progressive pretraining with iterative reinforcement learning and curated multimodal data matching, enabling unified understanding and generation across text, image, and speech—advancing open-source capabilities for end-to-end omnimodal reasoning.", "https://arxiv.org/abs/2511.12609")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17596" style="color:#4ea8ff;">Reconstruction-Driven Multimodal Representation Learning for Automated Media Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>Researchers propose a Multimodal Autoencoder (MMAE) that learns unified cross-modal representations from text, audio, and visual data by jointly minimizing reconstruction losses across modalities, enabling automated metadata extraction and semantic clustering without requiring large paired/contrastive datasets. Trained on the LUMA benchmark of aligned multimodal triplets, this reconstruction-driven approach discovers modality-invariant semantic structures directly applicable to broadcast media indexing—addressing a key limitation of single-modality AI systems currently used in media organizations. The method's efficiency in learning from naturally-aligned media content rather than synthetic pairs could significantly reduce computational overhead for real-world content automation pipelines.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Reconstruction-Driven Multimodal Representation Learning for Automated Media Understanding", "Researchers propose a Multimodal Autoencoder (MMAE) that learns unified cross-modal representations from text, audio, and visual data by jointly minimizing reconstruction losses across modalities, enabling automated metadata extraction and semantic clustering without requiring large paired/contrastive datasets. Trained on the LUMA benchmark of aligned multimodal triplets, this reconstruction-driven approach discovers modality-invariant semantic structures directly applicable to broadcast media indexing—addressing a key limitation of single-modality AI systems currently used in media organizations. The method's efficiency in learning from naturally-aligned media content rather than synthetic pairs could significantly reduce computational overhead for real-world content automation pipelines.", "https://arxiv.org/abs/2511.17596")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17943" style="color:#4ea8ff;">SciEducator: Scientific Video Understanding and Educating via Deming-Cycle Multi-Agent System</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SciEducator introduces a Deming Cycle-based multi-agent framework that applies iterative Plan-Do-Study-Act reasoning to scientific video understanding, addressing the limitation of standard MLLMs in domains requiring external knowledge integration and rigorous step-wise reasoning. The system generates multimodal educational outputs (text, visuals, audio, interactive elements) by leveraging agent-based self-evolution and feedback mechanisms tailored for complex scientific processes. This approach represents a significant advancement in specialized video comprehension beyond general-purpose understanding, with implications for automated scientific education content generation and scientific video annotation at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SciEducator: Scientific Video Understanding and Educating via Deming-Cycle Multi-Agent System", "SciEducator introduces a Deming Cycle-based multi-agent framework that applies iterative Plan-Do-Study-Act reasoning to scientific video understanding, addressing the limitation of standard MLLMs in domains requiring external knowledge integration and rigorous step-wise reasoning. The system generates multimodal educational outputs (text, visuals, audio, interactive elements) by leveraging agent-based self-evolution and feedback mechanisms tailored for complex scientific processes. This approach represents a significant advancement in specialized video comprehension beyond general-purpose understanding, with implications for automated scientific education content generation and scientific video annotation at scale.", "https://arxiv.org/abs/2511.17943")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17945" style="color:#4ea8ff;">Test-Time Temporal Sampling for Efficient MLLM Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper presents Test-Time Temporal Sampling (T3S), a training-free inference optimization for MLLMs that addresses quadratic self-attention scaling in long video processing by generating diverse, temporally-sparse subsequences within a single forward pass and aggregating predictions. Unlike previous approaches requiring additional training or sacrificing accuracy, T3S exploits spatiotemporal redundancy to maintain performance while reducing computational overhead through efficient token packing. The key innovation is leveraging inference-time flexibility rather than model retraining, offering practical deployment advantages for production systems handling extended video sequences.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Test-Time Temporal Sampling for Efficient MLLM Video Understanding", "This paper presents Test-Time Temporal Sampling (T3S), a training-free inference optimization for MLLMs that addresses quadratic self-attention scaling in long video processing by generating diverse, temporally-sparse subsequences within a single forward pass and aggregating predictions. Unlike previous approaches requiring additional training or sacrificing accuracy, T3S exploits spatiotemporal redundancy to maintain performance while reducing computational overhead through efficient token packing. The key innovation is leveraging inference-time flexibility rather than model retraining, offering practical deployment advantages for production systems handling extended video sequences.", "https://arxiv.org/abs/2511.17945")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.18920" style="color:#4ea8ff;">EventSTU: Event-Guided Efficient Spatio-Temporal Understanding for Video Large Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>EventSTU introduces a training-free framework that reduces inference costs in video LLMs by applying event-based vision principles: coarse-to-fine keyframe sampling eliminates temporal redundancy by detecting motion-triggered changes, while adaptive spatial token pruning uses event saliency as a zero-cost guide for spatial reduction. The approach integrates question-aware budgeting across spatio-temporal dimensions and is validated on EventBench, a new human-annotated multimodal benchmark, enabling efficient video understanding without model retraining.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "EventSTU: Event-Guided Efficient Spatio-Temporal Understanding for Video Large Language Models", "EventSTU introduces a training-free framework that reduces inference costs in video LLMs by applying event-based vision principles: coarse-to-fine keyframe sampling eliminates temporal redundancy by detecting motion-triggered changes, while adaptive spatial token pruning uses event saliency as a zero-cost guide for spatial reduction. The approach integrates question-aware budgeting across spatio-temporal dimensions and is validated on EventBench, a new human-annotated multimodal benchmark, enabling efficient video understanding without model retraining.", "https://arxiv.org/abs/2511.18920")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17693" style="color:#4ea8ff;">DeepCoT: Deep Continual Transformers for Real-Time Inference on Data Streams</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>**DeepCoT** extends Continual Transformers to deep architectures, eliminating redundant computations in streaming inference by maintaining a sliding temporal window with linear computational cost instead of quadratic complexity. The approach is architecture-agnostic with minimal modifications needed to existing encoder designs, demonstrating competitive performance across multimodal streams (audio, video, text) while reducing latency on resource-constrained devices—critical for real-time stream processing applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "DeepCoT: Deep Continual Transformers for Real-Time Inference on Data Streams", "**DeepCoT** extends Continual Transformers to deep architectures, eliminating redundant computations in streaming inference by maintaining a sliding temporal window with linear computational cost instead of quadratic complexity. The approach is architecture-agnostic with minimal modifications needed to existing encoder designs, demonstrating competitive performance across multimodal streams (audio, video, text) while reducing latency on resource-constrained devices—critical for real-time stream processing applications.", "https://arxiv.org/abs/2511.17693")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.18698" style="color:#4ea8ff;">Multimodal Real-Time Anomaly Detection and Industrial Applications</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>This paper presents an evolving multimodal anomaly detection system that progresses from a lightweight YOLOv8/ByteTrack/AST baseline to an advanced architecture featuring audio model ensembles (AST, Wav2Vec2, HuBERT), dual object detectors (YOLO/DETR), and bidirectional cross-modal attention for real-time room monitoring. The advancement demonstrates how strategic fusion of multiple specialized models—rather than single-model approaches—significantly improves detection robustness and accuracy for industrial applications where false positives carry operational costs. Key innovation lies in the systematic integration of complementary audio representations and vision models with sophisticated attention mechanisms, enabling more reliable anomaly detection where neither modality alone would suffice.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Multimodal Real-Time Anomaly Detection and Industrial Applications", "This paper presents an evolving multimodal anomaly detection system that progresses from a lightweight YOLOv8/ByteTrack/AST baseline to an advanced architecture featuring audio model ensembles (AST, Wav2Vec2, HuBERT), dual object detectors (YOLO/DETR), and bidirectional cross-modal attention for real-time room monitoring. The advancement demonstrates how strategic fusion of multiple specialized models—rather than single-model approaches—significantly improves detection robustness and accuracy for industrial applications where false positives carry operational costs. Key innovation lies in the systematic integration of complementary audio representations and vision models with sophisticated attention mechanisms, enabling more reliable anomaly detection where neither modality alone would suffice.", "https://arxiv.org/abs/2511.18698")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.27280" style="color:#4ea8ff;">FOCUS: Efficient Keyframe Selection for Long Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>FOCUS proposes a training-free, bandit-based keyframe selection algorithm that reformulates video frame selection as a combinatorial pure-exploration problem, using confidence bounds to identify query-relevant frames without requiring pre-filtering or smaller auxiliary models. This approach directly addresses the token budget explosion in MLLMs processing long videos by intelligently selecting informative temporal clips rather than relying on uniform subsampling or external vision-language model scoring. The model-agnostic design enables practical deployment across different MLLM architectures while maintaining computational efficiency during inference.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FOCUS: Efficient Keyframe Selection for Long Video Understanding", "FOCUS proposes a training-free, bandit-based keyframe selection algorithm that reformulates video frame selection as a combinatorial pure-exploration problem, using confidence bounds to identify query-relevant frames without requiring pre-filtering or smaller auxiliary models. This approach directly addresses the token budget explosion in MLLMs processing long videos by intelligently selecting informative temporal clips rather than relying on uniform subsampling or external vision-language model scoring. The model-agnostic design enables practical deployment across different MLLM architectures while maintaining computational efficiency during inference.", "https://arxiv.org/abs/2510.27280")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.12609" style="color:#4ea8ff;">Uni-MoE-2.0-Omni: Scaling Language-Centric Omnimodal Large Model with Advanced MoE, Training and Data</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>Uni-MoE-2.0-Omni introduces a dynamic-capacity Mixture-of-Experts architecture with shared/routed/null experts and Omni-Modality 3D RoPE for efficient spatio-temporal cross-modal alignment across 10 input modalities, enabling unified omnimodal understanding and generation (images, text, speech). The model employs progressive training with iterative reinforcement and curated multimodal data matching to optimize the language-centric architecture, advancing beyond prior dense LLM approaches. This fully open-source framework balances computational efficiency with multimodal capability, positioning sparse MoE scaling as a viable alternative to dense models for omnimodal tasks requiring real-time generation.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Uni-MoE-2.0-Omni: Scaling Language-Centric Omnimodal Large Model with Advanced MoE, Training and Data", "Uni-MoE-2.0-Omni introduces a dynamic-capacity Mixture-of-Experts architecture with shared/routed/null experts and Omni-Modality 3D RoPE for efficient spatio-temporal cross-modal alignment across 10 input modalities, enabling unified omnimodal understanding and generation (images, text, speech). The model employs progressive training with iterative reinforcement and curated multimodal data matching to optimize the language-centric architecture, advancing beyond prior dense LLM approaches. This fully open-source framework balances computational efficiency with multimodal capability, positioning sparse MoE scaling as a viable alternative to dense models for omnimodal tasks requiring real-time generation.", "https://arxiv.org/abs/2511.12609")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.17909" style="color:#4ea8ff;">ChemVTS-Bench: Evaluating Visual-Textual-Symbolic Reasoning of Multimodal Large Language Models in Chemistry</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>ChemVTS-Bench introduces a specialized evaluation framework for MLLMs that addresses a critical gap in multimodal chemistry reasoning by systematically testing visual, textual, and symbolic (SMILES) modalities across organic/inorganic compounds and 3D structures. The benchmark's three complementary input modes enable detailed analysis of modality-specific performance and cross-modal integration capabilities, revealing how MLLMs actually process chemically meaningful information versus simple image-text pairs. This domain-authentic approach provides actionable insights for developing MLLMs with robust chemical reasoning that extends beyond surface-level multimodal understanding to true semantic integration.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ChemVTS-Bench: Evaluating Visual-Textual-Symbolic Reasoning of Multimodal Large Language Models in Chemistry", "ChemVTS-Bench introduces a specialized evaluation framework for MLLMs that addresses a critical gap in multimodal chemistry reasoning by systematically testing visual, textual, and symbolic (SMILES) modalities across organic/inorganic compounds and 3D structures. The benchmark's three complementary input modes enable detailed analysis of modality-specific performance and cross-modal integration capabilities, revealing how MLLMs actually process chemically meaningful information versus simple image-text pairs. This domain-authentic approach provides actionable insights for developing MLLMs with robust chemical reasoning that extends beyond surface-level multimodal understanding to true semantic integration.", "https://arxiv.org/abs/2511.17909")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
