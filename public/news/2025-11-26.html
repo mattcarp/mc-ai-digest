@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-11-26</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-11-26</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.12937" style="color:#4ea8ff;">Yanyun-3: Enabling Cross-Platform Strategy Game Operation with Vision-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>Yanyun-3 addresses cross-platform strategy game automation by combining Qwen2.5-VL with UI-TARS and introducing "combination granularity"—a novel multimodal data organization principle that distinguishes intra-sample fusion from inter-sample mixing of images, sequences, and videos. The optimal strategy (M*V+S) achieves 12.98x BLEU-4 improvement and 63% inference speedup over full fusion, enabling robust UI understanding and action execution across heterogeneous game platforms. This work demonstrates practical gains in generalizable VLM-based automation through principled multimodal data handling and efficient fine-tuning via QLoRA.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Yanyun-3: Enabling Cross-Platform Strategy Game Operation with Vision-Language Models", "Yanyun-3 addresses cross-platform strategy game automation by combining Qwen2.5-VL with UI-TARS and introducing \"combination granularity\"—a novel multimodal data organization principle that distinguishes intra-sample fusion from inter-sample mixing of images, sequences, and videos. The optimal strategy (M*V+S) achieves 12.98x BLEU-4 improvement and 63% inference speedup over full fusion, enabling robust UI understanding and action execution across heterogeneous game platforms. This work demonstrates practical gains in generalizable VLM-based automation through principled multimodal data handling and efficient fine-tuning via QLoRA.", "https://arxiv.org/abs/2511.12937")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.12937" style="color:#4ea8ff;">Yanyun-3: Enabling Cross-Platform Strategy Game Operation with Vision-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>Yanyun-3 addresses cross-platform strategy game automation by combining Qwen2.5-VL with UI-TARS and introducing "combination granularity"—a novel principle for organizing multimodal data (images, sequences, videos) that optimizes fusion strategies at intra-sample and inter-sample levels. The approach achieves 12.98x BLEU-4 improvement and 63% inference speedup through selective fusion (M*V+S strategy), demonstrating that intelligent data mixing outperforms full-fusion approaches for complex UI understanding and action execution across heterogeneous gaming platforms.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Yanyun-3: Enabling Cross-Platform Strategy Game Operation with Vision-Language Models", "Yanyun-3 addresses cross-platform strategy game automation by combining Qwen2.5-VL with UI-TARS and introducing \"combination granularity\"—a novel principle for organizing multimodal data (images, sequences, videos) that optimizes fusion strategies at intra-sample and inter-sample levels. The approach achieves 12.98x BLEU-4 improvement and 63% inference speedup through selective fusion (M*V+S strategy), demonstrating that intelligent data mixing outperforms full-fusion approaches for complex UI understanding and action execution across heterogeneous gaming platforms.", "https://arxiv.org/abs/2511.12937")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.19470" style="color:#4ea8ff;">Quantifying Modality Contributions via Disentangling Multimodal Representations</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces a PID-based framework to decompose multimodal model contributions into unique, redundant, and synergistic information components, moving beyond crude accuracy-drop metrics to distinguish whether modalities are independently informative or derive value through interaction. The approach enables inference-only analysis via Iterative Proportional Fitting, making it computationally tractable for analyzing cross-attention architectures where modality interdependencies are critical. This addresses a fundamental gap in multimodal AI interpretability—quantifying whether modality importance stems from intrinsic signal or emergent synergies—with direct implications for model debugging and architecture design.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Quantifying Modality Contributions via Disentangling Multimodal Representations", "This paper introduces a PID-based framework to decompose multimodal model contributions into unique, redundant, and synergistic information components, moving beyond crude accuracy-drop metrics to distinguish whether modalities are independently informative or derive value through interaction. The approach enables inference-only analysis via Iterative Proportional Fitting, making it computationally tractable for analyzing cross-attention architectures where modality interdependencies are critical. This addresses a fundamental gap in multimodal AI interpretability—quantifying whether modality importance stems from intrinsic signal or emergent synergies—with direct implications for model debugging and architecture design.", "https://arxiv.org/abs/2511.19470")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.19475" style="color:#4ea8ff;">Tracking and Segmenting Anything in Any Modality</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>SATA proposes a unified framework for tracking and segmentation across multiple modalities and tasks by addressing two critical gaps: the distributional misalignment across different input modalities (e.g., RGB, thermal, event cameras) and feature representation inconsistencies between tracking and segmentation objectives. This generalist approach eliminates the need for modality-specific parameters and specialized architectures, enabling more scalable cross-task and cross-modal knowledge transfer. The framework's practical implication is significant for video understanding pipelines—developers can deploy a single model for diverse tracking/segmentation scenarios rather than maintaining separate specialized models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Tracking and Segmenting Anything in Any Modality", "SATA proposes a unified framework for tracking and segmentation across multiple modalities and tasks by addressing two critical gaps: the distributional misalignment across different input modalities (e.g., RGB, thermal, event cameras) and feature representation inconsistencies between tracking and segmentation objectives. This generalist approach eliminates the need for modality-specific parameters and specialized architectures, enabling more scalable cross-task and cross-modal knowledge transfer. The framework's practical implication is significant for video understanding pipelines—developers can deploy a single model for diverse tracking/segmentation scenarios rather than maintaining separate specialized models.", "https://arxiv.org/abs/2511.19475")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.19835" style="color:#4ea8ff;">Rectified SpaAttn: Revisiting Attention Sparsity for Efficient Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Rectified SpaAttn addresses the attention complexity bottleneck in video diffusion transformers by identifying and correcting systematic biases in sparse attention allocation—specifically, over-weighting of critical tokens and complete neglect of non-critical ones. The method uses implicit full attention references to rectify sparse attention maps, achieving better alignment between sparse approximations and full attention behavior. This approach maintains performance fidelity while reducing quadratic computational costs, directly addressing latency constraints in real-time video generation pipelines.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Rectified SpaAttn: Revisiting Attention Sparsity for Efficient Video Generation", "Rectified SpaAttn addresses the attention complexity bottleneck in video diffusion transformers by identifying and correcting systematic biases in sparse attention allocation—specifically, over-weighting of critical tokens and complete neglect of non-critical ones. The method uses implicit full attention references to rectify sparse attention maps, achieving better alignment between sparse approximations and full attention behavior. This approach maintains performance fidelity while reducing quadratic computational costs, directly addressing latency constraints in real-time video generation pipelines.", "https://arxiv.org/abs/2511.19835")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.20006" style="color:#4ea8ff;">BERT-APC: A Reference-free Framework for Automatic Pitch Correction via Musical Context Inference</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>BERT-APC introduces a reference-free automatic pitch correction system that leverages music language models to infer intended pitch from musical context rather than external references, enabling correction of vocal deviations while preserving expressive performance nuances. The framework combines a stationary pitch predictor for detecting actual pitch, a context-aware note predictor using repurposed BERT-style modeling for musical inference, and a note-level algorithm that distinguishes between correction-worthy errors and intentional pitch variations for emotional expression. This addresses a critical limitation in existing APC systems—the need for reference tracks—making the approach more practical for real-world vocal production while maintaining artistic expressiveness.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "BERT-APC: A Reference-free Framework for Automatic Pitch Correction via Musical Context Inference", "BERT-APC introduces a reference-free automatic pitch correction system that leverages music language models to infer intended pitch from musical context rather than external references, enabling correction of vocal deviations while preserving expressive performance nuances. The framework combines a stationary pitch predictor for detecting actual pitch, a context-aware note predictor using repurposed BERT-style modeling for musical inference, and a note-level algorithm that distinguishes between correction-worthy errors and intentional pitch variations for emotional expression. This addresses a critical limitation in existing APC systems—the need for reference tracks—making the approach more practical for real-world vocal production while maintaining artistic expressiveness.", "https://arxiv.org/abs/2511.20006")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.20022" style="color:#4ea8ff;">WaymoQA: A Multi-View Visual Question Answering Dataset for Safety-Critical Reasoning in Autonomous Driving</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>WaymoQA introduces a 35,000 QA-pair dataset that benchmarks multimodal LLMs on safety-critical autonomous driving reasoning using multi-view inputs, addressing the limitation that single front-view perception fails to capture complex trade-offs between simultaneous traffic risks. The work formalizes a two-stage reasoning framework—immediate risk resolution followed by downstream risk mitigation—that reveals failure modes in current MLLMs when handling scenarios where avoiding one hazard creates another. This represents a critical step toward validating MLLM viability for real-world autonomous systems where safety reasoning demands holistic environmental understanding rather than isolated scene comprehension.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "WaymoQA: A Multi-View Visual Question Answering Dataset for Safety-Critical Reasoning in Autonomous Driving", "WaymoQA introduces a 35,000 QA-pair dataset that benchmarks multimodal LLMs on safety-critical autonomous driving reasoning using multi-view inputs, addressing the limitation that single front-view perception fails to capture complex trade-offs between simultaneous traffic risks. The work formalizes a two-stage reasoning framework—immediate risk resolution followed by downstream risk mitigation—that reveals failure modes in current MLLMs when handling scenarios where avoiding one hazard creates another. This represents a critical step toward validating MLLM viability for real-world autonomous systems where safety reasoning demands holistic environmental understanding rather than isolated scene comprehension.", "https://arxiv.org/abs/2511.20022")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.20426" style="color:#4ea8ff;">Block Cascading: Training Free Acceleration of Block-Causal Video Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Block Cascading introduces a training-free parallelization technique for block-causal video generation that exploits the insight that downstream video blocks can begin denoising with partially-denoised context from predecessors, enabling temporal parallelism across multiple GPUs rather than sequential processing. This approach achieves ~2x throughput improvements across model scales (1.3B to 14B parameters), reaching 30 and 12.5 FPS respectively, while eliminating ~200ms KV-cache switching overhead in interactive generation. The method represents a practical inference optimization that addresses the fundamental speed-quality trade-off in diffusion-based video models without requiring retraining or architectural modifications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Block Cascading: Training Free Acceleration of Block-Causal Video Models", "Block Cascading introduces a training-free parallelization technique for block-causal video generation that exploits the insight that downstream video blocks can begin denoising with partially-denoised context from predecessors, enabling temporal parallelism across multiple GPUs rather than sequential processing. This approach achieves ~2x throughput improvements across model scales (1.3B to 14B parameters), reaching 30 and 12.5 FPS respectively, while eliminating ~200ms KV-cache switching overhead in interactive generation. The method represents a practical inference optimization that addresses the fundamental speed-quality trade-off in diffusion-based video models without requiring retraining or architectural modifications.", "https://arxiv.org/abs/2511.20426")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.20470" style="color:#4ea8ff;">Efficient and Fast Generative-Based Singing Voice Separation using a Latent Diffusion Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper applies latent diffusion models to singing voice separation, training exclusively on isolated vocal-mixture pairs rather than requiring all source components. The latent-space generation approach improves both separation quality and inference efficiency compared to prior generative methods, while aligning with practical music production workflows by avoiding the need for complete multi-source training data.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Efficient and Fast Generative-Based Singing Voice Separation using a Latent Diffusion Model", "This paper applies latent diffusion models to singing voice separation, training exclusively on isolated vocal-mixture pairs rather than requiring all source components. The latent-space generation approach improves both separation quality and inference efficiency compared to prior generative methods, while aligning with practical music production workflows by avoiding the need for complete multi-source training data.", "https://arxiv.org/abs/2511.20470")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.20629" style="color:#4ea8ff;">MapReduce LoRA: Advancing the Pareto Front in Multi-Preference Optimization for Generative Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>This paper addresses the multi-objective optimization problem in RLHF alignment by introducing MapReduce LoRA—a method that trains preference-specific LoRA experts in parallel and iteratively merges them—combined with Reward-aware Token Embedding (RaTE) for flexible inference-time preference control, eliminating the traditional alignment tax across conflicting objectives. Across text-to-image (Stable Diffusion, FLUX) and text-to-video (HunyuanVideo) models, the approach achieves substantial gains (36-90% improvements across metrics like GenEval and visual quality) while enabling Pareto-optimal trade-offs, making it practically valuable for multi-preference model adaptation without requiring full retraining.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MapReduce LoRA: Advancing the Pareto Front in Multi-Preference Optimization for Generative Models", "This paper addresses the multi-objective optimization problem in RLHF alignment by introducing MapReduce LoRA—a method that trains preference-specific LoRA experts in parallel and iteratively merges them—combined with Reward-aware Token Embedding (RaTE) for flexible inference-time preference control, eliminating the traditional alignment tax across conflicting objectives. Across text-to-image (Stable Diffusion, FLUX) and text-to-video (HunyuanVideo) models, the approach achieves substantial gains (36-90% improvements across metrics like GenEval and visual quality) while enabling Pareto-optimal trade-offs, making it practically valuable for multi-preference model adaptation without requiring full retraining.", "https://arxiv.org/abs/2511.20629")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2412.05718" style="color:#4ea8ff;">RLZero: Direct Policy Inference from Language Without In-Domain Supervision</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#6b7280;">⚡ 25</span></div>
+  <p>RLZero proposes a novel zero-shot policy inference framework that eliminates the need for reward specification or in-domain supervision by leveraging a pretrained RL agent on unlabeled offline data, then performing test-time inference through an "imagine-project-imitate" pipeline to directly interpret natural language instructions into executable policies. This approach addresses a fundamental bottleneck in language-conditioned RL—the difficulty of manual reward engineering—by enabling agents to generalize to novel tasks described in natural language without task-specific training or labeled trajectory data.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "RLZero: Direct Policy Inference from Language Without In-Domain Supervision", "RLZero proposes a novel zero-shot policy inference framework that eliminates the need for reward specification or in-domain supervision by leveraging a pretrained RL agent on unlabeled offline data, then performing test-time inference through an \"imagine-project-imitate\" pipeline to directly interpret natural language instructions into executable policies. This approach addresses a fundamental bottleneck in language-conditioned RL—the difficulty of manual reward engineering—by enabling agents to generalize to novel tasks described in natural language without task-specific training or labeled trajectory data.", "https://arxiv.org/abs/2412.05718")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.23506" style="color:#4ea8ff;">Emotion-Coherent Reasoning for Multimodal LLMs via Emotional Rationale Verifier</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces the Emotional Rationale Verifier (ERV), a verification mechanism that enforces consistency between multimodal LLM emotion predictions and their textual explanations, addressing a critical failure mode where models contradict their own outputs. The approach combines explicit consistency constraints with an explanation reward signal, improving reliability for emotion-aware human-computer interaction systems that require both accurate predictions and faithful, interpretable reasoning. This advances MLLM trustworthiness in safety-critical applications where emotional intelligence and explainability are prerequisites for user confidence.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Emotion-Coherent Reasoning for Multimodal LLMs via Emotional Rationale Verifier", "This paper introduces the Emotional Rationale Verifier (ERV), a verification mechanism that enforces consistency between multimodal LLM emotion predictions and their textual explanations, addressing a critical failure mode where models contradict their own outputs. The approach combines explicit consistency constraints with an explanation reward signal, improving reliability for emotion-aware human-computer interaction systems that require both accurate predictions and faithful, interpretable reasoning. This advances MLLM trustworthiness in safety-critical applications where emotional intelligence and explainability are prerequisites for user confidence.", "https://arxiv.org/abs/2510.23506")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2411.10979" style="color:#4ea8ff;">VidComposition: Can MLLMs Analyze Compositions in Compiled Videos?</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>VidComposition introduces a specialized benchmark with 982 curated videos and 1,706 annotated questions to evaluate MLLMs' understanding of cinematic composition elements—camera techniques, shot framing, narrative structure, and character dynamics—rather than generic video comprehension. The benchmark reveals a critical gap in current multimodal models' ability to parse fine-grained compositional semantics in professionally-edited videos, suggesting that abstract video understanding doesn't translate to cinema literacy. This work has implications for developing stronger vision-language models for creative industries and establishing evaluation standards that go beyond surface-level video understanding.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "VidComposition: Can MLLMs Analyze Compositions in Compiled Videos?", "VidComposition introduces a specialized benchmark with 982 curated videos and 1,706 annotated questions to evaluate MLLMs' understanding of cinematic composition elements—camera techniques, shot framing, narrative structure, and character dynamics—rather than generic video comprehension. The benchmark reveals a critical gap in current multimodal models' ability to parse fine-grained compositional semantics in professionally-edited videos, suggesting that abstract video understanding doesn't translate to cinema literacy. This work has implications for developing stronger vision-language models for creative industries and establishing evaluation standards that go beyond surface-level video understanding.", "https://arxiv.org/abs/2411.10979")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.00979" style="color:#4ea8ff;">IVY-FAKE: A Unified Explainable Framework and Benchmark for Image and Video AIGC Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>**IVY-FAKE introduces the first large-scale multimodal benchmark with multidimensional annotations (106K+ samples) for explainable AIGC detection, addressing critical limitations in existing binary-labeled datasets like WildFake and GenVideo.** The framework improves upon MLLM-based approaches (like FakeVLM) by enabling fine-grained, step-by-step reasoning for reliable artifact localization and interpretability in both synthetic images and videos. This resource-dataset combination directly tackles the trustworthiness gap in forgery detection systems, enabling more robust and auditable AI-generated content detection for both researchers and practitioners.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "IVY-FAKE: A Unified Explainable Framework and Benchmark for Image and Video AIGC Detection", "**IVY-FAKE introduces the first large-scale multimodal benchmark with multidimensional annotations (106K+ samples) for explainable AIGC detection, addressing critical limitations in existing binary-labeled datasets like WildFake and GenVideo.** The framework improves upon MLLM-based approaches (like FakeVLM) by enabling fine-grained, step-by-step reasoning for reliable artifact localization and interpretability in both synthetic images and videos. This resource-dataset combination directly tackles the trustworthiness gap in forgery detection systems, enabling more robust and auditable AI-generated content detection for both researchers and practitioners.", "https://arxiv.org/abs/2506.00979")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.17967" style="color:#4ea8ff;">Adapting Vision-Language Models for Evaluating World Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-11-26
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Researchers propose adapting Vision-Language Models (VLMs) to evaluate world model rollouts by leveraging their multimodal reasoning for fine-grained, temporally-grounded assessment of action and semantic consistency—capabilities absent in traditional metrics. The UNIVERSE framework introduces a structured evaluation protocol across binary, multiple-choice, and open-ended formats for action and character recognition tasks, enabling rigorous benchmarking of generative environment simulators used in embodied AI and planning systems. This approach addresses a critical gap in world model validation, where precise temporal alignment and semantic fidelity directly impact downstream planning performance.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Adapting Vision-Language Models for Evaluating World Models", "Researchers propose adapting Vision-Language Models (VLMs) to evaluate world model rollouts by leveraging their multimodal reasoning for fine-grained, temporally-grounded assessment of action and semantic consistency—capabilities absent in traditional metrics. The UNIVERSE framework introduces a structured evaluation protocol across binary, multiple-choice, and open-ended formats for action and character recognition tasks, enabling rigorous benchmarking of generative environment simulators used in embodied AI and planning systems. This approach addresses a critical gap in world model validation, where precise temporal alignment and semantic fidelity directly impact downstream planning performance.", "https://arxiv.org/abs/2506.17967")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
