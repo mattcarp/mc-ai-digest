@@ -1,0 +1,121 @@
+Chris: Alright, so we need to talk about what just happened with DeepSeek. Chinese AI lab drops a model that's apparently competing with GPT-4 and Claude, but trained for maybe two million dollars.
+
+Lily: [pauses] Two million. When OpenAI's spending what, a hundred million plus on training runs?
+
+Chris: That's what they're claiming. DeepSeek-V3 - 671 billion parameters, mixture of experts architecture. And here's the kicker - they're saying they did it in two months on way cheaper hardware.
+
+Lily: Okay, so either they've fundamentally cracked something about training efficiency, or there's some creative accounting going on with those numbers.
+
+Chris: Both can be true. Look, the technical paper is actually solid. They're using something called Multi-Token Prediction during training, which isn't revolutionary but it's clever. Basically training the model to predict multiple tokens ahead instead of just the next one.
+
+Lily: And that saves money how?
+
+Chris: Training efficiency. You get more learning per compute cycle. They're also doing aggressive pruning and distillation. But here's where I'm skeptical - that two million figure almost certainly doesn't include infrastructure costs, prior research, failed experiments, the whole actual cost of getting to this point.
+
+Lily: Right, because if you could genuinely train a frontier model for two million dollars, every AI lab's economics just got turned upside down.
+
+Chris: The implications are fucking massive if true. But let's be real - this is like when a startup says they built their product in six weeks. Sure, maybe the final version took six weeks, but you're not counting the two years of R&D before that.
+
+Lily: Fair. What about the model itself though? Is it actually good?
+
+Chris: Early testing shows it's legitimately competitive. People are running it through benchmarks - it's trading blows with Claude Sonnet, definitely better than GPT-3.5, maybe not quite GPT-4 level but close. And they open-sourced it.
+
+Lily: [pauses] They open-sourced a frontier model. While OpenAI won't even let you properly red-team their stuff anymore.
+
+Chris: Yeah, and that's the real story here. Forget the cost debate for a second - a Chinese lab just commoditized another layer of AI capabilities. This is the Llama moment all over again, except it's happening at a higher capability level.
+
+Lily: What's the Western AI lab response to this? Because their entire moat is supposedly that frontier models require hundreds of millions in capital.
+
+Chris: They're trying to downplay it, but you can feel the panic. Sam Altman's already tweeting vague stuff about how actually training costs don't matter, it's all about inference and reasoning. Which is convenient positioning when someone just undercut your training budget by 98%.
+
+Lily: That's horseshit though, right? Training costs absolutely matter for iteration speed and experimentation.
+
+Chris: Of course it matters. If you can run ten experiments for the cost of one, you're going to learn faster. But Altman's not entirely wrong - the real money is going to be in inference at scale and in whatever comes after pre-training. The question is whether OpenAI can maintain their lead there.
+
+Lily: Let's talk about the elephant in the room. Chinese export controls, chip restrictions - how did they pull this off without cutting-edge NVIDIA hardware?
+
+Chris: They used H800s, which are the nerfed export-approved chips. Not even the good stuff. Either they've gotten way better at distributed training across cheaper hardware, or the US export controls are less effective than we thought.
+
+Lily: Probably both. This is what happens when you try to restrict information rather than maintaining a genuine technical lead.
+
+Chris: Yeah, and here's what worries me from a strategic perspective - if China can do this with restricted hardware, what happens when they inevitably work around the restrictions completely? Or develop domestic alternatives?
+
+Lily: We're already seeing that. SMIC's making progress on domestic chip production. It's slower, lower yield, but they're getting there.
+
+Chris: Right, so the US strategy of trying to maintain AI dominance through hardware restrictions has maybe bought us what, two years? Three? And now we're seeing that you don't even need the absolute cutting-edge hardware anyway.
+
+Lily: Let's bring this back to practical business implications. If you're a company currently paying OpenAI or Anthropic for API access, what does DeepSeek mean for you?
+
+Chris: Short term? Probably not much. The model's open source but you still need to run it, and that's not trivial at scale. Long term though, this is deflationary pressure on AI pricing. OpenAI's already cut prices multiple times, and this just accelerates that.
+
+Lily: So we're looking at the cloud wars playbook. Race to the bottom on pricing, consolidation, everyone scrambling to differentiate on features rather than base capabilities.
+
+Chris: Exactly. And the real money moves up the stack - into applications, into data moats, into whatever you can build that isn't just "I have access to a good language model."
+
+Lily: Which has been obvious for a while, but maybe this forces people to actually act on it instead of just reselling GPT-4 with a different wrapper.
+
+Chris: [chuckles] God, the number of "AI startups" that are literally just a prompt and an API call.
+
+Lily: Half of Y Combinator's last batch. But okay, other implications - what about the whole AI safety conversation? Because if frontier models are now this cheap to train, that changes the threat model significantly.
+
+Chris: Yeah, the whole "we need to go slow because this is so expensive and dangerous" argument gets harder to make when anyone with a decent GPU cluster can potentially train something competitive.
+
+Lily: Though you could argue that makes safety research more important, not less.
+
+Chris: Sure, but it shifts the conversation from "how do we control who has access to these capabilities" to "how do we make these capabilities safe by default because everyone's going to have them."
+
+Lily: Which is probably the more realistic approach anyway. The cat's out of the bag.
+
+Chris: Has been for a while. This just makes it more obvious.
+
+Lily: Right. [pauses] What about the geopolitical angle? Because this is going to land badly in DC.
+
+Chris: Oh, they're going to lose their minds. You've already got senators who barely understand how email works trying to regulate AI. Now China's demonstrating they can build frontier models despite export controls? That's going to trigger some deeply stupid policy responses.
+
+Lily: More restrictions that won't work, probably some performative hearings.
+
+Chris: Yeah, and meanwhile the actual technical gap keeps shrinking because surprise, smart people exist outside of San Francisco.
+
+Lily: The arrogance in the Valley about this has been staggering. Acting like they're the only ones who can possibly figure this stuff out.
+
+Chris: It's the same shit we saw with crypto, with social media, with every tech wave. American exceptionalism meets reality and everyone's shocked.
+
+Lily: So what's the actual takeaway here for people building with AI or making strategic decisions about it?
+
+Chris: Few things. One, don't assume current pricing holds. If you're building a business model that depends on OpenAI's current API prices, build in room for those to drop 80%.
+
+Lily: Because they will.
+
+Chris: They have to. Two, open source is increasingly viable for production use cases. You need to have someone who actually knows what they're doing to implement it, but the capability gap is shrinking fast.
+
+Lily: And three?
+
+Chris: The moat isn't the model anymore. It's your data, your distribution, your ability to actually solve specific problems. The sooner companies internalize that, the better positioned they'll be.
+
+Lily: This is also just a reminder that the pace of progress here is insane. DeepSeek-V3 apparently went from concept to release in two months. Even if that's optimistic accounting, we're talking about capability jumps happening on quarter-year timescales.
+
+Chris: Which makes any long-term strategic planning kind of absurd. [pauses] How do you build a five-year roadmap when the fundamental technology shifts every six months?
+
+Lily: You don't. You build for flexibility and you stay close to what's actually happening in the research.
+
+Chris: Yeah, and you stop listening to the AI lab CEOs about timelines and capabilities because they're either selling you something or trying to hype their funding rounds.
+
+Lily: Speaking of which, how does this affect the current AI funding environment? Because we've got all these companies valued at billions based on the assumption that there's this massive moat around frontier capabilities.
+
+Chris: It's going to get messy. VCs have dumped insane money into AI infrastructure plays and model companies based on the idea that this stuff is really hard and really expensive. If it turns out to be less of both...
+
+Lily: You've got a lot of very expensive cap tables that suddenly don't make sense.
+
+Chris: Right. I think we're going to see a shakeout in the next 18 months. Some of these companies are going to pivot hard into applications or specific verticals. Others are just going to quietly die.
+
+Lily: The smart money's probably already repositioning.
+
+Chris: Always is. [pauses] Look, the bottom line with DeepSeek is that it's a legitimately important moment, even if the two million dollar figure is bullshit. It demonstrates that the barriers to frontier AI are lower than the big labs have been claiming, and it shows that China's not nearly as far behind as people assumed.
+
+Lily: And it should be a wake-up call for anyone who's been complacent about the pace of commoditization in this space.
+
+Chris: Yeah. The advantage goes to people who can move fast and actually build useful things, not to people who are just sitting on model access and hoping that stays valuable.
+
+Lily: Alright, that's probably enough on DeepSeek. Worth watching how this plays out over the next few weeks as more people actually test it in production.
+
+Chris: Agreed. This one matters.
