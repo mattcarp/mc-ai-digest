@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-01</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-01</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.21760" style="color:#4ea8ff;">fMRI-LM: Towards a Universal Foundation Model for Language-Aligned fMRI Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 28</span></div>
+  <p>fMRI-LM introduces a three-stage framework that tokenizes fMRI brain activity into language-aligned discrete representations, then fine-tunes pretrained LLMs to jointly model brain tokens and text—enabling both temporal prediction and linguistic interpretation of neural activity. The key innovation involves constructing a large descriptive corpus that maps imaging features to structured text, solving the critical bottleneck of paired fMRI-text training data. This approach represents the first application of multimodal LLM reasoning to neuroimaging, potentially unlocking direct semantic decoding of brain cognition and cross-modal understanding of neural representations.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "fMRI-LM: Towards a Universal Foundation Model for Language-Aligned fMRI Understanding", "fMRI-LM introduces a three-stage framework that tokenizes fMRI brain activity into language-aligned discrete representations, then fine-tunes pretrained LLMs to jointly model brain tokens and text—enabling both temporal prediction and linguistic interpretation of neural activity. The key innovation involves constructing a large descriptive corpus that maps imaging features to structured text, solving the critical bottleneck of paired fMRI-text training data. This approach represents the first application of multimodal LLM reasoning to neuroimaging, potentially unlocking direct semantic decoding of brain cognition and cross-modal understanding of neural representations.", "https://arxiv.org/abs/2511.21760")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.23404" style="color:#4ea8ff;">LFM2 Technical Report</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>LFM2 introduces a hardware-aware hybrid architecture combining gated short convolutions with grouped query attention, achieving 2x CPU speedup over comparable models through edge-optimized architecture search across its 350M-8.3B parameter range. The training methodology stands out with its tempered, decoupled Top-K knowledge distillation to prevent support mismatch and a three-stage post-training pipeline (SFT → preference optimization → model merging), enabling strong on-device performance with 32K context. This work directly addresses the practical constraint of efficient inference on resource-limited hardware while maintaining task capabilities, making it particularly relevant for edge deployment scenarios.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "LFM2 Technical Report", "LFM2 introduces a hardware-aware hybrid architecture combining gated short convolutions with grouped query attention, achieving 2x CPU speedup over comparable models through edge-optimized architecture search across its 350M-8.3B parameter range. The training methodology stands out with its tempered, decoupled Top-K knowledge distillation to prevent support mismatch and a three-stage post-training pipeline (SFT → preference optimization → model merging), enabling strong on-device performance with 32K context. This work directly addresses the practical constraint of efficient inference on resource-limited hardware while maintaining task capabilities, making it particularly relevant for edge deployment scenarios.", "https://arxiv.org/abs/2511.23404")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.00279" style="color:#4ea8ff;">LongCat-Flash-Omni Technical Report</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>LongCat-Flash-Omni is a 560B-parameter omni-modal model leveraging a Shortcut-connected MoE architecture (27B active parameters) and curriculum-based progressive training to achieve real-time audio-visual interaction while maintaining strong unimodal performance. The key innovation is its modality-decoupled parallelism training scheme combined with efficient multimodal perception and speech reconstruction modules, enabling low-latency processing despite the model's massive scale. This represents a significant step toward practical large-scale multimodal systems that can handle real-time streaming audio-video tasks without proportional compute overhead.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "LongCat-Flash-Omni Technical Report", "LongCat-Flash-Omni is a 560B-parameter omni-modal model leveraging a Shortcut-connected MoE architecture (27B active parameters) and curriculum-based progressive training to achieve real-time audio-visual interaction while maintaining strong unimodal performance. The key innovation is its modality-decoupled parallelism training scheme combined with efficient multimodal perception and speech reconstruction modules, enabling low-latency processing despite the model's massive scale. This represents a significant step toward practical large-scale multimodal systems that can handle real-time streaming audio-video tasks without proportional compute overhead.", "https://arxiv.org/abs/2511.00279")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.22826" style="color:#4ea8ff;">Some Modalities are More Equal Than Others: Decoding and Architecting Multimodal Integration in MLLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper reveals critical vulnerabilities in current MLLMs when faced with conflicting modalities, introducing MMA-Bench to systematically evaluate robustness through interpretability analysis of audio-visual misalignment and adversarial text. The authors propose a modality alignment tuning strategy that teaches models explicit prioritization rules for different modality cues, demonstrating improved multimodal grounding over baseline approaches. The work provides both diagnostic tools and a practical mitigation pathway for building more robust multimodal systems that can handle real-world scenarios where modalities contradict.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Some Modalities are More Equal Than Others: Decoding and Architecting Multimodal Integration in MLLMs", "This paper reveals critical vulnerabilities in current MLLMs when faced with conflicting modalities, introducing MMA-Bench to systematically evaluate robustness through interpretability analysis of audio-visual misalignment and adversarial text. The authors propose a modality alignment tuning strategy that teaches models explicit prioritization rules for different modality cues, demonstrating improved multimodal grounding over baseline approaches. The work provides both diagnostic tools and a practical mitigation pathway for building more robust multimodal systems that can handle real-world scenarios where modalities contradict.", "https://arxiv.org/abs/2511.22826")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.22873" style="color:#4ea8ff;">CNN-Based Framework for Pedestrian Age and Gender Classification Using Far-View Surveillance in Mixed-Traffic Intersections</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper presents a CNN-based approach for real-time demographic classification of pedestrians (age group and gender) from low-resolution surveillance footage in congested urban intersections, framing the task as a unified six-class classification problem based on full-body features rather than facial recognition. The framework uses ResNet50 and addresses a critical gap in pedestrian safety monitoring for low- and middle-income countries with multimodal traffic, where demographic information could help identify vulnerable populations in high-risk environments. The technical novelty lies in achieving classification without high-resolution imagery or facial data—a practical constraint for deployment in under-resourced urban settings.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "CNN-Based Framework for Pedestrian Age and Gender Classification Using Far-View Surveillance in Mixed-Traffic Intersections", "This paper presents a CNN-based approach for real-time demographic classification of pedestrians (age group and gender) from low-resolution surveillance footage in congested urban intersections, framing the task as a unified six-class classification problem based on full-body features rather than facial recognition. The framework uses ResNet50 and addresses a critical gap in pedestrian safety monitoring for low- and middle-income countries with multimodal traffic, where demographic information could help identify vulnerable populations in high-risk environments. The technical novelty lies in achieving classification without high-resolution imagery or facial data—a practical constraint for deployment in under-resourced urban settings.", "https://arxiv.org/abs/2511.22873")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2507.00802" style="color:#4ea8ff;">TRACE: Temporally Reliable Anatomically-Conditioned 3D CT Generation with Enhanced Efficiency</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>TRACE introduces a computationally efficient 3D CT generation framework that leverages 2D diffusion models with video-based temporal modeling, using segmentation masks and radiology reports as anatomical conditioning alongside optical flow constraints to maintain slice-to-slice coherence. The overlapping-frame inference strategy enables variable-length 3D reconstruction while significantly reducing computational costs compared to native 3D approaches, making high-fidelity medical image synthesis accessible for resource-constrained clinical settings. This addresses critical gaps in medical data augmentation and privacy-preserving synthesis by achieving both anatomical accuracy and practical deployment feasibility.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TRACE: Temporally Reliable Anatomically-Conditioned 3D CT Generation with Enhanced Efficiency", "TRACE introduces a computationally efficient 3D CT generation framework that leverages 2D diffusion models with video-based temporal modeling, using segmentation masks and radiology reports as anatomical conditioning alongside optical flow constraints to maintain slice-to-slice coherence. The overlapping-frame inference strategy enables variable-length 3D reconstruction while significantly reducing computational costs compared to native 3D approaches, making high-fidelity medical image synthesis accessible for resource-constrained clinical settings. This addresses critical gaps in medical data augmentation and privacy-preserving synthesis by achieving both anatomical accuracy and practical deployment feasibility.", "https://arxiv.org/abs/2507.00802")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.16901" style="color:#4ea8ff;">R-AVST: Empowering Video-LLMs with Fine-Grained Spatio-Temporal Reasoning in Complex Audio-Visual Scenarios</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>R-AVST introduces a new benchmark dataset with fine-grained spatio-temporal annotations for audio-visual reasoning in video-LLMs, addressing the gap between current simple video understanding tasks and complex real-world scenarios through 5K+ untrimmed videos with 27K annotated objects. The work combines LLM-based object extraction with automatic spatial annotation and manual quality control, establishing three core spatio-temporal reasoning tasks with 8K+ QA pairs to systematically evaluate and improve multimodal model performance on intricate audio-visual events.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "R-AVST: Empowering Video-LLMs with Fine-Grained Spatio-Temporal Reasoning in Complex Audio-Visual Scenarios", "R-AVST introduces a new benchmark dataset with fine-grained spatio-temporal annotations for audio-visual reasoning in video-LLMs, addressing the gap between current simple video understanding tasks and complex real-world scenarios through 5K+ untrimmed videos with 27K annotated objects. The work combines LLM-based object extraction with automatic spatial annotation and manual quality control, establishing three core spatio-temporal reasoning tasks with 8K+ QA pairs to systematically evaluate and improve multimodal model performance on intricate audio-visual events.", "https://arxiv.org/abs/2511.16901")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.21579" style="color:#4ea8ff;">Harmony: Harmonizing Audio and Video Generation through Cross-Task Synergy</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>**Harmony** addresses audio-visual synchronization in diffusion-based generative models by identifying three core failure modes: correspondence drift between evolving latents, inefficient temporal attention, and ineffective cross-modal guidance. The framework introduces Cross-Task Synergy training (leveraging bidirectional audio↔video generation supervision) and enhanced attention mechanisms to enforce robust alignment, tackling a critical limitation in open-source multimodal synthesis systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Harmony: Harmonizing Audio and Video Generation through Cross-Task Synergy", "**Harmony** addresses audio-visual synchronization in diffusion-based generative models by identifying three core failure modes: correspondence drift between evolving latents, inefficient temporal attention, and ineffective cross-modal guidance. The framework introduces Cross-Task Synergy training (leveraging bidirectional audio↔video generation supervision) and enhanced attention mechanisms to enforce robust alignment, tackling a critical limitation in open-source multimodal synthesis systems.", "https://arxiv.org/abs/2511.21579")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2410.02364" style="color:#4ea8ff;">State-of-the-art Embeddings with Video-free Segmentation of the Source VoxCeleb Data</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    eess.AS updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>This paper demonstrates that state-of-the-art speaker embeddings can be trained using only audio and speaker names from VoxCeleb videos—eliminating the need for time-aligned video segmentation or precise speaker timestamps. By leveraging weak supervision and handling unknown speakers in recordings, the method achieves performance comparable to fully supervised approaches while enabling scalable training on large-scale weakly-labeled datasets without multimodal alignment overhead. This represents a significant practical advancement for speaker verification systems, particularly valuable for scenarios where fine-grained temporal annotations are unavailable or expensive to obtain.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "State-of-the-art Embeddings with Video-free Segmentation of the Source VoxCeleb Data", "This paper demonstrates that state-of-the-art speaker embeddings can be trained using only audio and speaker names from VoxCeleb videos—eliminating the need for time-aligned video segmentation or precise speaker timestamps. By leveraging weak supervision and handling unknown speakers in recordings, the method achieves performance comparable to fully supervised approaches while enabling scalable training on large-scale weakly-labeled datasets without multimodal alignment overhead. This represents a significant practical advancement for speaker verification systems, particularly valuable for scenarios where fine-grained temporal annotations are unavailable or expensive to obtain.", "https://arxiv.org/abs/2410.02364")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.23304" style="color:#4ea8ff;">Multi-Modal Scene Graph with Kolmogorov-Arnold Experts for Audio-Visual Question Answering</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SHRIKE introduces a multi-modal scene graph representation for audio-visual QA that explicitly models object relationships and structural information—a first for this domain—combined with a Kolmogorov-Arnold Network-based Mixture of Experts to capture fine-grained cross-modal interactions during temporal integration. This addresses key limitations in existing methods' ability to extract question-relevant cues from complex audio-visual content through structured reasoning and adaptive expert routing rather than monolithic feature fusion.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Multi-Modal Scene Graph with Kolmogorov-Arnold Experts for Audio-Visual Question Answering", "SHRIKE introduces a multi-modal scene graph representation for audio-visual QA that explicitly models object relationships and structural information—a first for this domain—combined with a Kolmogorov-Arnold Network-based Mixture of Experts to capture fine-grained cross-modal interactions during temporal integration. This addresses key limitations in existing methods' ability to extract question-relevant cues from complex audio-visual content through structured reasoning and adaptive expert routing rather than monolithic feature fusion.", "https://arxiv.org/abs/2511.23304")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.22167" style="color:#4ea8ff;">IMTalker: Efficient Audio-driven Talking Face Generation with Implicit Motion Transfer</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>IMTalker replaces explicit optical flow with implicit motion transfer via cross-attention mechanisms to overcome identity drift in audio-driven talking face generation, achieving more robust global motion modeling in a unified latent space. The framework introduces an identity-adaptive module that disentangles motion and identity representations, enabling effective cross-identity reenactment while maintaining speaker characteristics through a lightweight flow-matching generator. This approach offers practical efficiency gains over traditional warping-based methods while maintaining high-fidelity synthesis, making it relevant for scalable talking head applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "IMTalker: Efficient Audio-driven Talking Face Generation with Implicit Motion Transfer", "IMTalker replaces explicit optical flow with implicit motion transfer via cross-attention mechanisms to overcome identity drift in audio-driven talking face generation, achieving more robust global motion modeling in a unified latent space. The framework introduces an identity-adaptive module that disentangles motion and identity representations, enabling effective cross-identity reenactment while maintaining speaker characteristics through a lightweight flow-matching generator. This approach offers practical efficiency gains over traditional warping-based methods while maintaining high-fidelity synthesis, making it relevant for scalable talking head applications.", "https://arxiv.org/abs/2511.22167")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.22364" style="color:#4ea8ff;">BINDER: Instantly Adaptive Mobile Manipulation with Open-Vocabulary Commands</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#6b7280;">⚡ 25</span></div>
+  <p>BINDER introduces a dual-process architecture for open-vocabulary mobile manipulation that separates strategic task planning (via multimodal LLM) from continuous real-time environment monitoring (via VideoLLM), enabling robots to detect and respond to dynamic changes between discrete action steps rather than remaining blind during execution. This approach addresses cascading failures in prior OVMM systems by enabling instant error detection and replanning while maintaining deliberative reasoning for complex instructions, significantly improving robustness in dynamic environments.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "BINDER: Instantly Adaptive Mobile Manipulation with Open-Vocabulary Commands", "BINDER introduces a dual-process architecture for open-vocabulary mobile manipulation that separates strategic task planning (via multimodal LLM) from continuous real-time environment monitoring (via VideoLLM), enabling robots to detect and respond to dynamic changes between discrete action steps rather than remaining blind during execution. This approach addresses cascading failures in prior OVMM systems by enabling instant error detection and replanning while maintaining deliberative reasoning for complex instructions, significantly improving robustness in dynamic environments.", "https://arxiv.org/abs/2511.22364")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.22715" style="color:#4ea8ff;">ReAG: Reasoning-Augmented Generation for Knowledge-based Visual Question Answering</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>ReAG introduces a multi-stage reasoning-augmented RAG framework for knowledge-based VQA that addresses precision issues in standard retrieval-augmented generation by combining coarse/fine-grained retrieval with a learned critic model to filter noisy passages. The approach leverages reinforcement learning to optimize reasoning over retrieved documents, moving beyond simple concatenation of context to enable MLLMs to handle domain-specific queries underrepresented in pre-training data. This hybrid retrieval-filtering-reasoning pipeline represents a practical advancement for enterprise VQA applications requiring external knowledge integration.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ReAG: Reasoning-Augmented Generation for Knowledge-based Visual Question Answering", "ReAG introduces a multi-stage reasoning-augmented RAG framework for knowledge-based VQA that addresses precision issues in standard retrieval-augmented generation by combining coarse/fine-grained retrieval with a learned critic model to filter noisy passages. The approach leverages reinforcement learning to optimize reasoning over retrieved documents, moving beyond simple concatenation of context to enable MLLMs to handle domain-specific queries underrepresented in pre-training data. This hybrid retrieval-filtering-reasoning pipeline represents a practical advancement for enterprise VQA applications requiring external knowledge integration.", "https://arxiv.org/abs/2511.22715")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.10157" style="color:#4ea8ff;">One Patient, Many Contexts: Scaling Medical AI with Contextual Intelligence</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>This paper proposes context switching as a lightweight inference-time adaptation mechanism for medical AI systems, enabling dynamic output tailoring across patient populations, specialties, and care settings without retraining—addressing the scalability and contextual accuracy limitations of fine-tuning and RAG-based approaches. The framework supports multimodal reasoning across incomplete clinical data (notes, labs, imaging, genomics) and agent-based tool coordination, allowing models to avoid plausible-but-erroneous outputs that miss critical patient or situational context. The approach has significant practical implications for deploying adaptable clinical systems that can generalize to diverse healthcare environments while maintaining diagnostic safety and relevance.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "One Patient, Many Contexts: Scaling Medical AI with Contextual Intelligence", "This paper proposes context switching as a lightweight inference-time adaptation mechanism for medical AI systems, enabling dynamic output tailoring across patient populations, specialties, and care settings without retraining—addressing the scalability and contextual accuracy limitations of fine-tuning and RAG-based approaches. The framework supports multimodal reasoning across incomplete clinical data (notes, labs, imaging, genomics) and agent-based tool coordination, allowing models to avoid plausible-but-erroneous outputs that miss critical patient or situational context. The approach has significant practical implications for deploying adaptable clinical systems that can generalize to diverse healthcare environments while maintaining diagnostic safety and relevance.", "https://arxiv.org/abs/2506.10157")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2504.10068" style="color:#4ea8ff;">Mavors: Multi-granularity Video Representation for Multimodal Large Language Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>**Mavors** introduces a multi-granularity video representation framework for MLLMs that addresses the long-standing efficiency-fidelity tradeoff by using an Intra-chunk Vision Encoder (IVE) combining 3D convolutions and Vision Transformers to preserve high-resolution spatial-temporal features without excessive token compression. This approach directly processes raw video into latent representations, tackling critical limitations of prior methods (sparse/dense sampling, token compression) that lose temporal dynamics or spatial details, particularly in complex motion scenarios. The framework enables more faithful long-video understanding in multimodal models while maintaining computational tractability—a key advancement for applications requiring fine-grained spatio-temporal reasoning.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Mavors: Multi-granularity Video Representation for Multimodal Large Language Model", "**Mavors** introduces a multi-granularity video representation framework for MLLMs that addresses the long-standing efficiency-fidelity tradeoff by using an Intra-chunk Vision Encoder (IVE) combining 3D convolutions and Vision Transformers to preserve high-resolution spatial-temporal features without excessive token compression. This approach directly processes raw video into latent representations, tackling critical limitations of prior methods (sparse/dense sampling, token compression) that lose temporal dynamics or spatial details, particularly in complex motion scenarios. The framework enables more faithful long-video understanding in multimodal models while maintaining computational tractability—a key advancement for applications requiring fine-grained spatio-temporal reasoning.", "https://arxiv.org/abs/2504.10068")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
