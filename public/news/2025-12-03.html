@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-03</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-03</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02306" style="color:#4ea8ff;">OmniGuard: Unified Omni-Modal Guardrails with Deliberate Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>OmniGuard introduces the first unified guardrail framework for omni-modal LLMs (text, image, video, audio) that moves beyond binary safety classification to perform deliberate reasoning-based safeguarding across all modalities simultaneously. The approach is backed by a novel 210K+ sample omni-modal safety dataset with structured labels and expert-distilled critiques, enabling robust cross-modal safety evaluation that prior unimodal methods couldn't achieve. This addresses a critical infrastructure gap for deploying safety-aligned multimodal systems and demonstrates state-of-the-art performance across 15 diverse benchmarks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "OmniGuard: Unified Omni-Modal Guardrails with Deliberate Reasoning", "OmniGuard introduces the first unified guardrail framework for omni-modal LLMs (text, image, video, audio) that moves beyond binary safety classification to perform deliberate reasoning-based safeguarding across all modalities simultaneously. The approach is backed by a novel 210K+ sample omni-modal safety dataset with structured labels and expert-distilled critiques, enabling robust cross-modal safety evaluation that prior unimodal methods couldn't achieve. This addresses a critical infrastructure gap for deploying safety-aligned multimodal systems and demonstrates state-of-the-art performance across 15 diverse benchmarks.", "https://arxiv.org/abs/2512.02306")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02231" style="color:#4ea8ff;">See, Hear, and Understand: Benchmarking Audiovisual Human Speech Understanding in Multimodal Large Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Researchers introduce AV-SpeakerBench, a 3,212-question benchmark specifically designed to evaluate MLLMs' ability to perform fine-grained audiovisual reasoning about human speech—addressing a critical gap where existing video benchmarks remain primarily vision-solvable and lack speaker-centric evaluation. The benchmark's key innovation is embedding audiovisual dependencies directly into question semantics rather than treating modalities independently, with expert-curated temporal annotations ensuring cross-modal validity. Evaluation results reveal significant performance gaps, with Gemini 2.5 Pro leading but open-source models substantially underperforming, indicating that true multimodal speech understanding (speaker identification, utterance content, and temporal alignment) remains a challenging frontier for current MLLMs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "See, Hear, and Understand: Benchmarking Audiovisual Human Speech Understanding in Multimodal Large Language Models", "Researchers introduce AV-SpeakerBench, a 3,212-question benchmark specifically designed to evaluate MLLMs' ability to perform fine-grained audiovisual reasoning about human speech—addressing a critical gap where existing video benchmarks remain primarily vision-solvable and lack speaker-centric evaluation. The benchmark's key innovation is embedding audiovisual dependencies directly into question semantics rather than treating modalities independently, with expert-curated temporal annotations ensuring cross-modal validity. Evaluation results reveal significant performance gaps, with Gemini 2.5 Pro leading but open-source models substantially underperforming, indicating that true multimodal speech understanding (speaker identification, utterance content, and temporal alignment) remains a challenging frontier for current MLLMs.", "https://arxiv.org/abs/2512.02231")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02425" style="color:#4ea8ff;">WorldMM: Dynamic Multimodal Memory Agent for Long Video Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>WorldMM addresses long-video reasoning limitations by implementing a multi-scale, multimodal memory system that preserves both visual and textual representations beyond fixed temporal abstractions, enabling more flexible event retrieval across variable durations. The key innovation is episodic memory indexing factual events at multiple temporal scales rather than relying solely on text summaries, which avoids information loss that plagues existing memory-augmented video LLMs. This approach directly tackles the context capacity bottleneck in scaling video understanding from clips to hours-long sequences while maintaining visual evidence for complex scene reasoning.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "WorldMM: Dynamic Multimodal Memory Agent for Long Video Reasoning", "WorldMM addresses long-video reasoning limitations by implementing a multi-scale, multimodal memory system that preserves both visual and textual representations beyond fixed temporal abstractions, enabling more flexible event retrieval across variable durations. The key innovation is episodic memory indexing factual events at multiple temporal scales rather than relying solely on text summaries, which avoids information loss that plagues existing memory-augmented video LLMs. This approach directly tackles the context capacity bottleneck in scaling video understanding from clips to hours-long sequences while maintaining visual evidence for complex scene reasoning.", "https://arxiv.org/abs/2512.02425")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02743" style="color:#4ea8ff;">Reasoning-Aware Multimodal Fusion for Hateful Video Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces RAMF, a framework that tackles hateful video detection through two key technical innovations: Local-Global Context Fusion (LGCF) captures multi-scale temporal patterns while Semantic Cross Attention (SCA) enables fine-grained cross-modal interactions; adversarial reasoning via vision-language models generates complementary perspectives (objective descriptions plus hate/non-hate inference branches) to better understand nuanced context. The approach addresses a critical gap in existing methods by moving beyond simple modality concatenation to structured semantic reasoning, particularly valuable for handling context-dependent hate speech that evades shallow pattern matching.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Reasoning-Aware Multimodal Fusion for Hateful Video Detection", "This paper introduces RAMF, a framework that tackles hateful video detection through two key technical innovations: Local-Global Context Fusion (LGCF) captures multi-scale temporal patterns while Semantic Cross Attention (SCA) enables fine-grained cross-modal interactions; adversarial reasoning via vision-language models generates complementary perspectives (objective descriptions plus hate/non-hate inference branches) to better understand nuanced context. The approach addresses a critical gap in existing methods by moving beyond simple modality concatenation to structured semantic reasoning, particularly valuable for handling context-dependent hate speech that evades shallow pattern matching.", "https://arxiv.org/abs/2512.02743")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.05109" style="color:#4ea8ff;">Tiny but Mighty: A Software-Hardware Co-Design Approach for Efficient Multimodal Inference on Battery-Powered Small Devices</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>NANOMIND presents a hardware-software co-design framework that decomposes Large Multimodal Models into modular components (vision, audio, language encoders) and dynamically offloads each to specialized accelerators (NPUs, GPUs, DSPs) on unified-memory SoCs, replacing monolithic execution. The approach combines module-level scheduling, low-bit quantization kernels, and custom hardware design to achieve efficient multimodal inference on battery-powered edge devices with significantly reduced latency. This represents a paradigm shift from treating LMMs as monolithic workloads to exploiting heterogeneous SoC architectures through intelligent workload distribution, enabling practical deployment of multimodal AI on resource-constrained mobile/IoT platforms.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Tiny but Mighty: A Software-Hardware Co-Design Approach for Efficient Multimodal Inference on Battery-Powered Small Devices", "NANOMIND presents a hardware-software co-design framework that decomposes Large Multimodal Models into modular components (vision, audio, language encoders) and dynamically offloads each to specialized accelerators (NPUs, GPUs, DSPs) on unified-memory SoCs, replacing monolithic execution. The approach combines module-level scheduling, low-bit quantization kernels, and custom hardware design to achieve efficient multimodal inference on battery-powered edge devices with significantly reduced latency. This represents a paradigm shift from treating LMMs as monolithic workloads to exploiting heterogeneous SoC architectures through intelligent workload distribution, enabling practical deployment of multimodal AI on resource-constrained mobile/IoT platforms.", "https://arxiv.org/abs/2510.05109")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02231" style="color:#4ea8ff;">See, Hear, and Understand: Benchmarking Audiovisual Human Speech Understanding in Multimodal Large Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Researchers introduce AV-SpeakerBench, a specialized benchmark with 3,212 questions designed to evaluate MLLMs' ability to perform fine-grained speaker-centric reasoning across audio and video modalities—addressing a critical gap where existing benchmarks treat speech as secondary and remain largely visually solvable. The benchmark's key innovation is embedding hard audiovisual dependencies directly into question semantics (fusion-grounded design) rather than simple multi-choice tasks, with expert temporal annotations ensuring cross-modal validity. Evaluation results reveal significant performance gaps, with Gemini 2.5 Pro leading but open-source models substantially trailing, suggesting MLLMs still struggle with speaker attribution, temporal alignment, and genuine multimodal fusion beyond visual dominance.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "See, Hear, and Understand: Benchmarking Audiovisual Human Speech Understanding in Multimodal Large Language Models", "Researchers introduce AV-SpeakerBench, a specialized benchmark with 3,212 questions designed to evaluate MLLMs' ability to perform fine-grained speaker-centric reasoning across audio and video modalities—addressing a critical gap where existing benchmarks treat speech as secondary and remain largely visually solvable. The benchmark's key innovation is embedding hard audiovisual dependencies directly into question semantics (fusion-grounded design) rather than simple multi-choice tasks, with expert temporal annotations ensuring cross-modal validity. Evaluation results reveal significant performance gaps, with Gemini 2.5 Pro leading but open-source models substantially trailing, suggesting MLLMs still struggle with speaker attribution, temporal alignment, and genuine multimodal fusion beyond visual dominance.", "https://arxiv.org/abs/2512.02231")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02425" style="color:#4ea8ff;">WorldMM: Dynamic Multimodal Memory Agent for Long Video Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>WorldMM introduces a multimodal memory architecture for long-form video understanding that addresses two critical limitations of existing approaches: the over-reliance on text summaries and fixed temporal granularity. The system maintains three complementary memory types (episodic, semantic, and implicit) operating at variable temporal scales, enabling both fine-grained visual reasoning and flexible retrieval across events of different durations. This approach represents a significant advancement for scaling video LLMs beyond short clips to hour/day-length content by preserving visual details alongside semantic abstractions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "WorldMM: Dynamic Multimodal Memory Agent for Long Video Reasoning", "WorldMM introduces a multimodal memory architecture for long-form video understanding that addresses two critical limitations of existing approaches: the over-reliance on text summaries and fixed temporal granularity. The system maintains three complementary memory types (episodic, semantic, and implicit) operating at variable temporal scales, enabling both fine-grained visual reasoning and flexible retrieval across events of different durations. This approach represents a significant advancement for scaling video LLMs beyond short clips to hour/day-length content by preserving visual details alongside semantic abstractions.", "https://arxiv.org/abs/2512.02425")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02492" style="color:#4ea8ff;">YingVideo-MV: Music-Driven Multi-Stage Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>YingVideo-MV introduces the first cascaded framework for generating long-form music performance videos with synchronized camera motion, combining audio semantic analysis, an interpretable shot-planning module (MV-Director), and temporal-aware diffusion Transformers to maintain consistency across extended sequences. The work addresses a significant gap in existing audio-driven video generation by explicitly modeling camera dynamics through a dedicated adapter module and demonstrates scalability through a curated Music-in-the-Wild dataset. This represents a meaningful step toward controllable, music-synchronized video synthesis with cinematic camera work—critical for content creation and performance capture applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "YingVideo-MV: Music-Driven Multi-Stage Video Generation", "YingVideo-MV introduces the first cascaded framework for generating long-form music performance videos with synchronized camera motion, combining audio semantic analysis, an interpretable shot-planning module (MV-Director), and temporal-aware diffusion Transformers to maintain consistency across extended sequences. The work addresses a significant gap in existing audio-driven video generation by explicitly modeling camera dynamics through a dedicated adapter module and demonstrates scalability through a curated Music-in-the-Wild dataset. This represents a meaningful step toward controllable, music-synchronized video synthesis with cinematic camera work—critical for content creation and performance capture applications.", "https://arxiv.org/abs/2512.02492")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02743" style="color:#4ea8ff;">Reasoning-Aware Multimodal Fusion for Hateful Video Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces RAMF, a framework that addresses hate speech detection in multimodal videos through two key innovations: Local-Global Context Fusion (LGCF) for capturing temporal-spatial patterns and Semantic Cross Attention (SCA) for refined cross-modal semantic alignment. The core novelty lies in "adversarial reasoning," where a vision-language model generates competing interpretations (objective, hate-assumed, and non-hate-assumed) to disambiguate nuanced hateful content that existing single-path fusion methods miss. This approach is particularly significant for platform moderation as it handles context-dependent hateful speech that requires reasoning beyond surface-level multimodal feature fusion.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Reasoning-Aware Multimodal Fusion for Hateful Video Detection", "This paper introduces RAMF, a framework that addresses hate speech detection in multimodal videos through two key innovations: Local-Global Context Fusion (LGCF) for capturing temporal-spatial patterns and Semantic Cross Attention (SCA) for refined cross-modal semantic alignment. The core novelty lies in \"adversarial reasoning,\" where a vision-language model generates competing interpretations (objective, hate-assumed, and non-hate-assumed) to disambiguate nuanced hateful content that existing single-path fusion methods miss. This approach is particularly significant for platform moderation as it handles context-dependent hateful speech that requires reasoning beyond surface-level multimodal feature fusion.", "https://arxiv.org/abs/2512.02743")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.03034" style="color:#4ea8ff;">MAViD: A Multimodal Framework for Audio-Visual Dialogue Understanding and Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>MAViD introduces a Conductor-Creator architecture for audio-visual dialogue that separates understanding/reasoning from generation—the Conductor decomposes dialogue into motion and speech instructions for fine-grained control, while the Creator synthesizes interactive responses using dual DiT structures. This addresses key limitations in existing systems: moving beyond non-interactive constraints to enable natural, context-aware multimodal responses while maintaining consistency across identity, timbre, and tone in extended video generation. The approach represents a significant step toward coherent end-to-end dialogue systems that can seamlessly fuse audio-visual modalities for practical interactive applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MAViD: A Multimodal Framework for Audio-Visual Dialogue Understanding and Generation", "MAViD introduces a Conductor-Creator architecture for audio-visual dialogue that separates understanding/reasoning from generation—the Conductor decomposes dialogue into motion and speech instructions for fine-grained control, while the Creator synthesizes interactive responses using dual DiT structures. This addresses key limitations in existing systems: moving beyond non-interactive constraints to enable natural, context-aware multimodal responses while maintaining consistency across identity, timbre, and tone in extended video generation. The approach represents a significant step toward coherent end-to-end dialogue systems that can seamlessly fuse audio-visual modalities for practical interactive applications.", "https://arxiv.org/abs/2512.03034")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02306" style="color:#4ea8ff;">OmniGuard: Unified Omni-Modal Guardrails with Deliberate Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>OmniGuard addresses a critical gap in AI safety by introducing the first unified guardrail system that performs reasoning-based safeguarding across all modalities (text, image, video, audio) rather than treating safety as binary classification, moving beyond the limitations of existing unimodal approaches. The work is anchored by a novel 210K+ sample omni-modal safety dataset with structured labels and expert-distilled critiques, enabling the model to learn nuanced safety patterns across unimodal and cross-modal inputs. This approach represents a significant step toward robust value alignment in multimodal LLMs, which is essential as these models become increasingly deployed in real-world applications requiring nuanced safety decisions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "OmniGuard: Unified Omni-Modal Guardrails with Deliberate Reasoning", "OmniGuard addresses a critical gap in AI safety by introducing the first unified guardrail system that performs reasoning-based safeguarding across all modalities (text, image, video, audio) rather than treating safety as binary classification, moving beyond the limitations of existing unimodal approaches. The work is anchored by a novel 210K+ sample omni-modal safety dataset with structured labels and expert-distilled critiques, enabling the model to learn nuanced safety patterns across unimodal and cross-modal inputs. This approach represents a significant step toward robust value alignment in multimodal LLMs, which is essential as these models become increasingly deployed in real-world applications requiring nuanced safety decisions.", "https://arxiv.org/abs/2512.02306")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.02609" style="color:#4ea8ff;">SAM2Grasp: Resolve Multi-modal Grasping via Prompt-conditioned Temporal Action Prediction</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>SAM2Grasp addresses the multimodal action averaging problem in imitation learning for robotic grasping by reformulating it as a prompt-conditioned prediction task, leveraging SAM2's frozen temporal tracking capabilities with a lightweight trainable action head. The approach elegantly sidesteps conflicting training signals from multiple valid targets by conditioning predictions on explicit visual prompts (e.g., bounding boxes), enabling efficient training on pre-computed temporal-visual features while maintaining SAM2's powerful segmentation backbone. This design pattern of adapting frozen foundation models with minimal trainable parameters for grounding action predictions could generalize beyond grasping to other robotic manipulation tasks requiring scene-specific control.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SAM2Grasp: Resolve Multi-modal Grasping via Prompt-conditioned Temporal Action Prediction", "SAM2Grasp addresses the multimodal action averaging problem in imitation learning for robotic grasping by reformulating it as a prompt-conditioned prediction task, leveraging SAM2's frozen temporal tracking capabilities with a lightweight trainable action head. The approach elegantly sidesteps conflicting training signals from multiple valid targets by conditioning predictions on explicit visual prompts (e.g., bounding boxes), enabling efficient training on pre-computed temporal-visual features while maintaining SAM2's powerful segmentation backbone. This design pattern of adapting frozen foundation models with minimal trainable parameters for grounding action predictions could generalize beyond grasping to other robotic manipulation tasks requiring scene-specific control.", "https://arxiv.org/abs/2512.02609")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.05332" style="color:#4ea8ff;">Unleashing Hour-Scale Video Training for Long Video-Language Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-03
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>**Key Takeaway:** VideoMarathon addresses a critical gap in long-form video understanding by providing 9,700 hours of annotated videos (3-60 minutes each) with 3.3M QA pairs across six semantic dimensions, enabling training of Hour-LLaVA, a Video-LMM designed to handle hour-scale temporal and spatial reasoning tasks beyond existing short-clip datasets. The dataset's support for 22 diverse tasks spanning short- and long-term comprehension signals a shift toward evaluating genuine temporal coherence and event sequencing in video-language models rather than frame-level understanding. This represents a significant engineering challenge in efficient tokenization and memory management for processing hour-long sequences, likely requiring novel architectural approaches for temporal encoding and long-context attention mechanisms.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Unleashing Hour-Scale Video Training for Long Video-Language Understanding", "**Key Takeaway:** VideoMarathon addresses a critical gap in long-form video understanding by providing 9,700 hours of annotated videos (3-60 minutes each) with 3.3M QA pairs across six semantic dimensions, enabling training of Hour-LLaVA, a Video-LMM designed to handle hour-scale temporal and spatial reasoning tasks beyond existing short-clip datasets. The dataset's support for 22 diverse tasks spanning short- and long-term comprehension signals a shift toward evaluating genuine temporal coherence and event sequencing in video-language models rather than frame-level understanding. This represents a significant engineering challenge in efficient tokenization and memory management for processing hour-long sequences, likely requiring novel architectural approaches for temporal encoding and long-context attention mechanisms.", "https://arxiv.org/abs/2506.05332")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://venturebeat.com/ai/mistral-launches-mistral-3-a-family-of-open-models-designed-to-run-on" style="color:#4ea8ff;">Mistral launches Mistral 3, a family of open models designed to run on laptops, drones, and edge devices</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    AI | VentureBeat
+     · 2025-12-02
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#f59e0b;">⚡ 42</span></div>
+  <p>Mistral AI released Mistral 3, a 10-model open-source family spanning from edge devices (smartphones, drones) to enterprise cloud under the permissive Apache 2.0 license, featuring a flagship Mistral Large 3 and smaller Ministral 3 variants optimized for on-device inference. This strategy directly challenges proprietary closed systems by prioritizing deployment flexibility and business customization over scale, positioning distributed, lightweight models as the strategic frontier rather than centralized large models. The Apache 2.0 licensing removes commercial restrictions, enabling developers to build specialized applications without the constraints imposed by competitors' licensing models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly92ZW50"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly92ZW50', "Mistral launches Mistral 3, a family of open models designed to run on laptops, drones, and edge devices", "Mistral AI released Mistral 3, a 10-model open-source family spanning from edge devices (smartphones, drones) to enterprise cloud under the permissive Apache 2.0 license, featuring a flagship Mistral Large 3 and smaller Ministral 3 variants optimized for on-device inference. This strategy directly challenges proprietary closed systems by prioritizing deployment flexibility and business customization over scale, positioning distributed, lightweight models as the strategic frontier rather than centralized large models. The Apache 2.0 licensing removes commercial restrictions, enabling developers to build specialized applications without the constraints imposed by competitors' licensing models.", "https://venturebeat.com/ai/mistral-launches-mistral-3-a-family-of-open-models-designed-to-run-on")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly92ZW50" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://venturebeat.com/ai/new-training-method-boosts-ai-multimodal-reasoning-with-smaller-smarter" style="color:#4ea8ff;">New training method boosts AI multimodal reasoning with smaller, smarter datasets</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    AI | VentureBeat
+     · 2025-12-02
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>OpenMMReasoner introduces a two-stage training framework combining supervised fine-tuning with reinforcement learning to enhance multimodal reasoning in language models, achieving superior performance on visual reasoning tasks with smaller, higher-quality curated datasets. The open-source approach, including a trained 7B model, enables developers to build transparent, robust multimodal applications without relying on large closed-source systems, making it particularly valuable for enterprises requiring explainability and production reliability.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly92ZW50"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly92ZW50', "New training method boosts AI multimodal reasoning with smaller, smarter datasets", "OpenMMReasoner introduces a two-stage training framework combining supervised fine-tuning with reinforcement learning to enhance multimodal reasoning in language models, achieving superior performance on visual reasoning tasks with smaller, higher-quality curated datasets. The open-source approach, including a trained 7B model, enables developers to build transparent, robust multimodal applications without relying on large closed-source systems, making it particularly valuable for enterprises requiring explainability and production reliability.", "https://venturebeat.com/ai/new-training-method-boosts-ai-multimodal-reasoning-with-smaller-smarter")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly92ZW50" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
