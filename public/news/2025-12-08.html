@@ -1,0 +1,491 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-08</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-08</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.02226" style="color:#4ea8ff;">TempoControl: Temporal Attention Guidance for Text-to-Video Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>TempoControl enables fine-grained temporal control in text-to-video diffusion models by manipulating cross-attention maps during inference without retraining, using an optimization approach that balances temporal alignment (correlation), visibility strength (magnitude), and semantic consistency (entropy). This addresses a critical limitation in current generative video models—the inability to specify precise timing for visual elements—while maintaining practical efficiency through inference-time guidance rather than model retraining. The method opens new possibilities for controllable video generation, particularly valuable for applications requiring synchronization between narration, music, or scene transitions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TempoControl: Temporal Attention Guidance for Text-to-Video Models", "TempoControl enables fine-grained temporal control in text-to-video diffusion models by manipulating cross-attention maps during inference without retraining, using an optimization approach that balances temporal alignment (correlation), visibility strength (magnitude), and semantic consistency (entropy). This addresses a critical limitation in current generative video models—the inability to specify precise timing for visual elements—while maintaining practical efficiency through inference-time guidance rather than model retraining. The method opens new possibilities for controllable video generation, particularly valuable for applications requiring synchronization between narration, music, or scene transitions.", "https://arxiv.org/abs/2510.02226")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05513" style="color:#4ea8ff;">Know-Show: Benchmarking Video-Language Models on Spatio-Temporal Grounded Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Know-Show is a new benchmark for evaluating spatio-temporal grounded reasoning in Video-LMs, combining five scenarios across spatial (person, object, interaction) and temporal dimensions with 2.5K human-annotated questions from Charades, Action Genome, and Ego4D datasets. The paper reveals significant performance gaps between current Video-LMs and human-level reasoning on this task and proposes GRAM, a training-free plug-in using attention-based video token selection to enhance grounding without additional fine-tuning. This work addresses a critical limitation in video understanding—the disconnect between semantic reasoning and precise spatial-temporal localization—which has practical implications for embodied AI, video QA systems, and action recognition applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Know-Show: Benchmarking Video-Language Models on Spatio-Temporal Grounded Reasoning", "Know-Show is a new benchmark for evaluating spatio-temporal grounded reasoning in Video-LMs, combining five scenarios across spatial (person, object, interaction) and temporal dimensions with 2.5K human-annotated questions from Charades, Action Genome, and Ego4D datasets. The paper reveals significant performance gaps between current Video-LMs and human-level reasoning on this task and proposes GRAM, a training-free plug-in using attention-based video token selection to enhance grounding without additional fine-tuning. This work addresses a critical limitation in video understanding—the disconnect between semantic reasoning and precise spatial-temporal localization—which has practical implications for embodied AI, video QA systems, and action recognition applications.", "https://arxiv.org/abs/2512.05513")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05515" style="color:#4ea8ff;">DashFusion: Dual-stream Alignment with Hierarchical Bottleneck Fusion for Multimodal Sentiment Analysis</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>DashFusion addresses core challenges in multimodal sentiment analysis by introducing a dual-stream alignment architecture that synchronizes temporal correspondences via cross-modal attention while ensuring semantic consistency across modalities—tackling the critical gap where prior methods treat alignment and fusion as isolated problems. The hierarchical bottleneck fusion design integrates these aligned multimodal features into a unified representation, promising improved performance efficiency for sentiment tasks that require coordinated text, image, and audio processing.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "DashFusion: Dual-stream Alignment with Hierarchical Bottleneck Fusion for Multimodal Sentiment Analysis", "DashFusion addresses core challenges in multimodal sentiment analysis by introducing a dual-stream alignment architecture that synchronizes temporal correspondences via cross-modal attention while ensuring semantic consistency across modalities—tackling the critical gap where prior methods treat alignment and fusion as isolated problems. The hierarchical bottleneck fusion design integrates these aligned multimodal features into a unified representation, promising improved performance efficiency for sentiment tasks that require coordinated text, image, and audio processing.", "https://arxiv.org/abs/2512.05515")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.02226" style="color:#4ea8ff;">TempoControl: Temporal Attention Guidance for Text-to-Video Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>TempoControl introduces a post-hoc optimization method for fine-grained temporal control in text-to-video diffusion models by manipulating cross-attention maps during inference without retraining, using three principles—correlation alignment, magnitude adjustment, and entropy regularization—to synchronize visual concept appearance with user-specified timings. This approach enables frame-level control over when specific elements manifest in generated videos while maintaining semantic consistency, addressing a critical limitation in current generative video models. The technique's inference-only nature makes it practical for deployment across existing pretrained models without additional computational overhead from retraining.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TempoControl: Temporal Attention Guidance for Text-to-Video Models", "TempoControl introduces a post-hoc optimization method for fine-grained temporal control in text-to-video diffusion models by manipulating cross-attention maps during inference without retraining, using three principles—correlation alignment, magnitude adjustment, and entropy regularization—to synchronize visual concept appearance with user-specified timings. This approach enables frame-level control over when specific elements manifest in generated videos while maintaining semantic consistency, addressing a critical limitation in current generative video models. The technique's inference-only nature makes it practical for deployment across existing pretrained models without additional computational overhead from retraining.", "https://arxiv.org/abs/2510.02226")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.04677" style="color:#4ea8ff;">Live Avatar: Streaming Real-time Audio-Driven Avatar Generation with Infinite Length</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 88</span></div>
+  <p>Live Avatar addresses real-time audio-driven avatar synthesis by introducing Timestep-forcing Pipeline Parallelism (TPP) to parallelize diffusion denoising across multiple GPUs, eliminating the sequential computation bottleneck that constrains existing video generation methods. The Rolling Sink Frame Mechanism (RSFM) maintains temporal consistency and prevents identity drift by dynamically recalibrating appearance with cached reference frames, enabling stable infinite-length generation at streaming latency with a 14B-parameter model.
+
+**Key implication**: This algorithm-system co-design approach makes diffusion-based avatar generation practical for real-time applications, shifting from batch processing to live streaming use cases through architectural innovations rather than model compression alone.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Live Avatar: Streaming Real-time Audio-Driven Avatar Generation with Infinite Length", "Live Avatar addresses real-time audio-driven avatar synthesis by introducing Timestep-forcing Pipeline Parallelism (TPP) to parallelize diffusion denoising across multiple GPUs, eliminating the sequential computation bottleneck that constrains existing video generation methods. The Rolling Sink Frame Mechanism (RSFM) maintains temporal consistency and prevents identity drift by dynamically recalibrating appearance with cached reference frames, enabling stable infinite-length generation at streaming latency with a 14B-parameter model.\n\n**Key implication**: This algorithm-system co-design approach makes diffusion-based avatar generation practical for real-time applications, shifting from batch processing to live streaming use cases through architectural innovations rather than model compression alone.", "https://arxiv.org/abs/2512.04677")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05126" style="color:#4ea8ff;">SyncVoice: Towards Video Dubbing with Vision-Augmented Pretrained TTS Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#3b82f6;">💼 72</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SyncVoice introduces a vision-augmented TTS framework that fine-tunes pretrained speech models on audio-visual data to achieve precise temporal alignment and high-fidelity dubbing across languages. The key innovation is a Dual Speaker Encoder that reduces cross-lingual interference during multilingual synthesis, enabling practical video translation applications. This approach addresses critical limitations in existing dubbing systems by combining visual context awareness with robust speaker disentanglement, moving beyond monolingual constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SyncVoice: Towards Video Dubbing with Vision-Augmented Pretrained TTS Model", "SyncVoice introduces a vision-augmented TTS framework that fine-tunes pretrained speech models on audio-visual data to achieve precise temporal alignment and high-fidelity dubbing across languages. The key innovation is a Dual Speaker Encoder that reduces cross-lingual interference during multilingual synthesis, enabling practical video translation applications. This approach addresses critical limitations in existing dubbing systems by combining visual context awareness with robust speaker disentanglement, moving beyond monolingual constraints.", "https://arxiv.org/abs/2512.05126")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05270" style="color:#4ea8ff;">XR-DT: Extended Reality-Enhanced Digital Twin for Agentic Mobile Robots</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 28</span></div>
+  <p>**XR-DT** introduces a multi-layered extended reality framework (virtual/augmented/mixed reality) for mobile robots that addresses the critical gap between robot inference and human interpretability by creating a real-time digital twin synchronized with physical robots. The system integrates Unity-based simulation, wearable AR devices for human feedback, and hierarchical agent architecture to enable bi-directional human-robot understanding in shared workspaces. This approach has significant implications for safety-critical deployments where human trust and situational awareness of robot decision-making are prerequisites for adoption.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "XR-DT: Extended Reality-Enhanced Digital Twin for Agentic Mobile Robots", "**XR-DT** introduces a multi-layered extended reality framework (virtual/augmented/mixed reality) for mobile robots that addresses the critical gap between robot inference and human interpretability by creating a real-time digital twin synchronized with physical robots. The system integrates Unity-based simulation, wearable AR devices for human feedback, and hierarchical agent architecture to enable bi-directional human-robot understanding in shared workspaces. This approach has significant implications for safety-critical deployments where human trust and situational awareness of robot decision-making are prerequisites for adoption.", "https://arxiv.org/abs/2512.05270")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05508" style="color:#4ea8ff;">Lyrics Matter: Exploiting the Power of Learnt Representations for Music Popularity Prediction</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p># Technical Summary
+
+This work demonstrates that LLM-extracted lyric embeddings significantly improve music popularity prediction when integrated into a multimodal architecture (HitMusicLyricNet) alongside audio and social metadata, achieving 9-20% improvements in MAE/MSE on 100K+ tracks. The key innovation is leveraging high-dimensional semantic/syntactic representations from lyrics rather than traditional audio-centric features, revealing a previously under-explored signal that capturing linguistic content yields substantial predictive gains for the streaming industry.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Lyrics Matter: Exploiting the Power of Learnt Representations for Music Popularity Prediction", "# Technical Summary\n\nThis work demonstrates that LLM-extracted lyric embeddings significantly improve music popularity prediction when integrated into a multimodal architecture (HitMusicLyricNet) alongside audio and social metadata, achieving 9-20% improvements in MAE/MSE on 100K+ tracks. The key innovation is leveraging high-dimensional semantic/syntactic representations from lyrics rather than traditional audio-centric features, revealing a previously under-explored signal that capturing linguistic content yields substantial predictive gains for the streaming industry.", "https://arxiv.org/abs/2512.05508")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05774" style="color:#4ea8ff;">Active Video Perception: Iterative Evidence Seeking for Agentic Long Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>**Active Video Perception (AVP)** introduces an evidence-seeking framework that replaces passive, query-agnostic video captioning with an iterative plan-observe-reflect loop where MLLM agents actively decide *what*, *when*, and *where* to observe, enabling efficient extraction of sparse temporal cues from long videos. This approach grounded in active perception theory substantially reduces computational waste on irrelevant content while preserving fine-grained spatiotemporal information—a significant optimization for real-world long video understanding tasks where answers depend on buried, dispersed evidence across hours of footage.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Active Video Perception: Iterative Evidence Seeking for Agentic Long Video Understanding", "**Active Video Perception (AVP)** introduces an evidence-seeking framework that replaces passive, query-agnostic video captioning with an iterative plan-observe-reflect loop where MLLM agents actively decide *what*, *when*, and *where* to observe, enabling efficient extraction of sparse temporal cues from long videos. This approach grounded in active perception theory substantially reduces computational waste on irrelevant content while preserving fine-grained spatiotemporal information—a significant optimization for real-world long video understanding tasks where answers depend on buried, dispersed evidence across hours of footage.", "https://arxiv.org/abs/2512.05774")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.05950" style="color:#4ea8ff;">Impugan: Learning Conditional Generative Models for Robust Data Imputation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>Impugan addresses incomplete data challenges by employing a conditional GAN framework that learns conditional dependencies between observed and missing variables, avoiding the linearity and independence assumptions that limit traditional methods like EM and multiple imputation. The approach uses a generator-discriminator architecture where the generator reconstructs missing values from available features while the discriminator ensures realism, enabling effective integration of heterogeneous datasets with varying scales and sampling rates. This technique is particularly valuable for real-world scenarios with sensor failures and multi-source data fusion where standard statistical assumptions fail.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Impugan: Learning Conditional Generative Models for Robust Data Imputation", "Impugan addresses incomplete data challenges by employing a conditional GAN framework that learns conditional dependencies between observed and missing variables, avoiding the linearity and independence assumptions that limit traditional methods like EM and multiple imputation. The approach uses a generator-discriminator architecture where the generator reconstructs missing values from available features while the discriminator ensures realism, enabling effective integration of heterogeneous datasets with varying scales and sampling rates. This technique is particularly valuable for real-world scenarios with sensor failures and multi-source data fusion where standard statistical assumptions fail.", "https://arxiv.org/abs/2512.05950")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2412.07755" style="color:#4ea8ff;">SAT: Dynamic Spatial Aptitude Training for Multimodal Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>SAT introduces a large-scale synthetic training dataset (175K QA pairs across 20K simulated 3D scenes) to address a critical gap in multimodal language models: reasoning about dynamic spatial relationships involving egocentric and object motion, which existing benchmarks only cover in static contexts. The work systematically evaluates how combining synthetic dynamic spatial reasoning training with existing static benchmarks improves MLM performance, validated against a challenging real-world test set, offering a practical solution to the annotation bottleneck in spatial reasoning tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SAT: Dynamic Spatial Aptitude Training for Multimodal Language Models", "SAT introduces a large-scale synthetic training dataset (175K QA pairs across 20K simulated 3D scenes) to address a critical gap in multimodal language models: reasoning about dynamic spatial relationships involving egocentric and object motion, which existing benchmarks only cover in static contexts. The work systematically evaluates how combining synthetic dynamic spatial reasoning training with existing static benchmarks improves MLM performance, validated against a challenging real-world test set, offering a practical solution to the annotation bottleneck in spatial reasoning tasks.", "https://arxiv.org/abs/2412.07755")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.07339" style="color:#4ea8ff;">Real-Time Execution of Action Chunking Flow Policies</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces Real-Time Chunking (RTC), an inference-time algorithm that eliminates latency-induced jerkiness in diffusion/flow-based vision-language action models by asynchronously generating the next action chunk while executing the current one, using a "freeze-and-inpaint" strategy that requires no retraining. The approach directly addresses a critical bottleneck in real-time robotic control where high model latency causes out-of-distribution movements at chunk boundaries, enabling smoother, more natural policy execution across dynamic manipulation tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Real-Time Execution of Action Chunking Flow Policies", "This paper introduces Real-Time Chunking (RTC), an inference-time algorithm that eliminates latency-induced jerkiness in diffusion/flow-based vision-language action models by asynchronously generating the next action chunk while executing the current one, using a \"freeze-and-inpaint\" strategy that requires no retraining. The approach directly addresses a critical bottleneck in real-time robotic control where high model latency causes out-of-distribution movements at chunk boundaries, enabling smoother, more natural policy execution across dynamic manipulation tasks.", "https://arxiv.org/abs/2506.07339")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2507.18262" style="color:#4ea8ff;">ReSem3D: Refinable 3D Spatial Constraints via Fine-Grained Semantic Grounding for Generalizable Robotic Manipulation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>ReSem3D introduces a unified robotic manipulation framework that leverages Vision Foundation Models (VFMs) and Multimodal LLMs to construct fine-grained, hierarchical 3D spatial constraints from semantic understanding, enabling real-time closed-loop planning across diverse environments. The key innovation addresses limitations in existing approaches by grounding high-level semantic representations directly into actionable spatial constraints with finer granularity, improving robustness and generalization compared to coarser constraint modeling methods. This synergistic multimodal approach bridges task understanding and low-level manipulation execution, with practical implications for deploying more generalizable robotic systems in semantically varied real-world scenarios.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ReSem3D: Refinable 3D Spatial Constraints via Fine-Grained Semantic Grounding for Generalizable Robotic Manipulation", "ReSem3D introduces a unified robotic manipulation framework that leverages Vision Foundation Models (VFMs) and Multimodal LLMs to construct fine-grained, hierarchical 3D spatial constraints from semantic understanding, enabling real-time closed-loop planning across diverse environments. The key innovation addresses limitations in existing approaches by grounding high-level semantic representations directly into actionable spatial constraints with finer granularity, improving robustness and generalization compared to coarser constraint modeling methods. This synergistic multimodal approach bridges task understanding and low-level manipulation execution, with practical implications for deploying more generalizable robotic systems in semantically varied real-world scenarios.", "https://arxiv.org/abs/2507.18262")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2508.10875" style="color:#4ea8ff;">A Survey on Diffusion Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 28</span></div>
+  <p>Diffusion Language Models represent a paradigm shift from autoregressive generation by employing iterative denoising to generate tokens in parallel, achieving several-fold inference speedup while maintaining comparable performance to AR models through bidirectional context awareness. This approach enables fine-grained control over generation and reduces latency—critical advantages for real-time NLP applications—while the survey provides a comprehensive taxonomy tracing DLMs' evolution alongside masked and autoregressive paradigms. For practitioners, DLMs present a viable production alternative when inference speed is prioritized, though the iterative decoding process introduces computational tradeoffs that depend on convergence efficiency.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "A Survey on Diffusion Language Models", "Diffusion Language Models represent a paradigm shift from autoregressive generation by employing iterative denoising to generate tokens in parallel, achieving several-fold inference speedup while maintaining comparable performance to AR models through bidirectional context awareness. This approach enables fine-grained control over generation and reduces latency—critical advantages for real-time NLP applications—while the survey provides a comprehensive taxonomy tracing DLMs' evolution alongside masked and autoregressive paradigms. For practitioners, DLMs present a viable production alternative when inference speed is prioritized, though the iterative decoding process introduces computational tradeoffs that depend on convergence efficiency.", "https://arxiv.org/abs/2508.10875")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.00713" style="color:#4ea8ff;">Concept-Guided Backdoor Attack on Vision Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-08
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces concept-guided backdoor attacks against Vision-Language Models that exploit semantic features rather than pixel-level triggers, presenting two approaches: CTP (Concept-Thresholding Poisoning) that poisons only samples containing target concepts, and CGUB that leverages unseen concept spaces for stealthier attacks. The semantic-level attack paradigm is significantly harder to detect than traditional pixel-based or perturbation-based defenses, raising critical implications for VLM deployment security. This work highlights a new frontier in adversarial ML where attacks operate at the feature/concept abstraction level rather than raw input space, potentially necessitating fundamentally different defense mechanisms for multimodal models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Concept-Guided Backdoor Attack on Vision Language Models", "This paper introduces concept-guided backdoor attacks against Vision-Language Models that exploit semantic features rather than pixel-level triggers, presenting two approaches: CTP (Concept-Thresholding Poisoning) that poisons only samples containing target concepts, and CGUB that leverages unseen concept spaces for stealthier attacks. The semantic-level attack paradigm is significantly harder to detect than traditional pixel-based or perturbation-based defenses, raising critical implications for VLM deployment security. This work highlights a new frontier in adversarial ML where attacks operate at the feature/concept abstraction level rather than raw input space, potentially necessitating fundamentally different defense mechanisms for multimodal models.", "https://arxiv.org/abs/2512.00713")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
