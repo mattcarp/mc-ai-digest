@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-10</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-10</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08829" style="color:#4ea8ff;">InfiniteVL: Synergizing Linear and Sparse Attention for Highly-Efficient, Unlimited-Input Vision-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>**InfiniteVL** addresses the quadratic complexity bottleneck in Vision-Language Models by combining sliding window attention with Gated DeltaNet, achieving linear complexity while maintaining competitive performance on information-intensive tasks like OCR where pure linear attention typically fails. The approach uses a three-stage training strategy (distillation pretraining, instruction tuning, long-sequence SFT) to reach performance parity with state-of-the-art VLMs while requiring &lt;2% of their training data, enabling truly unlimited-input processing with minimal KV cache overhead.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "InfiniteVL: Synergizing Linear and Sparse Attention for Highly-Efficient, Unlimited-Input Vision-Language Models", "**InfiniteVL** addresses the quadratic complexity bottleneck in Vision-Language Models by combining sliding window attention with Gated DeltaNet, achieving linear complexity while maintaining competitive performance on information-intensive tasks like OCR where pure linear attention typically fails. The approach uses a three-stage training strategy (distillation pretraining, instruction tuning, long-sequence SFT) to reach performance parity with state-of-the-art VLMs while requiring &lt;2% of their training data, enabling truly unlimited-input processing with minimal KV cache overhead.", "https://arxiv.org/abs/2512.08829")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08829" style="color:#4ea8ff;">InfiniteVL: Synergizing Linear and Sparse Attention for Highly-Efficient, Unlimited-Input Vision-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>InfiniteVL combines sliding window attention (SWA) with Gated DeltaNet to achieve linear-complexity vision-language processing that overcomes the performance degradation of window-based VLMs on long sequences while maintaining the information-density advantages needed for OCR and document understanding tasks. The architecture employs a three-stage training strategy (distillation pretraining, instruction tuning, long-sequence SFT) achieving competitive performance with &lt;2% of typical VLM training data, addressing the KV cache explosion problem in existing approaches.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "InfiniteVL: Synergizing Linear and Sparse Attention for Highly-Efficient, Unlimited-Input Vision-Language Models", "InfiniteVL combines sliding window attention (SWA) with Gated DeltaNet to achieve linear-complexity vision-language processing that overcomes the performance degradation of window-based VLMs on long sequences while maintaining the information-density advantages needed for OCR and document understanding tasks. The architecture employs a three-stage training strategy (distillation pretraining, instruction tuning, long-sequence SFT) achieving competitive performance with &lt;2% of typical VLM training data, addressing the KV cache explosion problem in existing approaches.", "https://arxiv.org/abs/2512.08829")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08238" style="color:#4ea8ff;">SpeechQualityLLM: LLM-Based Multimodal Assessment of Speech Quality</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SpeechQualityLLM introduces a multimodal LLM-based approach to speech quality assessment that moves beyond rigid regression metrics (PESQ, POLQA, NISQA) by enabling natural language queries and generating textual rationales for quality judgments across multiple perceptual dimensions. The system couples an audio encoder with a language model trained on the NISQA corpus, allowing interactive question-answering about overall MOS and specific degradation factors (noisiness, coloration, discontinuity), addressing the scalability and interpretability limitations of classical and existing learning-based approaches. This represents a shift toward more explainable, flexible speech quality evaluation that could significantly improve monitoring and optimization workflows in telephony, VoIP, and streaming systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SpeechQualityLLM: LLM-Based Multimodal Assessment of Speech Quality", "SpeechQualityLLM introduces a multimodal LLM-based approach to speech quality assessment that moves beyond rigid regression metrics (PESQ, POLQA, NISQA) by enabling natural language queries and generating textual rationales for quality judgments across multiple perceptual dimensions. The system couples an audio encoder with a language model trained on the NISQA corpus, allowing interactive question-answering about overall MOS and specific degradation factors (noisiness, coloration, discontinuity), addressing the scalability and interpretability limitations of classical and existing learning-based approaches. This represents a shift toward more explainable, flexible speech quality evaluation that could significantly improve monitoring and optimization workflows in telephony, VoIP, and streaming systems.", "https://arxiv.org/abs/2512.08238")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08503" style="color:#4ea8ff;">Disrupting Hierarchical Reasoning: Adversarial Protection for Geographic Privacy in Multimodal Reasoning Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>ReasonBreak introduces concept-aware adversarial perturbations designed to disrupt geographic location inference in multimodal large reasoning models (MLRMs) by targeting critical conceptual dependencies within hierarchical chain-of-thought reasoning—addressing a gap where traditional perception-focused privacy techniques fail against sophisticated multi-step reasoning. Rather than applying uniform noise, the approach strategically invalidates specific inference steps to create cascading failures across the reasoning chain, offering a novel defense mechanism for geographic privacy in multimodal systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Disrupting Hierarchical Reasoning: Adversarial Protection for Geographic Privacy in Multimodal Reasoning Models", "ReasonBreak introduces concept-aware adversarial perturbations designed to disrupt geographic location inference in multimodal large reasoning models (MLRMs) by targeting critical conceptual dependencies within hierarchical chain-of-thought reasoning—addressing a gap where traditional perception-focused privacy techniques fail against sophisticated multi-step reasoning. Rather than applying uniform noise, the approach strategically invalidates specific inference steps to create cascading failures across the reasoning chain, offering a novel defense mechanism for geographic privacy in multimodal systems.", "https://arxiv.org/abs/2512.08503")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2505.24511" style="color:#4ea8ff;">Can Slow-thinking LLMs Reason Over Time? Empirical Studies in Time Series Forecasting</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#f59e0b;">⚡ 42</span></div>
+  <p>Researchers propose TimeReasoner, an empirical framework investigating whether slow-thinking LLMs (like o1 and DeepSeek-R1) can perform multi-step reasoning for time series forecasting by reformulating TSF as a structured reasoning task rather than pattern-matching. The work challenges the conventional fast-thinking paradigm that dominates TSF methods, exploring whether explicit temporal reasoning over contextual dependencies can improve forecasting even in zero-shot settings. This represents a significant methodological shift with implications for leveraging emerging reasoning-capable models in temporal prediction tasks traditionally dominated by statistical and deep learning approaches.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Can Slow-thinking LLMs Reason Over Time? Empirical Studies in Time Series Forecasting", "Researchers propose TimeReasoner, an empirical framework investigating whether slow-thinking LLMs (like o1 and DeepSeek-R1) can perform multi-step reasoning for time series forecasting by reformulating TSF as a structured reasoning task rather than pattern-matching. The work challenges the conventional fast-thinking paradigm that dominates TSF methods, exploring whether explicit temporal reasoning over contextual dependencies can improve forecasting even in zero-shot settings. This represents a significant methodological shift with implications for leveraging emerging reasoning-capable models in temporal prediction tasks traditionally dominated by statistical and deep learning approaches.", "https://arxiv.org/abs/2505.24511")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.07838" style="color:#4ea8ff;">Detection of Cyberbullying in GIF using AI</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#f59e0b;">⚡ 52</span></div>
+  <p>This paper addresses a notably under-researched area by developing a deep learning approach to detect cyberbullying in GIF content, a modality largely neglected compared to text and static images. The authors constructed a dataset of 4100+ GIFs from Twitter using hashtag-based collection via the GIPHY API and employed transfer learning with VGG16 for classification. The work highlights the practical challenge of expanding content moderation systems to multi-modal formats beyond text, though the transfer learning approach suggests potential scalability limitations that would benefit from video-specific architectures better suited to temporal dynamics in GIF sequences.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Detection of Cyberbullying in GIF using AI", "This paper addresses a notably under-researched area by developing a deep learning approach to detect cyberbullying in GIF content, a modality largely neglected compared to text and static images. The authors constructed a dataset of 4100+ GIFs from Twitter using hashtag-based collection via the GIPHY API and employed transfer learning with VGG16 for classification. The work highlights the practical challenge of expanding content moderation systems to multi-modal formats beyond text, though the transfer learning approach suggests potential scalability limitations that would benefit from video-specific architectures better suited to temporal dynamics in GIF sequences.", "https://arxiv.org/abs/2512.07838")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08227" style="color:#4ea8ff;">New VVC profiles targeting Feature Coding for Machines</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This research proposes optimized VVC profiles for compressing intermediate neural network features in split inference systems, where traditional perceptual quality metrics become irrelevant since features are abstract and task-specific rather than pixel data. The authors conduct tool-level analysis to identify which VVC components impact compression efficiency and downstream accuracy, yielding three lightweight profiles (Fast, Faster, Fastest) that trade encoding speed for compression gains—achieving up to 51.5% speedup with minimal BD-Rate loss. This represents a paradigm shift from human perception-optimized codecs toward machine-efficient feature transmission, critical for edge AI and distributed inference architectures.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "New VVC profiles targeting Feature Coding for Machines", "This research proposes optimized VVC profiles for compressing intermediate neural network features in split inference systems, where traditional perceptual quality metrics become irrelevant since features are abstract and task-specific rather than pixel data. The authors conduct tool-level analysis to identify which VVC components impact compression efficiency and downstream accuracy, yielding three lightweight profiles (Fast, Faster, Fastest) that trade encoding speed for compression gains—achieving up to 51.5% speedup with minimal BD-Rate loss. This represents a paradigm shift from human perception-optimized codecs toward machine-efficient feature transmission, critical for edge AI and distributed inference architectures.", "https://arxiv.org/abs/2512.08227")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08282" style="color:#4ea8ff;">PAVAS: Physics-Aware Video-to-Audio Synthesis</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>PAVAS introduces physics-informed constraints into video-to-audio synthesis by augmenting latent diffusion models with a Physics-Driven Audio Adapter that estimates object mass (via Vision-Language Models) and motion trajectories (via 3D reconstruction) to generate physically plausible sounds. This represents a significant shift from appearance-driven V2A toward models that reason about underlying physical dynamics—mass, velocity, and impact—rather than merely learning visual-acoustic correlations. The accompanying VGG-Impact benchmark enables evaluation of physical realism, addressing a critical gap in generative audio assessment beyond perceptual quality metrics.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "PAVAS: Physics-Aware Video-to-Audio Synthesis", "PAVAS introduces physics-informed constraints into video-to-audio synthesis by augmenting latent diffusion models with a Physics-Driven Audio Adapter that estimates object mass (via Vision-Language Models) and motion trajectories (via 3D reconstruction) to generate physically plausible sounds. This represents a significant shift from appearance-driven V2A toward models that reason about underlying physical dynamics—mass, velocity, and impact—rather than merely learning visual-acoustic correlations. The accompanying VGG-Impact benchmark enables evaluation of physical realism, addressing a critical gap in generative audio assessment beyond perceptual quality metrics.", "https://arxiv.org/abs/2512.08282")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08406" style="color:#4ea8ff;">SAM-Body4D: Training-Free 4D Human Body Mesh Recovery from Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>SAM-Body4D introduces a training-free framework for temporally consistent 4D human mesh recovery from videos by leveraging video segmentation and occlusion-aware refinement to guide the SAM 3D Body model, eliminating the temporal inconsistency and occlusion failures of per-frame inference. The approach uses identity-consistent masklets and an occlusion recovery module to maintain temporal coherence across frames while handling challenging scenarios, with a parallel processing strategy enabling efficient multi-human tracking. This zero-training methodology represents a practical advancement for real-world human-centric video understanding without requiring domain-specific fine-tuning.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SAM-Body4D: Training-Free 4D Human Body Mesh Recovery from Videos", "SAM-Body4D introduces a training-free framework for temporally consistent 4D human mesh recovery from videos by leveraging video segmentation and occlusion-aware refinement to guide the SAM 3D Body model, eliminating the temporal inconsistency and occlusion failures of per-frame inference. The approach uses identity-consistent masklets and an occlusion recovery module to maintain temporal coherence across frames while handling challenging scenarios, with a parallel processing strategy enabling efficient multi-human tracking. This zero-training methodology represents a practical advancement for real-world human-centric video understanding without requiring domain-specific fine-tuning.", "https://arxiv.org/abs/2512.08406")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08410" style="color:#4ea8ff;">Towards Effective and Efficient Long Video Understanding of Multimodal Large Language Models via One-shot Clip Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This work addresses the memory bottleneck limiting MLLMs to short videos by introducing OneClip-RAG, a retrieval-augmentation approach that efficiently chunks long videos into semantic clips and performs query-guided retrieval in a single processing step, avoiding redundant computation. The method is strengthened by a new SynLongVideo dataset and progressive training strategy, demonstrating broad applicability across five different MLLM architectures for improved long-form video understanding while maintaining computational efficiency.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Towards Effective and Efficient Long Video Understanding of Multimodal Large Language Models via One-shot Clip Retrieval", "This work addresses the memory bottleneck limiting MLLMs to short videos by introducing OneClip-RAG, a retrieval-augmentation approach that efficiently chunks long videos into semantic clips and performs query-guided retrieval in a single processing step, avoiding redundant computation. The method is strengthened by a new SynLongVideo dataset and progressive training strategy, demonstrating broad applicability across five different MLLM architectures for improved long-form video understanding while maintaining computational efficiency.", "https://arxiv.org/abs/2512.08410")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08503" style="color:#4ea8ff;">Disrupting Hierarchical Reasoning: Adversarial Protection for Geographic Privacy in Multimodal Reasoning Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>ReasonBreak introduces a concept-aware adversarial framework to disrupt geographic location inference in multimodal large reasoning models by targeting hierarchical reasoning chains rather than applying uniform perturbations. Unlike existing privacy defenses designed for perception-only models, this approach exploits the vulnerability of MLRMs' multi-step reasoning by generating strategically-placed perturbations that cascade failures through dependent inference steps. This represents a significant advancement in adversarial privacy protection for vision-language models handling sensitive spatial data.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Disrupting Hierarchical Reasoning: Adversarial Protection for Geographic Privacy in Multimodal Reasoning Models", "ReasonBreak introduces a concept-aware adversarial framework to disrupt geographic location inference in multimodal large reasoning models by targeting hierarchical reasoning chains rather than applying uniform perturbations. Unlike existing privacy defenses designed for perception-only models, this approach exploits the vulnerability of MLRMs' multi-step reasoning by generating strategically-placed perturbations that cascade failures through dependent inference steps. This represents a significant advancement in adversarial privacy protection for vision-language models handling sensitive spatial data.", "https://arxiv.org/abs/2512.08503")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08524" style="color:#4ea8ff;">Beyond Real Weights: Hypercomplex Representations for Stable Quantization</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper proposes Parameterized Hypercomplex Multiplication (PHM) layers as a progressive reparameterization strategy to compress multimodal language models by replacing dense feed-forward blocks with more compact hypercomplex representations. The approach uses residual interpolation scheduling with reconstruction and knowledge distillation losses to maintain functional equivalence during training, achieving significant parameter and FLOP reductions while preserving multimodal alignment quality. The practical implication is efficient deployment of VLMs/MLLMs with maintained performance—particularly valuable for edge deployment scenarios where computational constraints are critical.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Beyond Real Weights: Hypercomplex Representations for Stable Quantization", "This paper proposes Parameterized Hypercomplex Multiplication (PHM) layers as a progressive reparameterization strategy to compress multimodal language models by replacing dense feed-forward blocks with more compact hypercomplex representations. The approach uses residual interpolation scheduling with reconstruction and knowledge distillation losses to maintain functional equivalence during training, achieving significant parameter and FLOP reductions while preserving multimodal alignment quality. The practical implication is efficient deployment of VLMs/MLLMs with maintained performance—particularly valuable for edge deployment scenarios where computational constraints are critical.", "https://arxiv.org/abs/2512.08524")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08534" style="color:#4ea8ff;">PaintFlow: A Unified Framework for Interactive Oil Paintings Editing and Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 28</span></div>
+  <p>PaintFlow introduces a unified multimodal framework for oil painting generation and editing that integrates reference images, hand-drawn sketches, and natural language prompts to enable fine-grained semantic control while maintaining consistent artistic style. The system addresses the core challenge of oil painting's complex brushstroke dynamics through spatial alignment and semantic enhancement techniques during training, enabling interactive user-driven creation rather than being constrained by training data distributions. This approach extends beyond traditional photo-editing paradigms to handle high-level artistic mediums, offering developers and researchers a foundation for style-preserving generative systems in domain-specific creative applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "PaintFlow: A Unified Framework for Interactive Oil Paintings Editing and Generation", "PaintFlow introduces a unified multimodal framework for oil painting generation and editing that integrates reference images, hand-drawn sketches, and natural language prompts to enable fine-grained semantic control while maintaining consistent artistic style. The system addresses the core challenge of oil painting's complex brushstroke dynamics through spatial alignment and semantic enhancement techniques during training, enabling interactive user-driven creation rather than being constrained by training data distributions. This approach extends beyond traditional photo-editing paradigms to handle high-level artistic mediums, offering developers and researchers a foundation for style-preserving generative systems in domain-specific creative applications.", "https://arxiv.org/abs/2512.08534")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08564" style="color:#4ea8ff;">Modular Neural Image Signal Processing</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper proposes a modular neural ISP architecture that decomposes raw-to-display image rendering into controllable intermediate stages, enabling independent manipulation of specific processing steps rather than end-to-end black-box processing. The modular design yields significant practical benefits: improved generalization across camera sensors, better debuggability, style flexibility, and enables interactive photo-editing with unlimited re-rendering capability through decoupled processing stages. This approach represents a shift from monolithic neural ISP models toward interpretable, component-based pipelines that maintain rendering quality while providing users and developers explicit control over the rendering process.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Modular Neural Image Signal Processing", "This paper proposes a modular neural ISP architecture that decomposes raw-to-display image rendering into controllable intermediate stages, enabling independent manipulation of specific processing steps rather than end-to-end black-box processing. The modular design yields significant practical benefits: improved generalization across camera sensors, better debuggability, style flexibility, and enables interactive photo-editing with unlimited re-rendering capability through decoupled processing stages. This approach represents a shift from monolithic neural ISP models toward interpretable, component-based pipelines that maintain rendering quality while providing users and developers explicit control over the rendering process.", "https://arxiv.org/abs/2512.08564")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08924" style="color:#4ea8ff;">Efficiently Reconstructing Dynamic Scenes One D4RT at a Time</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-10
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>D4RT introduces a unified transformer-based feedforward model that jointly reconstructs depth, camera parameters, and spatio-temporal correspondence from single videos by replacing dense per-frame decoding with a flexible querying mechanism that probes 3D positions at arbitrary space-time coordinates. This approach significantly reduces computational overhead while achieving state-of-the-art 4D reconstruction performance, offering a more scalable alternative to existing multi-decoder architectures for dynamic scene understanding.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Efficiently Reconstructing Dynamic Scenes One D4RT at a Time", "D4RT introduces a unified transformer-based feedforward model that jointly reconstructs depth, camera parameters, and spatio-temporal correspondence from single videos by replacing dense per-frame decoding with a flexible querying mechanism that probes 3D positions at arbitrary space-time coordinates. This approach significantly reduces computational overhead while achieving state-of-the-art 4D reconstruction performance, offering a more scalable alternative to existing multi-decoder architectures for dynamic scene understanding.", "https://arxiv.org/abs/2512.08924")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
