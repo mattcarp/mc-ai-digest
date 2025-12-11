@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-11</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-11</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08979" style="color:#4ea8ff;">What Happens When: Learning Temporal Orders of Events in Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Researchers identified a critical gap in Video Large Multimodal Models (VLMMs): despite strong benchmark performance, these models fail at capturing true temporal event sequences, instead relying on scenario priors even when video frames are deliberately scrambled. To address this, they introduce VECTOR, a benchmark specifically designed to assess temporal reasoning, and propose MECOT, a fine-tuning approach using multi-event Chain-of-Thought instruction training to improve event-by-event temporal understanding. This work has significant implications for video understanding systems used in surveillance, instruction following, and safety-critical applications where accurate event sequencing is essential.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "What Happens When: Learning Temporal Orders of Events in Videos", "Researchers identified a critical gap in Video Large Multimodal Models (VLMMs): despite strong benchmark performance, these models fail at capturing true temporal event sequences, instead relying on scenario priors even when video frames are deliberately scrambled. To address this, they introduce VECTOR, a benchmark specifically designed to assess temporal reasoning, and propose MECOT, a fine-tuning approach using multi-event Chain-of-Thought instruction training to improve event-by-event temporal understanding. This work has significant implications for video understanding systems used in surveillance, instruction following, and safety-critical applications where accurate event sequencing is essential.", "https://arxiv.org/abs/2512.08979")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09010" style="color:#4ea8ff;">Towards Lossless Ultimate Vision Token Compression for VLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper addresses VLM computational inefficiency by proposing LUVC, a lossless vision token compression framework that combines iterative merging in the visual encoder with spectrum-based pruning in the LLM layer, avoiding position bias and class imbalance limitations of existing attention-based methods. The key innovation is moving compression upstream to the encoder via orthogonal spatial merging and introducing a spectrum pruning unit as an attention-free, FlashAttention-compatible low-pass filter that gradually removes redundant tokens while preserving accuracy. This approach achieves end-to-end acceleration across the entire VLM pipeline while maintaining compatibility with modern efficient attention implementations, directly addressing latency bottlenecks in high-resolution image/video processing.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Towards Lossless Ultimate Vision Token Compression for VLMs", "This paper addresses VLM computational inefficiency by proposing LUVC, a lossless vision token compression framework that combines iterative merging in the visual encoder with spectrum-based pruning in the LLM layer, avoiding position bias and class imbalance limitations of existing attention-based methods. The key innovation is moving compression upstream to the encoder via orthogonal spatial merging and introducing a spectrum pruning unit as an attention-free, FlashAttention-compatible low-pass filter that gradually removes redundant tokens while preserving accuracy. This approach achieves end-to-end acceleration across the entire VLM pipeline while maintaining compatibility with modern efficient attention implementations, directly addressing latency bottlenecks in high-resolution image/video processing.", "https://arxiv.org/abs/2512.09010")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09616" style="color:#4ea8ff;">Rethinking Chain-of-Thought Reasoning for Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper challenges the assumption that verbose chain-of-thought reasoning and dense visual token representations are necessary for video understanding, proposing instead that compressed visual tokens combined with concise reasoning traces can maintain competitive performance while dramatically improving inference efficiency. The authors develop a post-training framework that enables MLLMs to operate on reduced visual token sets and generate brief reasoning patterns, achieving better computational efficiency across multiple benchmarks without sacrificing accuracy. This finding has significant practical implications for deploying video reasoning systems at scale, potentially reducing memory consumption and latency in production multimodal applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Rethinking Chain-of-Thought Reasoning for Videos", "This paper challenges the assumption that verbose chain-of-thought reasoning and dense visual token representations are necessary for video understanding, proposing instead that compressed visual tokens combined with concise reasoning traces can maintain competitive performance while dramatically improving inference efficiency. The authors develop a post-training framework that enables MLLMs to operate on reduced visual token sets and generate brief reasoning patterns, achieving better computational efficiency across multiple benchmarks without sacrificing accuracy. This finding has significant practical implications for deploying video reasoning systems at scale, potentially reducing memory consumption and latency in production multimodal applications.", "https://arxiv.org/abs/2512.09616")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08979" style="color:#4ea8ff;">What Happens When: Learning Temporal Orders of Events in Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Researchers discovered that current Video Large Multimodal Models (VLMMs) fail at genuine temporal reasoning—they achieve high scores on existing benchmarks even with scrambled frames by relying on semantic priors rather than sequential processing. They introduce VECTOR, a benchmark specifically measuring temporal event ordering comprehension, and propose MECOT, a multi-event chain-of-thought fine-tuning approach that trains models through detailed event-by-event decomposition to improve temporal understanding. This work reveals a critical capability gap in VLMMs and provides a targeted solution addressing the distinction between semantic understanding and true temporal reasoning in video comprehension.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "What Happens When: Learning Temporal Orders of Events in Videos", "Researchers discovered that current Video Large Multimodal Models (VLMMs) fail at genuine temporal reasoning—they achieve high scores on existing benchmarks even with scrambled frames by relying on semantic priors rather than sequential processing. They introduce VECTOR, a benchmark specifically measuring temporal event ordering comprehension, and propose MECOT, a multi-event chain-of-thought fine-tuning approach that trains models through detailed event-by-event decomposition to improve temporal understanding. This work reveals a critical capability gap in VLMMs and provides a targeted solution addressing the distinction between semantic understanding and true temporal reasoning in video comprehension.", "https://arxiv.org/abs/2512.08979")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09010" style="color:#4ea8ff;">Towards Lossless Ultimate Vision Token Compression for VLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces LUVC, a compression framework that addresses redundancy in Vision Language Models through two novel mechanisms: an iterative merging scheme in the visual encoder (orthogonal to spatial axes) and an attention-free spectrum pruning unit in the LLM layer that acts as a low-pass filter. The key innovation is overcoming prior limitations like position bias and poor shallow-layer generalization by decoupling compression across both encoder and decoder, while maintaining compatibility with modern acceleration techniques like FlashAttention. This approach enables significant computational efficiency gains for high-resolution image/video processing in VLMs without accuracy degradation.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Towards Lossless Ultimate Vision Token Compression for VLMs", "This paper introduces LUVC, a compression framework that addresses redundancy in Vision Language Models through two novel mechanisms: an iterative merging scheme in the visual encoder (orthogonal to spatial axes) and an attention-free spectrum pruning unit in the LLM layer that acts as a low-pass filter. The key innovation is overcoming prior limitations like position bias and poor shallow-layer generalization by decoupling compression across both encoder and decoder, while maintaining compatibility with modern acceleration techniques like FlashAttention. This approach enables significant computational efficiency gains for high-resolution image/video processing in VLMs without accuracy degradation.", "https://arxiv.org/abs/2512.09010")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09616" style="color:#4ea8ff;">Rethinking Chain-of-Thought Reasoning for Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper challenges the assumption that video reasoning MLLMs require lengthy chain-of-thought chains and dense visual tokens, proposing instead that compressed visual representations combined with concise reasoning traces can maintain performance while dramatically improving inference efficiency. The authors introduce a post-training framework that enables models to operate on reduced token budgets while preserving reasoning quality across diverse video understanding benchmarks. The work has significant practical implications for deploying video MLLMs in resource-constrained environments without sacrificing reasoning capability.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Rethinking Chain-of-Thought Reasoning for Videos", "This paper challenges the assumption that video reasoning MLLMs require lengthy chain-of-thought chains and dense visual tokens, proposing instead that compressed visual representations combined with concise reasoning traces can maintain performance while dramatically improving inference efficiency. The authors introduce a post-training framework that enables models to operate on reduced token budgets while preserving reasoning quality across diverse video understanding benchmarks. The work has significant practical implications for deploying video MLLMs in resource-constrained environments without sacrificing reasoning capability.", "https://arxiv.org/abs/2512.09616")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.08953" style="color:#4ea8ff;">SimClinician: A Multimodal Simulation Testbed for Reliable Psychologist AI Collaboration in Mental Health Diagnosis</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>SimClinician introduces a multimodal simulation testbed that moves beyond isolated AI accuracy metrics by modeling real psychologist-AI collaboration dynamics in mental health diagnosis—integrating audio, text, gaze-expression patterns, and decision transparency to reveal how interface design influences clinician acceptance of AI suggestions. The platform's key innovation is mapping AI outputs to multimodal evidence with interpretable reasoning paths, addressing the critical gap between benchmark performance and clinical deployment where tone, pauses, and nonverbal cues fundamentally shape diagnostic decisions. This addresses a practical bottleneck: evaluating AI reliability in high-stakes mental health contexts before live studies through controlled simulation rather than post-hoc analysis.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SimClinician: A Multimodal Simulation Testbed for Reliable Psychologist AI Collaboration in Mental Health Diagnosis", "SimClinician introduces a multimodal simulation testbed that moves beyond isolated AI accuracy metrics by modeling real psychologist-AI collaboration dynamics in mental health diagnosis—integrating audio, text, gaze-expression patterns, and decision transparency to reveal how interface design influences clinician acceptance of AI suggestions. The platform's key innovation is mapping AI outputs to multimodal evidence with interpretable reasoning paths, addressing the critical gap between benchmark performance and clinical deployment where tone, pauses, and nonverbal cues fundamentally shape diagnostic decisions. This addresses a practical bottleneck: evaluating AI reliability in high-stakes mental health contexts before live studies through controlled simulation rather than post-hoc analysis.", "https://arxiv.org/abs/2512.08953")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2412.11927" style="color:#4ea8ff;">Transparent and Coherent Procedural Mistake Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This work reformulates procedural mistake detection from opaque classification to interpretable visual reasoning by requiring VLMs to generate self-dialog rationales explaining their decisions, addressing a critical transparency gap in egocentric task validation. The authors introduce automated coherence metrics leveraging NLI models to evaluate rationale quality, establishing benchmarks that reveal current VLMs require significant adaptation despite their strong image understanding capabilities.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Transparent and Coherent Procedural Mistake Detection", "This work reformulates procedural mistake detection from opaque classification to interpretable visual reasoning by requiring VLMs to generate self-dialog rationales explaining their decisions, addressing a critical transparency gap in egocentric task validation. The authors introduce automated coherence metrics leveraging NLI models to evaluate rationale quality, establishing benchmarks that reveal current VLMs require significant adaptation despite their strong image understanding capabilities.", "https://arxiv.org/abs/2412.11927")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.06316" style="color:#4ea8ff;">ALIGN: A Vision-Language Framework for High-Accuracy Accident Location Inference through Geo-Spatial Neural Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>ALIGN introduces a multimodal vision-language framework that addresses geospatial accident location inference by combining OCR, LLM reasoning, and map-based verification to handle unstructured, multilingual accident reports—a critical challenge for low- and middle-income countries lacking reliable crash data infrastructure. The system's grid-based spatial reasoning approach emulates human geographic inference, enabling accurate coordinate prediction from incomplete place descriptions and mixed-script content where traditional text-based geocoding fails. This work demonstrates practical value for safety analysis and infrastructure planning in regions with poor data coverage, while advancing multimodal reasoning capabilities for structured information extraction from noisy, multilingual inputs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ALIGN: A Vision-Language Framework for High-Accuracy Accident Location Inference through Geo-Spatial Neural Reasoning", "ALIGN introduces a multimodal vision-language framework that addresses geospatial accident location inference by combining OCR, LLM reasoning, and map-based verification to handle unstructured, multilingual accident reports—a critical challenge for low- and middle-income countries lacking reliable crash data infrastructure. The system's grid-based spatial reasoning approach emulates human geographic inference, enabling accurate coordinate prediction from incomplete place descriptions and mixed-script content where traditional text-based geocoding fails. This work demonstrates practical value for safety analysis and infrastructure planning in regions with poor data coverage, while advancing multimodal reasoning capabilities for structured information extraction from noisy, multilingual inputs.", "https://arxiv.org/abs/2511.06316")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2411.14499" style="color:#4ea8ff;">Understanding World or Predicting Future? A Comprehensive Survey of World Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This survey comprehensively categorizes world models into two core functions: building interpretable internal representations of world mechanics and predicting future dynamics for simulation and control. The work synthesizes progress across both paradigms while examining applications in generative games, autonomous driving, robotics, and social simulation—reflecting how multimodal LLMs and video generation models are advancing AGI research. Key technical implications include the tension between interpretability (understanding) and predictive capability (forecasting), with practical systems requiring hybrid approaches that balance both objectives.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Understanding World or Predicting Future? A Comprehensive Survey of World Models", "This survey comprehensively categorizes world models into two core functions: building interpretable internal representations of world mechanics and predicting future dynamics for simulation and control. The work synthesizes progress across both paradigms while examining applications in generative games, autonomous driving, robotics, and social simulation—reflecting how multimodal LLMs and video generation models are advancing AGI research. Key technical implications include the tension between interpretability (understanding) and predictive capability (forecasting), with practical systems requiring hybrid approaches that balance both objectives.", "https://arxiv.org/abs/2411.14499")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.15843" style="color:#4ea8ff;">Enhanced Sentiment Interpretation via a Lexicon-Fuzzy-Transformer Framework</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This work introduces a hybrid sentiment analysis framework that strategically combines VADER lexicon heuristics, DistilBERT transformer embeddings, and fuzzy logic inference to generate nuanced continuous sentiment scores across domain-specific contexts. The two-stage refinement process—using confidence-weighted DistilBERT adjustments followed by fuzzy membership mapping—addresses the common problem of excessive neutrality bias in transformer-only approaches while maintaining computational efficiency through model distillation. The evaluation across four distinct domains (food delivery, e-commerce, tourism, and presumably another) demonstrates that ensemble approaches leveraging both symbolic and neural methods can better capture sentiment intensity variations than single-paradigm solutions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Enhanced Sentiment Interpretation via a Lexicon-Fuzzy-Transformer Framework", "This work introduces a hybrid sentiment analysis framework that strategically combines VADER lexicon heuristics, DistilBERT transformer embeddings, and fuzzy logic inference to generate nuanced continuous sentiment scores across domain-specific contexts. The two-stage refinement process—using confidence-weighted DistilBERT adjustments followed by fuzzy membership mapping—addresses the common problem of excessive neutrality bias in transformer-only approaches while maintaining computational efficiency through model distillation. The evaluation across four distinct domains (food delivery, e-commerce, tourism, and presumably another) demonstrates that ensemble approaches leveraging both symbolic and neural methods can better capture sentiment intensity variations than single-paradigm solutions.", "https://arxiv.org/abs/2510.15843")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09299" style="color:#4ea8ff;">VABench: A Comprehensive Benchmark for Audio-Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>VABench introduces the first comprehensive multi-dimensional benchmark for evaluating synchronized audio-video generation across three task types (T2AV, I2AV, stereo), addressing a critical gap where existing video benchmarks overlook audio-visual alignment. The framework evaluates 15 dimensions including cross-modal similarities, temporal synchronization, and lip-speech consistency—essential for assessing whether generated audio and video are perceptually coherent rather than independently high-quality. This systematization will likely accelerate development of audio-visual generation models by providing standardized metrics that currently don't exist in the field.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "VABench: A Comprehensive Benchmark for Audio-Video Generation", "VABench introduces the first comprehensive multi-dimensional benchmark for evaluating synchronized audio-video generation across three task types (T2AV, I2AV, stereo), addressing a critical gap where existing video benchmarks overlook audio-visual alignment. The framework evaluates 15 dimensions including cross-modal similarities, temporal synchronization, and lip-speech consistency—essential for assessing whether generated audio and video are perceptually coherent rather than independently high-quality. This systematization will likely accelerate development of audio-visual generation models by providing standardized metrics that currently don't exist in the field.", "https://arxiv.org/abs/2512.09299")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09354" style="color:#4ea8ff;">Video-QTR: Query-Driven Temporal Reasoning Framework for Lightweight Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>**Video-QTR** introduces a query-guided temporal reasoning framework that replaces exhaustive frame encoding with dynamic, query-driven resource allocation for long-video understanding in MLLMs, drastically reducing computational overhead and token bloat. The key innovation shifts from the traditional "process-then-reason" paradigm to "reason-then-process," enabling semantic-aware frame selection rather than dense encoding—critical for scaling video MLLMs to real-world deployment constraints. This approach addresses the fundamental inefficiency of current systems where redundant visual token generation dominates memory usage and computation, particularly relevant for inference-constrained edge applications and long-form video analysis.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Video-QTR: Query-Driven Temporal Reasoning Framework for Lightweight Video Understanding", "**Video-QTR** introduces a query-guided temporal reasoning framework that replaces exhaustive frame encoding with dynamic, query-driven resource allocation for long-video understanding in MLLMs, drastically reducing computational overhead and token bloat. The key innovation shifts from the traditional \"process-then-reason\" paradigm to \"reason-then-process,\" enabling semantic-aware frame selection rather than dense encoding—critical for scaling video MLLMs to real-world deployment constraints. This approach addresses the fundamental inefficiency of current systems where redundant visual token generation dominates memory usage and computation, particularly relevant for inference-constrained edge applications and long-form video analysis.", "https://arxiv.org/abs/2512.09354")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09663" style="color:#4ea8ff;">IF-Bench: Benchmarking and Enhancing MLLMs for Infrared Images with Generative Visual Prompting</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#f59e0b;">⚡ 42</span></div>
+  <p>IF-Bench introduces the first comprehensive benchmark for evaluating MLLMs on infrared imagery, comprising 499 carefully sourced images with 680 QA pairs across 10 understanding dimensions, enabling systematic analysis of 40+ models across different scales and architectures. The study employs robust evaluation methodologies (cyclic evaluation, bilingual assessment, hybrid judgment) and proposes a training-free generative approach to enhance infrared comprehension, revealing how model design choices impact thermal image understanding—a critical gap for applications requiring temperature-sensitive analysis.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "IF-Bench: Benchmarking and Enhancing MLLMs for Infrared Images with Generative Visual Prompting", "IF-Bench introduces the first comprehensive benchmark for evaluating MLLMs on infrared imagery, comprising 499 carefully sourced images with 680 QA pairs across 10 understanding dimensions, enabling systematic analysis of 40+ models across different scales and architectures. The study employs robust evaluation methodologies (cyclic evaluation, bilingual assessment, hybrid judgment) and proposes a training-free generative approach to enhance infrared comprehension, revealing how model design choices impact thermal image understanding—a critical gap for applications requiring temperature-sensitive analysis.", "https://arxiv.org/abs/2512.09663")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.09814" style="color:#4ea8ff;">DynaIP: Dynamic Image Prompt Adapter for Scalable Zero-shot Personalized Text-to-Image Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-11
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 62</span></div>
+  <p>DynaIP introduces a dynamic adapter plugin for zero-shot personalized text-to-image generation that leverages the inherent decoupling behavior of multimodal diffusion transformers to balance concept preservation with prompt-following while scaling to multi-subject scenarios. The method addresses three critical limitations of current approaches: maintaining equilibrium between reference image fidelity and text guidance, preserving fine-grained details from input images, and enabling scalability beyond single-subject personalization without test-time fine-tuning. This represents a practical advancement for production-grade PT2I systems that require both visual consistency and compositional flexibility across variable subject counts.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "DynaIP: Dynamic Image Prompt Adapter for Scalable Zero-shot Personalized Text-to-Image Generation", "DynaIP introduces a dynamic adapter plugin for zero-shot personalized text-to-image generation that leverages the inherent decoupling behavior of multimodal diffusion transformers to balance concept preservation with prompt-following while scaling to multi-subject scenarios. The method addresses three critical limitations of current approaches: maintaining equilibrium between reference image fidelity and text guidance, preserving fine-grained details from input images, and enabling scalability beyond single-subject personalization without test-time fine-tuning. This represents a practical advancement for production-grade PT2I systems that require both visual consistency and compositional flexibility across variable subject counts.", "https://arxiv.org/abs/2512.09814")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
