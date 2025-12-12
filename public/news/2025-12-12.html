@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-12</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-12</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10932" style="color:#4ea8ff;">BabyVLM-V2: Toward Developmentally Grounded Pretraining and Benchmarking of Vision Foundation Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>BabyVLM-V2 introduces a developmentally-grounded framework for vision-language pretraining that leverages infant developmental trajectories to achieve sample efficiency, utilizing a longitudinal audiovisual corpus designed to mirror early childhood experiences. The framework features the DevCV Toolbox, which adapts NIH Baby Toolbox cognitive measures into a multimodal benchmark suite covering spatial reasoning, memory, and vocabulary—enabling rigorous evaluation of vision models against human developmental milestones. This approach demonstrates that compact models can achieve strong performance through cognitively-aligned pretraining, offering a principled alternative to scale-focused foundation model development.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "BabyVLM-V2: Toward Developmentally Grounded Pretraining and Benchmarking of Vision Foundation Models", "BabyVLM-V2 introduces a developmentally-grounded framework for vision-language pretraining that leverages infant developmental trajectories to achieve sample efficiency, utilizing a longitudinal audiovisual corpus designed to mirror early childhood experiences. The framework features the DevCV Toolbox, which adapts NIH Baby Toolbox cognitive measures into a multimodal benchmark suite covering spatial reasoning, memory, and vocabulary—enabling rigorous evaluation of vision models against human developmental milestones. This approach demonstrates that compact models can achieve strong performance through cognitively-aligned pretraining, offering a principled alternative to scale-focused foundation model development.", "https://arxiv.org/abs/2512.10932")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10324" style="color:#4ea8ff;">EchoingPixels: Cross-Modal Adaptive Token Reduction for Efficient Audio-Visual LLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>EchoingPixels introduces Cross-Modal Semantic Sieve (CS2), a novel token reduction framework that jointly processes audio-visual streams rather than compressing modalities independently, enabling early cross-modal interaction to exploit synergies between audio and video. The key innovation is dynamic, context-aware token budgeting that adapts to the varying information density of audio and video rather than applying static per-modality reduction, directly addressing a previously unresolved bottleneck in AV-LLM efficiency. This approach promises significant computational savings for multimodal LLM inference while maintaining semantic coherence by leveraging the natural coexistence of audio and visual information in real-world scenes.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "EchoingPixels: Cross-Modal Adaptive Token Reduction for Efficient Audio-Visual LLMs", "EchoingPixels introduces Cross-Modal Semantic Sieve (CS2), a novel token reduction framework that jointly processes audio-visual streams rather than compressing modalities independently, enabling early cross-modal interaction to exploit synergies between audio and video. The key innovation is dynamic, context-aware token budgeting that adapts to the varying information density of audio and video rather than applying static per-modality reduction, directly addressing a previously unresolved bottleneck in AV-LLM efficiency. This approach promises significant computational savings for multimodal LLM inference while maintaining semantic coherence by leveraging the natural coexistence of audio and visual information in real-world scenes.", "https://arxiv.org/abs/2512.10324")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10652" style="color:#4ea8ff;">TriDF: Evaluating Perception, Detection, and Hallucination for Interpretable DeepFake Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>TriDF introduces a comprehensive multi-modal deepfake detection benchmark that evaluates three critical dimensions: perception (fine-grained artifact identification with human annotations), detection (classification across 16 forgery types in image/video/audio), and hallucination (explanation reliability)—addressing the need for interpretable rather than just accurate detection systems. This framework is particularly valuable for assessing whether deepfake detectors can provide trustworthy reasoning alongside predictions, which is essential for real-world deployment in security and forensics applications. The multi-modal scope and explicit focus on explanation hallucination sets it apart from prior benchmarks by acknowledging that detection confidence alone is insufficient when stakes involve public trust and legal applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TriDF: Evaluating Perception, Detection, and Hallucination for Interpretable DeepFake Detection", "TriDF introduces a comprehensive multi-modal deepfake detection benchmark that evaluates three critical dimensions: perception (fine-grained artifact identification with human annotations), detection (classification across 16 forgery types in image/video/audio), and hallucination (explanation reliability)—addressing the need for interpretable rather than just accurate detection systems. This framework is particularly valuable for assessing whether deepfake detectors can provide trustworthy reasoning alongside predictions, which is essential for real-world deployment in security and forensics applications. The multi-modal scope and explicit focus on explanation hallucination sets it apart from prior benchmarks by acknowledging that detection confidence alone is insufficient when stakes involve public trust and legal applications.", "https://arxiv.org/abs/2512.10652")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10932" style="color:#4ea8ff;">BabyVLM-V2: Toward Developmentally Grounded Pretraining and Benchmarking of Vision Foundation Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>BabyVLM-V2 introduces a developmentally-grounded vision-language framework that leverages infant learning trajectories for sample-efficient pretraining, utilizing longitudinal audiovisual corpora that mirrors natural childhood experiences through video, image, and conversational data modalities. The framework's key innovation is the DevCV Toolbox—a comprehensive multimodal benchmark suite of ten tasks grounded in NIH Baby Toolbox cognitive assessments—enabling evaluation of spatial reasoning, memory, and vocabulary understanding aligned with early developmental capabilities. This approach suggests that biologically-inspired pretraining curricula and cognitively-validated benchmarks can improve both model efficiency and interpretability for compact vision-language models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "BabyVLM-V2: Toward Developmentally Grounded Pretraining and Benchmarking of Vision Foundation Models", "BabyVLM-V2 introduces a developmentally-grounded vision-language framework that leverages infant learning trajectories for sample-efficient pretraining, utilizing longitudinal audiovisual corpora that mirrors natural childhood experiences through video, image, and conversational data modalities. The framework's key innovation is the DevCV Toolbox—a comprehensive multimodal benchmark suite of ten tasks grounded in NIH Baby Toolbox cognitive assessments—enabling evaluation of spatial reasoning, memory, and vocabulary understanding aligned with early developmental capabilities. This approach suggests that biologically-inspired pretraining curricula and cognitively-validated benchmarks can improve both model efficiency and interpretability for compact vision-language models.", "https://arxiv.org/abs/2512.10932")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10300" style="color:#4ea8ff;">Investigating The Functional Roles of Attention Heads in Vision Language Models: Evidence for Reasoning Modules</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Researchers introduce CogVision, an interpretability framework that decomposes multimodal reasoning into step-by-step cognitive functions to systematically analyze attention heads in vision-language models, identifying sparse "functional heads" that specialize in specific tasks like visual perception and inference. Using probing-based methodology across VLM families, they demonstrate that these functional heads are universally sparse and vary in distribution, providing empirical evidence that VLMs organize reasoning through modular attention mechanisms rather than diffuse processing. This work offers practical implications for model compression, debugging, and designing more interpretable multimodal architectures by revealing how VLMs internally structure reasoning tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Investigating The Functional Roles of Attention Heads in Vision Language Models: Evidence for Reasoning Modules", "Researchers introduce CogVision, an interpretability framework that decomposes multimodal reasoning into step-by-step cognitive functions to systematically analyze attention heads in vision-language models, identifying sparse \"functional heads\" that specialize in specific tasks like visual perception and inference. Using probing-based methodology across VLM families, they demonstrate that these functional heads are universally sparse and vary in distribution, providing empirical evidence that VLMs organize reasoning through modular attention mechanisms rather than diffuse processing. This work offers practical implications for model compression, debugging, and designing more interpretable multimodal architectures by revealing how VLMs internally structure reasoning tasks.", "https://arxiv.org/abs/2512.10300")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10041" style="color:#4ea8ff;">MetaVoxel: Joint Diffusion Modeling of Imaging and Clinical Metadata</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>MetaVoxel introduces a unified diffusion-based framework that jointly models medical imaging and clinical metadata through a single diffusion process, enabling flexible zero-shot inference across traditionally separate tasks (image generation, biomarker estimation, classification) without task-specific retraining. Trained on 10,000+ multi-dataset T1-weighted MRI scans, this approach captures the true joint distribution rather than task-specific conditionals, allowing arbitrary input-output combinations—a significant departure from conventional conditional models that require separate architectures for each prediction direction.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MetaVoxel: Joint Diffusion Modeling of Imaging and Clinical Metadata", "MetaVoxel introduces a unified diffusion-based framework that jointly models medical imaging and clinical metadata through a single diffusion process, enabling flexible zero-shot inference across traditionally separate tasks (image generation, biomarker estimation, classification) without task-specific retraining. Trained on 10,000+ multi-dataset T1-weighted MRI scans, this approach captures the true joint distribution rather than task-specific conditionals, allowing arbitrary input-output combinations—a significant departure from conventional conditional models that require separate architectures for each prediction direction.", "https://arxiv.org/abs/2512.10041")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2505.04638" style="color:#4ea8ff;">Advancing AI Research Assistants with Expert-Involved Learning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>ARIEL introduces an expert-in-the-loop evaluation framework for biomedical AI research assistants, using curated multimodal corpora and PhD-level blinded assessment to expose critical gaps: current LLMs produce fluent but incomplete article summaries, while LMMs fail at detailed visual reasoning tasks. The work demonstrates that prompt engineering and lightweight fine-tuning significantly improve textual coverage, compute-scaled inference enhances visual QA, and integrating textual-visual cues enables the system to propose mechanistically grounded hypotheses—establishing a practical benchmark for reliability assessment in biomedical AI deployment.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Advancing AI Research Assistants with Expert-Involved Learning", "ARIEL introduces an expert-in-the-loop evaluation framework for biomedical AI research assistants, using curated multimodal corpora and PhD-level blinded assessment to expose critical gaps: current LLMs produce fluent but incomplete article summaries, while LMMs fail at detailed visual reasoning tasks. The work demonstrates that prompt engineering and lightweight fine-tuning significantly improve textual coverage, compute-scaled inference enhances visual QA, and integrating textual-visual cues enables the system to propose mechanistically grounded hypotheses—establishing a practical benchmark for reliability assessment in biomedical AI deployment.", "https://arxiv.org/abs/2505.04638")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.19195" style="color:#4ea8ff;">Rethinking Driving World Model as Synthetic Data Generator for Perception Tasks</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Dream4Drive proposes a 3D-aware decomposition approach for synthetic data generation from driving world models, specifically optimized for downstream perception tasks rather than just generation quality metrics. The work challenges the common pretraining-then-finetuning paradigm by demonstrating that naive synthetic data often provides negligible benefits when accounting for increased training epochs, suggesting task-aligned data generation is critical for autonomous driving perception. This represents a shift from generation-centric to perception-centric evaluation of synthetic driving data, with implications for more efficient training of autonomous vehicle perception systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Rethinking Driving World Model as Synthetic Data Generator for Perception Tasks", "Dream4Drive proposes a 3D-aware decomposition approach for synthetic data generation from driving world models, specifically optimized for downstream perception tasks rather than just generation quality metrics. The work challenges the common pretraining-then-finetuning paradigm by demonstrating that naive synthetic data often provides negligible benefits when accounting for increased training epochs, suggesting task-aligned data generation is critical for autonomous driving perception. This represents a shift from generation-centric to perception-centric evaluation of synthetic driving data, with implications for more efficient training of autonomous vehicle perception systems.", "https://arxiv.org/abs/2510.19195")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.00090" style="color:#4ea8ff;">LeMiCa: Lexicographic Minimax Path Caching for Efficient Diffusion-Based Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>LeMiCa introduces a training-free acceleration framework for diffusion video generation that addresses global error accumulation in existing caching strategies by formulating cache scheduling as a weighted directed graph problem and applying Lexicographic Minimax Path Optimization to bound worst-case errors. The approach achieves significant practical gains—2.9x speedup on Latte and LPIPS score of 0.05 on Open-Sora—while maintaining frame consistency and generation quality, making it immediately applicable to production video synthesis pipelines without retraining.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "LeMiCa: Lexicographic Minimax Path Caching for Efficient Diffusion-Based Video Generation", "LeMiCa introduces a training-free acceleration framework for diffusion video generation that addresses global error accumulation in existing caching strategies by formulating cache scheduling as a weighted directed graph problem and applying Lexicographic Minimax Path Optimization to bound worst-case errors. The approach achieves significant practical gains—2.9x speedup on Latte and LPIPS score of 0.05 on Open-Sora—while maintaining frame consistency and generation quality, making it immediately applicable to production video synthesis pipelines without retraining.", "https://arxiv.org/abs/2511.00090")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.06112" style="color:#4ea8ff;">WAM-Flow: Parallel Coarse-to-Fine Motion Planning via Discrete Flow Matching for Autonomous Driving</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>WAM-Flow replaces autoregressive trajectory planning with discrete flow matching, enabling fully parallel, bidirectional denoising for coarse-to-fine motion refinement in autonomous driving—a key advantage for real-time inference with tunable compute-accuracy trade-offs. The approach innovates through metric-aligned tokenization with triplet-margin learning for geometric preservation, geometry-aware flow objectives, and simulator-guided GRPO alignment that balances safety, progress, and comfort while maintaining parallel generation capabilities. This represents a significant architectural shift from sequential decoding paradigms, offering potential improvements in inference latency and planning quality for autonomous systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "WAM-Flow: Parallel Coarse-to-Fine Motion Planning via Discrete Flow Matching for Autonomous Driving", "WAM-Flow replaces autoregressive trajectory planning with discrete flow matching, enabling fully parallel, bidirectional denoising for coarse-to-fine motion refinement in autonomous driving—a key advantage for real-time inference with tunable compute-accuracy trade-offs. The approach innovates through metric-aligned tokenization with triplet-margin learning for geometric preservation, geometry-aware flow objectives, and simulator-guided GRPO alignment that balances safety, progress, and comfort while maintaining parallel generation capabilities. This represents a significant architectural shift from sequential decoding paradigms, offering potential improvements in inference latency and planning quality for autonomous systems.", "https://arxiv.org/abs/2512.06112")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10041" style="color:#4ea8ff;">MetaVoxel: Joint Diffusion Modeling of Imaging and Clinical Metadata</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>MetaVoxel introduces a unified diffusion framework that jointly models medical imaging and clinical metadata within a single generative process, enabling flexible zero-shot inference across diverse tasks (image synthesis, biomarker estimation, disease classification) without task-specific retraining. The approach leverages a joint distribution over all variables rather than separate conditional models, demonstrated at scale on 10,000+ T1-weighted MRI scans across nine datasets, offering significant practical advantages in data efficiency and model modularity for medical AI applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MetaVoxel: Joint Diffusion Modeling of Imaging and Clinical Metadata", "MetaVoxel introduces a unified diffusion framework that jointly models medical imaging and clinical metadata within a single generative process, enabling flexible zero-shot inference across diverse tasks (image synthesis, biomarker estimation, disease classification) without task-specific retraining. The approach leverages a joint distribution over all variables rather than separate conditional models, demonstrated at scale on 10,000+ T1-weighted MRI scans across nine datasets, offering significant practical advantages in data efficiency and model modularity for medical AI applications.", "https://arxiv.org/abs/2512.10041")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10230" style="color:#4ea8ff;">Emerging Standards for Machine-to-Machine Video Coding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>MPEG is standardizing machine-optimized video compression through two complementary approaches: Video Coding for Machines (VCM) applies task-aware tools in the pixel domain, while Feature Coding for Machines (FCM) compresses intermediate neural network features to drastically reduce bandwidth while preserving privacy. FCM demonstrates significant bitrate reduction while maintaining near-edge-inference accuracy, addressing the inefficiency of streaming human-perception-optimized codecs (H.265) to ML systems and enabling secure compute offload without exposing raw pixels to third parties.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Emerging Standards for Machine-to-Machine Video Coding", "MPEG is standardizing machine-optimized video compression through two complementary approaches: Video Coding for Machines (VCM) applies task-aware tools in the pixel domain, while Feature Coding for Machines (FCM) compresses intermediate neural network features to drastically reduce bandwidth while preserving privacy. FCM demonstrates significant bitrate reduction while maintaining near-edge-inference accuracy, addressing the inefficiency of streaming human-perception-optimized codecs (H.265) to ML systems and enabling secure compute offload without exposing raw pixels to third parties.", "https://arxiv.org/abs/2512.10230")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10310" style="color:#4ea8ff;">Efficient-VLN: A Training-Efficient Vision-Language Navigation Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Efficient-VLN addresses the computational bottlenecks in MLLM-based Vision-Language Navigation by tackling quadratic token complexity from long observation sequences and the exploration-efficiency trade-off inherent in DAgger training. The paper proposes efficient memory mechanisms (progressive memory with dynamic allocation) to reduce token processing overhead while maintaining effective error-recovery during training and inference. This work has significant implications for making VLN systems more practical for real-world deployment by reducing both training time and computational requirements without sacrificing navigation performance.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Efficient-VLN: A Training-Efficient Vision-Language Navigation Model", "Efficient-VLN addresses the computational bottlenecks in MLLM-based Vision-Language Navigation by tackling quadratic token complexity from long observation sequences and the exploration-efficiency trade-off inherent in DAgger training. The paper proposes efficient memory mechanisms (progressive memory with dynamic allocation) to reduce token processing overhead while maintaining effective error-recovery during training and inference. This work has significant implications for making VLN systems more practical for real-world deployment by reducing both training time and computational requirements without sacrificing navigation performance.", "https://arxiv.org/abs/2512.10310")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10359" style="color:#4ea8ff;">Tool-Augmented Spatiotemporal Reasoning for Streamlining Video Question Answering Task</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces STAR (Spatiotemporal Reasoning Framework), a tool-augmented approach that enhances MLLMs for VideoQA by strategically orchestrating temporal and spatial analysis tools to progressively localize key regions rather than processing entire frames. The key innovation lies in addressing the sequential tool invocation problem—preventing "toolchain shortcuts"—through a structured scheduling mechanism that decomposes reasoning into coordinated spatial-temporal steps, improving upon GPT-4o's baseline VideoQA performance. This work has practical implications for building more efficient video understanding systems by reducing computational overhead through selective region focusing, relevant for real-time video analysis applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Tool-Augmented Spatiotemporal Reasoning for Streamlining Video Question Answering Task", "This paper introduces STAR (Spatiotemporal Reasoning Framework), a tool-augmented approach that enhances MLLMs for VideoQA by strategically orchestrating temporal and spatial analysis tools to progressively localize key regions rather than processing entire frames. The key innovation lies in addressing the sequential tool invocation problem—preventing \"toolchain shortcuts\"—through a structured scheduling mechanism that decomposes reasoning into coordinated spatial-temporal steps, improving upon GPT-4o's baseline VideoQA performance. This work has practical implications for building more efficient video understanding systems by reducing computational overhead through selective region focusing, relevant for real-time video analysis applications.", "https://arxiv.org/abs/2512.10359")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10408" style="color:#4ea8ff;">MultiHateLoc: Towards Temporal Localisation of Multimodal Hate Content in Online Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-12
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>MultiHateLoc introduces the first weakly-supervised framework for temporal localization of multimodal hate speech in videos, moving beyond coarse video-level classification to pinpoint when harmful content occurs across asynchronous visual, acoustic, and textual streams. The approach uses modality-aware temporal encoders to capture cross-modal dynamics and heterogeneous sequential patterns without requiring frame-level annotations, addressing a practical gap in content moderation at scale. This work has significant implications for automated hate speech detection systems on platforms like TikTok and YouTube, where weak supervision better reflects real-world deployment constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MultiHateLoc: Towards Temporal Localisation of Multimodal Hate Content in Online Videos", "MultiHateLoc introduces the first weakly-supervised framework for temporal localization of multimodal hate speech in videos, moving beyond coarse video-level classification to pinpoint when harmful content occurs across asynchronous visual, acoustic, and textual streams. The approach uses modality-aware temporal encoders to capture cross-modal dynamics and heterogeneous sequential patterns without requiring frame-level annotations, addressing a practical gap in content moderation at scale. This work has significant implications for automated hate speech detection systems on platforms like TikTok and YouTube, where weak supervision better reflects real-world deployment constraints.", "https://arxiv.org/abs/2512.10408")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
