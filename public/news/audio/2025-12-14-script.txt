@@ -1,0 +1,69 @@
+Chris: So there's this piece about why enterprise AI coding pilots are failing, and the headline actually gets it right for once - it's not the fucking model.
+
+Lily: Let me guess - companies bought into the hype, threw GitHub Copilot or whatever at their developers, and now they're wondering why they're not seeing the 40% productivity gains they were promised?
+
+Chris: Pretty much. But it's actually more interesting than that. The article's arguing that we've moved past the autocomplete phase - these tools are becoming actual agentic systems that can do multi-step reasoning, handle testing, validation, the whole workflow. Problem is, enterprises are still treating them like glorified autocomplete.
+
+Lily: Right, so what's actually missing? Because I'm assuming this is where someone's going to try to sell us another layer of infrastructure.
+
+Chris: [chuckles] Yeah, but they're not wrong here. It's context architecture. These agents need code structure, historical context, intent representation - basically the entire story of why your codebase looks the way it does. And most companies just don't have that organized in a way that's machine-readable.
+
+Lily: Okay, but that sounds like a massive systems engineering problem. You're talking about documenting decades of technical debt, organizational decisions, all the "why did Bob do it this way" tribal knowledge that only exists in people's heads.
+
+Chris: Exactly. And that's why these pilots are underperforming. You can have the best model in the world, but if it doesn't understand that this particular service architecture exists because of a merger three years ago, or that this code pattern is because you're working around a vendor limitation - it's going to generate shit code.
+
+Lily: So what's the actual path forward here? Because telling enterprises "hey, you need to build comprehensive context systems before AI coding tools work" sounds like a consulting goldmine but not exactly actionable.
+
+Chris: The article talks about environments where agents can branch, reconsider, revise decisions iteratively. Not just spitting out code snippets but actually working through problems the way a senior developer would. [pauses] But yeah, that requires infrastructure most places don't have.
+
+Lily: And let's be honest about the timeline here - if you're a mid-size enterprise with a tangled codebase, how long does it take to build that kind of context architecture? Six months? A year?
+
+Chris: At least. And here's the thing that pisses me off about how this is being sold - vendors are promising immediate productivity gains, but the real value is further down the line once you've done all this unglamorous groundwork. It's not a deployment problem, it's a data problem.
+
+Lily: Right, which means the companies that are actually going to succeed with this are either greenfield startups who can build context systems from day one, or large enterprises with the resources to retroactively document everything. The middle market gets screwed again.
+
+Chris: Pretty much. Although I'd argue even startups fuck this up because they're moving fast and not documenting intent. You really need discipline from the beginning - treating your codebase documentation as a first-class citizen, not an afterthought.
+
+Lily: Okay, so for someone listening who's running engineering at a company that's considering or already piloting AI coding tools - what should they actually do differently?
+
+Chris: First, stop measuring success by lines of code generated. That's a bullshit metric. Start looking at whether the AI is making contextually appropriate decisions - does it understand your architecture patterns, your testing requirements, your deployment constraints?
+
+Lily: And if the answer is no?
+
+Chris: Then you need to step back and invest in the context layer first. That might mean better documentation systems, it might mean knowledge graphs of your codebase, it definitely means capturing the "why" behind decisions, not just the "what." Hell, it might even mean having senior engineers spend time training the system on your specific patterns.
+
+Lily: Which sounds expensive and slow, but I suppose the alternative is continuing to waste money on tools that don't actually work for your use case.
+
+Chris: Exactly. And look, the models are getting better fast - that's not the constraint anymore. The constraint is whether you can give them the information they need to make intelligent decisions in your specific context. [pauses] This is honestly the same pattern we saw with every other enterprise AI deployment. Everyone focuses on the sexy model, ignores the boring data infrastructure work, then wonders why shit doesn't work.
+
+Lily: It's the classic garbage in, garbage out problem, just dressed up with more sophisticated technology. The article mentions these systems need to understand code structure, historical context, intent representation - that's three different types of context that most companies barely track for human developers, let alone machines.
+
+Chris: Right, and historical context is particularly tricky because it's not just git history. It's understanding that this API changed because a customer threatened to leave, or this module is architected weirdly because you were racing to beat a competitor to market. That's organizational memory, and most of it isn't written down anywhere.
+
+Lily: So realistically, what percentage of enterprises do you think can actually pull this off in the next couple years?
+
+Chris: [pauses] Maybe 20%? And that's being generous. You need executive buy-in to slow down and do infrastructure work, you need engineers who can think about context architecture as a discipline, and you need enough organizational maturity to have consistent patterns worth teaching an AI in the first place.
+
+Lily: That last point is crucial, isn't it? If your codebase is a chaotic mess with fifteen different ways of doing the same thing, adding AI doesn't fix that - it just learns to replicate the chaos faster.
+
+Chris: Yeah, and that's actually dangerous. Because now you're generating inconsistent code at scale, and the technical debt compounds faster than it would with human developers who might at least question why things are so fucked up.
+
+Lily: Right, so the companies that are going to succeed here are the ones that were already doing things reasonably well, and AI coding agents just make them faster. The companies struggling with basic engineering practices aren't going to be saved by this technology.
+
+Chris: Yep. And that's the uncomfortable truth that nobody in the AI coding space wants to say out loud because it's not a good sales pitch. "Our tool works great, but only if you've already got your shit together."
+
+Lily: [chuckles] Though to be fair, that's true of most enterprise software. The difference is that AI coding tools are being marketed as if they're going to magically solve productivity problems, when really they're amplifiers of whatever state you're already in.
+
+Chris: Exactly. And the article's point about moving toward true agentic workflows - that makes this even more critical. When the tool is just autocompleting your next line, the blast radius of getting it wrong is small. When it's making architectural decisions, designing tests, handling validation across multiple steps - you really need it to understand your context deeply.
+
+Lily: So what should people be watching for in this space? What indicates that someone's actually solving this problem versus just adding another layer of tooling?
+
+Chris: Look for companies talking about context management as a core feature, not an afterthought. Look for systems that can explain their reasoning based on your specific codebase history. And honestly, look for realistic case studies that talk about the months of groundwork required, not just the magic demo where everything works perfectly.
+
+Lily: In other words, be deeply skeptical of anyone promising immediate results without talking about the infrastructure investment required.
+
+Chris: Yeah. The technology is real, the potential is real, but the path to getting there is harder and longer than the hype suggests. As usual.
+
+Lily: As usual. Alright, that's probably enough reality for one day.
+
+Chris: [chuckles] Yeah, we've thoroughly killed the AI coding hype. You're welcome, everyone.
