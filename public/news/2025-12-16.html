@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-16</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-16</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13495" style="color:#4ea8ff;">Soul: Breathe Life into Digital Human for High-fidelity Long-term Multimodal Animation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Soul introduces a multimodal digital human animation framework that generates long-form video from a single portrait, text, and audio by integrating audio-injection layers into a diffusion backbone (Wan2.2-5B) with threshold-aware codebook replacement for temporal consistency. The authors address data scarcity through Soul-1M, a million-sample annotated dataset with automated pipeline covering diverse scenarios, and introduce Soul-Bench for standardized evaluation—key contributions enabling practical lip-sync, expression, and identity preservation at scale. The optimization strategy combining step/CFG distillation and lightweight VAE trade-offs inference efficiency, making this approach viable for production deployment of expressive, semantically coherent avatar generation.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Soul: Breathe Life into Digital Human for High-fidelity Long-term Multimodal Animation", "Soul introduces a multimodal digital human animation framework that generates long-form video from a single portrait, text, and audio by integrating audio-injection layers into a diffusion backbone (Wan2.2-5B) with threshold-aware codebook replacement for temporal consistency. The authors address data scarcity through Soul-1M, a million-sample annotated dataset with automated pipeline covering diverse scenarios, and introduce Soul-Bench for standardized evaluation—key contributions enabling practical lip-sync, expression, and identity preservation at scale. The optimization strategy combining step/CFG distillation and lightweight VAE trade-offs inference efficiency, making this approach viable for production deployment of expressive, semantically coherent avatar generation.", "https://arxiv.org/abs/2512.13495")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12284" style="color:#4ea8ff;">V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>V-Rex introduces the first software-hardware co-design to address the critical bottleneck of growing KV cache sizes in streaming video LLMs through dynamic cache retrieval, tackling the iterative prefill stage that causes excessive computation, memory overhead, and accuracy degradation. The approach targets edge deployment scenarios where memory constraints and latency are critical, combining algorithmic optimizations with hardware-level accelerations to enable real-time multimodal tasks like video captioning and conversational AI. This work signals a shift toward specialized inference architectures for continuous video processing, moving beyond general-purpose LLM optimization strategies.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval", "V-Rex introduces the first software-hardware co-design to address the critical bottleneck of growing KV cache sizes in streaming video LLMs through dynamic cache retrieval, tackling the iterative prefill stage that causes excessive computation, memory overhead, and accuracy degradation. The approach targets edge deployment scenarios where memory constraints and latency are critical, combining algorithmic optimizations with hardware-level accelerations to enable real-time multimodal tasks like video captioning and conversational AI. This work signals a shift toward specialized inference architectures for continuous video processing, moving beyond general-purpose LLM optimization strategies.", "https://arxiv.org/abs/2512.12284")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12324" style="color:#4ea8ff;">UniMark: Artificial Intelligence Generated Content Identification Toolkit</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 45</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>UniMark introduces a unified, modular framework for detecting and marking AI-generated content across text, image, audio, and video—addressing fragmentation in current detection tools. The system's key innovation is its dual-operation strategy supporting both hidden watermarking for copyright protection and visible compliance marking, enabling both covert and regulatory-compliant content governance. Its standardized evaluation benchmarks (Image/Video/Audio-Bench) provide rigorous performance assessment, positioning it as a practical bridge between detection algorithms and production-grade implementation.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "UniMark: Artificial Intelligence Generated Content Identification Toolkit", "UniMark introduces a unified, modular framework for detecting and marking AI-generated content across text, image, audio, and video—addressing fragmentation in current detection tools. The system's key innovation is its dual-operation strategy supporting both hidden watermarking for copyright protection and visible compliance marking, enabling both covert and regulatory-compliant content governance. Its standardized evaluation benchmarks (Image/Video/Audio-Bench) provide rigorous performance assessment, positioning it as a practical bridge between detection algorithms and production-grade implementation.", "https://arxiv.org/abs/2512.12324")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2503.14505" style="color:#4ea8ff;">MusicInfuser: Making Video Diffusion Listen and Dance</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>MusicInfuser adapts pre-trained text-to-video diffusion models to generate music-synchronized dance videos using a novel layer-wise adaptability criterion based on guidance-inspired influence functions, enabling efficient fine-tuning with minimal data while preserving learned priors. The approach demonstrates that existing video diffusion models can be repurposed for audio-visual alignment without training multimodal models from scratch, generalizing effectively to unseen music, extended sequences, and novel subjects. This work has significant implications for content creation workflows, suggesting efficient transfer learning strategies for aligning foundational vision models with domain-specific modalities like audio.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MusicInfuser: Making Video Diffusion Listen and Dance", "MusicInfuser adapts pre-trained text-to-video diffusion models to generate music-synchronized dance videos using a novel layer-wise adaptability criterion based on guidance-inspired influence functions, enabling efficient fine-tuning with minimal data while preserving learned priors. The approach demonstrates that existing video diffusion models can be repurposed for audio-visual alignment without training multimodal models from scratch, generalizing effectively to unseen music, extended sequences, and novel subjects. This work has significant implications for content creation workflows, suggesting efficient transfer learning strategies for aligning foundational vision models with domain-specific modalities like audio.", "https://arxiv.org/abs/2503.14505")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.23046" style="color:#4ea8ff;">SoMi-ToM: Evaluating Multi-Perspective Theory of Mind in Embodied Social Interactions</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>SoMi-ToM introduces a multimodal embodied benchmark that moves Theory of Mind evaluation beyond static text-based tasks to dynamic, multi-agent social interactions with realistic perception challenges. The framework enables dual evaluation modes—first-person real-time state inference from visual/dialogue/action streams and third-person retrospective goal/behavior analysis—addressing the critical gap between current benchmarks and naturalistic social reasoning. This approach is particularly significant for developing AI systems that must infer agent intentions in collaborative tasks, which has direct applications in embodied AI, robotics, and human-AI interaction systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SoMi-ToM: Evaluating Multi-Perspective Theory of Mind in Embodied Social Interactions", "SoMi-ToM introduces a multimodal embodied benchmark that moves Theory of Mind evaluation beyond static text-based tasks to dynamic, multi-agent social interactions with realistic perception challenges. The framework enables dual evaluation modes—first-person real-time state inference from visual/dialogue/action streams and third-person retrospective goal/behavior analysis—addressing the critical gap between current benchmarks and naturalistic social reasoning. This approach is particularly significant for developing AI systems that must infer agent intentions in collaborative tasks, which has direct applications in embodied AI, robotics, and human-AI interaction systems.", "https://arxiv.org/abs/2506.23046")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12246" style="color:#4ea8ff;">Moment and Highlight Detection via MLLM Frame Segmentation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>This work reformulates video moment/highlight detection as a token-level segmentation task within MLLMs, where the model outputs binary "0"/"1" tokens per frame that directly serve as foreground/background probabilities—enabling end-to-end gradient flow for frame-level supervision. The approach cleverly exploits the LLM's language modeling capability while bypassing the gradient-blocking issue of prior text-based timestamp generation methods, offering a more direct optimization path than RL-based alternatives. The practical implication is efficient, trainable models that leverage MLLM reasoning for complex temporal understanding while maintaining differentiable frame-level predictions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Moment and Highlight Detection via MLLM Frame Segmentation", "This work reformulates video moment/highlight detection as a token-level segmentation task within MLLMs, where the model outputs binary \"0\"/\"1\" tokens per frame that directly serve as foreground/background probabilities—enabling end-to-end gradient flow for frame-level supervision. The approach cleverly exploits the LLM's language modeling capability while bypassing the gradient-blocking issue of prior text-based timestamp generation methods, offering a more direct optimization path than RL-based alternatives. The practical implication is efficient, trainable models that leverage MLLM reasoning for complex temporal understanding while maintaining differentiable frame-level predictions.", "https://arxiv.org/abs/2512.12246")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12756" style="color:#4ea8ff;">FysicsWorld: A Unified Full-Modality Benchmark for Any-to-Any Understanding, Generation, and Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>FysicsWorld introduces the first unified benchmark enabling bidirectional any-to-any evaluation across image, video, audio, and text modalities, addressing critical gaps in current MLLM evaluation with 16 primary tasks and 3,268 samples spanning understanding, generation, and reasoning. The benchmark incorporates a Cross-Modal Complementarity Screening (CMCS) strategy to ensure rich interdependence between modalities, moving beyond text-centric outputs to test true omni-modal capabilities. This represents a significant step toward comprehensive evaluation frameworks for next-generation multimodal models that can leverage cross-modal synergies rather than treating each modality independently.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FysicsWorld: A Unified Full-Modality Benchmark for Any-to-Any Understanding, Generation, and Reasoning", "FysicsWorld introduces the first unified benchmark enabling bidirectional any-to-any evaluation across image, video, audio, and text modalities, addressing critical gaps in current MLLM evaluation with 16 primary tasks and 3,268 samples spanning understanding, generation, and reasoning. The benchmark incorporates a Cross-Modal Complementarity Screening (CMCS) strategy to ensure rich interdependence between modalities, moving beyond text-centric outputs to test true omni-modal capabilities. This represents a significant step toward comprehensive evaluation frameworks for next-generation multimodal models that can leverage cross-modal synergies rather than treating each modality independently.", "https://arxiv.org/abs/2512.12756")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13247" style="color:#4ea8ff;">STARCaster: Spatio-Temporal AutoRegressive Video Diffusion for Identity- and View-Aware Talking Portraits</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>STARCaster unifies speech-driven portrait animation and free-viewpoint synthesis through a spatio-temporal diffusion model that relaxes strict reference conditioning in favor of softer identity constraints, enabling greater motion diversity than existing 2D approaches. Rather than relying on 3D geometry inversion (which causes identity drift), the model implicitly learns 3D awareness by exploiting multi-view consistency within 2D video data, avoiding the reconstruction bottlenecks of tri-plane-based methods. This compositional architecture bridges the motion flexibility of diffusion models with identity preservation and viewpoint control—addressing key limitations in current speech-to-video synthesis pipelines.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "STARCaster: Spatio-Temporal AutoRegressive Video Diffusion for Identity- and View-Aware Talking Portraits", "STARCaster unifies speech-driven portrait animation and free-viewpoint synthesis through a spatio-temporal diffusion model that relaxes strict reference conditioning in favor of softer identity constraints, enabling greater motion diversity than existing 2D approaches. Rather than relying on 3D geometry inversion (which causes identity drift), the model implicitly learns 3D awareness by exploiting multi-view consistency within 2D video data, avoiding the reconstruction bottlenecks of tri-plane-based methods. This compositional architecture bridges the motion flexibility of diffusion models with identity preservation and viewpoint control—addressing key limitations in current speech-to-video synthesis pipelines.", "https://arxiv.org/abs/2512.13247")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13507" style="color:#4ea8ff;">Seedance 1.5 pro: A Native Audio-Visual Joint Generation Foundation Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>Seedance 1.5 pro introduces a dual-branch Diffusion Transformer with cross-modal joint modules for native audio-visual generation, achieving superior synchronization through multi-stage data pipelines and post-training optimizations including SFT and RLHF with multi-dimensional reward models. The model demonstrates practical advances in multilingual lip-syncing, cinematic camera control, and narrative coherence while achieving &gt;10X inference acceleration, positioning it as a significant step toward production-ready audiovisual synthesis.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Seedance 1.5 pro: A Native Audio-Visual Joint Generation Foundation Model", "Seedance 1.5 pro introduces a dual-branch Diffusion Transformer with cross-modal joint modules for native audio-visual generation, achieving superior synchronization through multi-stage data pipelines and post-training optimizations including SFT and RLHF with multi-dimensional reward models. The model demonstrates practical advances in multilingual lip-syncing, cinematic camera control, and narrative coherence while achieving &gt;10X inference acceleration, positioning it as a significant step toward production-ready audiovisual synthesis.", "https://arxiv.org/abs/2512.13507")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13604" style="color:#4ea8ff;">LongVie 2: Multimodal Controllable Ultra-Long Video World Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>LongVie 2 advances video world models through a three-stage progressive training approach: multi-modal guidance combining dense/sparse control signals, degradation-aware training to maintain visual fidelity across long sequences, and history-context guidance for temporal consistency. This addresses the critical challenge of scaling pretrained video generation systems to extended sequences while preserving controllability and coherence—essential for spatiotemporal reasoning applications requiring fine-grained control and frame-perfect consistency over extended durations.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "LongVie 2: Multimodal Controllable Ultra-Long Video World Model", "LongVie 2 advances video world models through a three-stage progressive training approach: multi-modal guidance combining dense/sparse control signals, degradation-aware training to maintain visual fidelity across long sequences, and history-context guidance for temporal consistency. This addresses the critical challenge of scaling pretrained video generation systems to extended sequences while preserving controllability and coherence—essential for spatiotemporal reasoning applications requiring fine-grained control and frame-perfect consistency over extended durations.", "https://arxiv.org/abs/2512.13604")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13677" style="color:#4ea8ff;">JoVA: Unified Multimodal Learning for Joint Video-Audio Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>JoVA introduces a unified transformer-based framework for joint video-audio generation that eliminates the need for explicit fusion or alignment modules by leveraging joint self-attention across modalities within each layer. The key innovation is a mouth-area loss mechanism based on facial keypoint detection that enables accurate lip-speech synchronization, addressing a critical gap in existing methods that typically handle only ambient sounds. This approach maintains architectural simplicity while enabling high-quality multimodal generation with direct cross-modal interaction.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "JoVA: Unified Multimodal Learning for Joint Video-Audio Generation", "JoVA introduces a unified transformer-based framework for joint video-audio generation that eliminates the need for explicit fusion or alignment modules by leveraging joint self-attention across modalities within each layer. The key innovation is a mouth-area loss mechanism based on facial keypoint detection that enables accurate lip-speech synchronization, addressing a critical gap in existing methods that typically handle only ambient sounds. This approach maintains architectural simplicity while enabling high-quality multimodal generation with direct cross-modal interaction.", "https://arxiv.org/abs/2512.13677")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12284" style="color:#4ea8ff;">V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>V-Rex introduces a software-hardware co-design approach to optimize streaming video LLM inference by addressing the unbounded KV cache growth problem through dynamic retrieval mechanisms, eliminating the iterative prefill bottleneck that causes computational waste and accuracy degradation. The solution targets edge deployment constraints, offering practical acceleration for real-time multimodal tasks like video QA and AR applications where memory and latency are critical. This represents the first comprehensive treatment of the streaming video LLM acceleration problem with integrated hardware optimization, potentially enabling deployable video understanding systems where previous approaches were computationally prohibitive.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval", "V-Rex introduces a software-hardware co-design approach to optimize streaming video LLM inference by addressing the unbounded KV cache growth problem through dynamic retrieval mechanisms, eliminating the iterative prefill bottleneck that causes computational waste and accuracy degradation. The solution targets edge deployment constraints, offering practical acceleration for real-time multimodal tasks like video QA and AR applications where memory and latency are critical. This represents the first comprehensive treatment of the streaming video LLM acceleration problem with integrated hardware optimization, potentially enabling deployable video understanding systems where previous approaches were computationally prohibitive.", "https://arxiv.org/abs/2512.12284")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2503.06940" style="color:#4ea8ff;">CineBrain: A Large-Scale Multi-Modal Brain Dataset During Naturalistic Audiovisual Narrative Processing</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>CineBrain introduces the first large-scale multimodal neuroimaging dataset combining synchronized fMRI and EEG recordings during naturalistic audiovisual stimulation (6 hours of video content), addressing the gap in brain decoding research that has predominantly focused on visual-only reconstruction. The accompanying CineSync framework leverages multimodal fusion to reconstruct continuous video from combined brain signals, achieving SOTA performance and demonstrating that audiovisual integration is critical for accurate brain-to-video decoding—with implications for understanding cross-modal perception and developing more sophisticated neural signal decoding models. This work opens new research directions in multimodal neuroscience-AI integration, particularly relevant for brain-computer interfaces and cognitive modeling of naturalistic stimulus processing.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "CineBrain: A Large-Scale Multi-Modal Brain Dataset During Naturalistic Audiovisual Narrative Processing", "CineBrain introduces the first large-scale multimodal neuroimaging dataset combining synchronized fMRI and EEG recordings during naturalistic audiovisual stimulation (6 hours of video content), addressing the gap in brain decoding research that has predominantly focused on visual-only reconstruction. The accompanying CineSync framework leverages multimodal fusion to reconstruct continuous video from combined brain signals, achieving SOTA performance and demonstrating that audiovisual integration is critical for accurate brain-to-video decoding—with implications for understanding cross-modal perception and developing more sophisticated neural signal decoding models. This work opens new research directions in multimodal neuroscience-AI integration, particularly relevant for brain-computer interfaces and cognitive modeling of naturalistic stimulus processing.", "https://arxiv.org/abs/2503.06940")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2503.14505" style="color:#4ea8ff;">MusicInfuser: Making Video Diffusion Listen and Dance</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>MusicInfuser adapts pre-trained text-to-video diffusion models for music-synchronized dance generation using a novel layer-wise adaptability criterion based on guidance-inspired influence functions, enabling efficient fine-tuning without retraining from scratch. The approach preserves the model's rich priors while reducing computational costs through selective layer adaptation, achieving strong generalization to unseen music, extended sequences, and novel subjects—demonstrating how existing video diffusion architectures can be pragmatically aligned to multimodal constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MusicInfuser: Making Video Diffusion Listen and Dance", "MusicInfuser adapts pre-trained text-to-video diffusion models for music-synchronized dance generation using a novel layer-wise adaptability criterion based on guidance-inspired influence functions, enabling efficient fine-tuning without retraining from scratch. The approach preserves the model's rich priors while reducing computational costs through selective layer adaptation, achieving strong generalization to unseen music, extended sequences, and novel subjects—demonstrating how existing video diffusion architectures can be pragmatically aligned to multimodal constraints.", "https://arxiv.org/abs/2503.14505")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.23046" style="color:#4ea8ff;">SoMi-ToM: Evaluating Multi-Perspective Theory of Mind in Embodied Social Interactions</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-16
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>**SoMi-ToM** introduces a novel embodied benchmark that moves Theory of Mind evaluation beyond static text scenarios by leveraging multimodal data from realistic multi-agent social interactions in a crafting environment. The framework enables both real-time (first-person) and retrospective (third-person) evaluation across diverse perspectives, providing richer signal for training models to infer agent states, goals, and behaviors from vision, dialogue, and action streams. This addresses a critical gap in current ToM research and provides practitioners with a more ecologically valid testbed for developing socially-aware AI systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SoMi-ToM: Evaluating Multi-Perspective Theory of Mind in Embodied Social Interactions", "**SoMi-ToM** introduces a novel embodied benchmark that moves Theory of Mind evaluation beyond static text scenarios by leveraging multimodal data from realistic multi-agent social interactions in a crafting environment. The framework enables both real-time (first-person) and retrospective (third-person) evaluation across diverse perspectives, providing richer signal for training models to infer agent states, goals, and behaviors from vision, dialogue, and action streams. This addresses a critical gap in current ToM research and provides practitioners with a more ecologically valid testbed for developing socially-aware AI systems.", "https://arxiv.org/abs/2506.23046")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
