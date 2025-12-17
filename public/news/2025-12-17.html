@@ -1,0 +1,495 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-17</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-17</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13507" style="color:#4ea8ff;">Seedance 1.5 pro: A Native Audio-Visual Joint Generation Foundation Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Seedance 1.5 pro introduces a dual-branch Diffusion Transformer architecture with cross-modal joint modules for native audio-video co-generation, achieving synchronized output through specialized multi-stage data pipelines and RLHF optimization. Key technical innovations include &gt;10X inference acceleration, precise multilingual lip-sync synthesis, and cinematic camera control—positioning this as a practical foundation model that moves beyond sequential generation toward genuinely synchronized modalities. The combination of SFT and multi-dimensional reward modeling suggests a maturing approach to controllable audio-visual synthesis that could enable new applications in content creation and interactive media.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Seedance 1.5 pro: A Native Audio-Visual Joint Generation Foundation Model", "Seedance 1.5 pro introduces a dual-branch Diffusion Transformer architecture with cross-modal joint modules for native audio-video co-generation, achieving synchronized output through specialized multi-stage data pipelines and RLHF optimization. Key technical innovations include &gt;10X inference acceleration, precise multilingual lip-sync synthesis, and cinematic camera control—positioning this as a practical foundation model that moves beyond sequential generation toward genuinely synchronized modalities. The combination of SFT and multi-dimensional reward modeling suggests a maturing approach to controllable audio-visual synthesis that could enable new applications in content creation and interactive media.", "https://arxiv.org/abs/2512.13507")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13747" style="color:#4ea8ff;">Why Text Prevails: Vision May Undermine Multimodal Medical Decision Making</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p># Summary
+
+Research demonstrates that state-of-the-art MLLMs underperform on medical decision-making tasks because visual inputs actively degrade performance compared to text-only baselines, particularly for subtle diagnostic distinctions in Alzheimer's classification and chest radiograph interpretation. The study proposes mitigation strategies including in-context learning with annotated exemplars and vision-to-caption preprocessing pipelines, suggesting that intermediate text representation may be necessary to prevent vision modalities from introducing noise in biomedical reasoning tasks.
+
+**Key implication**: This challenges the assumption that multimodality always improves LLM performance, indicating domain-specific architectural or training approaches are needed for medical AI rather than direct application of general-purpose MLLMs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Why Text Prevails: Vision May Undermine Multimodal Medical Decision Making", "# Summary\n\nResearch demonstrates that state-of-the-art MLLMs underperform on medical decision-making tasks because visual inputs actively degrade performance compared to text-only baselines, particularly for subtle diagnostic distinctions in Alzheimer's classification and chest radiograph interpretation. The study proposes mitigation strategies including in-context learning with annotated exemplars and vision-to-caption preprocessing pipelines, suggesting that intermediate text representation may be necessary to prevent vision modalities from introducing noise in biomedical reasoning tasks.\n\n**Key implication**: This challenges the assumption that multimodality always improves LLM performance, indicating domain-specific architectural or training approaches are needed for medical AI rather than direct application of general-purpose MLLMs.", "https://arxiv.org/abs/2512.13747")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13880" style="color:#4ea8ff;">Privacy-Enhancing Infant Cry Classification with Federated Transformers and Denoising Regularization</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#3b82f6;">⚡ 76</span></div>
+  <p>This paper addresses infant cry classification through a privacy-preserving federated learning pipeline combining denoising autoencoders, convolutional tokenizers, and Transformers with 8-bit quantized adapter updates under secure aggregation—eliminating the need to centralize sensitive audio data. The system tackles real-world deployment challenges via on-device denoising, energy-based OOD detection, and calibration, achieving strong performance (0.938 macro F1) across multiple datasets while significantly reducing per-round communication overhead. The work demonstrates practical federated learning for audio biomarkers while maintaining strict privacy guarantees, relevant for healthcare IoT applications where audio data sensitivity is paramount.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Privacy-Enhancing Infant Cry Classification with Federated Transformers and Denoising Regularization", "This paper addresses infant cry classification through a privacy-preserving federated learning pipeline combining denoising autoencoders, convolutional tokenizers, and Transformers with 8-bit quantized adapter updates under secure aggregation—eliminating the need to centralize sensitive audio data. The system tackles real-world deployment challenges via on-device denoising, energy-based OOD detection, and calibration, achieving strong performance (0.938 macro F1) across multiple datasets while significantly reducing per-round communication overhead. The work demonstrates practical federated learning for audio biomarkers while maintaining strict privacy guarantees, relevant for healthcare IoT applications where audio data sensitivity is paramount.", "https://arxiv.org/abs/2512.13880")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13904" style="color:#4ea8ff;">Generative AI for Video Translation: A Scalable Architecture for Multilingual Video Conferencing</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper addresses critical system-level constraints in real-time video translation by introducing a turn-taking mechanism that reduces computational complexity from O(N²) to O(N) for multi-user conferencing, alongside segmented processing to manage cumulative inference latency. The authors validate their practical framework across commodity to enterprise GPUs (RTX 4060 to A100), demonstrating that thoughtful architectural design—rather than raw model improvements—is essential for scaling cascaded generative AI pipelines to production video conferencing. The approach represents a pragmatic shift from pure model optimization to systems-aware deployment, critical for achieving perceptually real-time multilingual communication at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Generative AI for Video Translation: A Scalable Architecture for Multilingual Video Conferencing", "This paper addresses critical system-level constraints in real-time video translation by introducing a turn-taking mechanism that reduces computational complexity from O(N²) to O(N) for multi-user conferencing, alongside segmented processing to manage cumulative inference latency. The authors validate their practical framework across commodity to enterprise GPUs (RTX 4060 to A100), demonstrating that thoughtful architectural design—rather than raw model improvements—is essential for scaling cascaded generative AI pipelines to production video conferencing. The approach represents a pragmatic shift from pure model optimization to systems-aware deployment, critical for achieving perceptually real-time multilingual communication at scale.", "https://arxiv.org/abs/2512.13904")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14017" style="color:#4ea8ff;">KFS-Bench: Comprehensive Evaluation of Key Frame Sampling in Long Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>KFS-Bench introduces the first direct evaluation benchmark for key frame sampling in long-form video QA, providing multi-scene ground-truth annotations to rigorously assess sampling strategies independent of downstream QA performance. The benchmark reveals that optimal sampling strategies require balancing multiple factors—precision, scene coverage, and sampling distribution—rather than optimizing for a single metric, providing crucial insights for designing efficient video understanding systems with MLLMs. This addresses a critical gap where prior work could only indirectly evaluate frame selection quality through end-task accuracy, enabling more principled optimization of frame selection for resource-constrained long-video processing.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "KFS-Bench: Comprehensive Evaluation of Key Frame Sampling in Long Video Understanding", "KFS-Bench introduces the first direct evaluation benchmark for key frame sampling in long-form video QA, providing multi-scene ground-truth annotations to rigorously assess sampling strategies independent of downstream QA performance. The benchmark reveals that optimal sampling strategies require balancing multiple factors—precision, scene coverage, and sampling distribution—rather than optimizing for a single metric, providing crucial insights for designing efficient video understanding systems with MLLMs. This addresses a critical gap where prior work could only indirectly evaluate frame selection quality through end-task accuracy, enabling more principled optimization of frame selection for resource-constrained long-video processing.", "https://arxiv.org/abs/2512.14017")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14677" style="color:#4ea8ff;">VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>VASA-3D extends VASA-1's motion latent from 2D to 3D by developing a conditioned 3D head model that captures subtle facial expressions from audio, reconstructed from a single portrait via optimization using synthetically-generated video frames. The approach addresses key challenges in single-image 3D avatar generation through robust training losses designed to handle pose variation and synthesis artifacts, enabling lifelike audio-driven talking head avatars. This bridges the gap between 2D talking head realism and 3D avatar practicality, with implications for real-time avatar systems and virtual conferencing applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image", "VASA-3D extends VASA-1's motion latent from 2D to 3D by developing a conditioned 3D head model that captures subtle facial expressions from audio, reconstructed from a single portrait via optimization using synthetically-generated video frames. The approach addresses key challenges in single-image 3D avatar generation through robust training losses designed to handle pose variation and synthesis artifacts, enabling lifelike audio-driven talking head avatars. This bridges the gap between 2D talking head realism and 3D avatar practicality, with implications for real-time avatar systems and virtual conferencing applications.", "https://arxiv.org/abs/2512.14677")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14698" style="color:#4ea8ff;">TimeLens: Rethinking Video Temporal Grounding with Multimodal LLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>TimeLens establishes a systematic baseline for video temporal grounding in MLLMs by addressing critical data quality issues in existing benchmarks and proposing an automated re-annotation pipeline, revealing that previous evaluation standards significantly misrank model performance. The work emphasizes that optimization recipes for VTG in multimodal LLMs remain underexplored, with the re-annotated TimeLens-Bench providing more reliable evaluation standards for this core video understanding capability. This work prioritizes data quality and algorithmic design considerations rather than novel architectural innovations, offering practical insights for practitioners building production-grade temporal grounding systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TimeLens: Rethinking Video Temporal Grounding with Multimodal LLMs", "TimeLens establishes a systematic baseline for video temporal grounding in MLLMs by addressing critical data quality issues in existing benchmarks and proposing an automated re-annotation pipeline, revealing that previous evaluation standards significantly misrank model performance. The work emphasizes that optimization recipes for VTG in multimodal LLMs remain underexplored, with the re-annotated TimeLens-Bench providing more reliable evaluation standards for this core video understanding capability. This work prioritizes data quality and algorithmic design considerations rather than novel architectural innovations, offering practical insights for practitioners building production-grade temporal grounding systems.", "https://arxiv.org/abs/2512.14698")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2508.00969" style="color:#4ea8ff;">Masked Omics Modeling for Multimodal Representation Learning across Histopathology and Molecular Profiles</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>MORPHEUS introduces the first multimodal SSL framework combining histopathology images with multi-omics data (transcriptomics, methylomics, genomics) through masked omics modeling—a novel objective that learns cross-modal relationships within a shared transformer architecture. The approach yields a flexible pre-trained encoder supporting histopathology-only inference or any combination of omics modalities, plus any-to-any omics reconstruction capabilities. This addresses a critical limitation in computational pathology by bridging imaging and molecular complexity, enabling richer tissue characterization for downstream clinical and research applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Masked Omics Modeling for Multimodal Representation Learning across Histopathology and Molecular Profiles", "MORPHEUS introduces the first multimodal SSL framework combining histopathology images with multi-omics data (transcriptomics, methylomics, genomics) through masked omics modeling—a novel objective that learns cross-modal relationships within a shared transformer architecture. The approach yields a flexible pre-trained encoder supporting histopathology-only inference or any combination of omics modalities, plus any-to-any omics reconstruction capabilities. This addresses a critical limitation in computational pathology by bridging imaging and molecular complexity, enabling richer tissue characterization for downstream clinical and research applications.", "https://arxiv.org/abs/2508.00969")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2508.16313" style="color:#4ea8ff;">Retrieval Enhanced Feedback via In-context Neural Error-book</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces REFINE, a teacher-student framework that systematically captures and retrieves relevant errors through structured queries (Feed-Target, Feed-Check, Feed-Path) to provide targeted in-context feedback for improving multimodal reasoning in LLMs/MLLMs without retraining. The key innovation is moving beyond simple correct examples to create an "error-book" database that enables retrieval-augmented learning from mistakes, particularly valuable for handling the complexity of integrated visual-textual reasoning. This approach offers practical implications for efficient model adaptation and error mitigation in production systems while maintaining the computational efficiency of in-context learning.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Retrieval Enhanced Feedback via In-context Neural Error-book", "This paper introduces REFINE, a teacher-student framework that systematically captures and retrieves relevant errors through structured queries (Feed-Target, Feed-Check, Feed-Path) to provide targeted in-context feedback for improving multimodal reasoning in LLMs/MLLMs without retraining. The key innovation is moving beyond simple correct examples to create an \"error-book\" database that enables retrieval-augmented learning from mistakes, particularly valuable for handling the complexity of integrated visual-textual reasoning. This approach offers practical implications for efficient model adaptation and error mitigation in production systems while maintaining the computational efficiency of in-context learning.", "https://arxiv.org/abs/2508.16313")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.25502" style="color:#4ea8ff;">TempoPFN: Synthetic Pre-training of Linear RNNs for Zero-shot Time Series Forecasting</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>TempoPFN introduces a linear RNN foundation model pre-trained purely on synthetic data using a novel GatedDeltaProduct architecture with state-weaving to enable fully parallelizable training without windowing, addressing the efficiency bottleneck in zero-shot time series forecasting. The approach unifies diverse synthetic generators (SDEs, GPs, audio synthesis) with tailored augmentations and demonstrates competitive performance on standard benchmarks, suggesting that careful synthetic data design can match or exceed real-data pre-training for univariate forecasting tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TempoPFN: Synthetic Pre-training of Linear RNNs for Zero-shot Time Series Forecasting", "TempoPFN introduces a linear RNN foundation model pre-trained purely on synthetic data using a novel GatedDeltaProduct architecture with state-weaving to enable fully parallelizable training without windowing, addressing the efficiency bottleneck in zero-shot time series forecasting. The approach unifies diverse synthetic generators (SDEs, GPs, audio synthesis) with tailored augmentations and demonstrates competitive performance on standard benchmarks, suggesting that careful synthetic data design can match or exceed real-data pre-training for univariate forecasting tasks.", "https://arxiv.org/abs/2510.25502")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12012" style="color:#4ea8ff;">Semantic-Drive: Democratizing Long-Tail Data Curation via Open-Vocabulary Grounding and Neuro-Symbolic VLM Consensus</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Semantic-Drive addresses long-tail data curation for autonomous vehicles by combining real-time open-vocabulary detection (YOLOE) with neuro-symbolic reasoning VLMs for local-first semantic mining, eliminating privacy/cost concerns of cloud-based alternatives. The framework mitigates VLM hallucinations through a "Judge-Scout" consensus mechanism that performs multi-model alignment, enabling efficient identification of rare safety-critical events from massive video logs without manual annotation overhead.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Semantic-Drive: Democratizing Long-Tail Data Curation via Open-Vocabulary Grounding and Neuro-Symbolic VLM Consensus", "Semantic-Drive addresses long-tail data curation for autonomous vehicles by combining real-time open-vocabulary detection (YOLOE) with neuro-symbolic reasoning VLMs for local-first semantic mining, eliminating privacy/cost concerns of cloud-based alternatives. The framework mitigates VLM hallucinations through a \"Judge-Scout\" consensus mechanism that performs multi-model alignment, enabling efficient identification of rare safety-critical events from massive video logs without manual annotation overhead.", "https://arxiv.org/abs/2512.12012")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13747" style="color:#4ea8ff;">Why Text Prevails: Vision May Undermine Multimodal Medical Decision Making</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p># Summary
+
+This study reveals a critical limitation in state-of-the-art MLLMs for medical decision-making: vision inputs often *degrade* performance compared to text-only reasoning, particularly on subtle classification tasks (AD staging, CXR multi-label diagnosis). The authors demonstrate that vision captioning pipelines and in-context learning with annotated exemplars can partially recover performance, suggesting that intermediate text representations may better bridge the gap between visual inputs and clinical reasoning than direct multimodal fusion.
+
+**Implication**: Medical AI practitioners should reconsider end-to-end multimodal architectures; decoupling vision encoding into interpretable intermediate representations may be more effective than joint vision-language processing for high-stakes diagnostic tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Why Text Prevails: Vision May Undermine Multimodal Medical Decision Making", "# Summary\n\nThis study reveals a critical limitation in state-of-the-art MLLMs for medical decision-making: vision inputs often *degrade* performance compared to text-only reasoning, particularly on subtle classification tasks (AD staging, CXR multi-label diagnosis). The authors demonstrate that vision captioning pipelines and in-context learning with annotated exemplars can partially recover performance, suggesting that intermediate text representations may better bridge the gap between visual inputs and clinical reasoning than direct multimodal fusion.\n\n**Implication**: Medical AI practitioners should reconsider end-to-end multimodal architectures; decoupling vision encoding into interpretable intermediate representations may be more effective than joint vision-language processing for high-stakes diagnostic tasks.", "https://arxiv.org/abs/2512.13747")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14008" style="color:#4ea8ff;">Sparse-LaViDa: Sparse Multimodal Discrete Diffusion Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Sparse-LaViDa accelerates masked discrete diffusion models by dynamically pruning redundant masked tokens during inference while maintaining quality through learnable register tokens and specialized training attention masks. This approach achieves ~2x speedup across multimodal tasks (text-to-image, image editing, understanding) by eliminating the computational bottleneck of repeatedly processing unnecessary tokens at every sampling step. The key innovation is bridging the train-inference gap through consistent masking strategies, enabling practical deployment of high-quality generative models without sacrificing speed.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Sparse-LaViDa: Sparse Multimodal Discrete Diffusion Language Models", "Sparse-LaViDa accelerates masked discrete diffusion models by dynamically pruning redundant masked tokens during inference while maintaining quality through learnable register tokens and specialized training attention masks. This approach achieves ~2x speedup across multimodal tasks (text-to-image, image editing, understanding) by eliminating the computational bottleneck of repeatedly processing unnecessary tokens at every sampling step. The key innovation is bridging the train-inference gap through consistent masking strategies, enabling practical deployment of high-quality generative models without sacrificing speed.", "https://arxiv.org/abs/2512.14008")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14017" style="color:#4ea8ff;">KFS-Bench: Comprehensive Evaluation of Key Frame Sampling in Long Video Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>KFS-Bench introduces the first direct evaluation framework for key frame sampling in long-form video QA, moving beyond indirect QA accuracy metrics by providing multi-scene ground-truth annotations that enable precise assessment of sampling strategy effectiveness. The benchmark reveals that optimal frame selection requires balancing three dimensions—sampling precision, scene coverage, and sampling distribution balance—rather than focusing solely on individual frame informativeness, directly addressing efficiency bottlenecks in MLLM-based video understanding at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "KFS-Bench: Comprehensive Evaluation of Key Frame Sampling in Long Video Understanding", "KFS-Bench introduces the first direct evaluation framework for key frame sampling in long-form video QA, moving beyond indirect QA accuracy metrics by providing multi-scene ground-truth annotations that enable precise assessment of sampling strategy effectiveness. The benchmark reveals that optimal frame selection requires balancing three dimensions—sampling precision, scene coverage, and sampling distribution balance—rather than focusing solely on individual frame informativeness, directly addressing efficiency bottlenecks in MLLM-based video understanding at scale.", "https://arxiv.org/abs/2512.14017")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14052" style="color:#4ea8ff;">HyperVL: An Efficient and Dynamic Multimodal Large Language Model for Edge Devices</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>HyperVL addresses on-device multimodal inference by introducing a Visual Resolution Compressor (VRC) that dynamically predicts optimal encoding resolutions to reduce redundant computation, combined with Dual Consistency Learning (DCL) to align multi-scale Vision Transformer encoders. The approach uses image-tiling to manage peak memory constraints while maintaining the reasoning capabilities of larger models, enabling efficient deployment on edge devices without sacrificing multimodal understanding. This work targets a critical bottleneck in current edge MLLMs: the computationally expensive ViT encoder when processing high-resolution inputs, with practical implications for on-device AI applications requiring real-time visual understanding.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "HyperVL: An Efficient and Dynamic Multimodal Large Language Model for Edge Devices", "HyperVL addresses on-device multimodal inference by introducing a Visual Resolution Compressor (VRC) that dynamically predicts optimal encoding resolutions to reduce redundant computation, combined with Dual Consistency Learning (DCL) to align multi-scale Vision Transformer encoders. The approach uses image-tiling to manage peak memory constraints while maintaining the reasoning capabilities of larger models, enabling efficient deployment on edge devices without sacrificing multimodal understanding. This work targets a critical bottleneck in current edge MLLMs: the computationally expensive ViT encoder when processing high-resolution inputs, with practical implications for on-device AI applications requiring real-time visual understanding.", "https://arxiv.org/abs/2512.14052")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
