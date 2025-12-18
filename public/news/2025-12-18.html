@@ -1,0 +1,491 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-18</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-18</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14938" style="color:#4ea8ff;">TalkVerse: Democratizing Minute-Long Audio-Driven Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>**Summary:**
+
+TalkVerse introduces a large-scale, open-source dataset of 2.3M high-resolution audio-video clips (6.3k hours) with rigorous curation including scene detection, audio-visual sync validation, and structured annotations—addressing the reproducibility gap in talking video generation. The authors present a 5B parameter DiT baseline that achieves minute-long generation through efficient video VAE compression and sliding-window motion-frame context, enabling fair benchmarking without requiring proprietary data or massive compute.
+
+**Key implications:** This work democratizes audio-driven video generation research by providing transparent, reproducible infrastructure; the sliding-window architecture with motion context presents a practical approach to long-form generation that could inform efficient video diffusion design across the field.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TalkVerse: Democratizing Minute-Long Audio-Driven Video Generation", "**Summary:**\n\nTalkVerse introduces a large-scale, open-source dataset of 2.3M high-resolution audio-video clips (6.3k hours) with rigorous curation including scene detection, audio-visual sync validation, and structured annotations—addressing the reproducibility gap in talking video generation. The authors present a 5B parameter DiT baseline that achieves minute-long generation through efficient video VAE compression and sliding-window motion-frame context, enabling fair benchmarking without requiring proprietary data or massive compute.\n\n**Key implications:** This work democratizes audio-driven video generation research by providing transparent, reproducible infrastructure; the sliding-window architecture with motion context presents a practical approach to long-form generation that could inform efficient video diffusion design across the field.", "https://arxiv.org/abs/2512.14938")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14938" style="color:#4ea8ff;">TalkVerse: Democratizing Minute-Long Audio-Driven Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>TalkVerse introduces a large-scale open corpus of 2.3M synchronized audio-video clips (6.3k hours) with rigorous curation and comprehensive annotations to enable reproducible benchmarking for audio-driven talking video generation. The authors present a 5B diffusion transformer baseline that generates minute-long videos with minimal drift using high-ratio video compression and sliding-window motion-frame context, achieving quality comparable to closed-source SOTA systems while being fully reproducible and open-source. This work directly addresses the reproducibility and accessibility gap in generative video synthesis by democratizing both the dataset and model architecture.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TalkVerse: Democratizing Minute-Long Audio-Driven Video Generation", "TalkVerse introduces a large-scale open corpus of 2.3M synchronized audio-video clips (6.3k hours) with rigorous curation and comprehensive annotations to enable reproducible benchmarking for audio-driven talking video generation. The authors present a 5B diffusion transformer baseline that generates minute-long videos with minimal drift using high-ratio video compression and sliding-window motion-frame context, achieving quality comparable to closed-source SOTA systems while being fully reproducible and open-source. This work directly addresses the reproducibility and accessibility gap in generative video synthesis by democratizing both the dataset and model architecture.", "https://arxiv.org/abs/2512.14938")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15707" style="color:#4ea8ff;">GateFusion: Hierarchical Gated Cross-Modal Fusion for Active Speaker Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>GateFusion introduces a hierarchical gated fusion mechanism that progressively integrates audio-visual features across multiple Transformer layers using bimodally-conditioned gates, addressing late fusion's inability to capture fine-grained cross-modal interactions for active speaker detection. The approach combines strong pretrained unimodal encoders with novel auxiliary losses (Masked Alignment Loss and Over-Positive Penalty) to improve multimodal alignment and reduce spurious single-modality predictions in unconstrained video scenarios. This multi-depth fusion strategy represents a shift toward deeper cross-modal integration beyond traditional late fusion, with potential applications beyond ASD for any multi-modal perception tasks requiring robust frame-level discrimination.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "GateFusion: Hierarchical Gated Cross-Modal Fusion for Active Speaker Detection", "GateFusion introduces a hierarchical gated fusion mechanism that progressively integrates audio-visual features across multiple Transformer layers using bimodally-conditioned gates, addressing late fusion's inability to capture fine-grained cross-modal interactions for active speaker detection. The approach combines strong pretrained unimodal encoders with novel auxiliary losses (Masked Alignment Loss and Over-Positive Penalty) to improve multimodal alignment and reduce spurious single-modality predictions in unconstrained video scenarios. This multi-depth fusion strategy represents a shift toward deeper cross-modal integration beyond traditional late fusion, with potential applications beyond ASD for any multi-modal perception tasks requiring robust frame-level discrimination.", "https://arxiv.org/abs/2512.15707")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://venturebeat.com/ai/ai-is-moving-to-the-edge-and-network-security-needs-to-catch-up" style="color:#4ea8ff;">AI is moving to the edge – and network security needs to catch up</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    AI | VentureBeat
+     · 2025-12-17
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>Edge AI deployment is accelerating across SMBs, with inferencing and analytics shifting from centralized data centers to distributed endpoints (retail, clinics, branch offices), enabling lower-latency decision-making and operational resilience. This distributed architecture introduces critical network challenges: edge sites require consistent bandwidth provisioning, real-time data pipelines, and local processing capabilities, fundamentally reshaping network security requirements beyond traditional cloud-centric models—particularly around data sovereignty, device authentication, and lateral threat containment at the edge.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly92ZW50"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly92ZW50', "AI is moving to the edge – and network security needs to catch up", "Edge AI deployment is accelerating across SMBs, with inferencing and analytics shifting from centralized data centers to distributed endpoints (retail, clinics, branch offices), enabling lower-latency decision-making and operational resilience. This distributed architecture introduces critical network challenges: edge sites require consistent bandwidth provisioning, real-time data pipelines, and local processing capabilities, fundamentally reshaping network security requirements beyond traditional cloud-centric models—particularly around data sovereignty, device authentication, and lateral threat containment at the edge.", "https://venturebeat.com/ai/ai-is-moving-to-the-edge-and-network-security-needs-to-catch-up")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly92ZW50" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15249" style="color:#4ea8ff;">Intersectional Fairness in Vision-Language Models for Medical Image Disease Classification</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces Cross-Modal Alignment Consistency with Maximum Mean Discrepancy (CMAC-MMD), a novel debiasing framework for vision-language models in medical imaging that equalizes diagnostic confidence across intersectional patient subgroups without requiring demographic information at inference time. The key technical innovation is standardizing certainty distributions across modalities during training rather than enforcing statistical parity, addressing a critical gap where existing fairness methods either fail to reduce bias or degrade overall diagnostic performance. For practitioners, this approach enables fairer medical AI systems that maintain clinical accuracy while reducing disparities in missed diagnoses across marginalized populations—a significant advancement for equitable healthcare AI deployment.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Intersectional Fairness in Vision-Language Models for Medical Image Disease Classification", "This paper introduces Cross-Modal Alignment Consistency with Maximum Mean Discrepancy (CMAC-MMD), a novel debiasing framework for vision-language models in medical imaging that equalizes diagnostic confidence across intersectional patient subgroups without requiring demographic information at inference time. The key technical innovation is standardizing certainty distributions across modalities during training rather than enforcing statistical parity, addressing a critical gap where existing fairness methods either fail to reduce bias or degrade overall diagnostic performance. For practitioners, this approach enables fairer medical AI systems that maintain clinical accuracy while reducing disparities in missed diagnoses across marginalized populations—a significant advancement for equitable healthcare AI deployment.", "https://arxiv.org/abs/2512.15249")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2504.13460" style="color:#4ea8ff;">Chain-of-Evidence Multimodal Reasoning for Few-shot Temporal Action Localization</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces a multimodal few-shot temporal action localization approach that integrates textual and visual information through Chain-of-Evidence reasoning, addressing the limitation of existing methods that rely solely on video-level features. The key innovation is a semantic-aware text-visual alignment module that captures action commonalities across different levels while modeling temporal dependencies and causal relationships between actions. The approach has significant practical implications for reducing annotation requirements in video understanding tasks where labeled data is scarce.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Chain-of-Evidence Multimodal Reasoning for Few-shot Temporal Action Localization", "This paper introduces a multimodal few-shot temporal action localization approach that integrates textual and visual information through Chain-of-Evidence reasoning, addressing the limitation of existing methods that rely solely on video-level features. The key innovation is a semantic-aware text-visual alignment module that captures action commonalities across different levels while modeling temporal dependencies and causal relationships between actions. The approach has significant practical implications for reducing annotation requirements in video understanding tasks where labeled data is scarce.", "https://arxiv.org/abs/2504.13460")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2505.23415" style="color:#4ea8ff;">Bidirectional predictive coding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>Bidirectional predictive coding (bPC) extends classical predictive coding by integrating both generative (top-down prediction) and discriminative (feedforward) inference pathways while maintaining biological plausibility, addressing a key limitation where unidirectional models degrade on tasks requiring bidirectional processing. The approach simultaneously matches or exceeds performance of specialized generative or discriminative models, suggesting the brain's dual-pathway architecture provides computational advantages for flexible visual inference. This work reconciles theoretical PC models with neurobiological evidence of reciprocal connections and offers a more unified framework for understanding cortical computation in vision tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Bidirectional predictive coding", "Bidirectional predictive coding (bPC) extends classical predictive coding by integrating both generative (top-down prediction) and discriminative (feedforward) inference pathways while maintaining biological plausibility, addressing a key limitation where unidirectional models degrade on tasks requiring bidirectional processing. The approach simultaneously matches or exceeds performance of specialized generative or discriminative models, suggesting the brain's dual-pathway architecture provides computational advantages for flexible visual inference. This work reconciles theoretical PC models with neurobiological evidence of reciprocal connections and offers a more unified framework for understanding cortical computation in vision tasks.", "https://arxiv.org/abs/2505.23415")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.14961" style="color:#4ea8ff;">Adaptive Multimodal Person Recognition: A Robust Framework for Handling Missing Modalities</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces a trimodal person recognition framework combining voice, face, and gesture recognition with robust handling of missing modalities through confidence-weighted fusion and cross-attention mechanisms. The key innovation is a multi-task learning architecture with gated fusion that dynamically adapts to incomplete data, maintaining 99.18% accuracy even in unimodal/bimodal degraded scenarios. The work establishes CANDOR as a new interview-based benchmark dataset, addressing a critical gap in real-world person identification where modality dropout is inevitable.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Adaptive Multimodal Person Recognition: A Robust Framework for Handling Missing Modalities", "This paper introduces a trimodal person recognition framework combining voice, face, and gesture recognition with robust handling of missing modalities through confidence-weighted fusion and cross-attention mechanisms. The key innovation is a multi-task learning architecture with gated fusion that dynamically adapts to incomplete data, maintaining 99.18% accuracy even in unimodal/bimodal degraded scenarios. The work establishes CANDOR as a new interview-based benchmark dataset, addressing a critical gap in real-world person identification where modality dropout is inevitable.", "https://arxiv.org/abs/2512.14961")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15153" style="color:#4ea8ff;">Explainable Action Form Assessment by Exploiting Multimodal Chain-of-Thoughts Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces Human Action Form Assessment (AFA), a new task for evaluating whether human actions meet standardization criteria with explainable feedback, supported by the CoT-AFA dataset featuring fitness and martial arts videos with multi-level annotations. The key innovation is employing Chain-of-Thought reasoning to generate complete explanations that trace from action identification through standardization evaluation, moving beyond existing video understanding methods that only address "what" and "where" to address "how well" actions conform to standards. The multimodal approach with fine-grained annotations and reasoning transparency addresses a practical gap in action quality assessment systems applicable to sports coaching, physical rehabilitation, and performance training.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Explainable Action Form Assessment by Exploiting Multimodal Chain-of-Thoughts Reasoning", "This paper introduces Human Action Form Assessment (AFA), a new task for evaluating whether human actions meet standardization criteria with explainable feedback, supported by the CoT-AFA dataset featuring fitness and martial arts videos with multi-level annotations. The key innovation is employing Chain-of-Thought reasoning to generate complete explanations that trace from action identification through standardization evaluation, moving beyond existing video understanding methods that only address \"what\" and \"where\" to address \"how well\" actions conform to standards. The multimodal approach with fine-grained annotations and reasoning transparency addresses a practical gap in action quality assessment systems applicable to sports coaching, physical rehabilitation, and performance training.", "https://arxiv.org/abs/2512.15153")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15160" style="color:#4ea8ff;">EagleVision: A Dual-Stage Framework with BEV-grounding-based Chain-of-Thought for Spatial Intelligence</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#f59e0b;">⚡ 52</span></div>
+  <p>EagleVision introduces a dual-stage spatial reasoning framework that addresses key limitations in current MLLMs by combining Bird's-Eye-View (BEV) grounding with Chain-of-Thought reasoning to achieve token-efficient global space perception while maintaining traceable connections between 3D hypotheses and supporting video frames. The framework's macro perception and micro verification stages enable explicit spatial verification and support spatially-grounded RL rewards, moving beyond black-box reconstruction modules that lack interpretability. This approach is significant for embodied AI and robotics applications requiring transparent, viewpoint-diverse spatial reasoning under computational constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "EagleVision: A Dual-Stage Framework with BEV-grounding-based Chain-of-Thought for Spatial Intelligence", "EagleVision introduces a dual-stage spatial reasoning framework that addresses key limitations in current MLLMs by combining Bird's-Eye-View (BEV) grounding with Chain-of-Thought reasoning to achieve token-efficient global space perception while maintaining traceable connections between 3D hypotheses and supporting video frames. The framework's macro perception and micro verification stages enable explicit spatial verification and support spatially-grounded RL rewards, moving beyond black-box reconstruction modules that lack interpretability. This approach is significant for embodied AI and robotics applications requiring transparent, viewpoint-diverse spatial reasoning under computational constraints.", "https://arxiv.org/abs/2512.15160")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15249" style="color:#4ea8ff;">Intersectional Fairness in Vision-Language Models for Medical Image Disease Classification</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>Researchers introduced Cross-Modal Alignment Consistency (CMAC-MMD), a training framework that mitigates intersectional biases in vision-language models for medical imaging by equalizing diagnostic confidence across demographic subgroups without requiring demographic data at inference time. The approach addresses a critical gap where current fairness interventions either fail to reduce performance disparities or degrade overall diagnostic accuracy, using maximum mean discrepancy (MMD) to standardize certainty distributions across intersectional patient populations. This technique is particularly significant for clinical deployment, as it prevents demographic-dependent under-confidence that could lead to missed diagnoses while maintaining privacy through inference-time demographic-agnosticism.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Intersectional Fairness in Vision-Language Models for Medical Image Disease Classification", "Researchers introduced Cross-Modal Alignment Consistency (CMAC-MMD), a training framework that mitigates intersectional biases in vision-language models for medical imaging by equalizing diagnostic confidence across demographic subgroups without requiring demographic data at inference time. The approach addresses a critical gap where current fairness interventions either fail to reduce performance disparities or degrade overall diagnostic accuracy, using maximum mean discrepancy (MMD) to standardize certainty distributions across intersectional patient populations. This technique is particularly significant for clinical deployment, as it prevents demographic-dependent under-confidence that could lead to missed diagnoses while maintaining privacy through inference-time demographic-agnosticism.", "https://arxiv.org/abs/2512.15249")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15340" style="color:#4ea8ff;">Towards Seamless Interaction: Causal Turn-Level Modeling of Interactive 3D Conversational Head Dynamics</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>TIMAR introduces a causal turn-level autoregressive framework that models bidirectional 3D head dynamics during conversations by interleaving audio-visual contexts and applying causal attention across dialogue turns—addressing the temporal coherence limitations of prior non-causal sequence models. The approach combines multimodal fusion within turns and a lightweight diffusion head for continuous 3D prediction, enabling more natural coordination between speech and nonverbal cues for interactive avatars and robots. This work represents a significant advance in real-time conversational AI by enabling streaming inference without requiring full-sequence lookahead, making it practical for deployment in interactive systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Towards Seamless Interaction: Causal Turn-Level Modeling of Interactive 3D Conversational Head Dynamics", "TIMAR introduces a causal turn-level autoregressive framework that models bidirectional 3D head dynamics during conversations by interleaving audio-visual contexts and applying causal attention across dialogue turns—addressing the temporal coherence limitations of prior non-causal sequence models. The approach combines multimodal fusion within turns and a lightweight diffusion head for continuous 3D prediction, enabling more natural coordination between speech and nonverbal cues for interactive avatars and robots. This work represents a significant advance in real-time conversational AI by enabling streaming inference without requiring full-sequence lookahead, making it practical for deployment in interactive systems.", "https://arxiv.org/abs/2512.15340")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15560" style="color:#4ea8ff;">GRAN-TED: Generating Robust, Aligned, and Nuanced Text Embedding for Diffusion Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>GRAN-TED introduces a two-part solution to optimize text encoders for diffusion models: TED-6K, a lightweight text-only benchmark that efficiently predicts encoder performance without expensive end-to-end training, and a unified adapter framework that enables better adaptation of pretrained language models for visual synthesis tasks. This addresses a critical bottleneck in T2I/T2V generation pipelines by decoupling encoder evaluation from computationally expensive downstream training, potentially accelerating the development and benchmarking of more semantically faithful diffusion models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "GRAN-TED: Generating Robust, Aligned, and Nuanced Text Embedding for Diffusion Models", "GRAN-TED introduces a two-part solution to optimize text encoders for diffusion models: TED-6K, a lightweight text-only benchmark that efficiently predicts encoder performance without expensive end-to-end training, and a unified adapter framework that enables better adaptation of pretrained language models for visual synthesis tasks. This addresses a critical bottleneck in T2I/T2V generation pipelines by decoupling encoder evaluation from computationally expensive downstream training, potentially accelerating the development and benchmarking of more semantically faithful diffusion models.", "https://arxiv.org/abs/2512.15560")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15599" style="color:#4ea8ff;">FlexAvatar: Learning Complete 3D Head Avatars with Partial Supervision</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>FlexAvatar addresses the monocular 3D head reconstruction incompleteness problem by introducing learnable "bias sink" tokens that disentangle driving signals from viewpoint information, enabling unified training across monocular and multi-view datasets. This transformer-based approach leverages sparse multi-view data for 3D completeness while retaining monocular generalization, producing a smooth latent space suitable for identity interpolation and flexible fitting. The method achieves single-image 3D head avatar generation with practical implications for avatar synthesis systems that lack extensive multi-view captures.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FlexAvatar: Learning Complete 3D Head Avatars with Partial Supervision", "FlexAvatar addresses the monocular 3D head reconstruction incompleteness problem by introducing learnable \"bias sink\" tokens that disentangle driving signals from viewpoint information, enabling unified training across monocular and multi-view datasets. This transformer-based approach leverages sparse multi-view data for 3D completeness while retaining monocular generalization, producing a smooth latent space suitable for identity interpolation and flexible fitting. The method achieves single-image 3D head avatar generation with practical implications for avatar synthesis systems that lack extensive multi-view captures.", "https://arxiv.org/abs/2512.15599")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15693" style="color:#4ea8ff;">Skyra: AI-Generated Video Detection via Grounded Artifact Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-18
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>Skyra introduces a novel interpretable approach to AI-generated video detection by fine-tuning a multimodal LLM to identify and explain human-perceivable visual artifacts as grounded evidence, moving beyond black-box binary classification. The work is anchored by ViF-CoT-4K, the first large-scale artifact dataset with fine-grained annotations, and employs a two-stage training strategy to enhance spatio-temporal artifact perception and explanation generation. This represents a significant step toward trustworthy deepfake detection systems that can provide actionable forensic reasoning rather than opaque confidence scores.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Skyra: AI-Generated Video Detection via Grounded Artifact Reasoning", "Skyra introduces a novel interpretable approach to AI-generated video detection by fine-tuning a multimodal LLM to identify and explain human-perceivable visual artifacts as grounded evidence, moving beyond black-box binary classification. The work is anchored by ViF-CoT-4K, the first large-scale artifact dataset with fine-grained annotations, and employs a two-stage training strategy to enhance spatio-temporal artifact perception and explanation generation. This represents a significant step toward trustworthy deepfake detection systems that can provide actionable forensic reasoning rather than opaque confidence scores.", "https://arxiv.org/abs/2512.15693")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
