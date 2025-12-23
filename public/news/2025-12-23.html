@@ -1,0 +1,489 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-23</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-23</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.16925" style="color:#4ea8ff;">V-Agent: An Interactive Video Search System Using Vision-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>V-Agent introduces a multi-agent architecture that combines fine-tuned vision-language models with multimodal embedding space to enable context-aware video search beyond traditional text-based retrieval, integrating visual frames and ASR-transcribed audio into a unified representation. The system's three-agent design (routing, search, and chat) enables iterative refinement and interactive dialogue, overcoming VLM limitations through small-scale preference fine-tuning and leveraging re-ranking mechanisms for improved retrieval accuracy. This approach demonstrates practical advancement toward conversational video understanding systems that handle both visual semantics and spoken content simultaneously.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "V-Agent: An Interactive Video Search System Using Vision-Language Models", "V-Agent introduces a multi-agent architecture that combines fine-tuned vision-language models with multimodal embedding space to enable context-aware video search beyond traditional text-based retrieval, integrating visual frames and ASR-transcribed audio into a unified representation. The system's three-agent design (routing, search, and chat) enables iterative refinement and interactive dialogue, overcoming VLM limitations through small-scale preference fine-tuning and leveraging re-ranking mechanisms for improved retrieval accuracy. This approach demonstrates practical advancement toward conversational video understanding systems that handle both visual semantics and spoken content simultaneously.", "https://arxiv.org/abs/2512.16925")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12284" style="color:#4ea8ff;">V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>V-Rex introduces a software-hardware co-design framework that tackles the critical bottleneck of unbounded KV cache growth in streaming video LLMs by enabling dynamic KV cache retrieval, eliminating the expensive iterative prefill stage that degrades both computational efficiency and accuracy. The approach specifically targets edge deployment scenarios where memory and compute constraints are most severe, combining algorithmic innovations with hardware-level optimizations to reduce data movement and computational overhead. This represents a significant advancement for real-time multimodal applications like video QA and conversational AI that require efficient streaming processing without the typical accuracy-performance tradeoffs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval", "V-Rex introduces a software-hardware co-design framework that tackles the critical bottleneck of unbounded KV cache growth in streaming video LLMs by enabling dynamic KV cache retrieval, eliminating the expensive iterative prefill stage that degrades both computational efficiency and accuracy. The approach specifically targets edge deployment scenarios where memory and compute constraints are most severe, combining algorithmic innovations with hardware-level optimizations to reduce data movement and computational overhead. This represents a significant advancement for real-time multimodal applications like video QA and conversational AI that require efficient streaming processing without the typical accuracy-performance tradeoffs.", "https://arxiv.org/abs/2512.12284")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18318" style="color:#4ea8ff;">Asynchronous Pipeline Parallelism for Real-Time Multilingual Lip Synchronization in Video Communication Systems</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#10b981;">⚡ 85</span></div>
+  <p>This paper presents an asynchronous pipeline-parallel Transformer architecture for real-time multilingual lip-sync in video conferencing that decouples translation, speech processing, and visual synchronization modules via message queues, achieving 3.1× latency reduction over sequential pipelines. The system employs graph compilation, mixed-precision quantization, and kernel fusion optimizations to maintain accuracy while improving throughput, complemented by context-adaptive silence detection for semantically coherent speech segmentation. The approach demonstrates how architectural decoupling and inference-level optimizations can enable practical real-time multilingual A/V synchronization—a critical capability for global communication systems with strict latency budgets.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Asynchronous Pipeline Parallelism for Real-Time Multilingual Lip Synchronization in Video Communication Systems", "This paper presents an asynchronous pipeline-parallel Transformer architecture for real-time multilingual lip-sync in video conferencing that decouples translation, speech processing, and visual synchronization modules via message queues, achieving 3.1× latency reduction over sequential pipelines. The system employs graph compilation, mixed-precision quantization, and kernel fusion optimizations to maintain accuracy while improving throughput, complemented by context-adaptive silence detection for semantically coherent speech segmentation. The approach demonstrates how architectural decoupling and inference-level optimizations can enable practical real-time multilingual A/V synchronization—a critical capability for global communication systems with strict latency budgets.", "https://arxiv.org/abs/2512.18318")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.19687" style="color:#4ea8ff;">Pushing the Frontier of Audiovisual Perception with Large-Scale Multimodal Correspondence Learning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p>PE-AV introduces a unified multimodal encoder trained via scaled contrastive learning across ~100M audio-video pairs with synthetically-generated captions, enabling joint embeddings for audio-video, audio-text, and video-text alignment while supporting novel tasks like cross-modal speech retrieval. The approach leverages ten pairwise contrastive objectives and diverse audio domains (speech, music, sound effects) to achieve state-of-the-art performance on standard benchmarks, addressing prior work's single-domain limitations. This represents a significant step toward generalizable audiovisual foundation models with practical applications in cross-modal retrieval and multi-modal understanding tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Pushing the Frontier of Audiovisual Perception with Large-Scale Multimodal Correspondence Learning", "PE-AV introduces a unified multimodal encoder trained via scaled contrastive learning across ~100M audio-video pairs with synthetically-generated captions, enabling joint embeddings for audio-video, audio-text, and video-text alignment while supporting novel tasks like cross-modal speech retrieval. The approach leverages ten pairwise contrastive objectives and diverse audio domains (speech, music, sound effects) to achieve state-of-the-art performance on standard benchmarks, addressing prior work's single-domain limitations. This represents a significant step toward generalizable audiovisual foundation models with practical applications in cross-modal retrieval and multi-modal understanding tasks.", "https://arxiv.org/abs/2512.19687")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.16918" style="color:#4ea8ff;">AdaTooler-V: Adaptive Tool-Use for Images and Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>AdaTooler-V addresses the inefficiency of indiscriminate tool-use in multimodal LLMs by introducing AT-GRPO, a reinforcement learning algorithm that learns to invoke vision tools only when they provide measurable benefits via a Tool Benefit Score metric. The approach combines supervised fine-tuning with adaptive reward scaling to reduce inference overhead while maintaining performance across image and video understanding tasks. This tackles a critical practical problem in deploying tool-augmented MLLMs where unnecessary tool invocations become a performance bottleneck.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "AdaTooler-V: Adaptive Tool-Use for Images and Videos", "AdaTooler-V addresses the inefficiency of indiscriminate tool-use in multimodal LLMs by introducing AT-GRPO, a reinforcement learning algorithm that learns to invoke vision tools only when they provide measurable benefits via a Tool Benefit Score metric. The approach combines supervised fine-tuning with adaptive reward scaling to reduce inference overhead while maintaining performance across image and video understanding tasks. This tackles a critical practical problem in deploying tool-augmented MLLMs where unnecessary tool invocations become a performance bottleneck.", "https://arxiv.org/abs/2512.16918")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://www.marktechpost.com/2025/12/22/meta-ai-open-sourced-perception-encoder-audiovisual-pe-av-the-audiovisual-encoder-powering-sam-audio-and-large-scale-multimodal-retrieval/" style="color:#4ea8ff;">Meta AI Open-Sourced Perception Encoder Audiovisual (PE-AV): The Audiovisual Encoder Powering SAM Audio And Large Scale Multimodal Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    MarkTechPost
+     · 2025-12-22
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>Meta's PE-AV is a unified audiovisual encoder that learns aligned audio, video, and text representations through large-scale contrastive learning on ~100M multimodal pairs, enabling superior joint understanding beyond single-modality approaches. The open-sourced model powers downstream applications like SAM Audio and multimodal retrieval systems, significantly advancing contrastive learning for audiovisual tasks and providing developers with a foundational architecture for cross-modal retrieval and audio-visual reasoning at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly93d3cu"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly93d3cu', "Meta AI Open-Sourced Perception Encoder Audiovisual (PE-AV): The Audiovisual Encoder Powering SAM Audio And Large Scale Multimodal Retrieval", "Meta's PE-AV is a unified audiovisual encoder that learns aligned audio, video, and text representations through large-scale contrastive learning on ~100M multimodal pairs, enabling superior joint understanding beyond single-modality approaches. The open-sourced model powers downstream applications like SAM Audio and multimodal retrieval systems, significantly advancing contrastive learning for audiovisual tasks and providing developers with a foundational architecture for cross-modal retrieval and audio-visual reasoning at scale.", "https://www.marktechpost.com/2025/12/22/meta-ai-open-sourced-perception-encoder-audiovisual-pe-av-the-audiovisual-encoder-powering-sam-audio-and-large-scale-multimodal-retrieval/")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly93d3cu" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.16969" style="color:#4ea8ff;">Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>This paper introduces SGI-Bench, a comprehensive evaluation framework grounded in the Practical Inquiry Model that systematically assesses Large Language Models across four scientist-aligned tasks (deep research, idea generation, dry/wet experiments, and reasoning) using 1,000+ expert-curated interdisciplinary samples. Key findings expose critical limitations: LLMs achieve only 10-20% exact match on deep research tasks despite step-level alignment, generate ideas lacking feasibility, struggle with execution result accuracy in computational experiments, and show low fidelity in wet lab protocol reasoning. This work provides a rigorous methodology for probing scientific reasoning capabilities and identifies concrete failure modes that future models must address to achieve genuine scientific general intelligence.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Probing Scientific General Intelligence of LLMs with Scientist-Aligned Workflows", "This paper introduces SGI-Bench, a comprehensive evaluation framework grounded in the Practical Inquiry Model that systematically assesses Large Language Models across four scientist-aligned tasks (deep research, idea generation, dry/wet experiments, and reasoning) using 1,000+ expert-curated interdisciplinary samples. Key findings expose critical limitations: LLMs achieve only 10-20% exact match on deep research tasks despite step-level alignment, generate ideas lacking feasibility, struggle with execution result accuracy in computational experiments, and show low fidelity in wet lab protocol reasoning. This work provides a rigorous methodology for probing scientific reasoning capabilities and identifies concrete failure modes that future models must address to achieve genuine scientific general intelligence.", "https://arxiv.org/abs/2512.16969")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.17773" style="color:#4ea8ff;">Pix2NPHM: Learning to Regress NPHM Reconstructions From a Single Image</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 25</span></div>
+  <p>Pix2NPHM addresses the challenge of fitting Neural Parametric Head Models (NPHMs) to single images by using a vision transformer that directly regresses NPHM parameters, leveraging domain-specific ViT backbones pretrained on geometric tasks. The method combines direct supervision from 100K+ NPHM registrations in SDF space with pseudo-labels from large-scale 2D video datasets, achieving superior facial geometry reconstruction and expression accuracy compared to existing optimization-based fitting approaches. This end-to-end regression strategy eliminates costly iterative optimization, enabling practical real-time 3D face reconstruction with finer geometric detail than traditional morphable models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Pix2NPHM: Learning to Regress NPHM Reconstructions From a Single Image", "Pix2NPHM addresses the challenge of fitting Neural Parametric Head Models (NPHMs) to single images by using a vision transformer that directly regresses NPHM parameters, leveraging domain-specific ViT backbones pretrained on geometric tasks. The method combines direct supervision from 100K+ NPHM registrations in SDF space with pseudo-labels from large-scale 2D video datasets, achieving superior facial geometry reconstruction and expression accuracy compared to existing optimization-based fitting approaches. This end-to-end regression strategy eliminates costly iterative optimization, enabling practical real-time 3D face reconstruction with finer geometric detail than traditional morphable models.", "https://arxiv.org/abs/2512.17773")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.16442" style="color:#4ea8ff;">EDVD-LLaMA: Explainable Deepfake Video Detection via Multimodal Large Language Model Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>EDVD-LLaMA introduces an explainable deepfake detection framework that combines spatio-temporal feature extraction with multimodal LLM reasoning to provide not just binary detection results but interpretable reasoning chains—addressing the critical transparency gap in traditional DVD methods. The key innovation is the ST-SIT tokenization module that captures subtle cross-frame artifacts across multiple scales, enabling the MLLM to reason about forgery indicators in natural language rather than operating as a black box. This approach represents a shift toward trustworthy AI for content authentication, crucial as deepfake sophistication outpaces existing generalization capabilities of conventional detectors.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "EDVD-LLaMA: Explainable Deepfake Video Detection via Multimodal Large Language Model Reasoning", "EDVD-LLaMA introduces an explainable deepfake detection framework that combines spatio-temporal feature extraction with multimodal LLM reasoning to provide not just binary detection results but interpretable reasoning chains—addressing the critical transparency gap in traditional DVD methods. The key innovation is the ST-SIT tokenization module that captures subtle cross-frame artifacts across multiple scales, enabling the MLLM to reason about forgery indicators in natural language rather than operating as a black box. This approach represents a shift toward trustworthy AI for content authentication, crucial as deepfake sophistication outpaces existing generalization capabilities of conventional detectors.", "https://arxiv.org/abs/2510.16442")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18181" style="color:#4ea8ff;">MACE-Dance: Motion-Appearance Cascaded Experts for Music-Driven Dance Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>MACE-Dance introduces a cascaded Mixture-of-Experts architecture that decouples music-driven dance generation into specialized pathways: a Motion Expert handles music-to-3D choreography with kinematic constraints, while an Appearance Expert synthesizes coherent video conditioned on the generated motion and reference frames. This two-stage approach addresses the technical challenge of jointly optimizing realistic motion dynamics and visual identity preservation that single-model architectures struggle with in dance video synthesis.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "MACE-Dance: Motion-Appearance Cascaded Experts for Music-Driven Dance Video Generation", "MACE-Dance introduces a cascaded Mixture-of-Experts architecture that decouples music-driven dance generation into specialized pathways: a Motion Expert handles music-to-3D choreography with kinematic constraints, while an Appearance Expert synthesizes coherent video conditioned on the generated motion and reference frames. This two-stage approach addresses the technical challenge of jointly optimizing realistic motion dynamics and visual identity preservation that single-model architectures struggle with in dance video synthesis.", "https://arxiv.org/abs/2512.18181")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18496" style="color:#4ea8ff;">Adaptive-VoCo: Complexity-Aware Visual Token Compression for Vision-Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>**Adaptive-VoCo** extends VoCo-LLaMA's fixed-rate visual token compression by introducing a lightweight complexity predictor that dynamically adjusts compression ratios based on image statistics (patch entropy, attention variance), enabling adaptive token reduction for varying visual complexity. This approach maintains cross-modal alignment while reducing computational overhead more efficiently than uniform compression, particularly valuable for resource-constrained deployment of vision-language models. The key innovation is leveraging encoder-internal signals to make compression decisions without requiring auxiliary models, enabling practical efficiency gains across diverse visual inputs.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Adaptive-VoCo: Complexity-Aware Visual Token Compression for Vision-Language Models", "**Adaptive-VoCo** extends VoCo-LLaMA's fixed-rate visual token compression by introducing a lightweight complexity predictor that dynamically adjusts compression ratios based on image statistics (patch entropy, attention variance), enabling adaptive token reduction for varying visual complexity. This approach maintains cross-modal alignment while reducing computational overhead more efficiently than uniform compression, particularly valuable for resource-constrained deployment of vision-language models. The key innovation is leveraging encoder-internal signals to make compression decisions without requiring auxiliary models, enabling practical efficiency gains across diverse visual inputs.", "https://arxiv.org/abs/2512.18496")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18599" style="color:#4ea8ff;">SimpleCall: A Lightweight Image Restoration Agent in Label-Free Environments with MLLM Perceptual Feedback</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>**SimpleCall** introduces a policy optimization-based image restoration agent that eliminates the need for degradation-specific labels by using MLLM perceptual feedback to guide sequential tool selection—addressing the efficiency and annotation bottlenecks of existing vision-language model restoration systems. The lightweight agent learns to compose restoration operations dynamically rather than relying on pre-trained degradation classifiers, making it practical for real-world scenarios where labeled data is unavailable. This approach trades iterative reflection/rollback for direct policy learning, promising both faster inference and broader applicability across diverse degradation types.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SimpleCall: A Lightweight Image Restoration Agent in Label-Free Environments with MLLM Perceptual Feedback", "**SimpleCall** introduces a policy optimization-based image restoration agent that eliminates the need for degradation-specific labels by using MLLM perceptual feedback to guide sequential tool selection—addressing the efficiency and annotation bottlenecks of existing vision-language model restoration systems. The lightweight agent learns to compose restoration operations dynamically rather than relying on pre-trained degradation classifiers, making it practical for real-world scenarios where labeled data is unavailable. This approach trades iterative reflection/rollback for direct policy learning, promising both faster inference and broader applicability across diverse degradation types.", "https://arxiv.org/abs/2512.18599")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18735" style="color:#4ea8ff;">$M^3-Verse$: A "Spot the Difference" Challenge for Large Multimodal Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>The M³-Verse benchmark introduces a novel evaluation framework for assessing Large Multimodal Models' ability to detect and reason about object transformations across paired video observations of indoor scenes—a critical capability for spatial intelligence that current LMMs struggle with. With 270 scenes, 2,932 questions spanning 50+ subtasks across 4 core reasoning capabilities, the benchmark reveals significant limitations in state-of-the-art models' object tracking and change comprehension within consistent spatial contexts. This work addresses a fundamental gap in multimodal AI evaluation, shifting focus from static scene understanding to dynamic change detection—essential for real-world robotics and autonomous systems applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "$M^3-Verse$: A \"Spot the Difference\" Challenge for Large Multimodal Models", "The M³-Verse benchmark introduces a novel evaluation framework for assessing Large Multimodal Models' ability to detect and reason about object transformations across paired video observations of indoor scenes—a critical capability for spatial intelligence that current LMMs struggle with. With 270 scenes, 2,932 questions spanning 50+ subtasks across 4 core reasoning capabilities, the benchmark reveals significant limitations in state-of-the-art models' object tracking and change comprehension within consistent spatial contexts. This work addresses a fundamental gap in multimodal AI evaluation, shifting focus from static scene understanding to dynamic change detection—essential for real-world robotics and autonomous systems applications.", "https://arxiv.org/abs/2512.18735")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18747" style="color:#4ea8ff;">IPCV: Information-Preserving Compression for MLLM Visual Encoders</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>IPCV introduces a training-free compression framework that aggressively prunes visual tokens within Vision Transformers by temporarily reconstructing pruned tokens during attention computation (Neighbor-Guided Reconstruction), then fully restoring them—avoiding information loss that plagues conventional pruning while eliminating ViT computational overhead that token pruning at the LLM stage misses. The approach combines this with Attention Stabilization to mitigate feature distortions from bidirectional attention, enabling significant efficiency gains for MLLMs without sacrificing vision-language performance.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "IPCV: Information-Preserving Compression for MLLM Visual Encoders", "IPCV introduces a training-free compression framework that aggressively prunes visual tokens within Vision Transformers by temporarily reconstructing pruned tokens during attention computation (Neighbor-Guided Reconstruction), then fully restoring them—avoiding information loss that plagues conventional pruning while eliminating ViT computational overhead that token pruning at the LLM stage misses. The approach combines this with Attention Stabilization to mitigate feature distortions from bidirectional attention, enabling significant efficiency gains for MLLMs without sacrificing vision-language performance.", "https://arxiv.org/abs/2512.18747")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18772" style="color:#4ea8ff;">In-Context Audio Control of Video Diffusion Transformers</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-23
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 92</span></div>
+  <p># In-Context Audio Control of Video Diffusion Transformers
+
+Researchers introduce ICAC, a framework extending unified transformer-based video generation models to handle audio conditioning for speech-driven synthesis by systematically comparing three injection mechanisms: cross-attention, 2D self-attention, and 3D self-attention. While 3D attention theoretically captures superior spatio-temporal audio-visual correlations, the authors identify critical training challenges and propose solutions, advancing multi-modal conditional generation beyond text/image inputs within a FullDiT-style architecture.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "In-Context Audio Control of Video Diffusion Transformers", "# In-Context Audio Control of Video Diffusion Transformers\n\nResearchers introduce ICAC, a framework extending unified transformer-based video generation models to handle audio conditioning for speech-driven synthesis by systematically comparing three injection mechanisms: cross-attention, 2D self-attention, and 3D self-attention. While 3D attention theoretically captures superior spatio-temporal audio-visual correlations, the authors identify critical training challenges and propose solutions, advancing multi-modal conditional generation beyond text/image inputs within a FullDiT-style architecture.", "https://arxiv.org/abs/2512.18772")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
