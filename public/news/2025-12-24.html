@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-24</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-24</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20548" style="color:#4ea8ff;">Advancing Multimodal Teacher Sentiment Analysis:The Large-Scale T-MED Dataset &amp; The Effective AAM-TSA Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Researchers introduce T-MED, the first large-scale multimodal teacher sentiment analysis dataset with 14,938 instances across 250 real classrooms, incorporating text, audio, video, and instructional metadata with human-machine collaborative labeling to improve accuracy beyond traditional emotion detection. They propose AAM-TSA, an asymmetric attention mechanism model designed to address the challenge that teachers' emotional expressions are context-dependent and heavily influenced by instructional content, not just performative behavior. This work has direct implications for educational AI systems seeking to assess teaching quality and student engagement through more contextually-aware multimodal analysis rather than surface-level emotion recognition.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Advancing Multimodal Teacher Sentiment Analysis:The Large-Scale T-MED Dataset &amp; The Effective AAM-TSA Model", "Researchers introduce T-MED, the first large-scale multimodal teacher sentiment analysis dataset with 14,938 instances across 250 real classrooms, incorporating text, audio, video, and instructional metadata with human-machine collaborative labeling to improve accuracy beyond traditional emotion detection. They propose AAM-TSA, an asymmetric attention mechanism model designed to address the challenge that teachers' emotional expressions are context-dependent and heavily influenced by instructional content, not just performative behavior. This work has direct implications for educational AI systems seeking to assess teaching quality and student engagement through more contextually-aware multimodal analysis rather than surface-level emotion recognition.", "https://arxiv.org/abs/2512.20548")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20296" style="color:#4ea8ff;">TAVID: Text-Driven Audio-Visual Interactive Dialogue Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>TAVID presents a unified framework for synchronized audio-visual dialogue generation by integrating face and speech synthesis through cross-modal mappers (motion and speaker mappers) that bidirectionally exchange information between modalities—addressing the gap where prior work treated talking/listening head and speech generation in isolation. This multimodal approach enables more natural conversational systems by ensuring tight audio-visual coupling, evaluated across talking face realism and listening head dimensions. The framework's key innovation is leveraging cross-modal information exchange to improve coherence between visual and audio outputs, moving beyond sequential or independent generation pipelines.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TAVID: Text-Driven Audio-Visual Interactive Dialogue Generation", "TAVID presents a unified framework for synchronized audio-visual dialogue generation by integrating face and speech synthesis through cross-modal mappers (motion and speaker mappers) that bidirectionally exchange information between modalities—addressing the gap where prior work treated talking/listening head and speech generation in isolation. This multimodal approach enables more natural conversational systems by ensuring tight audio-visual coupling, evaluated across talking face realism and listening head dimensions. The framework's key innovation is leveraging cross-modal information exchange to improve coherence between visual and audio outputs, moving beyond sequential or independent generation pipelines.", "https://arxiv.org/abs/2512.20296")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20296" style="color:#4ea8ff;">TAVID: Text-Driven Audio-Visual Interactive Dialogue Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>TAVID presents a unified framework for synchronized audio-visual dialogue generation that addresses the fragmentation of prior work by jointly synthesizing talking faces and conversational speech from text and reference images. The key innovation lies in cross-modal mappers (motion and speaker mappers) that enable bidirectional information exchange between audio and visual modalities, ensuring tight coupling of facial movements with speech dynamics. This multimodal approach has practical implications for building more realistic conversational AI systems where audio-visual synchronization is critical for naturalness perception.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TAVID: Text-Driven Audio-Visual Interactive Dialogue Generation", "TAVID presents a unified framework for synchronized audio-visual dialogue generation that addresses the fragmentation of prior work by jointly synthesizing talking faces and conversational speech from text and reference images. The key innovation lies in cross-modal mappers (motion and speaker mappers) that enable bidirectional information exchange between audio and visual modalities, ensuring tight coupling of facial movements with speech dynamics. This multimodal approach has practical implications for building more realistic conversational AI systems where audio-visual synchronization is critical for naturalness perception.", "https://arxiv.org/abs/2512.20296")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.10652" style="color:#4ea8ff;">TriDF: Evaluating Perception, Detection, and Hallucination for Interpretable DeepFake Detection</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>TriDF introduces a multimodal benchmark for interpretable deepfake detection spanning 16 forgery types across image, video, and audio, evaluating models on three critical dimensions: artifact perception (fine-grained manipulation identification), detection accuracy across diverse generators, and hallucination quantification (reliability of explanations). The work addresses a key gap in current deepfake detection—the need for not just accurate classification but trustworthy, human-interpretable reasoning—essential for deployment in high-stakes security and verification scenarios. This comprehensive evaluation framework enables researchers to build detection systems that can justify their decisions transparently rather than operating as black boxes.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TriDF: Evaluating Perception, Detection, and Hallucination for Interpretable DeepFake Detection", "TriDF introduces a multimodal benchmark for interpretable deepfake detection spanning 16 forgery types across image, video, and audio, evaluating models on three critical dimensions: artifact perception (fine-grained manipulation identification), detection accuracy across diverse generators, and hallucination quantification (reliability of explanations). The work addresses a key gap in current deepfake detection—the need for not just accurate classification but trustworthy, human-interpretable reasoning—essential for deployment in high-stakes security and verification scenarios. This comprehensive evaluation framework enables researchers to build detection systems that can justify their decisions transparently rather than operating as black boxes.", "https://arxiv.org/abs/2512.10652")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.13507" style="color:#4ea8ff;">Seedance 1.5 pro: A Native Audio-Visual Joint Generation Foundation Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Seedance 1.5 pro introduces a dual-branch Diffusion Transformer with cross-modal joint modules for native audio-video generation, achieving strong synchronization through a specialized multi-stage pipeline and RLHF optimization. The model demonstrates practical advances in multilingual lip-syncing, cinematic control, and &gt;10X inference acceleration, positioning it as a significant step toward production-ready multimodal generation that addresses both quality and deployment constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Seedance 1.5 pro: A Native Audio-Visual Joint Generation Foundation Model", "Seedance 1.5 pro introduces a dual-branch Diffusion Transformer with cross-modal joint modules for native audio-video generation, achieving strong synchronization through a specialized multi-stage pipeline and RLHF optimization. The model demonstrates practical advances in multilingual lip-syncing, cinematic control, and &gt;10X inference acceleration, positioning it as a significant step toward production-ready multimodal generation that addresses both quality and deployment constraints.", "https://arxiv.org/abs/2512.13507")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20211" style="color:#4ea8ff;">Aliasing-Free Neural Audio Synthesis</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    eess.AS updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper identifies and addresses critical aliasing artifacts in neural vocoders caused by unconstrained nonlinear activations (generating harmonics above Nyquist frequency) and ConvTranspose upsampling layers (introducing mirrored and tonal artifacts). The authors propose architecture modifications to enforce anti-aliasing constraints, enabling time-domain neural vocoders to achieve higher synthesis fidelity while maintaining their superior inference speed compared to frequency-domain alternatives. This work directly impacts practical audio synthesis applications where perceptual quality and real-time performance are critical constraints.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Aliasing-Free Neural Audio Synthesis", "This paper identifies and addresses critical aliasing artifacts in neural vocoders caused by unconstrained nonlinear activations (generating harmonics above Nyquist frequency) and ConvTranspose upsampling layers (introducing mirrored and tonal artifacts). The authors propose architecture modifications to enforce anti-aliasing constraints, enabling time-domain neural vocoders to achieve higher synthesis fidelity while maintaining their superior inference speed compared to frequency-domain alternatives. This work directly impacts practical audio synthesis applications where perceptual quality and real-time performance are critical constraints.", "https://arxiv.org/abs/2512.20211")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20296" style="color:#4ea8ff;">TAVID: Text-Driven Audio-Visual Interactive Dialogue Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    eess.AS updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>TAVID proposes a unified framework that synchronizes talking face generation with conversational speech synthesis through cross-modal mappers that bidirectionally exchange audio-visual information, addressing the gap of isolated multimodal generation studies. The motion and speaker mappers enable tightly coupled audio-visual interactions by allowing facial expressions and head movements to inform speech generation and vice versa, moving toward more human-like conversational systems. This cross-modal approach could enable more natural interactive video dialogue systems where facial gestures and speech prosody are mutually reinforcing rather than independently generated.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "TAVID: Text-Driven Audio-Visual Interactive Dialogue Generation", "TAVID proposes a unified framework that synchronizes talking face generation with conversational speech synthesis through cross-modal mappers that bidirectionally exchange audio-visual information, addressing the gap of isolated multimodal generation studies. The motion and speaker mappers enable tightly coupled audio-visual interactions by allowing facial expressions and head movements to inform speech generation and vice versa, moving toward more human-like conversational systems. This cross-modal approach could enable more natural interactive video dialogue systems where facial gestures and speech prosody are mutually reinforcing rather than independently generated.", "https://arxiv.org/abs/2512.20296")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20618" style="color:#4ea8ff;">LongVideoAgent: Multi-Agent Reasoning with Long Videos</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>LongVideoAgent introduces a multi-agent framework where a master LLM coordinates specialized grounding and vision agents to reason over hour-long videos without lossy compression, addressing limitations in temporal grounding and fine-grained detail extraction. The system is trained with RL to optimize multi-agent cooperation efficiency and produces interpretable reasoning trajectories that outperform existing approaches on new episode-level video QA datasets (LongTVQA/LongTVQA+). This architecture's modular design—combining temporal localization with targeted visual observation extraction—enables more robust long-form video understanding compared to summary-based or tool-limited methods.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "LongVideoAgent: Multi-Agent Reasoning with Long Videos", "LongVideoAgent introduces a multi-agent framework where a master LLM coordinates specialized grounding and vision agents to reason over hour-long videos without lossy compression, addressing limitations in temporal grounding and fine-grained detail extraction. The system is trained with RL to optimize multi-agent cooperation efficiency and produces interpretable reasoning trajectories that outperform existing approaches on new episode-level video QA datasets (LongTVQA/LongTVQA+). This architecture's modular design—combining temporal localization with targeted visual observation extraction—enables more robust long-form video understanding compared to summary-based or tool-limited methods.", "https://arxiv.org/abs/2512.20618")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20136" style="color:#4ea8ff;">M$^3$KG-RAG: Multi-hop Multimodal Knowledge Graph-enhanced Retrieval-Augmented Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 75</span></div>
+  <p>M³KG-RAG addresses multimodal RAG limitations by constructing multi-hop knowledge graphs with richer audio-visual entity connections and implementing a lightweight multi-agent pipeline to enable deeper reasoning beyond shallow similarity-based retrieval. The approach tackles two critical challenges: expanding modality coverage in existing MMKGs and filtering semantically relevant knowledge through multi-hop connectivity rather than relying solely on shared embedding spaces. This work has implications for improving MLLM answer faithfulness and reasoning depth in audio-visual question-answering and knowledge-grounded tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "M$^3$KG-RAG: Multi-hop Multimodal Knowledge Graph-enhanced Retrieval-Augmented Generation", "M³KG-RAG addresses multimodal RAG limitations by constructing multi-hop knowledge graphs with richer audio-visual entity connections and implementing a lightweight multi-agent pipeline to enable deeper reasoning beyond shallow similarity-based retrieval. The approach tackles two critical challenges: expanding modality coverage in existing MMKGs and filtering semantically relevant knowledge through multi-hop connectivity rather than relying solely on shared embedding spaces. This work has implications for improving MLLM answer faithfulness and reasoning depth in audio-visual question-answering and knowledge-grounded tasks.", "https://arxiv.org/abs/2512.20136")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20145" style="color:#4ea8ff;">Retrieval-augmented Prompt Learning for Pre-trained Foundation Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>RetroPrompt addresses a fundamental limitation of parametric prompt learning in foundation models by introducing retrieval augmentation to decouple knowledge from memorization, improving generalization in few-shot scenarios while reducing overfitting to shallow patterns. The approach moves beyond traditional prompt tuning by leveraging external knowledge retrieval (k-NN or similar mechanisms) to balance memorization-generalization tradeoffs, particularly valuable for atypical instances where limited training data would otherwise cause conventional methods to fail. This non-parametric augmentation strategy has implications for more robust few-shot adaptation across multimodal foundation models with better out-of-distribution robustness.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Retrieval-augmented Prompt Learning for Pre-trained Foundation Models", "RetroPrompt addresses a fundamental limitation of parametric prompt learning in foundation models by introducing retrieval augmentation to decouple knowledge from memorization, improving generalization in few-shot scenarios while reducing overfitting to shallow patterns. The approach moves beyond traditional prompt tuning by leveraging external knowledge retrieval (k-NN or similar mechanisms) to balance memorization-generalization tradeoffs, particularly valuable for atypical instances where limited training data would otherwise cause conventional methods to fail. This non-parametric augmentation strategy has implications for more robust few-shot adaptation across multimodal foundation models with better out-of-distribution robustness.", "https://arxiv.org/abs/2512.20145")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20156" style="color:#4ea8ff;">Fun-Audio-Chat Technical Report</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>Fun-Audio-Chat addresses fundamental inefficiencies in speech-text models by introducing Dual-Resolution Speech Representations (DRSR)—processing audio at efficient 5Hz for the shared LLM while generating high-quality 25Hz tokens via a dedicated Speech Refined Head—reducing GPU requirements by ~50% while maintaining semantic fidelity. The model mitigates catastrophic forgetting of text knowledge through Core-Cocktail Training (two-stage fine-tuning with intermediate merging) and further improves robustness via Multi-Task DPO, providing a practical pathway to efficient multimodal audio-language understanding without sacrificing performance.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Fun-Audio-Chat Technical Report", "Fun-Audio-Chat addresses fundamental inefficiencies in speech-text models by introducing Dual-Resolution Speech Representations (DRSR)—processing audio at efficient 5Hz for the shared LLM while generating high-quality 25Hz tokens via a dedicated Speech Refined Head—reducing GPU requirements by ~50% while maintaining semantic fidelity. The model mitigates catastrophic forgetting of text knowledge through Core-Cocktail Training (two-stage fine-tuning with intermediate merging) and further improves robustness via Multi-Task DPO, providing a practical pathway to efficient multimodal audio-language understanding without sacrificing performance.", "https://arxiv.org/abs/2512.20156")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.16531" style="color:#4ea8ff;">Scaling Laws for Energy Efficiency of Local LLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper establishes empirical scaling laws for CPU-based inference of LLMs and VLMs on edge devices, benchmarking across consumer hardware tiers (M2 MacBook, Raspberry Pi 5) to characterize energy-efficiency tradeoffs previously unexplored in CPU-only deployments. The work provides developers with principled guidelines for model selection and optimization on resource-constrained hardware that dominates real-world embedded and industrial deployments, moving beyond GPU-centric scaling law research.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Scaling Laws for Energy Efficiency of Local LLMs", "This paper establishes empirical scaling laws for CPU-based inference of LLMs and VLMs on edge devices, benchmarking across consumer hardware tiers (M2 MacBook, Raspberry Pi 5) to characterize energy-efficiency tradeoffs previously unexplored in CPU-only deployments. The work provides developers with principled guidelines for model selection and optimization on resource-constrained hardware that dominates real-world embedded and industrial deployments, moving beyond GPU-centric scaling law research.", "https://arxiv.org/abs/2512.16531")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.18687" style="color:#4ea8ff;">Social Comparison without Explicit Inference of Others' Reward Values: A Constructive Approach Using a Probabilistic Generative Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#6b7280;">⚡ 15</span></div>
+  <p>This study uses probabilistic generative models to investigate whether social comparison in primates involves inferring others' subjective reward values or merely comparing objective rewards, testing three computational architectures (IPM, NCM, ECM) against behavioral data using multi-layered, multimodal latent Dirichlet allocation. The constructive approach addresses a fundamental gap in computational social cognition by determining which information-processing mechanisms underlie reward evaluation in social contexts, with implications for understanding both primate behavior and designing AI systems with social reasoning capabilities.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Social Comparison without Explicit Inference of Others' Reward Values: A Constructive Approach Using a Probabilistic Generative Model", "This study uses probabilistic generative models to investigate whether social comparison in primates involves inferring others' subjective reward values or merely comparing objective rewards, testing three computational architectures (IPM, NCM, ECM) against behavioral data using multi-layered, multimodal latent Dirichlet allocation. The constructive approach addresses a fundamental gap in computational social cognition by determining which information-processing mechanisms underlie reward evaluation in social contexts, with implications for understanding both primate behavior and designing AI systems with social reasoning capabilities.", "https://arxiv.org/abs/2512.18687")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2507.11181" style="color:#4ea8ff;">Mixture of Experts in Large Language Models</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#f59e0b;">⚡ 45</span></div>
+  <p>This comprehensive review systematizes Mixture-of-Experts (MoE) architectures in LLMs, demonstrating how sparse expert routing and gating mechanisms achieve substantial performance gains with minimal computational overhead compared to dense models. Key technical contributions include analysis of hierarchical/sparse MoE configurations, expert diversity optimization, and multimodal/multitask applications, with practical insights on inference aggregation and deployment challenges. The work highlights MoE's critical advantage of scaling model capacity efficiently—particularly relevant for resource-constrained production environments—while identifying calibration and expert specialization as ongoing research frontiers.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Mixture of Experts in Large Language Models", "This comprehensive review systematizes Mixture-of-Experts (MoE) architectures in LLMs, demonstrating how sparse expert routing and gating mechanisms achieve substantial performance gains with minimal computational overhead compared to dense models. Key technical contributions include analysis of hierarchical/sparse MoE configurations, expert diversity optimization, and multimodal/multitask applications, with practical insights on inference aggregation and deployment challenges. The work highlights MoE's critical advantage of scaling model capacity efficiently—particularly relevant for resource-constrained production environments—while identifying calibration and expert specialization as ongoing research frontiers.", "https://arxiv.org/abs/2507.11181")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2507.20993" style="color:#4ea8ff;">Learning Treatment Policies From Multimodal Electronic Health Records</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-24
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>This work addresses a critical gap in causal policy learning by extending treatment effect estimation to multimodal EHRs (tabular + clinical text), moving beyond traditional risk-based policies that fail to identify patients with highest treatment benefit. The authors leverage expert annotations during training to supervise treatment effect estimation in a setting where standard causal assumptions are violated, enabling more principled patient prioritization for intervention allocation. This approach has significant practical implications for personalized medicine, allowing healthcare systems to optimize resource allocation by identifying not just high-risk patients, but those most likely to benefit from specific treatments.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Learning Treatment Policies From Multimodal Electronic Health Records", "This work addresses a critical gap in causal policy learning by extending treatment effect estimation to multimodal EHRs (tabular + clinical text), moving beyond traditional risk-based policies that fail to identify patients with highest treatment benefit. The authors leverage expert annotations during training to supervise treatment effect estimation in a setting where standard causal assumptions are violated, enabling more principled patient prioritization for intervention allocation. This approach has significant practical implications for personalized medicine, allowing healthcare systems to optimize resource allocation by identifying not just high-risk patients, but those most likely to benefit from specific treatments.", "https://arxiv.org/abs/2507.20993")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
