@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-25</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-25</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12284" style="color:#4ea8ff;">V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>V-Rex introduces a software-hardware co-design framework to accelerate streaming video LLMs by addressing the critical bottleneck of KV cache growth during continuous input processing, which causes computational bloat and memory inefficiency in the iterative prefill stage. The approach combines algorithmic optimizations with hardware-level enhancements to enable real-time multimodal inference on edge devices, tackling the memory/compute constraints that currently limit deployment of video understanding applications. This represents the first comprehensive solution targeting both the algorithmic (prefill redundancy) and hardware (data movement, memory bandwidth) challenges specific to streaming video LLM architectures.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval", "V-Rex introduces a software-hardware co-design framework to accelerate streaming video LLMs by addressing the critical bottleneck of KV cache growth during continuous input processing, which causes computational bloat and memory inefficiency in the iterative prefill stage. The approach combines algorithmic optimizations with hardware-level enhancements to enable real-time multimodal inference on edge devices, tackling the memory/compute constraints that currently limit deployment of video understanding applications. This represents the first comprehensive solution targeting both the algorithmic (prefill redundancy) and hardware (data movement, memory bandwidth) challenges specific to streaming video LLM architectures.", "https://arxiv.org/abs/2512.12284")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12284" style="color:#4ea8ff;">V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>V-Rex introduces a novel software-hardware co-design to accelerate streaming video LLMs by addressing the critical bottleneck of unbounded KV cache growth during continuous input processing through dynamic cache retrieval mechanisms. The approach targets the iterative prefill stage unique to streaming video models, reducing computation, memory transfer, and accuracy degradation—particularly beneficial for resource-constrained edge deployments. This represents the first comprehensive solution tackling both algorithmic efficiency and hardware-level optimization for real-time multimodal inference tasks like video QA and conversational AI.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "V-Rex: Real-Time Streaming Video LLM Acceleration via Dynamic KV Cache Retrieval", "V-Rex introduces a novel software-hardware co-design to accelerate streaming video LLMs by addressing the critical bottleneck of unbounded KV cache growth during continuous input processing through dynamic cache retrieval mechanisms. The approach targets the iterative prefill stage unique to streaming video models, reducing computation, memory transfer, and accuracy degradation—particularly beneficial for resource-constrained edge deployments. This represents the first comprehensive solution tackling both algorithmic efficiency and hardware-level optimization for real-time multimodal inference tasks like video QA and conversational AI.", "https://arxiv.org/abs/2512.12284")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2509.18527" style="color:#4ea8ff;">FERA: A Pose-Based Semantic Pipeline for Automated Foil Fencing Refereeing</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>FERA presents a pose-based semantic pipeline that converts monocular foil fencing video into interpretable action tokens and rule-based explanations by extracting 2D poses, encoding them into 101-dimensional kinematic features, and applying an encoder-only transformer (FERA-MDT) to recognize footwork, blade actions, and positioning. The framework's key innovation is handling dual-fencer scenarios through single-fencer processing with horizontal flipping and dynamic temporal windowing, eliminating the computational overhead of multi-person pose estimation. This approach demonstrates how structured semantic representations from raw video enable automated sports officiating—a challenging domain requiring real-time judgment of subtle, rule-defined interactions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FERA: A Pose-Based Semantic Pipeline for Automated Foil Fencing Refereeing", "FERA presents a pose-based semantic pipeline that converts monocular foil fencing video into interpretable action tokens and rule-based explanations by extracting 2D poses, encoding them into 101-dimensional kinematic features, and applying an encoder-only transformer (FERA-MDT) to recognize footwork, blade actions, and positioning. The framework's key innovation is handling dual-fencer scenarios through single-fencer processing with horizontal flipping and dynamic temporal windowing, eliminating the computational overhead of multi-person pose estimation. This approach demonstrates how structured semantic representations from raw video enable automated sports officiating—a challenging domain requiring real-time judgment of subtle, rule-defined interactions.", "https://arxiv.org/abs/2509.18527")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2508.21010" style="color:#4ea8ff;">ChainReaction: Causal Chain-Guided Reasoning for Modular and Explainable Causal-Why Video Question Answering</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>ChainReaction introduces a modular two-stage architecture for causal video QA that decouples reasoning into explicit causal chain generation (via CCE) and answer derivation (via CCDA), using structured natural language intermediates rather than black-box monolithic pipelines. This approach dramatically improves interpretability and enables higher-order reasoning by making cause-effect relationships transparent and logically auditable—critical for applications requiring explainable AI. The key innovation is treating causal chains as first-class intermediate representations that bridge low-level video understanding with high-level reasoning, mirroring human cognitive models and enabling better generalization across complex multi-step reasoning tasks.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ChainReaction: Causal Chain-Guided Reasoning for Modular and Explainable Causal-Why Video Question Answering", "ChainReaction introduces a modular two-stage architecture for causal video QA that decouples reasoning into explicit causal chain generation (via CCE) and answer derivation (via CCDA), using structured natural language intermediates rather than black-box monolithic pipelines. This approach dramatically improves interpretability and enables higher-order reasoning by making cause-effect relationships transparent and logically auditable—critical for applications requiring explainable AI. The key innovation is treating causal chains as first-class intermediate representations that bridge low-level video understanding with high-level reasoning, mirroring human cognitive models and enabling better generalization across complex multi-step reasoning tasks.", "https://arxiv.org/abs/2508.21010")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.15249" style="color:#4ea8ff;">Intersectional Fairness in Vision-Language Models for Medical Image Disease Classification</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper addresses intersectional bias in medical vision-language models by proposing Cross-Modal Alignment Consistency (CMAC-MMD), a training framework that equalizes diagnostic confidence across demographic subgroups without requiring sensitive attributes at inference time. The approach leverages maximum mean discrepancy (MMD) to standardize certainty distributions across modalities while preserving overall diagnostic performance—a critical advancement over fairness methods that typically sacrifice accuracy for parity. This has significant implications for deployment in clinical settings where demographic information may be unavailable but model calibration biases remain a patient safety concern.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Intersectional Fairness in Vision-Language Models for Medical Image Disease Classification", "This paper addresses intersectional bias in medical vision-language models by proposing Cross-Modal Alignment Consistency (CMAC-MMD), a training framework that equalizes diagnostic confidence across demographic subgroups without requiring sensitive attributes at inference time. The approach leverages maximum mean discrepancy (MMD) to standardize certainty distributions across modalities while preserving overall diagnostic performance—a critical advancement over fairness methods that typically sacrifice accuracy for parity. This has significant implications for deployment in clinical settings where demographic information may be unavailable but model calibration biases remain a patient safety concern.", "https://arxiv.org/abs/2512.15249")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20136" style="color:#4ea8ff;">M$^3$KG-RAG: Multi-hop Multimodal Knowledge Graph-enhanced Retrieval-Augmented Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>M³KG-RAG addresses critical limitations in multimodal RAG by introducing multi-hop reasoning over audio-visual knowledge graphs through a lightweight multi-agent pipeline that constructs enriched entity triplets, enabling more precise retrieval beyond simple embedding similarity. This approach tackles sparse coverage and connectivity issues in existing multimodal knowledge graphs while filtering irrelevant knowledge to improve reasoning depth and answer faithfulness in MLLMs for audio-visual domains. The system represents a meaningful advance for grounding multimodal LLMs in structured knowledge with improved semantic relevance over traditional similarity-based retrieval.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "M$^3$KG-RAG: Multi-hop Multimodal Knowledge Graph-enhanced Retrieval-Augmented Generation", "M³KG-RAG addresses critical limitations in multimodal RAG by introducing multi-hop reasoning over audio-visual knowledge graphs through a lightweight multi-agent pipeline that constructs enriched entity triplets, enabling more precise retrieval beyond simple embedding similarity. This approach tackles sparse coverage and connectivity issues in existing multimodal knowledge graphs while filtering irrelevant knowledge to improve reasoning depth and answer faithfulness in MLLMs for audio-visual domains. The system represents a meaningful advance for grounding multimodal LLMs in structured knowledge with improved semantic relevance over traditional similarity-based retrieval.", "https://arxiv.org/abs/2512.20136")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20839" style="color:#4ea8ff;">Input-Adaptive Visual Preprocessing for Efficient Fast Vision-Language Model Inference</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper proposes an input-adaptive visual preprocessing layer for VLMs that dynamically adjusts image resolution and spatial coverage based on content characteristics, enabling inference speedups without architectural modifications to models like FastVLM. The approach combines content-aware analysis with adaptive cropping to eliminate visual redundancy before vision encoding, offering practical deployment benefits for high-resolution inputs without retraining requirements. The key innovation is treating visual preprocessing as a learnable/adaptive problem rather than a static pipeline step, which is particularly valuable given the computational dominance of vision encoders in modern VLM inference.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Input-Adaptive Visual Preprocessing for Efficient Fast Vision-Language Model Inference", "This paper proposes an input-adaptive visual preprocessing layer for VLMs that dynamically adjusts image resolution and spatial coverage based on content characteristics, enabling inference speedups without architectural modifications to models like FastVLM. The approach combines content-aware analysis with adaptive cropping to eliminate visual redundancy before vision encoding, offering practical deployment benefits for high-resolution inputs without retraining requirements. The key innovation is treating visual preprocessing as a learnable/adaptive problem rather than a static pipeline step, which is particularly valuable given the computational dominance of vision encoders in modern VLM inference.", "https://arxiv.org/abs/2512.20839")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20858" style="color:#4ea8ff;">ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>ALIVE introduces a fully local, privacy-preserving system that transforms passive lecture videos into interactive learning experiences by integrating ASR-based avatar synthesis, LLM-refined content generation, and semantic retrieval with timestamp alignment to surface contextually relevant lecture segments in real-time. The system's key innovation lies in its unified pipeline combining neural talking-head synthesis with content-aware retrieval that maintains lecture context awareness—addressing critical gaps in existing solutions that rely on cloud services or lack integrated explanation delivery. This approach enables learners to receive clarifications without external searches while maintaining computational efficiency and data privacy through local-only execution.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ALIVE: An Avatar-Lecture Interactive Video Engine with Content-Aware Retrieval for Real-Time Interaction", "ALIVE introduces a fully local, privacy-preserving system that transforms passive lecture videos into interactive learning experiences by integrating ASR-based avatar synthesis, LLM-refined content generation, and semantic retrieval with timestamp alignment to surface contextually relevant lecture segments in real-time. The system's key innovation lies in its unified pipeline combining neural talking-head synthesis with content-aware retrieval that maintains lecture context awareness—addressing critical gaps in existing solutions that rely on cloud services or lack integrated explanation delivery. This approach enables learners to receive clarifications without external searches while maintaining computational efficiency and data privacy through local-only execution.", "https://arxiv.org/abs/2512.20858")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21094" style="color:#4ea8ff;">T2AV-Compass: Towards Unified Evaluation for Text-to-Audio-Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>T2AV-Compass introduces the first unified evaluation benchmark for text-to-audio-video generation, addressing fragmented assessment approaches by combining 500 taxonomy-driven complex prompts with a dual-level framework integrating objective signal-level metrics (video/audio quality, cross-modal alignment) and MLLM-based subjective evaluation for instruction following and realism. The benchmark's comprehensive taxonomy-driven prompt construction ensures semantic richness and physical plausibility, moving beyond unimodal metrics to capture the inherent cross-modal synchronization challenges in T2AV systems. Evaluation of 11 representative T2AV systems establishes critical baselines and reveals performance gaps across modalities, providing researchers with standardized methodology for developing more coherent multimodal generation systems.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "T2AV-Compass: Towards Unified Evaluation for Text-to-Audio-Video Generation", "T2AV-Compass introduces the first unified evaluation benchmark for text-to-audio-video generation, addressing fragmented assessment approaches by combining 500 taxonomy-driven complex prompts with a dual-level framework integrating objective signal-level metrics (video/audio quality, cross-modal alignment) and MLLM-based subjective evaluation for instruction following and realism. The benchmark's comprehensive taxonomy-driven prompt construction ensures semantic richness and physical plausibility, moving beyond unimodal metrics to capture the inherent cross-modal synchronization challenges in T2AV systems. Evaluation of 11 representative T2AV systems establishes critical baselines and reveals performance gaps across modalities, providing researchers with standardized methodology for developing more coherent multimodal generation systems.", "https://arxiv.org/abs/2512.21094")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21194" style="color:#4ea8ff;">VisRes Bench: On Evaluating the Visual Reasoning Capabilities of VLMs</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>VisRes Bench introduces a three-tiered evaluation framework that isolates distinct visual reasoning capabilities in VLMs—from perceptual robustness (Level 1: blur, occlusion, rotation) to rule-based inference (Level 2: single attributes) to compositional reasoning (Level 3: multi-attribute integration)—revealing that current models struggle beyond surface-level pattern matching despite strong captioning/VQA benchmarks. This addresses a critical gap by evaluating whether VLMs genuinely perform visual reasoning or exploit linguistic priors, using naturalistic settings without language supervision to expose weaknesses in perceptual and relational understanding that downstream applications rely on.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "VisRes Bench: On Evaluating the Visual Reasoning Capabilities of VLMs", "VisRes Bench introduces a three-tiered evaluation framework that isolates distinct visual reasoning capabilities in VLMs—from perceptual robustness (Level 1: blur, occlusion, rotation) to rule-based inference (Level 2: single attributes) to compositional reasoning (Level 3: multi-attribute integration)—revealing that current models struggle beyond surface-level pattern matching despite strong captioning/VQA benchmarks. This addresses a critical gap by evaluating whether VLMs genuinely perform visual reasoning or exploit linguistic priors, using naturalistic settings without language supervision to expose weaknesses in perceptual and relational understanding that downstream applications rely on.", "https://arxiv.org/abs/2512.21194")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21252" style="color:#4ea8ff;">DreaMontage: Arbitrary Frame-Guided One-Shot Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#f59e0b;">⚡ 52</span></div>
+  <p>DreaMontage addresses the challenge of generating seamless long-duration one-shot videos by introducing a lightweight intermediate-conditioning mechanism integrated into DiT architecture with an Adaptive Tuning strategy that enables robust arbitrary-frame control—moving beyond naive clip concatenation that fails to maintain temporal coherence. The framework synthesizes expressive videos from diverse user inputs while preserving visual smoothness, offering a practical alternative to expensive real-world one-shot filmmaking. The key innovation lies in leveraging base training data efficiently to achieve fine-grained frame-guided generation without requiring expensive retraining.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "DreaMontage: Arbitrary Frame-Guided One-Shot Video Generation", "DreaMontage addresses the challenge of generating seamless long-duration one-shot videos by introducing a lightweight intermediate-conditioning mechanism integrated into DiT architecture with an Adaptive Tuning strategy that enables robust arbitrary-frame control—moving beyond naive clip concatenation that fails to maintain temporal coherence. The framework synthesizes expressive videos from diverse user inputs while preserving visual smoothness, offering a practical alternative to expensive real-world one-shot filmmaking. The key innovation lies in leveraging base training data efficiently to achieve fine-grained frame-guided generation without requiring expensive retraining.", "https://arxiv.org/abs/2512.21252")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21264" style="color:#4ea8ff;">AnyAD: Unified Any-Modality Anomaly Detection in Incomplete Multi-Sequence MRI</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>AnyAD introduces a unified framework for brain MRI anomaly detection that handles arbitrary modality combinations through dual-pathway DINOv2 encoders and feature distribution alignment, addressing the critical clinical challenge of missing imaging modalities without requiring retraining. The approach leverages Intrinsic Normal Prototypes to maintain semantic consistency across incomplete modality sets, enabling robust detection and localization even under severe modality dropout—a significant advancement for real-world clinical deployment where complete multi-sequence MRI scans are rarely available.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "AnyAD: Unified Any-Modality Anomaly Detection in Incomplete Multi-Sequence MRI", "AnyAD introduces a unified framework for brain MRI anomaly detection that handles arbitrary modality combinations through dual-pathway DINOv2 encoders and feature distribution alignment, addressing the critical clinical challenge of missing imaging modalities without requiring retraining. The approach leverages Intrinsic Normal Prototypes to maintain semantic consistency across incomplete modality sets, enabling robust detection and localization even under severe modality dropout—a significant advancement for real-world clinical deployment where complete multi-sequence MRI scans are rarely available.", "https://arxiv.org/abs/2512.21264")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21284" style="color:#4ea8ff;">Surgical Scene Segmentation using a Spike-Driven Video Transformer with Real-Time Potential</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces SpikeSurgSeg, the first spiking neural network (SNN)-based video Transformer for surgical scene segmentation, addressing the critical gap between segmentation accuracy and real-time computational efficiency in OR environments. By leveraging SNNs' inherent energy efficiency and sparse event-driven computation, the approach enables deployment on resource-constrained surgical systems while mitigating challenges of limited labeled surgical data through specialized architectural design. The work represents a significant shift toward neuromorphic computing for medical imaging, potentially enabling continuous intra-operative scene understanding without the power/latency constraints of traditional deep learning models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Surgical Scene Segmentation using a Spike-Driven Video Transformer with Real-Time Potential", "This paper introduces SpikeSurgSeg, the first spiking neural network (SNN)-based video Transformer for surgical scene segmentation, addressing the critical gap between segmentation accuracy and real-time computational efficiency in OR environments. By leveraging SNNs' inherent energy efficiency and sparse event-driven computation, the approach enables deployment on resource-constrained surgical systems while mitigating challenges of limited labeled surgical data through specialized architectural design. The work represents a significant shift toward neuromorphic computing for medical imaging, potentially enabling continuous intra-operative scene understanding without the power/latency constraints of traditional deep learning models.", "https://arxiv.org/abs/2512.21284")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21333" style="color:#4ea8ff;">Fast SAM2 with Text-Driven Token Pruning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 35</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This work proposes a text-guided token pruning framework for SAM2 that reduces computational overhead by selectively filtering dense visual tokens before temporal propagation, using a lightweight routing mechanism to rank tokens based on local context and semantic relevance. The approach addresses SAM2's quadratic memory attention bottleneck in video segmentation without architectural modifications, enabling more scalable deployment. This is particularly significant for practical applications requiring real-time video processing, as it maintains segmentation quality while substantially reducing the memory and compute costs that currently limit SAM2's practical utility.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Fast SAM2 with Text-Driven Token Pruning", "This work proposes a text-guided token pruning framework for SAM2 that reduces computational overhead by selectively filtering dense visual tokens before temporal propagation, using a lightweight routing mechanism to rank tokens based on local context and semantic relevance. The approach addresses SAM2's quadratic memory attention bottleneck in video segmentation without architectural modifications, enabling more scalable deployment. This is particularly significant for practical applications requiring real-time video processing, as it maintains segmentation quality while substantially reducing the memory and compute costs that currently limit SAM2's practical utility.", "https://arxiv.org/abs/2512.21333")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21334" style="color:#4ea8ff;">Streaming Video Instruction Tuning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-25
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Streamo introduces a unified streaming video LLM trained on a new 465K instruction-following dataset that handles diverse real-time video tasks (narration, action understanding, event captioning, temporal grounding, and QA) through multi-task supervision—addressing the gap where prior models focused narrowly on single tasks. The key innovation is the dataset's coverage of heterogeneous temporal contexts and the end-to-end training pipeline that enables strong temporal reasoning and generalization across streaming benchmarks, making it practical for interactive video assistant applications.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Streaming Video Instruction Tuning", "Streamo introduces a unified streaming video LLM trained on a new 465K instruction-following dataset that handles diverse real-time video tasks (narration, action understanding, event captioning, temporal grounding, and QA) through multi-task supervision—addressing the gap where prior models focused narrowly on single tasks. The key innovation is the dataset's coverage of heterogeneous temporal contexts and the end-to-end training pipeline that enables strong temporal reasoning and generalization across streaming benchmarks, making it practical for interactive video assistant applications.", "https://arxiv.org/abs/2512.21334")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
