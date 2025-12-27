@@ -1,0 +1,105 @@
+Chris: Alright, so we need to talk about this Deepseek situation because it's actually fucking wild. Chinese AI lab drops a model that supposedly matches GPT-4 performance, claims they spent under six million dollars to train it.
+
+Lily: [pauses] Six million. When OpenAI and Anthropic are burning through hundreds of millions per training run.
+
+Chris: Exactly. And here's where it gets interesting - they're saying they did this with way less compute, some combination of clever architecture and these export-controlled chips that aren't even the top-tier hardware.
+
+Lily: So either they've actually cracked something fundamental about efficient training, or the numbers are complete bullshit. Which is it?
+
+Chris: Honestly? Probably somewhere in the middle. Look, I've been digging through their technical report, and there are some genuinely smart ideas in there about mixture of experts and how they're routing compute. But six million feels... let's say optimistic.
+
+Lily: What are they not counting?
+
+Chris: That's the question, right? Are we talking just the final training run? Because if you're not counting all the failed experiments, the architecture search, the preliminary runs - that's not how costs actually work in the real world.
+
+Chris: But here's what matters for anyone actually building products - this model is genuinely competitive on benchmarks. We're seeing performance that's in the ballpark of Claude and GPT-4 on reasoning tasks.
+
+Lily: And it's open source.
+
+Chris: Well, "open source" - it's their own license, not actually OSI approved. But yeah, weights are available, you can run it locally if you've got the hardware.
+
+Lily: Which has every AI company in the West absolutely shitting themselves right now. Because if a Chinese lab can match their performance at a fraction of the cost...
+
+Chris: The entire investment thesis falls apart. You've got Anthropic raising at like nine billion, OpenAI at eighty billion plus, and suddenly there's this question of - what are we actually paying for here?
+
+Lily: Right, and this is where it gets messy politically. We've got US export controls specifically designed to prevent China from accessing cutting-edge AI chips, and then here comes Deepseek basically saying "cheers for that, we figured it out anyway."
+
+Chris: [chuckles] Yeah, the timing is almost insulting. And you're already seeing the response - there's going to be a lot of pressure to tighten those controls even more, which is probably futile at this point.
+
+Lily: But let's get practical. If you're a startup or a company currently paying OpenAI thousands per month for API access, what does this actually mean for you?
+
+Chris: So here's the thing - Deepseek has an API, it's dramatically cheaper than OpenAI's pricing. We're talking like 90% cheaper for some tasks. If you're doing high-volume stuff where you don't need the absolute bleeding edge, this is genuinely interesting.
+
+Lily: What's the catch?
+
+Chris: Data sovereignty is the obvious one. You're sending your data through a Chinese company's servers. For a lot of enterprise customers, that's a non-starter regardless of how good the model is.
+
+Chris: And there are questions about reliability, support, what happens if geopolitics get worse. OpenAI might be expensive but you're buying some level of stability and ecosystem.
+
+Lily: Though "stability" is doing a lot of work there given OpenAI's track record.
+
+Chris: [chuckles] Fair point. But you know what I mean - there's a whole infrastructure around OpenAI. Tools, integrations, people who know how to work with it.
+
+Lily: What about running it locally? If the model is actually that efficient, could companies just host it themselves?
+
+Chris: In theory, yeah. They're saying you can run it on less hardware than you'd need for Llama 3 at equivalent performance. But now you're back to managing your own inference infrastructure, which most companies don't want to deal with.
+
+Chris: I think the bigger impact is on pricing. OpenAI can't ignore this. If a credible competitor is offering similar quality at a tenth of the price, that puts serious pressure on margins.
+
+Lily: Which were already questionable. We've known for a while that these companies are losing money on API calls at current pricing.
+
+Chris: Right, they've been subsidizing usage to build moat and lock-in. Deepseek might have just made that strategy unsustainable.
+
+Lily: Let's talk about the technical claims for a minute because I want to understand what's actually novel here. They're using mixture of experts, but so is GPT-4. What's different?
+
+Chris: From what I can tell, it's about how aggressively they're optimizing which experts get activated. Most MoE models are still pretty wasteful with compute - they're activating more experts than they probably need to because it's safer.
+
+Chris: Deepseek seems to have pushed really hard on sparsity, getting similar performance while activating fewer parameters per token. Which is genuinely clever if they've actually pulled it off without quality degradation.
+
+Lily: And that's testable, right? People can run this model and verify whether it actually performs as claimed?
+
+Chris: Yeah, and that's already happening. Early reports from people actually testing it are... it's legit. Not perfect, it has the usual LLM issues, but it's definitely in the same tier as the major models.
+
+Lily: Which makes the cost claims more believable if the efficiency improvements are real.
+
+Chris: To a point. I still think there's some creative accounting happening with that six million number. But even if the real cost is double or triple that, it's still way below what Western labs are spending.
+
+Lily: And that gap matters. That's the difference between AI being a viable business and being a money pit that only works if you can raise infinite VC funding.
+
+Chris: Exactly. Look, we've been saying for a while that these model costs have to come down for AI to actually be a sustainable business. Maybe this is forcing that to happen faster.
+
+Lily: So what happens next? Do we see OpenAI and Anthropic suddenly slashing prices?
+
+Chris: [pauses] They're in a tough spot. If they cut prices significantly, they validate the concern that their current pricing is inflated. But if they don't, they risk losing customers to cheaper alternatives.
+
+Chris: My guess is we'll see more differentiation. They'll push harder on things like reliability, safety, enterprise features - stuff that isn't just about raw model performance.
+
+Lily: And probably lots of FUD about data security and Chinese technology, which to be fair isn't entirely unjustified.
+
+Chris: Right, there are legitimate concerns about using Chinese AI infrastructure for sensitive applications. But for a lot of use cases, that won't matter.
+
+Lily: What about the geopolitical fallout? This seems like it's going to accelerate the bifurcation of AI development between China and the West.
+
+Chris: Oh, absolutely. You're going to have basically two separate AI ecosystems. Chinese models that are cheap and efficient but can't be used for anything touching Western government or regulated industries, and Western models that are expensive but "trusted."
+
+Lily: Which is probably bad for AI progress overall. Less collaboration, more duplicated effort, resources going into competing rather than advancing the technology.
+
+Chris: Yeah, but that ship sailed a while ago honestly. The export controls pretty much guaranteed this outcome.
+
+Lily: [sighs] Alright, bottom line for people listening. If you're building on AI right now, what should you actually do with this information?
+
+Chris: Test it. Seriously, don't just take the benchmarks at face value. Spin up their API, throw your actual use cases at it, see how it performs. If you're spending serious money on OpenAI and this works for your needs, you could save a lot.
+
+Chris: But go in with eyes open about the trade-offs. Data locality, geopolitical risk, ecosystem maturity. For some companies, those factors override any cost savings.
+
+Lily: And if you're at one of the big AI labs watching this?
+
+Chris: [chuckles] Update your resume? I'm kidding, mostly. But this is a real wake-up call. The moat isn't as wide as everyone thought, and efficiency is going to matter a lot more than it has so far.
+
+Lily: This feels like one of those moments that actually shifts the landscape rather than just being hype.
+
+Chris: Yeah, I think so. Even if Deepseek specifically doesn't become dominant, they've proven something important about what's possible with less resources. That changes the game.
+
+Lily: Right, well that's probably enough for today. This story is going to keep developing so we'll revisit it as more information comes out.
+
+Chris: Sounds good.
