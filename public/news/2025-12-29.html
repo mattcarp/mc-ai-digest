@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2025-12-29</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2025-12-29</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20548" style="color:#4ea8ff;">Advancing Multimodal Teacher Sentiment Analysis:The Large-Scale T-MED Dataset &amp; The Effective AAM-TSA Model</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This work introduces T-MED, the first large-scale multimodal teacher sentiment dataset with 14,938 instances spanning 11 subjects, addressing the unique challenge of capturing genuine teacher emotions despite performative nature by incorporating instructional context alongside audio-visual-text modalities. The researchers propose an asymmetric attention mechanism (AAM-TSA) model that leverages the critical insight that instructional information significantly influences emotional expression, moving beyond standard multimodal fusion to context-aware sentiment analysis. This dataset and approach have direct applications for educational AI systems aiming to monitor teacher wellbeing and optimize classroom dynamics through emotion-aware feedback mechanisms.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Advancing Multimodal Teacher Sentiment Analysis:The Large-Scale T-MED Dataset &amp; The Effective AAM-TSA Model", "This work introduces T-MED, the first large-scale multimodal teacher sentiment dataset with 14,938 instances spanning 11 subjects, addressing the unique challenge of capturing genuine teacher emotions despite performative nature by incorporating instructional context alongside audio-visual-text modalities. The researchers propose an asymmetric attention mechanism (AAM-TSA) model that leverages the critical insight that instructional information significantly influences emotional expression, moving beyond standard multimodal fusion to context-aware sentiment analysis. This dataset and approach have direct applications for educational AI systems aiming to monitor teacher wellbeing and optimize classroom dynamics through emotion-aware feedback mechanisms.", "https://arxiv.org/abs/2512.20548")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2511.21760" style="color:#4ea8ff;">fMRI-LM: Towards a Universal Foundation Model for Language-Aligned fMRI Understanding</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 32</span></div>
+  <p>fMRI-LM introduces a three-stage framework that tokenizes fMRI brain signals into a language-consistent embedding space and adapts pretrained LLMs to jointly model brain activity and text, treating neural patterns as predictable sequences with linguistic descriptions. The key innovation is constructing a large synthetic fMRI-text corpus that bridges the scarcity of natural brain imaging-language pairs, enabling unified multimodal reasoning across neural activity and semantic cognition. This approach could unlock brain-to-language interfaces for cognitive neuroscience research and establish fMRI as a new modality within foundation models, similar to recent advances in vision-language models.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "fMRI-LM: Towards a Universal Foundation Model for Language-Aligned fMRI Understanding", "fMRI-LM introduces a three-stage framework that tokenizes fMRI brain signals into a language-consistent embedding space and adapts pretrained LLMs to jointly model brain activity and text, treating neural patterns as predictable sequences with linguistic descriptions. The key innovation is constructing a large synthetic fMRI-text corpus that bridges the scarcity of natural brain imaging-language pairs, enabling unified multimodal reasoning across neural activity and semantic cognition. This approach could unlock brain-to-language interfaces for cognitive neuroscience research and establish fMRI as a new modality within foundation models, similar to recent advances in vision-language models.", "https://arxiv.org/abs/2511.21760")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.12324" style="color:#4ea8ff;">UniMark: Artificial Intelligence Generated Content Identification Toolkit</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>UniMark presents a unified, multimodal framework for AI-generated content detection and compliance marking that addresses fragmentation in existing tools by supporting both covert watermarking and visible regulatory markers across text, image, audio, and video. The system's modular architecture abstracts complexity across modalities while introducing a novel dual-operation strategy that balances copyright protection with regulatory transparency requirements. This open-source toolkit is backed by standardized benchmarks for rigorous evaluation, making it practically deployable for content governance at scale.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "UniMark: Artificial Intelligence Generated Content Identification Toolkit", "UniMark presents a unified, multimodal framework for AI-generated content detection and compliance marking that addresses fragmentation in existing tools by supporting both covert watermarking and visible regulatory markers across text, image, audio, and video. The system's modular architecture abstracts complexity across modalities while introducing a novel dual-operation strategy that balances copyright protection with regulatory transparency requirements. This open-source toolkit is backed by standardized benchmarks for rigorous evaluation, making it practically deployable for content governance at scale.", "https://arxiv.org/abs/2512.12324")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21402" style="color:#4ea8ff;">Understanding Virality: A Rubric based Vision-Language Model Framework for Short-Form Edutainment Evaluation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper presents a VLM-based evaluation framework for predicting short-form video virality by extracting unsupervised audiovisual features, clustering them into interpretable factors, and training a regression model to predict engagement—outperforming traditional metrics like SSIM and FID through human-aligned multimodal reasoning. The approach leverages a curated YouTube Shorts dataset to systematically correlate VLM-derived features with actual audience engagement, offering a scalable, interpretable alternative to black-box quality assessments. Key innovation: moving from surface-level fidelity metrics to meaningful engagement predictors by discovering what specific audiovisual attributes drive real viewer behavior, with potential applications in content optimization and creator tools.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Understanding Virality: A Rubric based Vision-Language Model Framework for Short-Form Edutainment Evaluation", "This paper presents a VLM-based evaluation framework for predicting short-form video virality by extracting unsupervised audiovisual features, clustering them into interpretable factors, and training a regression model to predict engagement—outperforming traditional metrics like SSIM and FID through human-aligned multimodal reasoning. The approach leverages a curated YouTube Shorts dataset to systematically correlate VLM-derived features with actual audience engagement, offering a scalable, interpretable alternative to black-box quality assessments. Key innovation: moving from surface-level fidelity metrics to meaningful engagement predictors by discovering what specific audiovisual attributes drive real viewer behavior, with potential applications in content optimization and creator tools.", "https://arxiv.org/abs/2512.21402")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21360" style="color:#4ea8ff;">From Visual Perception to Deep Empathy: An Automated Assessment Framework for House-Tree-Person Drawings Using Multimodal LLMs and Multi-Agent Collaboration</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>This paper applies multimodal LLMs with multi-agent collaboration to standardize the subjective House-Tree-Person psychological assessment tool, achieving ~0.85 semantic similarity with expert interpretations on structured datasets. The approach addresses a critical clinical gap by replacing examiner-dependent scoring with automated, quantitative analysis that incorporates social-psychological perspectives to mitigate visual hallucinations. Key innovation: using agent-based reasoning to integrate destigmatizing narratives and improve ecological validity of psychological reports, potentially transforming projective testing from art to evidence-based practice.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "From Visual Perception to Deep Empathy: An Automated Assessment Framework for House-Tree-Person Drawings Using Multimodal LLMs and Multi-Agent Collaboration", "This paper applies multimodal LLMs with multi-agent collaboration to standardize the subjective House-Tree-Person psychological assessment tool, achieving ~0.85 semantic similarity with expert interpretations on structured datasets. The approach addresses a critical clinical gap by replacing examiner-dependent scoring with automated, quantitative analysis that incorporates social-psychological perspectives to mitigate visual hallucinations. Key innovation: using agent-based reasoning to integrate destigmatizing narratives and improve ecological validity of psychological reports, potentially transforming projective testing from art to evidence-based practice.", "https://arxiv.org/abs/2512.21360")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21702" style="color:#4ea8ff;">Zero-Shot to Zero-Lies: Detecting Bengali Deepfake Audio through Transfer Learning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This study addresses the underexplored problem of Bengali deepfake audio detection by benchmarking transfer learning approaches on the BanglaFake dataset, comparing zero-shot inference (limited ~54% accuracy) against fine-tuned models that achieve substantial improvements (ResNet18 reaching 79.17% accuracy and 84.37% AUC). The results demonstrate that language-specific audio deepfake detection requires domain adaptation rather than relying on pretrained multilingual models, with ResNet18 emerging as the optimal architecture for this low-resource language scenario despite the availability of larger models like Wav2Vec2-XLSR-53.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Zero-Shot to Zero-Lies: Detecting Bengali Deepfake Audio through Transfer Learning", "This study addresses the underexplored problem of Bengali deepfake audio detection by benchmarking transfer learning approaches on the BanglaFake dataset, comparing zero-shot inference (limited ~54% accuracy) against fine-tuned models that achieve substantial improvements (ResNet18 reaching 79.17% accuracy and 84.37% AUC). The results demonstrate that language-specific audio deepfake detection requires domain adaptation rather than relying on pretrained multilingual models, with ResNet18 emerging as the optimal architecture for this low-resource language scenario despite the availability of larger models like Wav2Vec2-XLSR-53.", "https://arxiv.org/abs/2512.21702")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21706" style="color:#4ea8ff;">Enabling Conversational Behavior Reasoning Capabilities in Full-Duplex Speech</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper proposes a Graph-of-Thoughts (GoT) framework that models conversational behavior as causal inference, hierarchically predicting communicative intents and speech acts to capture the implicit reasoning chains underlying natural dialogue. The hybrid training approach combines synthetic event-rich simulations with human-annotated rationales and real speech, enabling a multimodal transformer to perform streaming predictions with explainable reasoning for full-duplex interactive systems. This approach addresses a fundamental challenge in conversational AI: moving beyond turn-taking to genuine real-time reasoning that mirrors human dialogue's causal structure.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Enabling Conversational Behavior Reasoning Capabilities in Full-Duplex Speech", "This paper proposes a Graph-of-Thoughts (GoT) framework that models conversational behavior as causal inference, hierarchically predicting communicative intents and speech acts to capture the implicit reasoning chains underlying natural dialogue. The hybrid training approach combines synthetic event-rich simulations with human-annotated rationales and real speech, enabling a multimodal transformer to perform streaming predictions with explainable reasoning for full-duplex interactive systems. This approach addresses a fundamental challenge in conversational AI: moving beyond turn-taking to genuine real-time reasoning that mirrors human dialogue's causal structure.", "https://arxiv.org/abs/2512.21706")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21776" style="color:#4ea8ff;">Inference-based GAN Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper proposes a VAE-GAN hybrid architecture for video generation that augments traditional adversarial generators with a variational encoder to enable inference capabilities during generation. The key innovation is a dual-branch approach separating content and motion processing while addressing temporal scaling limitations that plague existing video generation models, potentially enabling synthesis of longer sequences beyond the typical 16-frame constraint. The inference-based design represents a shift from purely generative to more controllable video synthesis, which could enable conditional generation and better temporal coherence in longer video sequences.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Inference-based GAN Video Generation", "This paper proposes a VAE-GAN hybrid architecture for video generation that augments traditional adversarial generators with a variational encoder to enable inference capabilities during generation. The key innovation is a dual-branch approach separating content and motion processing while addressing temporal scaling limitations that plague existing video generation models, potentially enabling synthesis of longer sequences beyond the typical 16-frame constraint. The inference-based design represents a shift from purely generative to more controllable video synthesis, which could enable conditional generation and better temporal coherence in longer video sequences.", "https://arxiv.org/abs/2512.21776")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2504.13460" style="color:#4ea8ff;">Chain-of-Evidence Multimodal Reasoning for Few-shot Temporal Action Localization</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces a multimodal few-shot temporal action localization (TAL) method that integrates textual and visual information through "Chain-of-Evidence" reasoning, addressing a key limitation where existing approaches rely solely on video-level features. The core innovation is a semantic-aware text-visual alignment module that captures action commonalities/variations across query and support videos while explicitly modeling temporal dependencies and causal relationships between actions. This approach has significant implications for real-world applications where annotated video datasets are scarce, enabling more efficient action detection with minimal training samples.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Chain-of-Evidence Multimodal Reasoning for Few-shot Temporal Action Localization", "This paper introduces a multimodal few-shot temporal action localization (TAL) method that integrates textual and visual information through \"Chain-of-Evidence\" reasoning, addressing a key limitation where existing approaches rely solely on video-level features. The core innovation is a semantic-aware text-visual alignment module that captures action commonalities/variations across query and support videos while explicitly modeling temporal dependencies and causal relationships between actions. This approach has significant implications for real-world applications where annotated video datasets are scarce, enabling more efficient action detection with minimal training samples.", "https://arxiv.org/abs/2504.13460")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2508.06259" style="color:#4ea8ff;">SIFThinker: Spatially-Aware Image Focus for Visual Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#3b82f6;">⚡ 62</span></div>
+  <p>SIFThinker introduces a spatially-aware reasoning framework that interleaves depth-enhanced bounding boxes with natural language to enable iterative attention refinement on task-relevant image regions, addressing MLLMs' limitations in spatial understanding and fine-grained visual perception. The approach leverages a reverse-expansion-forward-inference strategy for generating image-text chains of thought with process-level supervision, yielding the SIF-50K dataset and a reinforced training method (GRPO-SIF). This mimics human visual perception patterns and could significantly improve MLLM performance on complex spatial reasoning tasks requiring region-specific focus.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SIFThinker: Spatially-Aware Image Focus for Visual Reasoning", "SIFThinker introduces a spatially-aware reasoning framework that interleaves depth-enhanced bounding boxes with natural language to enable iterative attention refinement on task-relevant image regions, addressing MLLMs' limitations in spatial understanding and fine-grained visual perception. The approach leverages a reverse-expansion-forward-inference strategy for generating image-text chains of thought with process-level supervision, yielding the SIF-50K dataset and a reinforced training method (GRPO-SIF). This mimics human visual perception patterns and could significantly improve MLLM performance on complex spatial reasoning tasks requiring region-specific focus.", "https://arxiv.org/abs/2508.06259")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2510.08878" style="color:#4ea8ff;">ControlAudio: Tackling Text-Guided, Timing-Indicated and Intelligible Audio Generation via Progressive Diffusion Modeling</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>ControlAudio introduces a progressive diffusion modeling framework that tackles fine-grained controllable text-to-audio generation (timing precision and intelligible speech) by recasting it as multi-task learning with incrementally integrated conditioning signals—text, timing, and phoneme features. The approach combines a data augmentation strategy (annotation + simulation) with a two-stage training pipeline: pretraining a diffusion transformer on large-scale text-audio pairs, then progressively adding timing and phoneme constraints, addressing the data scarcity bottleneck that limits existing controllable TTA methods.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "ControlAudio: Tackling Text-Guided, Timing-Indicated and Intelligible Audio Generation via Progressive Diffusion Modeling", "ControlAudio introduces a progressive diffusion modeling framework that tackles fine-grained controllable text-to-audio generation (timing precision and intelligible speech) by recasting it as multi-task learning with incrementally integrated conditioning signals—text, timing, and phoneme features. The approach combines a data augmentation strategy (annotation + simulation) with a two-stage training pipeline: pretraining a diffusion transformer on large-scale text-audio pairs, then progressively adding timing and phoneme constraints, addressing the data scarcity bottleneck that limits existing controllable TTA methods.", "https://arxiv.org/abs/2510.08878")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21507" style="color:#4ea8ff;">SVBench: Evaluation of Video Generation Models on Social Reasoning</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>SVBench introduces the first systematic benchmark for evaluating social reasoning in text-to-video models across seven psychology-grounded dimensions (mental-state inference, goal-directed action, social coordination, etc.), addressing a critical gap where current models generate visually realistic but socially incoherent behavior lacking causal-psychological logic. The benchmark operationalizes classic social cognition paradigms through a training-free agent-based pipeline, enabling developers to measure whether video generation models can capture implicit social dynamics beyond literal scene rendering—a crucial capability for realistic multi-agent interaction synthesis.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SVBench: Evaluation of Video Generation Models on Social Reasoning", "SVBench introduces the first systematic benchmark for evaluating social reasoning in text-to-video models across seven psychology-grounded dimensions (mental-state inference, goal-directed action, social coordination, etc.), addressing a critical gap where current models generate visually realistic but socially incoherent behavior lacking causal-psychological logic. The benchmark operationalizes classic social cognition paradigms through a training-free agent-based pipeline, enabling developers to measure whether video generation models can capture implicit social dynamics beyond literal scene rendering—a crucial capability for realistic multi-agent interaction synthesis.", "https://arxiv.org/abs/2512.21507")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21684" style="color:#4ea8ff;">SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>SlideChain introduces a blockchain-based provenance framework that cryptographically anchors VLM-extracted semantic content (concepts and relational triples) from educational slides, addressing reproducibility and auditability challenges across inconsistent model families and inference settings. The approach is evaluated on a 1,117-slide medical imaging dataset with four state-of-the-art VLMs, creating immutable records on an EVM-compatible blockchain to enable verifiable integrity for AI-generated STEM instructional material. This combines multimodal semantic extraction with distributed ledger technology to solve a critical pain point in high-stakes educational AI applications where semantic consistency and audit trails are essential.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SlideChain: Semantic Provenance for Lecture Understanding via Blockchain Registration", "SlideChain introduces a blockchain-based provenance framework that cryptographically anchors VLM-extracted semantic content (concepts and relational triples) from educational slides, addressing reproducibility and auditability challenges across inconsistent model families and inference settings. The approach is evaluated on a 1,117-slide medical imaging dataset with four state-of-the-art VLMs, creating immutable records on an EVM-compatible blockchain to enable verifiable integrity for AI-generated STEM instructional material. This combines multimodal semantic extraction with distributed ledger technology to solve a critical pain point in high-stakes educational AI applications where semantic consistency and audit trails are essential.", "https://arxiv.org/abs/2512.21684")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21734" style="color:#4ea8ff;">Knot Forcing: Taming Autoregressive Video Diffusion Models for Real-time Infinite Interactive Portrait Animation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper introduces "Knot Forcing," a streaming framework that enables real-time portrait animation by combining causal autoregressive generation with chunk-wise processing and cached reference features to maintain temporal coherence and identity consistency across frame boundaries. The approach addresses key limitations of diffusion models for interactive applications by leveraging sliding window attention and KV-state caching to balance computational efficiency with visual quality while minimizing latency. This technique is particularly relevant for live avatar and virtual assistant applications requiring sub-frame latency responses with maintained temporal stability across extended sequences.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Knot Forcing: Taming Autoregressive Video Diffusion Models for Real-time Infinite Interactive Portrait Animation", "This paper introduces \"Knot Forcing,\" a streaming framework that enables real-time portrait animation by combining causal autoregressive generation with chunk-wise processing and cached reference features to maintain temporal coherence and identity consistency across frame boundaries. The approach addresses key limitations of diffusion models for interactive applications by leveraging sliding window attention and KV-state caching to balance computational efficiency with visual quality while minimizing latency. This technique is particularly relevant for live avatar and virtual assistant applications requiring sub-frame latency responses with maintained temporal stability across extended sequences.", "https://arxiv.org/abs/2512.21734")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21736" style="color:#4ea8ff;">SyncAnyone: Implicit Disentanglement via Progressive Self-Correction for Lip-Syncing in the wild</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2025-12-29
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#f59e0b;">💼 42</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SyncAnyone addresses a fundamental limitation in lip-sync video synthesis by replacing mask-based training with a two-stage diffusion-based framework that preserves spatiotemporal context, enabling accurate audio-driven lip movements without disrupting facial structure or background consistency. The key innovation is leveraging a video transformer's spatiotemporal modeling in Stage 1 for masked mouth inpainting, which avoids the input corruption artifacts that plague existing methods while maintaining visual fidelity. This approach has significant implications for practical video dubbing applications, particularly for handling dynamic facial motions where existing methods typically fail due to instability.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SyncAnyone: Implicit Disentanglement via Progressive Self-Correction for Lip-Syncing in the wild", "SyncAnyone addresses a fundamental limitation in lip-sync video synthesis by replacing mask-based training with a two-stage diffusion-based framework that preserves spatiotemporal context, enabling accurate audio-driven lip movements without disrupting facial structure or background consistency. The key innovation is leveraging a video transformer's spatiotemporal modeling in Stage 1 for masked mouth inpainting, which avoids the input corruption artifacts that plague existing methods while maintaining visual fidelity. This approach has significant implications for practical video dubbing applications, particularly for handling dynamic facial motions where existing methods typically fail due to instability.", "https://arxiv.org/abs/2512.21736")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
