@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AI Daily Digest – 2026-01-01</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background:#0b0c10; color:#e5e5e5; font-family:system-ui; padding:2rem; }
+    a { color:#4ea8ff; }
+    .score-badge {
+      display:inline-block;
+      color:#fff;
+      padding:2px 10px;
+      border-radius:4px;
+      font-size:0.75rem;
+      margin-right:0.5rem;
+      font-weight:500;
+    }
+    .analysis-box {
+      background:#1a1b26;
+      border-left:4px solid #8b5cf6;
+      padding:1rem;
+      border-radius:6px;
+      color:#c9d1d9;
+    }
+    .loading {
+      color:#888;
+      font-style:italic;
+    }
+  </style>
+  <script>
+    async function analyzeForMVP(articleId, title, summary, link) {
+      const container = document.getElementById('analysis-' + articleId);
+      const modelSelect = document.getElementById('model-select-' + articleId);
+      const selectedModel = modelSelect ? modelSelect.value : 'claude';
+
+      const modelNames = {
+        'claude': 'Claude Sonnet 4.5',
+        'gemini': 'Gemini 3.0 Flash'
+      };
+
+      container.innerHTML = '<p class="loading">Analyzing with ' + modelNames[selectedModel] + '...</p>';
+
+      try {
+        const response = await fetch('/api/analyze-mvp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title, summary, link, model: selectedModel })
+        });
+
+        if (!response.ok) {
+          throw new Error('Analysis failed');
+        }
+
+        const data = await response.json();
+        container.innerHTML = '<div class="analysis-box"><p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Analyzed by ' + modelNames[data.model] + '</p>' + data.analysis + '</div>';
+      } catch (error) {
+        container.innerHTML = '<p style="color:#ef4444;">Error: ' + error.message + '</p>';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>AI Daily Digest – 2026-01-01</h1>
+  
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.23379" style="color:#4ea8ff;">SoulX-LiveTalk: Real-Time Infinite Streaming of Audio-Driven Avatars via Self-Correcting Bidirectional Distillation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SoulX-LiveTalk tackles real-time audio-driven avatar synthesis at scale using a 14B-parameter diffusion model with a novel Self-correcting Bidirectional Distillation strategy that maintains bidirectional attention within video chunks rather than enforcing strictly unidirectional mechanisms, preserving spatiotemporal coherence crucial for motion quality. The framework incorporates a Multi-step Retrospective Self-Correction Mechanism to maintain stability during infinite-duration streaming, addressing the fundamental engineering challenge of balancing computational efficiency against latency constraints and visual fidelity. This approach suggests a viable path for deploying high-quality real-time avatar generation at production scale, with implications for streaming video synthesis applications and generative video systems that require both speed and visual coherence.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SoulX-LiveTalk: Real-Time Infinite Streaming of Audio-Driven Avatars via Self-Correcting Bidirectional Distillation", "SoulX-LiveTalk tackles real-time audio-driven avatar synthesis at scale using a 14B-parameter diffusion model with a novel Self-correcting Bidirectional Distillation strategy that maintains bidirectional attention within video chunks rather than enforcing strictly unidirectional mechanisms, preserving spatiotemporal coherence crucial for motion quality. The framework incorporates a Multi-step Retrospective Self-Correction Mechanism to maintain stability during infinite-duration streaming, addressing the fundamental engineering challenge of balancing computational efficiency against latency constraints and visual fidelity. This approach suggests a viable path for deploying high-quality real-time avatar generation at production scale, with implications for streaming video synthesis applications and generative video systems that require both speed and visual coherence.", "https://arxiv.org/abs/2512.23379")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.24731" style="color:#4ea8ff;">EchoFoley: Event-Centric Hierarchical Control for Video Grounded Creative Sound Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#10b981;">⚡ 87</span></div>
+  <p>EchoFoley introduces a hierarchical event-centric framework for video-to-audio generation that addresses visual dominance bias in current VT2A systems through symbolic event representation specifying temporal placement, sound characteristics, and production parameters. The approach enables fine-grained controllable generation (sound synthesis, insertion, editing) with improved instruction following beyond categorical tags, representing a significant shift toward compositional audio control in multimodal content creation. This addresses a critical gap in creative sound design automation where precise temporal and semantic control has been lacking in existing video-grounded audio generation methods.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "EchoFoley: Event-Centric Hierarchical Control for Video Grounded Creative Sound Generation", "EchoFoley introduces a hierarchical event-centric framework for video-to-audio generation that addresses visual dominance bias in current VT2A systems through symbolic event representation specifying temporal placement, sound characteristics, and production parameters. The approach enables fine-grained controllable generation (sound synthesis, insertion, editing) with improved instruction following beyond categorical tags, representing a significant shift toward compositional audio control in multimodal content creation. This addresses a critical gap in creative sound design automation where precise temporal and semantic control has been lacking in existing video-grounded audio generation methods.", "https://arxiv.org/abs/2512.24731")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2506.23361" style="color:#4ea8ff;">OmniVCus: Feedforward Subject-driven Video Customization with Multimodal Control Conditions</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>OmniVCus introduces a feedforward diffusion Transformer framework for multi-subject video customization with multimodal control signals (depth, masks, camera parameters, text), addressing a key limitation in existing methods that primarily handle single subjects. The approach combines a novel data construction pipeline (VideoCus-Factory) that extracts training pairs from unlabeled raw videos, mixed image-video training for instructive editing, and two embedding mechanisms (Lottery Embedding and Temporally Aligned Embedding) to maintain subject consistency across frames. This represents a significant step toward practical, controllable video synthesis with minimal manual annotation overhead.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "OmniVCus: Feedforward Subject-driven Video Customization with Multimodal Control Conditions", "OmniVCus introduces a feedforward diffusion Transformer framework for multi-subject video customization with multimodal control signals (depth, masks, camera parameters, text), addressing a key limitation in existing methods that primarily handle single subjects. The approach combines a novel data construction pipeline (VideoCus-Factory) that extracts training pairs from unlabeled raw videos, mixed image-video training for instructive editing, and two embedding mechanisms (Lottery Embedding and Temporally Aligned Embedding) to maintain subject consistency across frames. This represents a significant step toward practical, controllable video synthesis with minimal manual annotation overhead.", "https://arxiv.org/abs/2506.23361")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.23379" style="color:#4ea8ff;">SoulX-LiveTalk: Real-Time Infinite Streaming of Audio-Driven Avatars via Self-Correcting Bidirectional Distillation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.CV updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>SoulX-LiveTalk addresses the core bottleneck in real-time audio-driven avatar generation by introducing Self-correcting Bidirectional Distillation, which maintains bidirectional attention within video chunks to preserve spatiotemporal coherence while staying within latency budgets—contrasting with prior unidirectional-only approaches that sacrificed visual fidelity. The 14B-parameter framework further stabilizes infinite-duration generation through a Multi-step Retrospective Self-Correction Mechanism, enabling practical deployment of high-quality streaming avatars without requiring massive computational sacrifice. This distillation strategy is particularly valuable for production systems where real-time constraints and model efficiency are equally critical.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "SoulX-LiveTalk: Real-Time Infinite Streaming of Audio-Driven Avatars via Self-Correcting Bidirectional Distillation", "SoulX-LiveTalk addresses the core bottleneck in real-time audio-driven avatar generation by introducing Self-correcting Bidirectional Distillation, which maintains bidirectional attention within video chunks to preserve spatiotemporal coherence while staying within latency budgets—contrasting with prior unidirectional-only approaches that sacrificed visual fidelity. The 14B-parameter framework further stabilizes infinite-duration generation through a Multi-step Retrospective Self-Correction Mechanism, enabling practical deployment of high-quality streaming avatars without requiring massive computational sacrifice. This distillation strategy is particularly valuable for production systems where real-time constraints and model efficiency are equally critical.", "https://arxiv.org/abs/2512.23379")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.23739" style="color:#4ea8ff;">Break Out the Silverware -- Semantic Understanding of Stored Household Items</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 15</span> <span class="score-badge" style="background:#6b7280;">⚡ 25</span></div>
+  <p>This paper introduces a benchmark task for evaluating robot commonsense reasoning by predicting where household items are stored based on scene context and item queries—addressing a critical gap between vision/manipulation capabilities and semantic understanding needed for domestic service robots. The researchers provide two datasets: a 100-item real-world evaluation set from actual kitchens and a 6,500-item development set with annotated storage polygons, enabling systematic benchmarking of different agent architectures on household organization inference. This work targets a practical but understudied problem in robotics where spatial reasoning about hidden object locations is essential for task completion, moving beyond pixel-level perception to higher-level semantic reasoning about human organizational patterns.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Break Out the Silverware -- Semantic Understanding of Stored Household Items", "This paper introduces a benchmark task for evaluating robot commonsense reasoning by predicting where household items are stored based on scene context and item queries—addressing a critical gap between vision/manipulation capabilities and semantic understanding needed for domestic service robots. The researchers provide two datasets: a 100-item real-world evaluation set from actual kitchens and a 6,500-item development set with annotated storage polygons, enabling systematic benchmarking of different agent architectures on household organization inference. This work targets a practical but understudied problem in robotics where spatial reasoning about hidden object locations is essential for task completion, moving beyond pixel-level perception to higher-level semantic reasoning about human organizational patterns.", "https://arxiv.org/abs/2512.23739")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.23881" style="color:#4ea8ff;">Breaking Audio Large Language Models by Attacking Only the Encoder: A Universal Targeted Latent-Space Audio Attack</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 18</span> <span class="score-badge" style="background:#10b981;">⚡ 82</span></div>
+  <p>Researchers demonstrate a universal adversarial attack on audio-language models that bypasses LLM security by directly poisoning audio encoder outputs—crafting speaker-agnostic perturbations in latent space that reliably trigger attacker-specified responses without LLM access. This encoder-level vulnerability is particularly dangerous because it generalizes across different inputs and audio sources while remaining imperceptible, exposing a critical security gap in multimodal systems that practitioners designing audio LLMs must now defend against during both encoding and integration stages.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Breaking Audio Large Language Models by Attacking Only the Encoder: A Universal Targeted Latent-Space Audio Attack", "Researchers demonstrate a universal adversarial attack on audio-language models that bypasses LLM security by directly poisoning audio encoder outputs—crafting speaker-agnostic perturbations in latent space that reliably trigger attacker-specified responses without LLM access. This encoder-level vulnerability is particularly dangerous because it generalizes across different inputs and audio sources while remaining imperceptible, exposing a critical security gap in multimodal systems that practitioners designing audio LLMs must now defend against during both encoding and integration stages.", "https://arxiv.org/abs/2512.23881")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.23994" style="color:#4ea8ff;">PhyAVBench: A Challenging Audio Physics-Sensitivity Benchmark for Physically Grounded Text-to-Audio-Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 23</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>PhyAVBench introduces a specialized benchmark with 1,000 text prompt pairs designed to evaluate whether text-to-audio-video models understand physical principles that govern sound generation—addressing a critical gap where current T2AV systems fail to produce physically plausible audio despite advances in synchronization. The Audio-Physics Sensitivity Test (APST) methodology systematically varies physical parameters (mass, material, velocity, etc.) within controlled prompt pairs to measure fine-grained model sensitivity to acoustic conditions, providing quantitative metrics for physics grounding that go beyond existing synchronization-focused evaluations. This work establishes essential baselines for the emerging challenge of physics-aware generative audio-visual systems, which is crucial for applications requiring physical realism in VR, gaming, and simulation environments.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "PhyAVBench: A Challenging Audio Physics-Sensitivity Benchmark for Physically Grounded Text-to-Audio-Video Generation", "PhyAVBench introduces a specialized benchmark with 1,000 text prompt pairs designed to evaluate whether text-to-audio-video models understand physical principles that govern sound generation—addressing a critical gap where current T2AV systems fail to produce physically plausible audio despite advances in synchronization. The Audio-Physics Sensitivity Test (APST) methodology systematically varies physical parameters (mass, material, velocity, etc.) within controlled prompt pairs to measure fine-grained model sensitivity to acoustic conditions, providing quantitative metrics for physics grounding that go beyond existing synchronization-focused evaluations. This work establishes essential baselines for the emerging challenge of physics-aware generative audio-visual systems, which is crucial for applications requiring physical realism in VR, gaming, and simulation environments.", "https://arxiv.org/abs/2512.23994")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.24271" style="color:#4ea8ff;">Taming Hallucinations: Boosting MLLMs' Video Understanding via Counterfactual Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>This paper introduces **DualityForge**, a diffusion-based video editing framework that synthetically generates counterfactual videos to mitigate hallucinations in MLLMs caused by over-reliance on language priors during video understanding tasks. The key innovation is using controllable diffusion editing to transform real videos into visually implausible scenarios, then generating contrastive QA pairs for training—addressing the expensive annotation bottleneck that previously made counterfactual dataset creation impractical. This approach directly targets the fundamental data imbalance between text and video modalities by enabling at-scale synthetic generation of edge cases that challenge language-driven biases.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Taming Hallucinations: Boosting MLLMs' Video Understanding via Counterfactual Video Generation", "This paper introduces **DualityForge**, a diffusion-based video editing framework that synthetically generates counterfactual videos to mitigate hallucinations in MLLMs caused by over-reliance on language priors during video understanding tasks. The key innovation is using controllable diffusion editing to transform real videos into visually implausible scenarios, then generating contrastive QA pairs for training—addressing the expensive annotation bottleneck that previously made counterfactual dataset creation impractical. This approach directly targets the fundamental data imbalance between text and video modalities by enabling at-scale synthetic generation of edge cases that challenge language-driven biases.", "https://arxiv.org/abs/2512.24271")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.24300" style="color:#4ea8ff;">Generative Video Compression: Towards 0.01% Compression Rate for Video Transmission</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 32</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Generative Video Compression (GVC) achieves extreme compression rates as low as 0.02% by leveraging generative video models to encode videos into minimal representations, shifting reconstruction burden to the receiver's inference rather than transmission bandwidth. This represents a fundamental paradigm shift from Shannon-Weaver Level B (signal fidelity) to Level C (semantic meaning), trading computational resources at the decoder for dramatic bandwidth reduction. The framework addresses practical deployment through compression-computation trade-offs, enabling viable transmission of video data where traditional codecs prove insufficient.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Generative Video Compression: Towards 0.01% Compression Rate for Video Transmission", "Generative Video Compression (GVC) achieves extreme compression rates as low as 0.02% by leveraging generative video models to encode videos into minimal representations, shifting reconstruction burden to the receiver's inference rather than transmission bandwidth. This represents a fundamental paradigm shift from Shannon-Weaver Level B (signal fidelity) to Level C (semantic meaning), trading computational resources at the decoder for dramatic bandwidth reduction. The framework addresses practical deployment through compression-computation trade-offs, enabling viable transmission of video data where traditional codecs prove insufficient.", "https://arxiv.org/abs/2512.24300")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.24787" style="color:#4ea8ff;">HiGR: Efficient Generative Slate Recommendation via Hierarchical Planning and Multi-Objective Preference Alignment</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#6b7280;">⚡ 22</span></div>
+  <p>HiGR introduces a hierarchical two-stage generative approach to slate recommendation that decouples list-level planning from item-level decoding, addressing inefficiencies in purely autoregressive methods. The framework employs a novel auto-encoder with residual quantization and contrastive learning to create semantically structured item tokenization, enabling more controllable and efficient generation compared to entangled sequential decoding. This architecture should yield faster inference and better slate coherence by planning global intent before selecting specific items, addressing a key bottleneck in production recommendation systems handling ranked item lists.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "HiGR: Efficient Generative Slate Recommendation via Hierarchical Planning and Multi-Objective Preference Alignment", "HiGR introduces a hierarchical two-stage generative approach to slate recommendation that decouples list-level planning from item-level decoding, addressing inefficiencies in purely autoregressive methods. The framework employs a novel auto-encoder with residual quantization and contrastive learning to create semantically structured item tokenization, enabling more controllable and efficient generation compared to entangled sequential decoding. This architecture should yield faster inference and better slate coherence by planning global intent before selecting specific items, addressing a key bottleneck in production recommendation systems handling ranked item lists.", "https://arxiv.org/abs/2512.24787")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.25072" style="color:#4ea8ff;">Coordinated Humanoid Manipulation with Choice Policies</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 22</span> <span class="score-badge" style="background:#6b7280;">⚡ 15</span></div>
+  <p>This work presents a modular approach to humanoid robot control combining decomposed teleoperation (hand-eye coordination, grasping, arm tracking, locomotion) with Choice Policy—an imitation learning framework that generates and scores multiple candidate actions to handle multimodal behaviors efficiently. The system demonstrates practical viability on complex whole-body tasks (dishwasher loading, loco-manipulation for wiping), addressing a critical bottleneck in humanoid robotics by enabling scalable high-quality demonstration collection through intuitive submodular interfaces.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Coordinated Humanoid Manipulation with Choice Policies", "This work presents a modular approach to humanoid robot control combining decomposed teleoperation (hand-eye coordination, grasping, arm tracking, locomotion) with Choice Policy—an imitation learning framework that generates and scores multiple candidate actions to handle multimodal behaviors efficiently. The system demonstrates practical viability on complex whole-body tasks (dishwasher loading, loco-manipulation for wiping), addressing a critical bottleneck in humanoid robotics by enabling scalable high-quality demonstration collection through intuitive submodular interfaces.", "https://arxiv.org/abs/2512.25072")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2404.15834" style="color:#4ea8ff;">FEDSTR: Money-In AI-Out | A Decentralized Marketplace for Federated Learning and LLM Training on the NOSTR Protocol</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>FEDSTR proposes a decentralized marketplace leveraging the NOSTR protocol to enable federated learning and LLM training, where customers contribute datasets and service providers perform distributed model training without centralized coordination. The architecture exploits NOSTR's existing websocket-based infrastructure and trusted user network to facilitate peer-to-peer AI training transactions, addressing privacy and decentralization concerns in model development. This approach could democratize access to distributed AI training resources while maintaining data privacy through federated learning principles, though practical challenges around incentive alignment, model quality assurance, and network coordination remain to be fully addressed.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "FEDSTR: Money-In AI-Out | A Decentralized Marketplace for Federated Learning and LLM Training on the NOSTR Protocol", "FEDSTR proposes a decentralized marketplace leveraging the NOSTR protocol to enable federated learning and LLM training, where customers contribute datasets and service providers perform distributed model training without centralized coordination. The architecture exploits NOSTR's existing websocket-based infrastructure and trusted user network to facilitate peer-to-peer AI training transactions, addressing privacy and decentralization concerns in model development. This approach could democratize access to distributed AI training resources while maintaining data privacy through federated learning principles, though practical challenges around incentive alignment, model quality assurance, and network coordination remain to be fully addressed.", "https://arxiv.org/abs/2404.15834")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.20156" style="color:#4ea8ff;">Fun-Audio-Chat Technical Report</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 78</span></div>
+  <p>Fun-Audio-Chat addresses critical bottlenecks in speech-text models by introducing Dual-Resolution Speech Representations (DRSR)—processing audio at efficient 5Hz for the shared LLM while a Speech Refined Head generates 25Hz tokens—achieving ~50% GPU reduction without quality loss. The Core-Cocktail two-stage training with intermediate merging prevents catastrophic forgetting of text LLM knowledge, while Multi-Task DPO Training enhances robustness, enabling more practical deployment of large audio language models for seamless voice interactions.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Fun-Audio-Chat Technical Report", "Fun-Audio-Chat addresses critical bottlenecks in speech-text models by introducing Dual-Resolution Speech Representations (DRSR)—processing audio at efficient 5Hz for the shared LLM while a Speech Refined Head generates 25Hz tokens—achieving ~50% GPU reduction without quality loss. The Core-Cocktail two-stage training with intermediate merging prevents catastrophic forgetting of text LLM knowledge, while Multi-Task DPO Training enhances robustness, enabling more practical deployment of large audio language models for seamless voice interactions.", "https://arxiv.org/abs/2512.20156")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.21776" style="color:#4ea8ff;">Inference-based GAN Video Generation</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 25</span> <span class="score-badge" style="background:#3b82f6;">⚡ 72</span></div>
+  <p>This paper addresses long-sequence video generation by proposing a VAE-GAN hybrid architecture that combines adversarial training with variational encoding, incorporating separate content and motion processing branches to improve temporal coherence beyond the typical 16-frame limitation. The key innovation lies in enabling inference-based generation that maintains meaningful sequential movement across scenes, tackling a critical bottleneck where existing GANs, VAEs, and diffusion models degrade quality when scaling temporally.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "Inference-based GAN Video Generation", "This paper addresses long-sequence video generation by proposing a VAE-GAN hybrid architecture that combines adversarial training with variational encoding, incorporating separate content and motion processing branches to improve temporal coherence beyond the typical 16-frame limitation. The key innovation lies in enabling inference-based generation that maintains meaningful sequential movement across scenes, tackling a critical bottleneck where existing GANs, VAEs, and diffusion models degrade quality when scaling temporally.", "https://arxiv.org/abs/2512.21776")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+
+<article style="margin-bottom:1.5rem;">
+  <h2><a href="https://arxiv.org/abs/2512.23565" style="color:#4ea8ff;">RxnBench: A Multimodal Benchmark for Evaluating Large Language Models on Chemical Reaction Understanding from Scientific Literature</a></h2>
+  <p style="color:#888;font-size:0.85rem;">
+    cs.AI updates on arXiv.org
+     · 2026-01-01
+  </p>
+  <div style="margin:0.5rem 0;"><span class="score-badge" style="background:#6b7280;">💼 28</span> <span class="score-badge" style="background:#6b7280;">⚡ 35</span></div>
+  <p>RxnBench introduces a rigorous multimodal benchmark with 1,525 fine-grained questions across reaction schemes and full scientific PDFs to evaluate MLLMs' ability to understand chemical reactions from authentic literature—a capability critical for automating scientific discovery. The evaluation reveals a significant gap: current MLLMs excel at text extraction but fail at deep mechanistic reasoning and precise molecular structure recognition, indicating structural limitations in their cross-modal integration of visual chemistry notation with textual context. This work highlights that scaling parameters alone won't solve chemistry understanding; models need enhanced visual-semantic alignment specifically for domain-specific graphical languages like reaction schemes and chemical structures.</p>
+  <div style="display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;">
+    <select
+      id="model-select-aHR0cHM6Ly9hcnhp"
+      style="background:#1a1b26;color:#e5e5e5;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:0.85rem;cursor:pointer;"
+    >
+      <option value="claude">Claude Sonnet 4.5</option>
+      <option value="gemini">Gemini 3.0 Flash</option>
+    </select>
+    <button
+      onclick="analyzeForMVP('aHR0cHM6Ly9hcnhp', "RxnBench: A Multimodal Benchmark for Evaluating Large Language Models on Chemical Reaction Understanding from Scientific Literature", "RxnBench introduces a rigorous multimodal benchmark with 1,525 fine-grained questions across reaction schemes and full scientific PDFs to evaluate MLLMs' ability to understand chemical reactions from authentic literature—a capability critical for automating scientific discovery. The evaluation reveals a significant gap: current MLLMs excel at text extraction but fail at deep mechanistic reasoning and precise molecular structure recognition, indicating structural limitations in their cross-modal integration of visual chemistry notation with textual context. This work highlights that scaling parameters alone won't solve chemistry understanding; models need enhanced visual-semantic alignment specifically for domain-specific graphical languages like reaction schemes and chemical structures.", "https://arxiv.org/abs/2512.23565")"
+      style="background:#8b5cf6;color:#fff;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;"
+      onmouseover="this.style.background='#7c3aed'"
+      onmouseout="this.style.background='#8b5cf6'"
+    >
+      💡 Analyze for MVP
+    </button>
+  </div>
+  <div id="analysis-aHR0cHM6Ly9hcnhp" style="margin-top:1rem;"></div>
+</article>
+</body>
+</html>
