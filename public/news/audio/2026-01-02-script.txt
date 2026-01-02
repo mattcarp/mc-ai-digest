@@ -1,0 +1,107 @@
+# Daily AI News Podcast Script
+
+Chris: Alright, so we need to talk about what's happening with AI compute costs. There's this new analysis out showing that inference costs have dropped something like 90% in the past year.
+
+Lily: Which sounds brilliant until you realize training costs are going in the opposite direction. What are we looking at there?
+
+Chris: Yeah, it's wild. Training a frontier model is now pushing past a billion dollars. Some estimates have GPT-5 or whatever OpenAI's cooking up north of two billion just for the training run.
+
+Lily: [pauses] Two billion for one training run. And companies are still trying to figure out how to make money on these things.
+
+Chris: Right, and here's where it gets interesting - the inference cost drop is actually creating this weird dynamic. You've got companies racing to make the models cheaper to run, which is great if you're deploying at scale. But the barrier to entry for training something competitive? That's becoming insurmountable for anyone not backed by Microsoft or Google money.
+
+Lily: So we're essentially watching the AI market consolidate before it's even matured. The big players can afford the training costs, undercut everyone on inference, and smaller companies are just... what, fine-tuning and hoping?
+
+Chris: Pretty much. I mean, look at what happened with Mistral. They raised hundreds of millions, they've got legitimate talent, and they're still playing catch-up because they can't match the compute budgets. Their strategy is basically "we'll be more efficient" - which works until the bigger labs decide efficiency matters to them too.
+
+Lily: And then there's the whole open source angle. Meta's dumping Llama models for free, which is fantastic for developers but absolute hell if you're trying to build a business around model hosting.
+
+Chris: [chuckles] Yeah, imagine being an AI startup who raised a Series A to fine-tune open source models and suddenly Meta just releases something better for free. That's a fun board meeting.
+
+Lily: Speaking of things that sound too good to be true - I'm seeing a lot of noise about AI agents actually being deployed in production. Not demos, actual production. Should we believe any of this?
+
+Chris: [sighs] So there's signal and noise here. Companies like Klarna are putting out case studies saying they replaced hundreds of customer service agents with AI. That's real. But then you read the details and it's like... they're handling the simple shit. Password resets, order status, basic FAQ stuff.
+
+Lily: The things that should've been automated ten years ago with decision trees?
+
+Chris: Exactly. The difference now is the natural language interface makes it feel more sophisticated, but functionally? A lot of these "AI agents" are just better versions of the phone trees we all hated. They work for narrow, well-defined tasks.
+
+Lily: What about the more ambitious stuff? I keep seeing demos of agents that supposedly code entire applications or manage complex workflows.
+
+Chris: Demos being the key word. [pauses] Look, I've tested some of these. Devin, the "AI software engineer" - when it works, it's impressive. But the success rate on real-world tasks is still under 50%. You wouldn't hire a human engineer who only completes half their tickets.
+
+Lily: That's a expensive coin flip.
+
+Chris: And here's what nobody talks about - the babysitting cost. These agents need oversight. They go off the rails, make assumptions, hallucinate requirements. So you end up needing a senior person watching them anyway, which sort of defeats the purpose of the automation.
+
+Lily: Right, so the ROI only works if you're replacing junior work at junior prices, but you need senior people to supervise. The economics are questionable.
+
+Chris: At least for now. The bet is that reliability improves faster than costs decrease, and eventually you hit a point where supervision becomes spot-checking instead of constant monitoring.
+
+Lily: How far out is that?
+
+Chris: [chuckles] If I knew that, I'd be trading options, not doing a podcast. Seriously though, I think we're talking another 12 to 18 months before agent reliability is good enough for most companies to trust them unsupervised on anything important.
+
+Lily: Let's shift gears. There's been some interesting movement in the AI hardware space. Not just NVIDIA printing money, but actual alternative architectures getting traction.
+
+Chris: Yeah, Groq is the interesting one to watch. They're claiming 500 tokens per second inference speeds, which is damn fast. But here's the catch - they're optimized specifically for inference, nothing else.
+
+Lily: And they're expensive?
+
+Chris: Very. The economics only make sense if you're running massive scale inference workloads and speed is critical. Like if you're building a real-time voice AI system or something where latency directly impacts user experience.
+
+Lily: So not for the average company deploying a chatbot.
+
+Chris: Not even close. And that's the thing with all these alternative AI chips - Cerebras, Graphcore, whatever - they're solving for edge cases that most businesses don't have. NVIDIA still wins for versatility.
+
+Lily: Although NVIDIA's pricing is getting absurd. I saw a quote for H100 clusters that made my eyes water.
+
+Chris: Oh yeah, the supply-demand situation is insane. Companies are signing contracts for compute capacity months in advance, paying premium rates, just to secure access. It's like concert tickets for GPUs.
+
+Lily: [chuckles] Which brings us back to the original point about training costs. If you can't get compute, you can't train, and even if you can get it, you're paying through the nose.
+
+Chris: And this is where the hyperscalers have a massive advantage. Microsoft, Google, Amazon - they own the infrastructure. They can allocate compute to their AI projects at cost, while everyone else is renting at market rates.
+
+Lily: That's a structural advantage that's going to be really hard to overcome.
+
+Chris: Impossible, probably. Unless something changes with the hardware supply chain or we get a major breakthrough in training efficiency.
+
+Lily: What about the regulatory side? Europe's AI Act is actually in effect now, right?
+
+Chris: Technically yes, but enforcement is still being figured out. [pauses] The real impact is on companies trying to deploy in Europe - they're having to do these AI impact assessments, maintain documentation about training data, implement oversight mechanisms.
+
+Lily: Is anyone actually complying or is this another GDPR situation where everyone ignores it until someone gets fined?
+
+Chris: Bit of both. The big companies are taking it seriously because they can't afford the fines. OpenAI, Google, Microsoft - they've got compliance teams working on this. But smaller players? A lot of them are just... hoping they're not big enough to get noticed.
+
+Lily: Which is a terrible strategy but I understand the calculation. Compliance is expensive.
+
+Chris: Especially when the rules are still ambiguous. Like, what counts as a "high-risk" AI system? Customer service chatbot - probably not. Hiring algorithm - definitely. But there's a huge gray area in the middle where nobody's sure.
+
+Lily: And of course the US isn't doing any of this, so American companies have a regulatory arbitrage advantage.
+
+Chris: For now. There's talk in Congress about AI regulation, but it's mostly talk. The tech lobby is strong and nobody wants to slow down "innovation" - in quotes.
+
+Lily: Meanwhile China's got their own AI regulations that are somehow both more and less restrictive than Europe's.
+
+Chris: Yeah, it's weird. They're strict about content and political sensitivity, but they're not as concerned about the technical deployment aspects. Different priorities.
+
+Lily: Alright, last thing - what should people actually be paying attention to over the next few months? What's the signal versus the noise?
+
+Chris: Watch the inference cost trends. If those keep dropping, we're going to see AI features embedded in way more products, which means actual adoption not just hype. Also watch for real enterprise deployments with published metrics, not just press releases.
+
+Lily: And be skeptical of agent claims until you see sustained accuracy numbers. Demos are bullshit, production metrics matter.
+
+Chris: Exactly. And on the business side, watch the compute pricing. If GPU availability loosens up, that could change the competitive dynamics significantly.
+
+Lily: Though I'm not holding my breath on that one.
+
+Chris: [chuckles] Yeah, me neither. NVIDIA's going to keep printing money for a while.
+
+Lily: Right, I think that's where we are. Inference getting cheaper, training getting more expensive, agents overhyped but slowly improving, and the big players consolidating control.
+
+Chris: Same as it ever was in tech. Just faster and with more zeros on the price tags.
+
+Lily: See you tomorrow.
+
+Chris: Yeah, see you tomorrow.
