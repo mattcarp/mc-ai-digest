@@ -1,0 +1,125 @@
+Chris: Alright, so we need to talk about OpenAI's new reasoning models. They just dropped o3 and o3-mini, and the benchmarks are... honestly kind of absurd.
+
+Lily: How absurd are we talking?
+
+Chris: They're hitting 87.7% on the ARC-AGI benchmark. For context, o1 was at 32%. GPT-4o was at 9%. This is a massive jump.
+
+Lily: [pauses] That's the test that's supposed to measure actual reasoning ability, right? Not just pattern matching?
+
+Chris: Exactly. It's designed to test novel problem-solving - stuff the model hasn't seen before. And they're also crushing coding benchmarks. 2727 Elo on Codeforces, which puts them in the 175th percentile of human competitive programmers.
+
+Lily: Okay, but here's what I want to know - what's this actually costing? Because every time we get these reasoning models, the compute costs are fucking insane.
+
+Chris: Yeah, that's the catch. They're offering three different compute tiers - low, medium, and high. The high-compute version is what gets those incredible scores, but we don't have pricing yet. OpenAI's being coy about it.
+
+Lily: Of course they are. [pauses] So this could be one of those situations where the results are technically impressive but commercially useless if it costs $50 per query.
+
+Chris: Pretty much. Though the o3-mini is supposed to be the more practical version. They're saying it'll be cheaper and faster while still outperforming o1 on coding tasks.
+
+Lily: When can people actually use this?
+
+Chris: That's the thing - they're not releasing it yet. They've opened up applications for safety testing first. Researchers can apply for access starting today, but wider release isn't happening until late January for o3-mini. Regular o3 comes after that.
+
+Lily: So this is essentially a preview announcement. Get everyone excited, generate buzz, but no one can actually validate these claims independently yet.
+
+Chris: Yeah, and it's interesting timing given what's happening with DeepSeek. Did you see their results?
+
+Lily: The Chinese lab? What are they claiming?
+
+Chris: They just released DeepSeek-V3, and they're saying they trained it for under $6 million. That's insane compared to what Western labs spend.
+
+Lily: [pauses] Under $6 million for a frontier model? How the hell are they doing that?
+
+Chris: They're using a mixture-of-experts architecture - 671 billion parameters total, but only activating 37 billion per token. It's way more efficient. And they're claiming performance competitive with Claude 3.5 Sonnet and GPT-4o.
+
+Lily: Right, but there's got to be a catch here. Are they using cheaper hardware? Different optimization techniques?
+
+Chris: They're being pretty open about it actually. Published a detailed technical report. They're using FP8 mixed precision training, which is more efficient than what most labs use. And they've figured out how to do multi-token prediction during training, which apparently helps with efficiency.
+
+Lily: This is actually huge for the business model question we keep dancing around. If you can train a competitive model for a fraction of the cost, that completely changes the economics of who can play in this space.
+
+Chris: Exactly. And it raises questions about whether the big American labs are just burning money inefficiently, or if DeepSeek's numbers are... let's say optimistic.
+
+Lily: You're being diplomatic. You think they're bullshitting about the costs?
+
+Chris: I think $6 million seems really low, even with all those optimizations. But even if the real number is $20 or $30 million, that's still way cheaper than what OpenAI or Anthropic are spending.
+
+Lily: Fair point. What else did they improve?
+
+Chris: They've supposedly fixed some of the issues with reasoning and following instructions. Better at math, coding, that kind of thing. And they've made it open source under an MIT license, which is significant.
+
+Lily: Okay, that's interesting because it puts pressure on everyone else. If there's a competitive open-source model, the closed-source labs need to justify their pricing.
+
+Chris: Yeah, and speaking of open source - Meta just released an updated version of Llama 3.3. 70 billion parameters, and they're claiming it matches their 405B model on most benchmarks.
+
+Lily: How the hell does a 70B model match a 405B model?
+
+Chris: Better training, better data curation, more compute time. Zuckerberg posted about it - they're saying it has similar performance to GPT-4o and Claude Sonnet.
+
+Lily: Do we believe that?
+
+Chris: [pauses] I'd want to test it independently, but Meta's been pretty honest about Llama's capabilities. They're not known for overhyping like some other companies.
+
+Lily: What's the context window?
+
+Chris: 128K tokens, multilingual, can run on local hardware if you've got decent GPUs. The business angle here is pretty clear - if you want to deploy AI without sending data to external APIs, this is viable.
+
+Chris: Yeah, enterprises love that. Data privacy, lower long-term costs, no dependency on external providers.
+
+Lily: Alright, shifting gears - what's this about Google and character.ai?
+
+Chris: Google's bringing back Noam Shazeer and some of the character.ai team. They're paying $2.7 billion, but it's structured weird - it's not an acquisition.
+
+Lily: What do you mean it's not an acquisition? They're paying $2.7 billion.
+
+Chris: They're licensing the technology and hiring the team, but character.ai continues to exist as a separate company. It's basically structured to avoid regulatory scrutiny.
+
+Lily: [sighs] Right, because we can't have actual acquisitions anymore, so we just do these weird licensing deals that accomplish the same thing but technically aren't mergers.
+
+Chris: Exactly. The FTC would block an outright acquisition, so they get creative with the structure.
+
+Lily: What does Google actually get for $2.7 billion?
+
+Chris: They get Noam Shazeer back, who was one of the key people behind the Transformer architecture. He left Google in 2021 because they wouldn't let him release a chatbot, then founded character.ai.
+
+Lily: The irony being that Google was too cautious back then, and now they're desperately trying to compete in the space they invented.
+
+Chris: Pretty much. And they get whatever IP and technology character.ai developed, which is mainly around creating engaging AI personalities.
+
+Lily: Is that technology actually valuable? My understanding of character.ai is it's mostly teenagers talking to AI boyfriends.
+
+Chris: [chuckles] I mean, you're not wrong, but the underlying tech for making engaging, consistent AI personalities has applications beyond that. Customer service, virtual assistants, that kind of thing.
+
+Lily: Sure, but $2.7 billion seems steep for that.
+
+Chris: You're paying for the talent more than the tech. Shazeer's one of the best AI researchers in the world, and Google doesn't want him working for a competitor.
+
+Lily: Right, so it's defensive spending. Can't let OpenAI or Anthropic hire him.
+
+Chris: Basically. Okay, last thing - there's news about AI infrastructure costs that I think is important.
+
+Lily: Go on.
+
+Chris: Reports are coming out about just how much these companies are spending on compute. We're talking billions per year just to keep models running, not even counting training costs.
+
+Lily: This ties back to the DeepSeek thing, right? The sustainability of these business models.
+
+Chris: Exactly. If OpenAI is spending hundreds of millions on compute every year, and DeepSeek can achieve similar results for a fraction of that, something's got to give.
+
+Lily: Either the expensive models need to be significantly better to justify the cost, or the companies burning money need to figure out efficiency, or they go under.
+
+Chris: Right. And we're starting to see cracks in the "just scale everything" approach. Diminishing returns on model size, inference costs that make many applications uneconomical.
+
+Lily: Do you think we're going to see consolidation? Smaller labs getting acquired or shutting down?
+
+Chris: We're already seeing it. This Google-character.ai thing is basically that. Inflection got absorbed into Microsoft. Adept's struggling. [pauses] I think 2025 is going to be rough for anyone who isn't OpenAI, Anthropic, Google, or Meta.
+
+Lily: And the open-source labs like DeepSeek might actually have an advantage because they're not trying to build massive commercial businesses with the same cost structures.
+
+Chris: Yeah, if you're a research lab in China with government backing, you can operate on completely different economics than a Silicon Valley startup that needs to justify valuations to VCs.
+
+Lily: This is going to be an interesting year. 
+
+Chris: That's putting it mildly. Alright, I think that covers the major stuff. The o3 models are impressive if the benchmarks hold up and the pricing is reasonable - big if. DeepSeek is shaking up assumptions about training costs. And the infrastructure economics are becoming a real problem.
+
+Lily: Yeah, the hype cycle is meeting reality. Should be fun to watch.
